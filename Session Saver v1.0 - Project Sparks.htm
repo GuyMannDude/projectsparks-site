@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Saver v1.0 - Project Sparks</title>
+  <!-- CDN dependencies -->
+  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js" crossorigin></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div id="root"></div>
+
+  <script type="text/babel" data-presets="react">
+    const { useState } = React;
+
+    // Main App Component
+    function App() {
+      const [copied, setCopied] = useState(false);
+
+      // Session Saver Instructions
+      const sessionSaverInstructions = `Instructions for Your AI Assistant:
+1. Identify all active threads or themes from this conversation.
+2. Include any goals, instructions, or important facts provided.
+3. Format the output as a clear text block that can be:
+   - Copied and saved by the user
+   - Uploaded into a future session to resume context
+4. Use plain language. No code, no markdown formatting, no XML or JSON unless requested.
+
+Example Output:
+SESSION SNAPSHOT — YYYY-MM-DD HH:MM
+----------------------------------------
+THREADS:
+• Tool building (ThreadLocker, Session Saver, CarryOn)
+• Website overhaul for Project Sparks
+• QR business card rollout
+• Server AI setup and podcast ingestion ideas
+
+GOALS:
+• Package ThreadLocker for public distribution
+• Add project pages to website for each tool
+• Build a podcast-to-AI AutoFeeder later
+
+NOTES:
+• Memory limits of GPT-style models
+• Importance of thread continuity
+• Overflow alert protocol integrated into ThreadLocker
+
+To resume this session:
+➤ Paste this block into a new chat
+➤ Upload any referenced files or tool scripts
+➤ Say: "Continue from this snapshot"`;
+
+      // Copy to Clipboard Function
+      const copyToClipboard = () => {
+        navigator.clipboard.writeText(sessionSaverInstructions)
+          .then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          })
+          .catch(err => console.error('Copy failed:', err));
+      };
+
+      return (
+        <div className="min-h-screen bg-gray-50">
+          {/* Header */}
+          <header className="bg-indigo-600 text-white py-8">
+            <div className="max-w-4xl mx-auto px-4">
+              <h1 className="text-3xl font-bold">Session Saver v1.0</h1>
+              <p className="mt-2 text-lg font-medium">Universal AI Continuity Tool by Project Sparks</p>
+            </div>
+          </header>
+
+          {/* Main Content */}
+          <main className="max-w-4xl mx-auto px-4 py-10">
+            {/* Introduction */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">How Session Saver Works</h2>
+              <p className="text-lg text-gray-600">
+                Session Saver helps you pick up AI conversations right where you left off. At the end of your session, paste the instructions below into your AI assistant (e.g., Grok, ChatGPT, Claude). The AI will generate a snapshot of your current work. Save the output and paste it into your next session to resume seamlessly.
+              </p>
+            </section>
+
+            {/* Instructions */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">How to Use Session Saver</h2>
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <ol className="list-decimal list-inside text-lg text-gray-700 space-y-4">
+                  <li><strong>Copy the Instructions</strong>: Copy the full text in the section below.</li>
+                  <li><strong>Paste into Your AI</strong>: At the end of your session, paste the instructions into your AI’s text input box.</li>
+                  <li><strong>Save the Output</strong>: The AI will generate a snapshot of your conversation. Copy this output and save it (e.g., in a .txt file or clipboard).</li>
+                  <li><strong>Resume Later</strong>: In a new session, paste the saved snapshot into the AI and say, “Continue from this snapshot.”</li>
+                  <li><strong>Upload Files (if needed)</strong>: If your snapshot references files or scripts, upload them to the new session.</li>
+                </ol>
+                <h3 className="text-xl font-medium text-gray-800 mt-6 mb-2">Tips for Best Results</h3>
+                <ul className="list-disc list-inside text-lg text-gray-700 space-y-2">
+                  <li>Ensure you paste both the instructions and example output together as a single command.</li>
+                  <li>Save snapshots in a .txt file for easy access across sessions.</li>
+                  <li>Use with free or paid AI platforms; re-paste for new sessions on free platforms.</li>
+                  <li>Pair with ThreadLocker for enhanced thread tracking (visit <a href="https://projectsparks.ai" className="text-indigo-600 hover:underline">projectsparks.ai</a>).</li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Copyable Instructions */}
+            <section className="mb-10">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Session Saver Instructions</h2>
+              <p className="text-lg text-gray-600 mb-4">
+                Copy this text and paste it into your AI’s text box at the end of your session. The AI will generate a snapshot to save.
+              </p>
+              <div className="relative">
+                <textarea
+                  className="w-full p-4 bg-white border border-gray-300 rounded-lg text-gray-700 font-mono text-xs h-80"
+                  value={sessionSaverInstructions}
+                  readOnly
+                  aria-label="Session Saver v1.0 Instructions"
+                />
+                <button
+                  onClick={copyToClipboard}
+                  className="absolute top-2 right-2 bg-indigo-600 text-white px-3 py-1.5 rounded-md hover:bg-indigo-700 transition text-sm"
+                  aria-label="Copy Session Saver Instructions to Clipboard"
+                >
+                  {copied ? 'Copied!' : 'Copy to Clipboard'}
+                </button>
+              </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="text-center text-gray-600 py-8">
+              <p>Made by <a href="https://projectsparks.ai" className="text-indigo-600 hover:underline">Project Sparks</a> | 2025</p>
+            </footer>
+          </main>
+        </div>
+      );
+    }
+
+    // Render the App with Modern React 18 API
+    const rootElement = document.getElementById('root');
+    if (!rootElement) {
+      console.error('Root element not found');
+      document.body.innerHTML = '<div class="text-red-600 p-4">Error: Page failed to load. Please refresh.</div>';
+    } else {
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<App />);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Sparks Toolbox</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; }
+    h1, h2 { color: #333; }
+    .section { margin-bottom: 40px; }
+    .tool-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .tool-card h3 { margin-top: 0; }
+    .category-title { font-size: 1.4em; margin-bottom: 20px; border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+  </style>
+</head>
+<body>
+
+  <h1>🧰 Project Sparks Toolbox</h1>
+  <p>Welcome to the official Project Sparks Toolbox. These tools are designed to enhance, extend, and stabilize your AI experience across platforms. Built with care by Guy + AL✨.</p>
+
+  <div class="section">
+    <h2 class="category-title">🔧 Active Tools (Maybe...in progress)</h2>
+
+    <div class="tool-card">
+      <h3><a href="Learning_AL_v2.html" target="_blank">Learning AL✨</a></h3>
+      <p>The PG-rated AI learning companion for kids. Teaches AI use, safe interaction, and conversation-based learning. Works online or hosted locally.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><a href="ThreadLocker_Final-2.html" target="_blank">ThreadLocker v2.1</a></h3>
+      <p>Anchor and track your AI conversation threads. Features 5-round anchoring, 20-message recall, priority locking, and session overflow alerts.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><a href="Session Saver v1.0 - Project Sparks.htm" target="_blank">Session Saver</a></h3>
+      <p>A lightweight utility that helps users (especially free-tier) preserve their conversation context across sessions. Works with any LLM interface.</p>
+    </div>
+
+   <div class="tool-card">
+      <h3><a href="ChatEdit/" target="_blank">Chatbox Editor: Voice-to-Text with editing for ChatGPT.</a>
+</h3>
+      <p>Portable memory + logic overlay for AI identities. Designed for persistent assistant behavior across resets or devices. Includes AL✨ and Dex versions.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><a href="ToolBox1.2.html" target="_blank">BG'S FINGER(Soon)</a></h3>
+      <p>AutoHotKey presence automation suite. Prevents timeouts and idle disconnects during long tasks or auto-pilot sessions. AHK v1 only.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Suitcase Protocol (Soon)</h3>
+      <p>Modular memory pack for portable AI sessions. Drop in a zip and start working anywhere, no memory loss or rebuilds needed.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="category-title">🧪 Experimental / In Progress</h2>
+
+    <div class="tool-card">
+      <h3>Dictation BU (Backup Utility)</h3>
+      <p>Invisible logger that records voice-to-text streams into timestamped .txt files. Runs quietly in the background.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>One Click (Seamless chatbot transcriber and backup app</h3>
+      <p>Easy interface for inputting text reliably into your bot</p>
+    </div>
+
+
+    <div class="tool-card">
+      <h3>Memory Chunk Indexer</h3>
+      <p>File-level tool to tag and sort AI memory sessions, recovery logs, and embedded anchor references. Currently in prototype logic phase.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><a href="AL-to-Voice/" target="_blank">One Click Text-to-Voice</a> </h3>
+      <p>One click drops text into app and it starts talking</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>Toolkit Portal UI</h3>
+      <p>Grid-based web dashboard that will serve as the interactive hub for launching, downloading, or learning about all tools above.</p>
+    </div>
+  </div>
+
+</body>
+</html>

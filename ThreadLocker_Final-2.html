@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThreadLocker v2.1.1 – User Manual</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; font-size: 16px; }
+    .safe-area { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+    @media (max-width: 430px) {
+      .container { padding: 12px; }
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+    }
+    textarea { resize: vertical; }
+  </style>
+</head>
+<body class="bg-gray-100 safe-area">
+  <div class="container mx-auto p-6 max-w-sm sm:max-w-md bg-white rounded-lg shadow">
+    <header class="text-center mb-6">
+      <h1 class="text-2xl sm:text-3xl font-semibold">🧠 ThreadLocker v2.1.1 – User Manual</h1>
+      <p class="text-sm sm:text-base mt-2">By <a href="https://projectsparks.ai" class="text-blue-500 hover:underline">Project Sparks</a></p>
+    </header>
+
+    <nav class="mb-6">
+      <ul class="flex flex-wrap gap-2 text-sm">
+        <li><a href="#what-is" class="text-blue-500 hover:underline">What is ThreadLocker?</a></li>
+        <li><a href="#activate" class="text-blue-500 hover:underline">Activate</a></li>
+        <li><a href="#pinning" class="text-blue-500 hover:underline">Pinning</a></li>
+        <li><a href="#anchor" class="text-blue-500 hover:underline">Anchor Summary</a></li>
+        <li><a href="#overflow" class="text-blue-500 hover:underline">Overflow</a></li>
+        <li><a href="#session-saver" class="text-blue-500 hover:underline">Session Saver</a></li>
+      </ul>
+    </nav>
+
+    <section id="what-is" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">🔧 What is ThreadLocker?</h2>
+      <p class="text-sm sm:text-base">ThreadLocker enables any AI (ChatGPT, Claude, Grok, etc.) to:</p>
+      <ul class="list-disc pl-5 text-sm sm:text-base">
+        <li>Track up to <strong>5 active conversation threads</strong>.</li>
+        <li>Show <strong>anchor summaries</strong> every 5 rounds.</li>
+        <li>Silently reconnect dropped topics.</li>
+        <li>Warn when the AI's memory buffer is full.</li>
+        <li>Use <strong>Session Saver</strong> for session backups.</li>
+      </ul>
+      <p class="text-sm sm:text-base">It provides long-term memory without subscriptions or native memory features.</p>
+    </section>
+
+    <section id="activate" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">📋 How to Activate ThreadLocker</h2>
+      <ol class="list-decimal pl-5 text-sm sm:text-base">
+        <li><strong>Copy the Prompt</strong>: Find the ThreadLocker v2.1.1 prompt in .txt, HTML, or the Toolbox page.</li>
+        <li><strong>Paste Into the AI</strong>: Paste into your AI’s text box as the first message. Optionally say: <em>"Start ThreadLocker now"</em>.</li>
+        <li><strong>Start Talking</strong>: The AI begins counting at <code>[1/5]</code>, <code>[2/5]</code>, ..., summarizing threads at <code>[5/5]</code>.</li>
+      </ol>
+    </section>
+
+    <section id="pinning" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">📌 Pinning Threads (Lock Priority Topics)</h2>
+      <p class="text-sm sm:text-base">To <strong>prioritize a thread</strong>, use <strong>Pinned Thread #1</strong>.</p>
+      <p class="text-sm sm:text-base"><strong>To pin a thread:</strong></p>
+      <pre class="bg-gray-50 p-2 rounded text-sm">Pin 1 to [topic or project name]</pre>
+      <p class="text-sm sm:text-base">Example: <code>Pin 1 to Pass It On TOD project</code></p>
+      <p class="text-sm sm:text-base"><strong>To reset:</strong></p>
+      <pre class="bg-gray-50 p-2 rounded text-sm">Reset pinned thread</pre>
+      <p class="text-sm sm:text-base">Or: <code>Pin 1 to [new topic]</code></p>
+    </section>
+
+    <section id="anchor" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">🧱 Reading the Anchor Summary ([5/5] Rounds)</h2>
+      <p class="text-sm sm:text-base">Every 5 rounds (question + response = 1 round), ThreadLocker shows:</p>
+      <pre class="bg-gray-50 p-4 rounded text-sm">
+[5/5] 2025-05-26 14:00 PDT — Anchor Summary:
+THREAD 1: Pass It On – Alabama docs collected
+THREAD 2: Server boot issues – drive not mounted
+THREAD 3: Toolbox web layout cleanup
+THREAD 4: ThreadLocker cross-AI testing notes
+THREAD 5: Side ideas for Claude fallback logic
+      </pre>
+      <p class="text-sm sm:text-base">This confirms your conversation stays on track.</p>
+    </section>
+
+    <section id="overflow" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">🚨 Overflow Detection (Buffer Warnings)</h2>
+      <p class="text-sm sm:text-base">ThreadLocker monitors memory limits. If triggered:</p>
+      <pre class="bg-gray-50 p-4 rounded text-sm">
+🔹🔹🔹 BUFFER ALERT 🔹🔹🔹
+❌ NEW CHATS MAY NOT RECORD ❌
+SESSION SNAPSHOT or RESET recommended.
+      </pre>
+      <p class="text-sm sm:text-base">The AI may stop recording new messages. Back up or reset immediately.</p>
+    </section>
+
+    <section id="session-saver" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">💾 Session Saver: Save and Continue</h2>
+      <p class="text-sm sm:text-base">Use <strong>Session Saver</strong> to back up sessions. Say: <code>Save session now</code></p>
+      <p class="text-sm sm:text-base">Output example:</p>
+      <pre class="bg-gray-50 p-4 rounded text-sm">
+SESSION SAVER SNAPSHOT — 2025-05-26 14:10 PDT
+THREADS:
+- Pass It On – Deed forms for Arizona
+- Server boot fix pending
+GOALS:
+- Finish top 5 state folders
+- Finalize HTML export
+NOTES:
+- Claude test pending. Alex responded well.
+- Save this block!
+- To resume: Paste block, say “START FROM SNAPSHOT”
+      </pre>
+      <p class="text-sm sm:text-base">Paste into a new session to resume.</p>
+    </section>
+
+    <section id="prompt" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">📝 ThreadLocker Prompt</h2>
+      <p class="text-sm sm:text-base">Insert or modify the ThreadLocker v2.1.1 prompt below:</p>
+      <textarea id="prompt-text" class="w-full p-2 border rounded text-sm bg-gray-50" rows="15">
+## ThreadLocker Prompt
+
+Crafted by AL✨ and Grok, ThreadLocker tracks up to 5 subject threads over 21 rounds, outperforming platform memory, with summaries on [5/5].
+
+**Definitions**:
+- Round: One user question + one AI response.
+- Thread: A topic (e.g., user-chosen priority).
+- Pinned Thread #1: Permanent AI- or user-chosen priority thread.
+
+**Protocol**:
+• **Each Round**:
+  - Begin with [N/5] YYYY-MM-DD HH:MM PDT (e.g., [1/5] 2025-05-26 14:16 PDT).
+  - Log topic in Pinned #1 (AI- or user-chosen, per User Instruction Manual) or up to 4 AI-identified threads.
+  - Answer fully, integrating info.
+  - Track threads internally for [1/5]–[4/5]; no summaries.
+• **Anchor ([5/5])**:
+  - Review 21 rounds, identify up to 5 AI-chosen threads.
+  - Output:
+    [5/5] YYYY-MM-DD HH:MM PDT — Anchor Summary:
+    THREAD 1: [One-line summary]
+    THREAD 2: [One-line summary]
+    THREAD 3: [One-line summary]
+    THREAD 4: [One-line summary]
+    THREAD 5: [One-line summary]
+  - Re-link dropped threads via history.
+• **Pinned Thread #1**:
+  - AI- or user-chosen (see User Instruction Manual for “Pin 1 to [subject]”).
+  - Update with details; maintain continuity.
+  - Reset via manual command.
+• **Overflow Detection**:
+  - ChatGPT: Warn if duplicate round detected.
+  - Claude/Grok: Warn if context loss or response mismatch.
+  - General: Warn near 128k tokens.
+  - Alert:
+    🔹🔹🔹 BUFFER ALERT 🔹🔹🔹
+    SESSION SNAPSHOT or RESET recommended.
+• **Session Saver**:
+  - On overflow/request:
+    SESSION SAVER SNAPSHOT — YYYY-MM-DD HH:MM PDT
+    THREADS: [List]
+    GOALS: [List]
+    NOTES: [Details]
+    - Save this block!
+    - To resume: Paste block, say “START”
+
+**Run**:
+• Initialize, start [1/5], AI sets threads (user may override per manual).
+• Track threads, show summaries on [5/5].
+      </textarea>
+      <button onclick="copyPrompt()" class="bg-blue-500 text-white px-4 py-2 rounded min-w-[44px] min-h-[44px] w-full sm:w-auto mt-2">Copy Prompt</button>
+    </section>
+
+    <section id="best-practices" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">🧠 Best Practices</h2>
+      <ul class="list-disc pl-5 text-sm sm:text-base">
+        <li>Use <strong>clear names</strong> for pinned threads.</li>
+        <li>Pin <strong>one thread</strong> at a time for Pinned Thread #1.</li>
+        <li>Let ThreadLocker auto-manage other threads.</li>
+        <li>Save Session Saver snapshots before resets.</li>
+        <li>Re-paste the prompt in <strong>free-tier AIs</strong> if memory resets.</li>
+      </ul>
+    </section>
+
+    <section id="help" class="mb-6">
+      <h2 class="text-xl sm:text-2xl font-medium mb-2">🛠️ Need Help?</h2>
+      <p class="text-sm sm:text-base">If the AI misbehaves:</p>
+      <ul class="list-disc pl-5 text-sm sm:text-base">
+        <li>Re-paste the prompt.</li>
+        <li>Ensure your AI supports long instructions.</li>
+        <li>Say: <em>"Show ThreadLocker status"</em> for a manual check.</li>
+      </ul>
+    </section>
+
+    <footer class="text-center text-sm sm:text-base">
+      <p><strong>Made by Project Sparks</strong></p>
+      <p>Tool: ThreadLocker v2.1.1 | 2025</p>
+      <p><a href="https://projectsparks.ai" class="text-blue-500 hover:underline">projectsparks.ai</a></p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt() {
+      const textarea = document.getElementById('prompt-text');
+      textarea.select();
+      navigator.clipboard.writeText(textarea.value).then(() => {
+        alert('Prompt copied to clipboard!');
+      }).catch(() => {
+        alert('Failed to copy prompt.');
+      });
+    }
+  </script>
+</body>
+</html>
