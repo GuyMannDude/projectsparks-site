@@ -7,73 +7,103 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            /* Background image with fixed position and cover to ensure it always fills the screen */
-            background: url('Family Portrait 4.png') no-repeat center center fixed; /* <--- YOUR NEW IMAGE HERE */
-            background-size: cover;
-            /* Fallback font in case Orbitron doesn't load */
-            font-family: 'Orbitron', sans-serif;
-            /* Ensure the body takes at least the full viewport height */
-            min-height: 100vh;
-            /* Optional: Overlay a subtle dark gradient for better text readability over varying image areas */
-            position: relative; /* Needed for the pseudo-element overlay */
-            z-index: 0; /* Base layer */
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Adjust gradient strength if needed. Darker towards the bottom right for text readability. */
-            background: linear-gradient(to bottom right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
-            z-index: -1; /* Place behind content but above background image */
-        }
-        /* Custom text-shadow for better readability against the background */
-        .text-glow-shadow {
-            text-shadow: 0 0 8px rgba(0, 255, 255, 0.8), /* Cyan glow */
-                         0 0 15px rgba(0, 150, 255, 0.6), /* Blue glow */
-                         2px 2px 5px rgba(0, 0, 0, 0.7); /* Standard shadow */
-        }
-        /* Style for the link gradients to match original image aesthetic */
-        .link-gradient {
-            background-image: linear-gradient(to right, #00C6FF, #0072FF); /* Cyan to Blue gradient */
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent; /* Makes the text transparent to show the background-clip */
-            transition: all 0.3s ease; /* Smooth transition for hover effect */
-        }
-        .link-gradient:hover {
-            background-image: linear-gradient(to right, #FFD700, #FFA500); /* Yellow/Orange gradient on hover */
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            transform: scale(1.05); /* Slight scale for interactive feel */
-        }
-        /* Ensure the main content is positioned relative to the body or viewport */
+    body {
+        background: url('Chip Main 8.png') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Orbitron', sans-serif;
+        min-height: 100vh;
+        position: relative;
+        z-index: 0;
+    }
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
+        z-index: -1;
+    }
+    .text-glow-shadow {
+        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8),
+                     0 0 15px rgba(0, 150, 255, 0.6),
+                     2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+    .link-gradient {
+        background-image: linear-gradient(to right, #00C6FF, #0072FF);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+    }
+    .link-gradient:hover {
+        background-image: linear-gradient(to right, #FFD700, #FFA500);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transform: scale(1.05);
+    }
+    .main-content-wrapper {
+        padding-top: 65vh; /* Desktop: Adjust this for optimal vertical alignment */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        z-index: 1;
+        box-sizing: border-box;
+    }
+    /* Responsive adjustments for smaller screens (iPhone portrait) */
+    @media (max-width: 640px) {
         .main-content-wrapper {
-            /* This will push the content down vertically */
-            /* Adjust this value (e.g., 50vh, 70vh) to align with the desired position on "Chip Main 8.jpg" */
-            padding-top: 65vh; /* <--- ADJUST THIS FOR OPTIMAL VERTICAL ALIGNMENT */
+            padding-top: 25vh; /* Reduced padding on small screens to show more image and raise content */
+        }
+        .text-5xl { font-size: 3rem; } /* Make title a bit smaller */
+        .text-xl { font-size: 1.1rem; } /* Make slogan a bit smaller */
+        .text-2xl { font-size: 1.5rem; } /* Make main links a bit smaller */
+        .text-lg { font-size: 1rem; } /* Make contact info smaller */
+
+        body {
+            /* Shift background position on small screens to focus on the chip/eye */
+            background-position: center 70% fixed; /* Adjust 70% to move the image focus point. Could be 60%, 80% etc. */
+        }
+
+        /* Adjust the donation button and contact info for small screens */
+        .absolute.bottom-6.left-6 { /* Target the div containing the button */
+            position: static; /* Remove absolute positioning */
+            width: 100%;      /* Make it take full width */
+            text-align: center; /* Center its content */
+            margin-top: 20px; /* Add space above it */
+            left: auto;       /* Reset left */
+            bottom: auto;     /* Reset bottom */
+        }
+
+        .absolute.bottom-6.left-6 a { /* Target the donate button itself */
+            padding: 12px 30px; /* Slightly less padding to make button more compact */
+            font-size: 1rem;    /* Smaller text */
+            width: fit-content; /* Only take width of content */
+            margin: 0 auto; /* Center the button itself */
+            display: block; /* Ensure it takes its own line if needed */
+        }
+
+        /* Adjust contact email positioning relative to the button */
+        main .mt-12 { /* Target the div containing contact email */
+            margin-top: 20px; /* Adjust spacing if needed */
+            margin-bottom: 0px; /* Remove any previous bottom margin */
+        }
+
+        /* Ensure main content handles flex ordering for button/contact */
+        main.w-full.max-w-2xl {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            width: 100%;
-            z-index: 1; /* Ensure content is above the overlay */
-            box-sizing: border-box; /* Include padding in element's total width and height */
+            width: 90%; /* Slightly reduce width to give more side padding on small screens */
+            padding-left: 10px; /* Add specific side padding for mobile */
+            padding-right: 10px;
         }
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 640px) {
-            .main-content-wrapper {
-                padding-top: 55vh; /* Less push down on small screens to fit content */
-            }
-            .text-5xl { font-size: 3.5rem; } /* Make title a bit smaller */
-            .text-xl { font-size: 1.1rem; } /* Make slogan a bit smaller */
-            .text-2xl { font-size: 1.5rem; } /* Make links a bit smaller */
-        }
-    </style>
+    }
+</style>
 </head>
 <body class="text-white">
 
