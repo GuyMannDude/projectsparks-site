@@ -1,0 +1,73 @@
+/* Chatbox Reader Styles */
+.chatbox-reader {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    max-height: 400px;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+}
+
+.chatbox-reader-header {
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.chatbox-reader-messages {
+    padding: 8px;
+}
+
+.chatbox-message {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.chatbox-message.user {
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+.chatbox-message.system {
+    background-color: #e9ecef;
+    color: #333;
+    margin-right: auto;
+}
+
+.chatbox-message-time {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+.chatbox-reader-empty {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.chatbox-reader-loading {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.chatbox-reader-loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60% { content: '...'; }
+    80%, 100% { content: ''; }
+}
