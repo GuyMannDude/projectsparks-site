@@ -3,192 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Sparks - The Future of Education with AI</title>
+    <title>Project Sparks</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Updated to use local versions of chatbox components -->
-    <link rel="stylesheet" href="chatboxeditor/chatboxeditor.css">
-    <link rel="stylesheet" href="chatboxreader/chatboxreader.css">
     <style>
-    body {
-        background: url('Family Portrait 4.png') no-repeat center center fixed;
-        background-size: cover;
-        font-family: 'Orbitron', sans-serif;
-        min-height: 100vh;
-        position: relative;
-        z-index: 0;
-    }
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(to bottom right, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
-        z-index: -1;
-    }
-    .text-glow-shadow {
-        text-shadow: 0 0 8px rgba(0, 255, 255, 0.8),
-                     0 0 15px rgba(0, 150, 255, 0.6),
-                     2px 2px 5px rgba(0, 0, 0, 0.7);
-    }
-    .link-gradient {
-        background-image: linear-gradient(to right, #00C6FF, #0072FF);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        transition: all 0.3s ease;
-    }
-    .link-gradient:hover {
-        background-image: linear-gradient(to right, #FFD700, #FFA500);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        transform: scale(1.05);
-    }
-    .main-content-wrapper {
-        padding-top: 65vh; /* Desktop: Adjust this for optimal vertical alignment */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-        z-index: 1;
-        box-sizing: border-box;
-    }
-    /* Responsive adjustments for smaller screens (iPhone portrait) */
-    @media (max-width: 640px) {
-        .main-content-wrapper {
-            padding-top: 25vh; /* Reduced padding on small screens to show more image and raise content */
-        }
-        .text-5xl { font-size: 3rem; } /* Make title a bit smaller */
-        .text-xl { font-size: 1.1rem; } /* Make slogan a bit smaller */
-        .text-2xl { font-size: 1.5rem; } /* Make main links a bit smaller */
-        .text-lg { font-size: 1rem; } /* Make contact info smaller */
-
         body {
-            /* Shift background position on small screens to focus on the chip/eye */
-            background-position: center 70% fixed; /* Adjust 70% to move the image focus point. Could be 60%, 80% etc. */
+            background: url('Family Portrait 4.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Orbitron', sans-serif;
         }
-
-        /* Adjust the donation button and contact info for small screens */
-        .absolute.bottom-6.left-6 { /* Target the div containing the button */
-            position: static; /* Remove absolute positioning */
-            width: 100%;      /* Make it take full width */
-            text-align: center; /* Center its content */
-            margin-top: 20px; /* Add space above it */
-            left: auto;       /* Reset left */
-            bottom: auto;     /* Reset bottom */
+        a:hover {
+            text-decoration: underline;
         }
-
-        .absolute.bottom-6.left-6 a { /* Target the donate button itself */
-            padding: 12px 30px; /* Slightly less padding to make button more compact */
-            font-size: 1rem;    /* Smaller text */
-            width: fit-content; /* Only take width of content */
-            margin: 0 auto; /* Center the button itself */
-            display: block; /* Ensure it takes its own line if needed */
+        .text-shadow {
+            text-shadow: 2px 2px 6px #000000;
         }
-
-        /* Adjust contact email positioning relative to the button */
-        main .mt-12 { /* Target the div containing contact email */
-            margin-top: 20px; /* Adjust spacing if needed */
-            margin-bottom: 0px; /* Remove any previous bottom margin */
-        }
-
-        /* Ensure main content handles flex ordering for button/contact */
-        main.w-full.max-w-2xl {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90%; /* Slightly reduce width to give more side padding on small screens */
-            padding-left: 10px; /* Add specific side padding for mobile */
-            padding-right: 10px;
-        }
-    }
-    
-    /* Chatbox components styling integration */
-    .chatbox-section {
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 30px;
-        backdrop-filter: blur(10px);
-    }
-    
-    .chatbox-section h3 {
-        color: #00C6FF;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-</style>
+    </style>
 </head>
-<body class="text-white">
-
-    <div class="main-content-wrapper">
-        <main class="pb-8 px-4 sm:px-6 w-full max-w-2xl">
-            <h1 class="text-5xl sm:text-6xl font-bold mb-4 text-glow-shadow">Project Sparks</h1>
-            <p class="text-xl sm:text-2xl mb-8 text-glow-shadow leading-relaxed">
-                The Future of Education in America with AI
-            </p>
-            <ul class="space-y-6 list-none p-0">
-                <li><a href="EDU-Proposal.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">Proposal for Education Reform in America</a></li>
-                <li><a href="Learning_AL_v2.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">Free AI Learning Tool for kids</a></li>
-                <li><a href="discover.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">Origin of AL✨'s Carry On Protocol</a></li>
-                <li><a href="ToolBox1.2.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">AL✨'s AI Toolbox✨</a></li>
-            </ul>
-            
-            <!-- Chatbox Components Section -->
-            <div class="chatbox-section">
-                <h3 class="text-xl font-bold text-glow-shadow">Interactive Chat Components</h3>
-                
-                <div id="chatbox-editor-container" class="mb-6">
-                    <h4 class="text-lg mb-3 text-glow-shadow">Chat Editor</h4>
-                    <div id="chatbox-editor"></div>
-                </div>
-                
-                <div id="chatbox-reader-container">
-                    <h4 class="text-lg mb-3 text-glow-shadow">Chat Reader</h4>
-                    <div id="chatbox-reader"></div>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-lg sm:text-xl text-glow-shadow">
-                Contact: <a href="mailto:guitarmanndude@icloud.com" class="link-gradient">guitarmanndude@icloud.com</a>
-            </div>
-        </main>
-    </div>
-
-    <div class="absolute bottom-6 left-6 z-20">
-        <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.¤cy_code=USD" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-blue-500 transition-colors shadow-lg">
-            Donate
-         </a>
-    </div>
-
-    <!-- Updated to use local JavaScript versions -->
-    <script src="chatboxeditor/chatboxeditor.min.js"></script>
-    <script src="chatboxreader/chatboxreader.min.js"></script>
+<body class="min-h-screen flex flex-col items-center text-white text-center relative">
+    <!-- Push content below 40% of viewport height -->
+    <div class="pt-[40vh]"></div>
     
-    <script>
-        // Initialize chatbox components
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize editor
-            if (typeof ChatboxEditor !== 'undefined') {
-                const editor = new ChatboxEditor({
-                    container: '#chatbox-editor',
-                    placeholder: 'Type your message...'
-                });
-            }
-            
-            // Initialize reader
-            if (typeof ChatboxReader !== 'undefined') {
-                const reader = new ChatboxReader({
-                    container: '#chatbox-reader',
-                    messages: []
-                });
-            }
-        });
-    </script>
+    <main class="pb-8 px-4 sm:px-6 w-full max-w-2xl">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-2 text-shadow">Project Sparks</h1>
+        <p class="text-lg sm:text-xl mb-6 text-shadow">The Future of Education in America with AI</p>
+        <ul class="space-y-4">
+            <li><a href="EDU-Proposal.html" class="text-cyan-400 text-lg sm:text-xl font-bold hover:text-yellow-400">Proposal for Education Reform in America</a></li>
+            <li><a href="Learning_AL_v2.html" class="text-cyan-400 text-lg sm:text-xl font-bold hover:text-yellow-400">Free AI Learning Tool for kids</a></li>
+<li><a href="discover.html" class="text-cyan-400 text-lg sm:text-xl font-bold hover:text-yellow-400">Origin of AL✨'s Carry On Protocol</a></li>
+            <li><a href="ToolBox1.2.html" class="text-cyan-400 text-lg sm:text-xl font-bold hover:text-yellow-400">AL✨'s AI Toolbox✨</a></li>
+        </ul>
+        <div class="mt-8 text-sm sm:text-base">
+            Contact: <a href="mailto:guitarmanndude@icloud.com" class="text-pink-300 hover:text-pink-100">guitarmanndude@icloud.com</a>
+        </div>
+    </main>
 
+    <!-- Donation Button at Bottom Left -->
+    <div class="absolute bottom-4 left-4 sm:bottom-6 sm:left-6">
+        <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.¤cy_code=USD" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-base hover:bg-blue-500 transition-colors">
+            Donate
+        </a>
+    </div>
 </body>
 </html>
