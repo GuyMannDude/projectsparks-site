@@ -6,6 +6,9 @@
     <title>Project Sparks - The Future of Education with AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Updated to use local versions of chatbox components -->
+    <link rel="stylesheet" href="chatboxeditor/chatboxeditor.css">
+    <link rel="stylesheet" href="chatboxreader/chatboxreader.css">
     <style>
     body {
         background: url('Family Portrait 4.png') no-repeat center center fixed;
@@ -103,6 +106,21 @@
             padding-right: 10px;
         }
     }
+    
+    /* Chatbox components styling integration */
+    .chatbox-section {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 30px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .chatbox-section h3 {
+        color: #00C6FF;
+        margin-bottom: 15px;
+        text-align: center;
+    }
 </style>
 </head>
 <body class="text-white">
@@ -119,6 +137,22 @@
                 <li><a href="discover.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">Origin of AL✨'s Carry On Protocol</a></li>
                 <li><a href="ToolBox1.2.html" class="link-gradient text-2xl sm:text-3xl font-bold block py-2 px-4 rounded-lg">AL✨'s AI Toolbox✨</a></li>
             </ul>
+            
+            <!-- Chatbox Components Section -->
+            <div class="chatbox-section">
+                <h3 class="text-xl font-bold text-glow-shadow">Interactive Chat Components</h3>
+                
+                <div id="chatbox-editor-container" class="mb-6">
+                    <h4 class="text-lg mb-3 text-glow-shadow">Chat Editor</h4>
+                    <div id="chatbox-editor"></div>
+                </div>
+                
+                <div id="chatbox-reader-container">
+                    <h4 class="text-lg mb-3 text-glow-shadow">Chat Reader</h4>
+                    <div id="chatbox-reader"></div>
+                </div>
+            </div>
+            
             <div class="mt-12 text-lg sm:text-xl text-glow-shadow">
                 Contact: <a href="mailto:guitarmanndude@icloud.com" class="link-gradient">guitarmanndude@icloud.com</a>
             </div>
@@ -130,6 +164,31 @@
             Donate
          </a>
     </div>
+
+    <!-- Updated to use local JavaScript versions -->
+    <script src="chatboxeditor/chatboxeditor.min.js"></script>
+    <script src="chatboxreader/chatboxreader.min.js"></script>
+    
+    <script>
+        // Initialize chatbox components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize editor
+            if (typeof ChatboxEditor !== 'undefined') {
+                const editor = new ChatboxEditor({
+                    container: '#chatbox-editor',
+                    placeholder: 'Type your message...'
+                });
+            }
+            
+            // Initialize reader
+            if (typeof ChatboxReader !== 'undefined') {
+                const reader = new ChatboxReader({
+                    container: '#chatbox-reader',
+                    messages: []
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
