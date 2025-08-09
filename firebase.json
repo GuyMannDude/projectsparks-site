@@ -1,17 +1,31 @@
 {
   "hosting": {
-    "public": ".", // This tells Firebase to deploy files from the current directory
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "headers": [ {
-      "source": "**",
-      "headers": [ {
-        "key": "Cache-Control",
-        "value": "max-age=0"
-      } ]
-    } ]
+    "rewrites": [
+      {
+        "source": "/apps/API_Tester/**",
+        "destination": "/apps/API_Tester/index.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.js",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ]
+      }
+    ]
   }
 }
