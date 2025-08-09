@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -8,23 +8,12 @@
     ],
     "rewrites": [
       {
-        "source": "/apps/API_Tester/**",
-        "destination": "/apps/API_Tester/index.html"
+        "source": "/API_Tester/**",
+        "destination": "/API_Tester/index.html"
       },
       {
         "source": "**",
         "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**/*.js",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "application/javascript"
-          }
-        ]
       }
     ]
   }
