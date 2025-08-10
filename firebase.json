@@ -1,10 +1,17 @@
 {
   "hosting": {
-    "public": "public",
+    "public": ".", // This tells Firebase to deploy files from the current directory
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
+    ],
+    "headers": [ {
+      "source": "**",
+      "headers": [ {
+        "key": "Cache-Control",
+        "value": "max-age=0"
+      } ]
+    } ]
   }
 }
