@@ -1,15 +1,10 @@
 {
   "hosting": {
     "public": "dist",
-    "rewrites": [
-      {
-        "source": "/API_Tester/**",
-        "destination": "/API_Tester/index.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ]
   }
 }
