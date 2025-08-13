@@ -1,102 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Sparks Web Apps p2</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-  <style>
-    body { background-color: #0a0a0c; font-family: 'Roboto', sans-serif; color: #d1d5db; }
-    .header-title { font-family: 'Orbitron', sans-serif; }
-    .header-subtext { color: #c0c0c0; }
-    .choice-card { background-color: #1c1c1e; transition: all 0.3s ease; border-radius: 0.75rem; }
-    .choice-title { font-family: 'Orbitron', sans-serif; }
-    .choice-dot { width: 0.75rem; height: 0.75rem; border-radius: 9999px; margin-right: 0.75rem; }
-    .choice-explanation { color: #b0b0b0; }
-  </style>
-</head>
-<body class="min-h-screen p-8">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <h1 class="header-title text-5xl font-bold text-white mb-4" style="text-shadow: 0 0 20px rgba(0,255,255,0.4)">Project Sparks Web Apps</h1>
-      <p class="header-subtext text-xl">p2. AI Web Apps/Tools.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">Finnhub Logger</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Finnhub Stock Logger</p>
-              <a href="https://guymanndude.github.io/finnhub-logger/" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm hover:underline" style="color: #00ffff">Learn more →</a>
-            </div>
-          </div>
+ <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Project Sparks Web Apps</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+        <style>
+          body { 
+            background-color: #0d0d2b;
+            font-family: 'Roboto', sans-serif;
+          }
+          .header-title {
+            font-family: 'Cinzel', serif;
+            color: #fbbF24;
+          }
+          .header-subtext {
+            color: #d1d5db;
+          }
+          .divider {
+            width: 6rem;
+            height: 4px;
+            background-color: #f59e0b;
+            margin: 1rem auto 1.5rem;
+          }
+          .choice-card {
+            background-color: rgba(10, 10, 30, 0.5);
+            border: 1px solid #a16207;
+            box-shadow: 0 0 15px 3px rgba(251, 191, 36, 0.25);
+            backdrop-filter: blur(5px);
+          }
+          .choice-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px 8px rgba(251, 191, 36, 0.35);
+          }
+          .choice-title {
+            color: #fbbF24;
+            font-family: 'Cinzel', serif;
+          }
+          .choice-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            background-color: #f59e0b;
+            border-radius: 9999px;
+            margin-right: 0.75rem;
+          }
+          .choice-explanation {
+            color: #9ca3af;
+            margin-left: 1.5rem;
+          }
+        </style>
+      </head>
+      <body class="p-6 sm:p-10">
+        <div class="max-w-5xl mx-auto">
+          <header class="text-center py-12">
+            <h1 class="header-title text-4xl sm:text-5xl font-bold mb-4">Project Sparks Helpful Sites 1</h1>
+            <div class="divider"></div>
+            <p class="header-subtext text-lg max-w-3xl mx-auto">Websites for helping with AI Projects</p>
+          </header>
+          <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+      <a href="https://guymanndude.github.io/chatbox-reader/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          Chatbox Reader
+        </h3>
+        <p class="text-gray-400 ml-6">Text-to-Speech for ChatGPT with Pause</p>
+      </a>
+      <a href="https://guymanndude.github.io/finnhub-logger/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          Finnhub Logger
+        </h3>
+        <p class="text-gray-400 ml-6">Finnhub Stock Logger</p>
+      </a>
+      <a href="https://guymanndude.github.io/the-terminator/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          The Terminator
+        </h3>
+        <p class="text-gray-400 ml-6">Command Definitions for Terminal/cmd Line</p>
+      </a>
+      <a href="https://guymanndude.github.io/themed-page-builder/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          Neon Metal Webpage Creator
+        </h3>
+        <p class="text-gray-400 ml-6">Create a Webpage with 4 themes to choose from</p>
+      </a>
+      <a href="https://guymanndude.github.io/builder-responsive-export/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          Steampunk Webpage Creator
+        </h3>
+        <p class="text-gray-400 ml-6">Webpage Creator/Builder with a Steampunk Theme</p>
+      </a>
+      <a href="https://guymanndude.github.io/blue-builder/" target="_blank" rel="noopener noreferrer" class="choice-card block p-6 rounded-lg transition-all duration-300">
+        <h3 class="text-xl font-bold text-amber-400 mb-2 flex items-center">
+          <span class="w-3 h-3 bg-amber-500 rounded-full mr-3"></span>
+          Blue Builder
+        </h3>
+        <p class="text-gray-400 ml-6">Blue Neon Webpage Builder</p>
+      </a>
+          </main>
         </div>
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">The Terminator</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Command Definitions for Terminal/cmd commands</p>
-              <a href="https://guymanndude.github.io/the-terminator/" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm hover:underline" style="color: #00ffff">Learn more →</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">Scraper Companion</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Webpage Scraper - No API needed</p>
-              <a href="https://guymanndude.github.io/scraper-companion/</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">Orange Webpage Builder</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Orange Neon Webpage Builder</p>
-              <a href="https://guymanndude.github.io/orange-builder/</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">Blue Webpage Builder</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Blue Neon Website Builder</p>
-              <a href="https://guymanndude.github.io/blue-builder/" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm hover:underline" style="color: #00ffff">Learn more →</a>
-            </div>
-          </div>
-        </div>
-      
-        <div class="choice-card border-2 p-6 transition-all duration-300 hover:shadow-lg hover:transform hover:-translate-y-1" 
-             style="border-color: #00ffff; box-shadow: 0 0 20px rgba(0,255,255,0.4);">
-          <div class="flex items-start space-x-3">
-            <div class="choice-dot flex-shrink-0 mt-1" style="background-color: #00ffff; box-shadow: 0 0 10px rgba(0,255,255,0.4);"></div>
-            <div class="flex-1">
-              <h3 class="choice-title text-lg font-bold text-white mb-2">Chatbox Reader</h3>
-              <p class="choice-explanation text-sm leading-relaxed">Text-to-Speech for ChatGPT</p>
-              <a href="https://guymanndude.github.io/chatbox-reader/</a>
-            </div>
-          </div>
-        </div>
-      
-    </div>
-  </div>
-</body>
-</html>
+      </body>
+      </html>
+    
