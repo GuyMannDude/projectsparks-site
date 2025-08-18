@@ -160,12 +160,19 @@
     });
   </script>
 <!-- Flowise embed (required for the widget to exist) -->
+<!-- Flowise embed (module) -->
 <script type="module">
   import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";
+
   Chatbot.init({
-    chatflowid: "2aea521d-3f5f-41a0-b7ff-3064d9cd80f9",
-    apiHost: "https://YOUR_TUNNEL_URL"
+    chatflowid: "2aea521d-3f5f-41a0-b7ff-3064d9cd80f9",      // your ID
+    apiHost: "http://10.0.0.65:3005",                      // your Flowise host
+    theme: {
+      button: { backgroundColor: "#0ea5e9", size: "medium" },
+      chatWindow: { showTitle: true, title: "AI helper" }
+    }
   });
 </script>
+
 </body>
 </html>
