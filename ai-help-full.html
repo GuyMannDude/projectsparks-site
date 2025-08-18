@@ -76,7 +76,9 @@
     }
   </style>
 
- </head>
+  <!-- Flowise web-component script (single loader) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js"></script>
+</head>
 <body>
   <div class="wrap">
     <header>
@@ -100,7 +102,7 @@
           Tips are optional and appreciated.
         </p>
 
-        <!-- Flowise chat widget -->
+        <!-- Flowise chat widget (inline component) -->
         <flowise-chatbot
           id="flowise-chat"
           chatflowid="2aea521d-3f5f-41a0-b7ff-3064d9cd80f9"
@@ -145,33 +147,19 @@
     </footer>
   </div>
 
- <script>
-  // If Flowise fails to render, reveal fallback box
-  window.addEventListener('load', () => {
-    const el = document.getElementById('flowise-chat');
-    const fb = document.getElementById('fallback');
-    setTimeout(() => {
-      if (!el || !customElements.get('flowise-chatbot')) {
-        if (fb) fb.hidden = false;
-      }
-    }, 2000);
-  });
-</script>
-
-<!-- Flowise embed (module import) -->
-<script type="module">
-  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";
-
-  Chatbot.init({
-    chatflowid: "2aea521d-3f5f-41a0-b7ff-3064d9cd80f9",
-    apiHost: "http://10.0.0.65:3005",
-    theme: {
-      button: { backgroundColor: "#0ea5e9", size: "medium" },
-      chatWindow: { showTitle: true, title: "AI helper" }
-    }
-  });
-</script>
-
-
+  <script>
+    // If Flowise fails to render, reveal fallback box
+    window.addEventListener('load', () => {
+      const el = document.getElementById('flowise-chat');
+      const fb = document.getElementById('fallback');
+      setTimeout(() => {
+        // the custom element will be registered by web.js; if not present, show fallback
+        if (!el || !customElements.get('flowise-chatbot')) {
+          if (fb) fb.hidden = false;
+        }
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
+
