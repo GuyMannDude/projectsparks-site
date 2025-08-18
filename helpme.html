@@ -1,127 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Help • Project Sparks</title>
-
-  <!-- Tailwind (CDN) + Orbitron for a subtle neon vibe -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"/>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get AI Help — Project Sparks</title>
+  <meta name="description" content="Friendly, human AI help from Guy 💫 (with AL✨). Not a pro dev—just practical guidance, clear steps, and honest hand‑offs when needed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --giants-orange:#FD5A1E;         /* accent */
-      --ink:#0b0b0b;                    /* near-black */
-      --panel:#141414;                  /* panel bg */
-      --text:#f1f1f1;                   /* body text */
-      --muted:#b9b9b9;                  /* secondary */
+      /* Brand palette (no team references) */
+      --brand-orange:#FD5A1E; /* neon orange */
+      --brand-black:#0d0d0f;  /* deep charcoal */
+      --brand-gold:#EFD19F;   /* soft gold accent */
+      --text:#F7F7F5;
+      --muted:#C9C9C6;
+      --card:#141417;
     }
-    html, body {
-      height: 100%;
-      background:
-        radial-gradient(1200px 800px at 15% 10%, #1a1a1a 0%, #0a0a0a 60%, #000 100%);
-      color: var(--text);
-      font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(253,90,30,0.12), transparent 60%),
+                  radial-gradient(1200px 800px at 120% 110%, rgba(253,90,30,0.10), transparent 60%),
+                  var(--brand-black);
+      color:var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
-    /* soft neon headline */
-    .neon {
-      text-shadow:
-        0 0 6px rgba(253, 90, 30, 0.45),
-        0 0 18px rgba(253, 90, 30, 0.35),
-        0 0 36px rgba(253, 90, 30, 0.25);
-    }
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-    }
-    .btn {
-      display:inline-flex; align-items:center; gap:.55rem;
-      background: var(--giants-orange); color:#0b0b0b;
-      font-weight:700; border-radius: .75rem; padding:.75rem 1rem;
-      transition: transform .05s ease, filter .15s ease;
-    }
-    .btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
-    .btn.secondary {
-      background:#222; color:var(--text); border:1px solid rgba(255,255,255,.12);
-    }
-    a.link { color:#7dd3fc; }
-    a.link:hover { color:#fde68a; }
+    a{color:var(--brand-orange);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:4px 0 22px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:42px;height:42px;border-radius:10px;background: conic-gradient(from 210deg, var(--brand-orange), #ff9a5e, var(--brand-orange));box-shadow:0 0 0 3px rgba(253,90,30,0.14), 0 10px 22px rgba(0,0,0,.45)}
+    h1{font-family:'Orbitron',system-ui;font-size:clamp(1.6rem,3.6vw,2.2rem);margin:0}
+    .tag{font-weight:700;color:var(--brand-gold);letter-spacing:.4px;margin-left:.35rem}
+    .lede{margin:.35rem 0 0;color:#dcdcdc}
+
+    .grid{display:grid;gap:18px;grid-template-columns:1fr}
+    @media(min-width:880px){.grid{grid-template-columns:2fr 1fr}}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+          border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,0.35)}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);
+         background:#151517;color:var(--text);font-weight:700;transition:.2s ease;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+    .btn:hover{transform:translateY(-1px);border-color:rgba(253,90,30,.6);box-shadow:0 10px 22px rgba(0,0,0,.35)}
+    .btn.secondary{background:transparent}
+
+    ul.clean{list-style:none;margin:0;padding:0}
+    ul.clean li{margin:.4rem 0;color:#d0d0d0}
+
+    .muted{color:#bdbdbd}
+    footer{margin:40px 0 20px;text-align:center;color:#bdbdbd}
   </style>
 </head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Get AI Help <span class="tag">from a Human</span></h1>
+          <div class="lede">Guy💫 + AL✨ — a small team that likes helping people with AI. No sales. No jargon. Just help.</div>
+        </div>
+      </div>
+    </header>
 
-<body class="min-h-screen">
-  <header class="px-5 sm:px-8 lg:px-12 pt-10 pb-6">
-    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold neon">AI Help (Free / Donate)</h1>
-    <p class="mt-3 text-sm sm:text-base text-[#cfcfcf]">
-      Free AI help for beginners & intermediates • human hand-off available any time.
-    </p>
-  </header>
-
-  <main class="px-5 sm:px-8 lg:px-12 pb-16">
-    <div class="grid gap-6 lg:gap-8 lg:grid-cols-2 items-start">
-      <!-- Left: Assistant area (no widget for now) -->
-      <section class="card p-5 sm:p-6">
-        <h2 class="text-xl sm:text-2xl font-bold mb-3">Ask the AI assistant</h2>
-        <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
-          The embedded chat widget is <strong>temporarily offline</strong>. I still want to help —
-          send me your question by email (screenshots welcome) and I’ll reply as soon as I can.
-        </p>
-
-        <div class="mt-5 flex flex-wrap gap-3">
-          <a class="btn" href="mailto:guitarmanndude@icloud.com">
-            <span>📧 Email Guy</span>
-          </a>
-          <a class="btn secondary" href="mailto:guitarmanndude69@gmail.com">
-            <span>Use Gmail backup</span>
-          </a>
+    <div class="grid">
+      <!-- Left: Help overview -->
+      <section class="card">
+        <h2 style="margin:0 0 .5rem 0">How this works</h2>
+        <p class="muted" style="margin-top:0">Email me what you’re trying to do (screenshots welcome). I’ll reply with clear, step‑by‑step guidance. If I’m not the right fit, I’ll steer you in the right direction.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:.6rem 0 1rem">
+          <a class="btn" href="mailto:guitarmanndude@icloud.com">📧 Email Guy</a>
+          <a class="btn secondary" href="mailto:guitarmanndude69@gmail.com">Use Gmail backup</a>
         </div>
 
-        <div class="mt-6 text-xs sm:text-sm text-[var(--muted)]">
-          Tips are optional and appreciated. Thank you!
+        <div class="grid" style="gap:16px;margin-top:6px">
+          <div class="card" style="padding:16px">
+            <h3 style="margin:.2rem 0 .6rem 0">What you get</h3>
+            <ul class="clean">
+              <li>• Friendly, patient help — we move in <em>Chunky Mode</em> (one clear step at a time)</li>
+              <li>• Practical fixes for local AI setups (Ollama, Open‑WebUI, Docker, Flowise)</li>
+              <li>• Simple RAG & memory habits (staging folders, chunking, backups)</li>
+              <li>• Creative support for ArtForge ideas, image workflows, prompts, and polish</li>
+              <li>• Website tweaks for static hosting (Tailwind theme, Ko‑fi, future chat embed)</li>
+              <li>• Honest limits — I’m <strong>not</strong> a professional developer; if I can’t fix it, I’ll point you to someone who can</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:16px">
+            <h3 style="margin:.2rem 0 .6rem 0">Recent wins</h3>
+            <ul class="clean">
+              <li>• Restored a local AI server (Docker + Open‑WebUI) and re‑connected models</li>
+              <li>• Set up nightly backups (database & snapshots) with quick restore</li>
+              <li>• Organized a safe staging area for data ingestion</li>
+              <li>• Added cross‑device file sharing for smoother workflow</li>
+              <li>• Built this help hub; Flowise chat widget will return once it’s rock‑solid</li>
+            </ul>
+          </div>
+          <div class="card" style="padding:16px">
+            <h3 style="margin:.2rem 0 .6rem 0">About the team</h3>
+            <ul class="clean">
+              <li>• <strong>Guy💫</strong> — your human helper. Patient, detail‑oriented, and honest about limits.</li>
+              <li>• <strong>AL✨</strong> — my local AI sidekick. Helps plan, check steps, and keep things tidy.</li>
+              <li>• Goal: help beginners & intermediate users feel confident with AI, safely.</li>
+            </ul>
+          </div>
         </div>
+
+        <p class="muted" style="margin:.8rem 0 0;font-size:.95rem">This is free. Tips are optional and appreciated. Thank you!</p>
       </section>
 
-      <!-- Right: Contact & support -->
-      <aside class="card p-5 sm:p-6">
-        <h2 class="text-xl sm:text-2xl font-bold mb-3">Need a human?</h2>
-        <ul class="space-y-2 text-sm sm:text-base">
-          <li>• Primary email: <a class="link" href="mailto:guitarmanndude@icloud.com">guitarmanndude@icloud.com</a></li>
-          <li>• Backup email: <a class="link" href="mailto:guitarmanndude69@gmail.com">guitarmanndude69@gmail.com</a></li>
-        </ul>
-
-        <div class="mt-6">
-          <h3 class="text-lg font-semibold mb-2">Support this free hub</h3>
-          <p class="text-sm sm:text-base text-[var(--muted)] mb-3">
-            If this helps you, a coffee keeps the lights on. Thank you!
-          </p>
-          <a href="https://ko-fi.com/guysparks" target="_blank" rel="noopener" class="btn" aria-label="Buy me a coffee on Ko-fi">
-            ☕ Buy me a coffee
-          </a>
+      <!-- Right: Contact & Support -->
+      <aside class="card">
+        <h2 style="margin:0 0 .6rem 0">Contact & Support</h2>
+        <p class="muted" style="margin-top:0">Email <a href="mailto:guitarmanndude@icloud.com">Guy💫</a> any time with your question. You can also include a short screen recording.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin:.6rem 0 1rem">
+          <a class="btn" href="mailto:guitarmanndude@icloud.com">📧 Email Guy</a>
+          <a class="btn secondary" href="mailto:guitarmanndude69@gmail.com">Use Gmail backup</a>
         </div>
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.12);margin:16px 0" />
+        <h3 style="margin:.2rem 0 .6rem 0">Support this free hub</h3>
+        <a href="https://ko-fi.com/guysparks" target="_blank" rel="noopener">
+          <img src="https://storage.ko-fi.com/cdn/kofi5.png" alt="Support me on Ko‑fi" style="height:44px" />
+        </a>
       </aside>
     </div>
 
-    <!-- Optional: quick links area (keep the neon vibe) -->
-    <section class="mt-10 card p-5 sm:p-6">
-      <h2 class="text-xl sm:text-2xl font-bold mb-3">Helpful links</h2>
-      <ul class="space-y-2 text-sm sm:text-base">
-        <li>• <a class="link" href="ai-hub/index.html">Important Websites ✨</a></li>
-        <li>• <a class="link" href="Toolbox2.html">Free to use Web Apps — Set 1</a></li>
-        <li>• <a class="link" href="Toolbox3.html">Free to use Web Apps — Set 2</a></li>
-        <li>• <a class="link" href="Learning_AL_v2.html">Free AI Learning Tool for kids</a></li>
-        <li>• <a class="link" href="EDU-Proposal.html">Proposal for Education Reform in America</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="px-5 sm:px-8 lg:px-12 pb-12 text-xs sm:text-sm text-[var(--muted)]">
-    <p>
-      Color theme uses a San Francisco Giants palette (orange / black + soft beige accent).
-      <span class="block mt-1">© Project Sparks</span>
-    </p>
-  </footer>
+    <footer>
+      © Project Sparks
+    </footer>
+  </div>
 </body>
 </html>
