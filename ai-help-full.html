@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Help (Free / Donate) — Project Sparks</title>
+  <meta name="description" content="Ask the AI assistant 24/7. If you're stuck, email Guy for a human answer. Free resource with optional donations." />
+
+  <style>
+    :root{
+      --giants-orange:#FD5A1E; /* SF Giants orange */
+      --giants-black:#27251F;  /* SF Giants black  */
+      --giants-beige:#EFD19F;  /* accent */
+      --text:#F7F7F5;
+      --muted:#C9C9C6;
+      --card:#111111;
+      --focus:#ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(253,90,30,0.12), transparent 60%),
+                  radial-gradient(1200px 800px at 120% 110%, rgba(253,90,30,0.10), transparent 60%),
+                  var(--giants-black);
+      color:var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    a{color:var(--giants-orange);text-decoration:none}
+    a:hover{text-decoration:underline}
+    a:focus{outline:2px dashed var(--focus);outline-offset:2px}
+    .wrap{max-width:960px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0 24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:40px;height:40px;border-radius:10px;
+      background: conic-gradient(from 210deg at 50% 50%, var(--giants-orange), #ff8a4d, var(--giants-orange));
+      box-shadow:0 0 0 3px rgba(253,90,30,0.15), 0 8px 24px rgba(0,0,0,0.4);
+      display:inline-block;
+    }
+    h1{font-size:clamp(1.5rem,3vw,2rem);margin:0}
+    .tag{font-weight:600;color:var(--giants-beige);letter-spacing:.4px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,0.35);
+    }
+    .grid{display:grid;gap:18px;grid-template-columns:1fr}
+    @media(min-width:860px){.grid{grid-template-columns:2fr 1fr}}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);
+      background:#121212;color:var(--text);text-decoration:none;font-weight:600;
+      transition:.2s ease;box-shadow:0 6px 16px rgba(0,0,0,.25);
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(253,90,30,.6);box-shadow:0 10px 22px rgba(0,0,0,.35)}
+    .btn--orange{background:linear-gradient(180deg, rgba(253,90,30,0.15), rgba(253,90,30,0.05)); color:var(--text)}
+    .btn--ghost{background:transparent}
+
+    .widget-shell{
+      min-height:420px;
+      display:grid;place-items:center;
+      border-radius:14px;border:1px dashed rgba(253,90,30,.35);
+      background:rgba(253,90,30,.04);padding:10px;text-align:center;color:var(--muted);
+    }
+    .widget-shell strong{color:var(--giants-beige)}
+    .fine{font-size:.92rem;color:var(--muted)}
+    footer{margin:40px 0 20px;text-align:center;color:var(--muted)}
+    .small{font-size:.875rem}
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background:#0f0f0f;border:1px solid rgba(255,255,255,.12);padding:2px 6px;border-radius:6px;color:var(--giants-beige)
+    }
+  </style>
+
+  <!-- Flowise embed script -->
+  <script defer src="https://cdn.jsdelivr.net/npm/flowise-embed@latest/dist/web.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>AI Help <span class="tag">Free / Donate</span></h1>
+          <div class="small">24/7 AI assistant • Human handoff by email when needed</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- Left: Assistant -->
+      <section class="card" aria-labelledby="assist-title">
+        <h2 id="assist-title">Ask the AI assistant</h2>
+        <p class="fine">
+          Have a question about AI tools, workflows, or getting unstuck? Ask here anytime.
+          For a human reply, email <a href="mailto:guitarmanndude@icloud.com">guitarmanndude@icloud.com</a>
+          (backup: <a href="mailto:guitarmanndude69@gmail.com">Gmail</a>).
+          Tips are optional and appreciated.
+        </p>
+
+        <!-- Flowise chat widget -->
+        <flowise-chatbot
+          id="flowise-chat"
+          chatflowid="2aea521d-3f5f-41a0-b7ff-3064d9cd80f9"
+          apihost="http://10.0.0.65:3005"
+          themecolor="#FD5A1E"
+          initialmesg="Hi! I can help with AI basics, tools, and projects.">
+        </flowise-chatbot>
+
+        <!-- Fallback if the widget cannot load -->
+        <div class="widget-shell" id="fallback" hidden>
+          <div>
+            <p><strong>Widget not loaded.</strong></p>
+            <p>Make sure your site is whitelisted in Flowise and the <span class="kbd">chatflowid</span> / <span class="kbd">apihost</span> are set.</p>
+            <p class="fine">Docs: Flowise Embed; You can also email for help.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right: Contact & Donate -->
+      <aside class="card" aria-labelledby="contact-title">
+        <h2 id="contact-title">Need a human?</h2>
+        <p class="small">Email <a href="mailto:guitarmanndude@icloud.com">Guy💫</a> any time with your question. Include screenshots if you can.</p>
+
+        <div class="cta-row">
+          <a class="btn btn--orange" href="mailto:guitarmanndude@icloud.com">Email Guy💫</a>
+          <a class="btn btn--ghost" href="mailto:guitarmanndude69@gmail.com">Use Gmail backup</a>
+        </div>
+
+        <hr style="border:0;border-top:1px solid rgba(255,255,255,.1);margin:16px 0" />
+
+        <h3>Support this free hub</h3>
+        <a href="https://ko-fi.com/guysparks" target="_blank" rel="noopener">
+          <img src="https://storage.ko-fi.com/cdn/kofi5.png" alt="Support me on Ko-fi" style="height:44px" />
+        </a>
+
+        <p class="fine">This service is free. If it helps you, a tip keeps the lights on. Thank you!</p>
+      </aside>
+    </div>
+
+    <footer class="small">
+      <p>Color theme uses San Francisco Giants palette (orange/black + beige accent). © Project Sparks</p>
+    </footer>
+  </div>
+
+  <script>
+    // If Flowise fails to render, reveal fallback box
+    window.addEventListener('load', () => {
+      const el = document.getElementById('flowise-chat');
+      const fb = document.getElementById('fallback');
+      setTimeout(() => {
+        if (!el || !customElements.get('flowise-chatbot')) {
+          if (fb) fb.hidden = false;
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
