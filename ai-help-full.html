@@ -159,5 +159,13 @@
       }, 2000);
     });
   </script>
+<!-- Flowise embed (required for the widget to exist) -->
+<script type="module">
+  import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js";
+  Chatbot.init({
+    chatflowid: "2aea521d-3f5f-41a0-b7ff-3064d9cd80f9",
+    apiHost: "https://YOUR_TUNNEL_URL"
+  });
+</script>
 </body>
 </html>
