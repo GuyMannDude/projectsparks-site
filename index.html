@@ -45,7 +45,6 @@
     }
   </script>
   <style>
-    /* Better rendering for the hero image */
     .hero-img { filter: saturate(1.05) contrast(1.02); }
     .text-shadow { text-shadow: 0 2px 12px rgba(0,0,0,.7); }
   </style>
@@ -53,17 +52,17 @@
 <body class="bg-black text-white selection:bg-brand-500/30">
   <!-- HERO -->
   <section class="relative min-h-[88vh] flex items-end sm:items-center">
-    <!-- Background image -->
-    <img src="abs2.jpg" alt="AL's Bot Shop neon sign with two robots in a workshop" class="hero-img absolute inset-0 h-full w-full object-cover" />
-    <!-- Readability overlay -->
+    <!-- Background image (in same folder) -->
+    <img src="Skull Ornament (7).png" alt="Background" class="hero-img absolute inset-0 h-full w-full object-cover" />
+    <!-- Dark overlay for readability -->
     <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80"></div>
 
-    <!-- Content -->
-    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 py-10">
+    <!-- Hero content -->
+    <div class="relative z-10 w-full max-w-3xl mx-auto px-4 py-10 text-center sm:text-left">
       <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-shadow">Project Sparks</h1>
       <p class="mt-2 sm:mt-3 text-lg sm:text-xl text-white/90 text-shadow">3D Creations and AI Fun</p>
 
-      <div class="mt-6 flex flex-wrap items-center gap-3">
+      <div class="mt-6 flex flex-wrap justify-center sm:justify-start gap-3">
         <a href="helpme.html" class="inline-flex items-center gap-2 rounded-xl bg-brand-500 px-5 py-3 font-semibold text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-400">
           Free AI Help
         </a>
@@ -75,7 +74,7 @@
   </section>
 
   <!-- LINKS GRID -->
-  <main id="links" class="relative z-10 max-w-4xl mx-auto px-4 pb-20">
+  <main id="links" class="relative z-10 max-w-4xl mx-auto px-4 pb-20 -mt-10">
     <ul class="grid sm:grid-cols-2 gap-4 sm:gap-5">
       <li>
         <a href="ArtPage 1.html" class="block rounded-2xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-white/20 transition">
@@ -86,13 +85,13 @@
       <li>
         <a href="EDU-Proposal.html" class="block rounded-2xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-white/20 transition">
           <h2 class="font-display text-xl font-bold">Proposal for Education Reform in America</h2>
-          <p class="mt-1 text-sm text-white/70">A practical vision for AI‑assisted learning.</p>
+          <p class="mt-1 text-sm text-white/70">A practical vision for AI-assisted learning.</p>
         </a>
       </li>
       <li>
         <a href="Learning_AL_v2.html" class="block rounded-2xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-white/20 transition">
           <h2 class="font-display text-xl font-bold">Free AI Learning Tool for Kids</h2>
-          <p class="mt-1 text-sm text-white/70">Simple, safe starter tools for curiosity.</p>
+          <p class="mt-1 text-sm text-white/70">Starter tools for curiosity.</p>
         </a>
       </li>
       <li>
@@ -104,7 +103,7 @@
       <li>
         <a href="Toolbox2.html" class="block rounded-2xl bg-white/5 border border-white/10 p-5 hover:bg-white/10 hover:border-white/20 transition">
           <h2 class="font-display text-xl font-bold">Free to Use Web Apps — 1 ✨</h2>
-          <p class="mt-1 text-sm text-white/70">Utilities, editors, and helpers.</p>
+          <p class="mt-1 text-sm text-white/70">Utilities, editors & helpers.</p>
         </a>
       </li>
       <li>
@@ -120,14 +119,14 @@
     </div>
   </main>
 
-  <!-- Donate (floating, accessible) -->
+  <!-- Donate -->
   <div class="fixed bottom-4 left-4">
     <a aria-label="Donate via PayPal" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.%C2%A4cy_code=USD" target="_blank" rel="noopener" class="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white shadow-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400">
       Donate
     </a>
   </div>
 
-  <!-- Footer (subtle) -->
+  <!-- Footer -->
   <footer class="border-t border-white/10 bg-black/60">
     <div class="max-w-4xl mx-auto px-4 py-6 text-center text-xs text-white/60">
       © <span id="y"></span> Project Sparks — Built by Guy & AL✨
@@ -137,10 +136,5 @@
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
-</body>
-</html>
-
-        </a>
-    </div>
 </body>
 </html>
