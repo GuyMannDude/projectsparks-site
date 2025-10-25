@@ -1,0 +1,60 @@
+      {
+        id: 'goth-heart-1',
+        title: 'Goth Heart — V1',
+        price: 5,
+        img: 'img/Goth Heart 1.jpg',     // uses your real file
+        desc: 'High-detail gothic heart. Ready for paint or display.',
+        tags: ['ornament','PLA'],
+        buy: 'stl/Goth Heart 2.0.stl'    // temporary download link
+      }
+
+
+{
+  id: 'your-id-here',                     // short, unique (no spaces)
+  title: 'Title — Version',
+  price: 0,                               // number only (e.g., 5, 12.5)
+  img: 'img/Your Image.jpg',              // path in /img (800×600 works great)
+  desc: 'One-sentence description.',
+  tags: ['ornament','pla','holiday'],     // lowercase; no “#”
+  buy: 'stl/Your File.stl'                // or external link (Gumroad/Printables)
+},
+
+
+
+B) Optional tidy upgrade (later)
+
+If you want cleaner HTML, we can move data to items.json and load it. Minimal change:
+
+Create ArtForge-Gallery-2/items.json:
+
+[
+  {
+    "id": "goth-heart-v1",
+    "title": "Goth Heart — V1",
+    "price": 5,
+    "img": "img/Goth Heart 1.jpg",
+    "desc": "High-detail gothic heart. Ready for paint or display.",
+    "tags": ["ornament","pla"],
+    "buy": "stl/Goth Heart 2.0.stl"
+  }
+]
+
+
+
+
+
+Replace your current const items = [...] with:
+
+<script>
+let items = [];
+fetch('items.json').then(r=>r.json()).then(data => { items = data; init(); });
+function init(){ renderTags(); render(); attachUI(); }
+function attachUI(){
+  document.querySelector('#search').addEventListener('input', render);
+  document.querySelector('#sort').addEventListener('change', render);
+  document.querySelector('#clearFilters').onclick = () => {
+    document.querySelector('#search').value=''; activeTag=null; document.querySelector('#sort').value='new';
+    renderTags(); render();
+  };
+}
+</script>
