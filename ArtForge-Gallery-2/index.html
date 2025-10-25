@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ArtForge Gallery — Project✨Sparks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d2b;      /* deep night */
+      --card: rgba(10,10,30,.55);
+      --accent: #f59e0b;  /* amber-500 */
+      --accent-soft: rgba(251,191,36,.25);
+      --line: #a16207;    /* amber-700 */
+      --text: #e5e7eb;    /* gray-200 */
+    }
+    body { background: var(--bg); font-family: 'Roboto', system-ui, sans-serif; }
+    .title-font { font-family: 'Cinzel', serif; }
+    .glass { background: var(--card); border: 1px solid var(--line); box-shadow: 0 0 16px 2px var(--accent-soft); backdrop-filter: blur(6px); }
+    .hover-pop { transition: transform .2s, box-shadow .2s; }
+    .hover-pop:hover { transform: translateY(-4px); box-shadow: 0 0 24px 6px rgba(251,191,36,.35); }
+    .divider { width: 6rem; height: 4px; background: var(--accent); margin: .75rem auto 1.25rem; }
+  </style>
+</head>
+<body class="text-gray-200 p-6 sm:p-10">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <header class="text-center py-8 sm:py-12">
+      <h1 class="title-font text-4xl sm:text-5xl font-bold text-amber-400">ArtForge Gallery</h1>
+      <div class="divider"></div>
+      <p class="text-gray-300 max-w-2xl mx-auto">Hand‑made 3D prints & digital pieces by Guy Hutchins (Project✨Sparks)</p>
+    </header>
+
+    <!-- Controls -->
+    <section class="glass rounded-2xl p-4 sm:p-5 mb-6">
+      <div class="flex flex-col md:flex-row gap-4 md:items-center">
+        <input id="search" type="search" placeholder="Search title, tag…" class="w-full md:max-w-sm rounded-xl bg-black/30 border border-amber-700/50 px-4 py-2 outline-none focus:ring-2 focus:ring-amber-500" />
+        <div class="flex items-center gap-3">
+          <label for="sort" class="text-sm text-gray-300">Sort</label>
+          <select id="sort" class="rounded-xl bg-black/30 border border-amber-700/50 px-3 py-2">
+            <option value="new">Newest</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="title">Title A→Z</option>
+          </select>
+        </div>
+        <div class="flex-1"></div>
+        <button id="clearFilters" class="rounded-xl border border-amber-700/60 px-4 py-2 hover:bg-amber-500/10">Clear</button>
+      </div>
+      <div id="tags" class="mt-3 flex flex-wrap gap-2"></div>
+    </section>
+
+    <!-- Grid -->
+    <main id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-12 text-sm text-gray-400">
+      © 2025 Project Sparks - <a class="text-amber-400 hover:underline" href="https://projectsparks.ai" target="_blank" rel="noopener">projectsparks.ai</a>
+    </footer>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
+    <div class="glass hover-pop w-[95vw] max-w-3xl rounded-2xl overflow-hidden">
+      <div class="flex justify-between items-center px-4 sm:px-6 py-3 border-b border-amber-800/40">
+        <h3 id="mTitle" class="title-font text-xl text-amber-400"></h3>
+        <button id="mClose" class="px-3 py-1 rounded-lg border border-amber-700/60 hover:bg-amber-500/10">Close</button>
+      </div>
+      <div class="p-4 sm:p-6 grid gap-4">
+        <img id="mImg" alt="preview" class="w-full h-auto rounded-xl" loading="lazy" />
+        <p id="mDesc" class="text-gray-300 text-sm"></p>
+        <div class="flex flex-wrap items-center gap-3">
+          <span id="mPrice" class="inline-flex items-center px-3 py-1 rounded-full bg-black/40 border border-amber-700/60"></span>
+          <div id="mTags" class="flex flex-wrap gap-2"></div>
+          <div class="flex-1"></div>
+          <a id="mBuy" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500/20 border border-amber-700/60 hover:bg-amber-500/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.44A1.99 1.99 0 0 0 9 19h10v-2H9.42a.25.25 0 0 1-.22-.37L10.1 14h6.45a2 2 0 0 0 1.8-1.11l3.58-7.16A1 1 0 0 0 21 4H7zm-1 16a2 2 0 1 0 .001-3.999A2 2 0 0 0 6 20zm12 0a2 2 0 1 0 .001-3.999A2 2 0 0 0 18 20z"/></svg>
+            <span>Buy / Details</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * SIMPLE, LOCAL, JSON‑DRIVEN GALLERY
+     * — No build step, no backend. Works on GitHub Pages.
+     * — Put images in /img (or absolute URLs). Update the items[] list.
+     * — "buy" can be a Gumroad product, Printables page, PayPal link, etc.
+     */
+
+    const currency = new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD' });
+
+    // ---- YOUR CATALOG ----
+    const items = [
+
+      {
+        id: 'goth-heart-1',
+        title: 'Goth Heart — V1',
+        price: 5,
+        img: 'img/Goth Heart 1.jpg',     // uses your real file
+        desc: 'High-detail gothic heart. Ready for paint or display.',
+        tags: ['ornament','PLA'],
+        buy: 'stl/Goth Heart 2.0.stl'    // temporary download link
+      },
+      {
+        id: 'horn-3',
+        title: 'Cornucopia Planter 1.0',
+        price: 5,
+        img: 'img/Horn 3.png',            // uses your real file
+        desc: 'Stylized horn form planter; good print at 0.2mm.',
+        tags: ['sculpt','PETG'],
+        buy: 'stl/Cornucopia 1.0.stl'     // temporary download link
+      },
+      {
+        id: 'grim-01',
+        title: 'Grim Reaper Ornament',
+        price: 45,
+        img: 'img/Grim 1.jpg',
+        desc: 'High‑detail bust in PLA. Ready for paint or display as‑is.',
+        tags: ['bust', 'PLA', 'horror'],
+        buy: 'https://gum.co/grim-01'
+      },
+      {
+        id: 'ghost-01',
+        title: 'Ghost Ornament 1',
+        price: 30,
+        img: 'img/Ghost Ornament 1.jpg',
+        desc: 'Boo PLA.',
+        tags: ['spooky', 'PLA'],
+        buy: 'https://gum.co/Ghost 1'
+      },
+      {
+        id: 'mavericks-01',
+        title: 'Cosmic Mavericks Print (8×10)',
+        price: 20,
+        img: 'img/cosmic_mavericks.jpg',
+        desc: 'Digital art print on luster paper. Signed.',
+        tags: ['print', 'art', 'mavericks'],
+        buy: 'https://gum.co/your-mavericks'
+      }
+    ];
+
+    // ---- STATE ----
+    let activeTag = null;
+
+    // ---- HELPERS ----
+    const $ = (sel) => document.querySelector(sel);
+    const grid = $('#grid');
+    const tagsWrap = $('#tags');
+
+    function uniqueTags(list) {
+      return Array.from(new Set(list.flatMap(i => i.tags || []))).sort((a,b)=>a.localeCompare(b));
+    }
+
+    function renderTags() {
+      const all = uniqueTags(items);
+      tagsWrap.innerHTML = '';
+      const mk = (label, value=null) => {
+        const btn = document.createElement('button');
+        btn.className = `px-3 py-1 rounded-full text-sm border ${activeTag===value? 'bg-amber-500/30 border-amber-400':'border-amber-700/60 hover:bg-amber-500/10'}`;
+        btn.textContent = label;
+        btn.onclick = () => { activeTag = value; render(); };
+        return btn;
+      };
+      tagsWrap.append(mk('All', null));
+      all.forEach(t => tagsWrap.append(mk('#'+t, t)));
+    }
+
+    function card(item){
+      const el = document.createElement('article');
+      el.className = 'glass hover-pop rounded-2xl overflow-hidden flex flex-col';
+      el.innerHTML = `
+        <img src="${item.img}" alt="${item.title}" class="w-full h-52 object-cover" loading="lazy" />
+        <div class="p-4 flex-1 flex flex-col gap-3">
+          <h3 class="title-font text-amber-400 text-lg">${item.title}</h3>
+          <div class="flex items-center gap-2 text-sm text-gray-300">
+            <span class="px-2 py-0.5 rounded-full bg-black/40 border border-amber-700/60">${currency.format(item.price)}</span>
+            <div class="flex flex-wrap gap-1">${(item.tags||[]).map(t=>`<span class='text-xs px-2 py-0.5 rounded-full bg-black/30 border border-amber-800/40'>#${t}</span>`).join('')}</div>
+          </div>
+          <p class="text-sm text-gray-400 line-clamp-2">${item.desc||''}</p>
+          <div class="mt-auto flex gap-2">
+            <button class="grow px-3 py-2 rounded-xl border border-amber-700/60 hover:bg-amber-500/10" data-open="${item.id}">Preview</button>
+            <a href="${item.buy}" target="_blank" rel="noopener" class="px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-700/60 hover:bg-amber-500/30">Buy</a>
+          </div>
+        </div>`;
+      return el;
+    }
+
+    function render(){
+      const q = $('#search').value.trim().toLowerCase();
+      const sort = $('#sort').value;
+      let list = items.filter(i => {
+        const hitQ = !q || [i.title, i.desc, ...(i.tags||[])].join(' ').toLowerCase().includes(q);
+        const hitT = !activeTag || (i.tags||[]).includes(activeTag);
+        return hitQ && hitT;
+      });
+      if (sort === 'price-asc') list.sort((a,b)=>a.price-b.price);
+      else if (sort === 'price-desc') list.sort((a,b)=>b.price-a.price);
+      else if (sort === 'title') list.sort((a,b)=>a.title.localeCompare(b.title));
+      else list = list; // default "new" keeps declared order
+
+      grid.innerHTML = '';
+      if (!list.length) {
+        grid.innerHTML = `<div class='col-span-full text-center text-gray-400'>No items match your filters.</div>`;
+        return;
+      }
+      list.forEach(i => grid.append(card(i)));
+      bindPreviewButtons(list);
+    }
+
+    function bindPreviewButtons(list){
+      list.forEach(i => {
+        const btn = document.querySelector(`button[data-open="${i.id}"]`);
+        if (!btn) return;
+        btn.onclick = () => openModal(i);
+      })
+    }
+
+    // ---- MODAL ----
+    const modal = $('#modal');
+    const mTitle = $('#mTitle');
+    const mImg = $('#mImg');
+    const mDesc = $('#mDesc');
+    const mPrice = $('#mPrice');
+    const mTags = $('#mTags');
+    const mBuy = $('#mBuy');
+    $('#mClose').onclick = () => closeModal();
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+    function openModal(item){
+      mTitle.textContent = item.title;
+      mImg.src = item.img; mImg.alt = item.title;
+      mDesc.textContent = item.desc || '';
+      mPrice.textContent = currency.format(item.price);
+      mTags.innerHTML = (item.tags||[]).map(t=>`<span class='text-xs px-2 py-0.5 rounded-full bg-black/30 border border-amber-800/40'>#${t}</span>`).join('');
+      mBuy.href = item.buy || '#';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeModal(){
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ---- INIT ----
+    renderTags();
+    render();
+    $('#search').addEventListener('input', render);
+    $('#sort').addEventListener('change', render);
+    $('#clearFilters').onclick = () => { $('#search').value=''; activeTag=null; $('#sort').value='new'; renderTags(); render(); };
+  </script>
+</body>
+</html>
