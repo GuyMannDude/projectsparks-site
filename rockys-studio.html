@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky's Studio - AI Portrait Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .file-upload {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9ff;
+        }
+        
+        .file-upload:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        
+        .file-upload.has-file {
+            border-color: #4caf50;
+            background: #f1f8f4;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .preview-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .preview-image {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.3s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .char-count {
+            text-align: right;
+            color: #999;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .examples {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        
+        .examples-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .example-tag {
+            background: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .example-tag:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🦞</div>
+            <h1>Rocky's Studio</h1>
+            <p class="subtitle">Transform yourself into anything you imagine!</p>
+        </div>
+        
+        <form id="studioForm">
+            <div class="form-group">
+                <label>1. Upload Your Photo</label>
+                <input type="file" id="photoUpload" accept="image/*" required>
+                <label for="photoUpload" class="file-upload" id="fileUploadLabel">
+                    <div class="upload-icon">📸</div>
+                    <div>Click to upload your photo</div>
+                    <div style="font-size: 12px; color: #999; margin-top: 5px;">JPG, PNG (max 10MB)</div>
+                </label>
+                <div class="preview-container" id="previewContainer" style="display: none;">
+                    <img id="previewImage" class="preview-image" alt="Preview">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>2. What do you want to be?</label>
+                <textarea 
+                    id="promptInput" 
+                    placeholder="Describe your transformation... (e.g., 'steampunk pirate gnome' or 'medieval knight')" 
+                    maxlength="200"
+                    required
+                ></textarea>
+                <div class="char-count"><span id="charCount">0</span>/200</div>
+                
+                <div class="examples">
+                    <div class="examples-title">💡 Quick ideas (click to use):</div>
+                    <div class="example-tags">
+                        <span class="example-tag" data-prompt="steampunk pirate">Steampunk Pirate</span>
+                        <span class="example-tag" data-prompt="fantasy wizard">Fantasy Wizard</span>
+                        <span class="example-tag" data-prompt="cyberpunk hacker">Cyberpunk Hacker</span>
+                        <span class="example-tag" data-prompt="medieval knight">Medieval Knight</span>
+                        <span class="example-tag" data-prompt="space explorer">Space Explorer</span>
+                        <span class="example-tag" data-prompt="garden gnome">Garden Gnome</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                ✨ Create My Portrait
+            </button>
+            
+            <div class="info-box">
+                <strong>🎨 Free Service!</strong><br>
+                You'll get up to 3-5 variations. Processing takes 2-5 minutes.<br>
+                <a href="#" style="color: #856404; text-decoration: underline;">Donations appreciated!</a>
+            </div>
+        </form>
+        
+        <div class="footer">
+            Part of <a href="/">Project Sparks</a> | Powered by AI magic 🪄
+        </div>
+    </div>
+    
+    <script>
+        const photoUpload = document.getElementById('photoUpload');
+        const fileUploadLabel = document.getElementById('fileUploadLabel');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const promptInput = document.getElementById('promptInput');
+        const charCount = document.getElementById('charCount');
+        const submitBtn = document.getElementById('submitBtn');
+        const studioForm = document.getElementById('studioForm');
+        
+        // File upload preview
+        photoUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                fileUploadLabel.classList.add('has-file');
+                fileUploadLabel.innerHTML = `<div class="upload-icon">✓</div><div>${file.name}</div>`;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Character count
+        promptInput.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+        });
+        
+        // Example tags
+        document.querySelectorAll('.example-tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                promptInput.value = this.dataset.prompt;
+                charCount.textContent = promptInput.value.length;
+                promptInput.focus();
+            });
+        });
+        
+        // Form submission (placeholder for now)
+        studioForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // TODO: Implement actual submission logic
+            // For now, just show an alert
+            alert('🚧 Coming Soon!\n\nRocky\'s Studio is still under construction. Check back soon for AI-powered portrait magic! 🦞✨');
+        });
+    </script>
+</body>
+</html>
