@@ -195,6 +195,21 @@
     </div>
   </section>
 
+  <!-- TOP 5 THIS WEEK -->
+  <section class="py-8 px-4 border-b border-white/10 bg-gradient-to-b from-purple-500/5 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-6">
+        <h2 class="font-display text-2xl font-bold mb-2 text-white">🔥 Top 5 This Week</h2>
+        <p class="text-white/60 text-sm">Most voted pieces — they might sell by next week!</p>
+      </div>
+      <div id="top-five" class="flex flex-wrap gap-3 justify-center text-sm">
+        <div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">
+          Loading top picks...
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- GALLERY GRID -->
   <main class="max-w-6xl mx-auto px-4 py-12">
     <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -411,14 +426,70 @@
           button.style.transform = '';
         }, 200);
         
+        // Refresh Top 5 after vote
+        loadTopFive();
+        
       } catch (error) {
         console.error('Error voting:', error);
         alert('Vote failed - please try again!');
       }
     };
     
+    // Load Top 5 pieces
+    async function loadTopFive() {
+      await waitForFirebase();
+      const db = window.db;
+      
+      // Map piece IDs to their display info
+      const pieceInfo = {
+        'easter-gnome-001': { title: 'Easter Gnome Fantasy', category: 'Fantasy' },
+        'easter-bunny-001': { title: 'Easter Bunny Magic', category: 'Fantasy' },
+        'easter-chick-001': { title: 'Spring Chick', category: 'Fantasy' },
+        'enchanted-forest-001': { title: 'Enchanted Forest', category: 'Nature' },
+        'steampunk-bunny-001': { title: 'Steampunk Easter Bunny', category: 'Steampunk' },
+        'dragons-lair-001': { title: "Dragon's Lair", category: 'Fantasy' },
+        'liquid-ribbons-001': { title: 'Liquid Ribbons', category: 'Abstract' }
+      };
+      
+      try {
+        // Collect all pieces with their vote counts
+        const pieces = [];
+        for (const pieceId of Object.keys(pieceInfo)) {
+          const docRef = doc(db, 'gallery-votes', pieceId);
+          const docSnap = await getDoc(docRef);
+          const votes = docSnap.exists() ? (docSnap.data().votes || 0) : 0;
+          pieces.push({ id: pieceId, votes, ...pieceInfo[pieceId] });
+        }
+        
+        // Sort by votes descending
+        pieces.sort((a, b) => b.votes - a.votes);
+        
+        // Take top 5
+        const topFive = pieces.slice(0, 5);
+        
+        // Display
+        const container = document.getElementById('top-five');
+        if (topFive.length === 0 || topFive.every(p => p.votes === 0)) {
+          container.innerHTML = '<div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">No votes yet — be the first! 👍</div>';
+        } else {
+          container.innerHTML = topFive.map((piece, index) => `
+            <div class="bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/40 rounded-lg px-4 py-2 text-white flex items-center gap-2">
+              <span class="font-bold text-purple-300">#${index + 1}</span>
+              <span class="font-semibold">${piece.title}</span>
+              <span class="text-white/60 text-xs">${piece.category}</span>
+              <span class="ml-auto font-bold text-blue-400">${piece.votes} 👍</span>
+            </div>
+          `).join('');
+        }
+      } catch (error) {
+        console.error('Error loading top 5:', error);
+        document.getElementById('top-five').innerHTML = '<div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">Error loading votes</div>';
+      }
+    }
+    
     // Initialize
     loadVotes();
+    loadTopFive();
   </script>
 
   <script>
