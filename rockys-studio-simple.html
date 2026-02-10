@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocky's Studio - AI Art Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .studios {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 968px) {
+            .studios {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .studio-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .studio-card.coming-soon {
+            opacity: 0.6;
+            position: relative;
+        }
+        
+        .coming-soon-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .studio-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .studio-desc {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .style-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .style-option {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .style-option:hover {
+            border-color: #667eea;
+            background: #f0f2ff;
+        }
+        
+        .style-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 10px;
+        }
+        
+        .generate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .generate-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .result-area {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            text-align: center;
+            min-height: 200px;
+            display: none;
+        }
+        
+        .result-area.show {
+            display: block;
+        }
+        
+        .result-image {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .loading {
+            padding: 40px;
+            color: #667eea;
+            font-size: 18px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .back-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🦞</div>
+            <h1>Rocky's Studio</h1>
+            <p class="subtitle">AI-Powered Art Generation</p>
+        </div>
+        
+        <div class="studios">
+            <!-- LEFT: Simple Text-to-Image -->
+            <div class="studio-card">
+                <div class="studio-title">✨ AI Art Generator</div>
+                <div class="studio-desc">Create unique AI-generated art from text descriptions</div>
+                
+                <form id="simpleForm">
+                    <div class="form-group">
+                        <label>What do you want to create?</label>
+                        <textarea 
+                            id="promptInput" 
+                            placeholder="A magical wizard casting spells in an enchanted forest..."
+                            maxlength="300"
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Art Style</label>
+                        <div class="style-grid">
+                            <div class="style-option selected" data-style="fantasy">🧙 Fantasy</div>
+                            <div class="style-option" data-style="scifi">🚀 Sci-Fi</div>
+                            <div class="style-option" data-style="steampunk">⚙️ Steampunk</div>
+                            <div class="style-option" data-style="realistic">📷 Realistic</div>
+                            <div class="style-option" data-style="anime">🎨 Anime</div>
+                            <div class="style-option" data-style="abstract">🌀 Abstract</div>
+                        </div>
+                        <input type="hidden" id="styleInput" value="fantasy">
+                    </div>
+                    
+                    <button type="submit" class="generate-btn" id="generateBtn">
+                        ✨ Generate Art
+                    </button>
+                </form>
+                
+                <div class="result-area" id="resultArea">
+                    <div class="loading" id="loadingMsg">
+                        <div class="spinner"></div>
+                        Creating your masterpiece...
+                    </div>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+            
+            <!-- RIGHT: Face-Swap Portrait (Coming Soon) -->
+            <div class="studio-card coming-soon">
+                <div class="coming-soon-badge">COMING SOON</div>
+                <div class="studio-title">🎭 AI Portrait Generator</div>
+                <div class="studio-desc">Transform yourself into any character or style</div>
+                
+                <div class="form-group">
+                    <label>Upload Your Photo</label>
+                    <input type="file" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label>What do you want to be?</label>
+                    <textarea disabled placeholder="Steampunk wizard, cyberpunk warrior, fantasy knight..."></textarea>
+                </div>
+                
+                <button class="generate-btn" disabled>
+                    🔒 Coming Soon
+                </button>
+                
+                <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 10px; font-size: 14px; color: #856404;">
+                    <strong>Stay tuned!</strong> This feature is in development. Sign up for notifications when it launches!
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="/" class="back-link">← Back to Project Sparks</a>
+        </div>
+    </div>
+    
+    <script>
+        const simpleForm = document.getElementById('simpleForm');
+        const promptInput = document.getElementById('promptInput');
+        const styleInput = document.getElementById('styleInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const resultArea = document.getElementById('resultArea');
+        const loadingMsg = document.getElementById('loadingMsg');
+        const resultContent = document.getElementById('resultContent');
+        
+        // Style selection
+        document.querySelectorAll('.style-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.style-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                styleInput.value = this.dataset.style;
+            });
+        });
+        
+        // Form submission
+        simpleForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const prompt = promptInput.value.trim();
+            const style = styleInput.value;
+            
+            if (!prompt) {
+                alert('Please enter a description!');
+                return;
+            }
+            
+            // Show loading
+            resultArea.classList.add('show');
+            loadingMsg.style.display = 'block';
+            resultContent.innerHTML = '';
+            generateBtn.disabled = true;
+            generateBtn.textContent = '⏳ Generating...';
+            
+            try {
+                // For now, show a placeholder message
+                // TODO: Connect to actual backend
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                loadingMsg.style.display = 'none';
+                resultContent.innerHTML = `
+                    <div style="padding: 40px;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">🚧 Backend Connection In Progress</h3>
+                        <p style="color: #666; margin-bottom: 10px;">Your prompt: <strong>"${prompt}"</strong></p>
+                        <p style="color: #666; margin-bottom: 10px;">Style: <strong>${style}</strong></p>
+                        <p style="color: #999; font-size: 14px; margin-top: 20px;">The generation system is being connected. Check back soon!</p>
+                    </div>
+                `;
+                
+            } catch (error) {
+                loadingMsg.style.display = 'none';
+                resultContent.innerHTML = `
+                    <div style="padding: 40px; color: #ff6b6b;">
+                        <strong>Error:</strong> ${error.message}
+                    </div>
+                `;
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = '✨ Generate Art';
+            }
+        });
+    </script>
+</body>
+</html>
