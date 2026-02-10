@@ -41,13 +41,18 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
-      padding: 20px;
-      transform: translateY(100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.8) 60%, transparent);
+      padding: 15px;
+      padding-top: 40px;
+      transform: translateY(calc(100% - 50px));
       transition: transform 0.3s;
     }
     .gallery-item:hover .gallery-overlay {
       transform: translateY(0);
+    }
+    .gallery-title {
+      position: relative;
+      z-index: 1;
     }
     .sold-badge {
       position: absolute;
@@ -92,16 +97,16 @@
   <section class="py-16 px-4 text-center border-b border-white/10">
     <div class="max-w-4xl mx-auto">
       <h1 class="font-display text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-        Guy & Rocky's Art Showcase
+        AI Art Gallery
       </h1>
-      <p class="text-xl text-white/80 mb-4" style="line-height: 1.6;">
-        Hey there! Welcome to our little corner of the internet. I'm Guy (73, retired guitar player, still figuring out this AI stuff), 
-        and Rocky here (🦞 he's an AI assistant who thinks he's an artist) have been having a blast creating these pieces.
+      <p class="text-xl text-white/80 mb-2">
+        Unique AI-Generated Masterpieces
       </p>
-      <p class="text-white/70" style="line-height: 1.6;">
-        Each one's truly one-of-a-kind — once someone claims it, we never make it again. We're keeping prices friendly 
-        because this is more about sharing what we've discovered than getting rich. Browse around, and if something 
-        makes you smile, it's yours!
+      <p class="text-white/60 mb-3">
+        🎨 Curated by Guy & Rocky 🦞 • One-of-a-kind pieces
+      </p>
+      <p class="text-white/50 text-sm">
+        (Once sold, never reproduced. Because we like keeping things special.)
       </p>
     </div>
   </section>
@@ -128,7 +133,7 @@
         <img src="easter_gnome_002_00001_.png" alt="Easter Gnome Fantasy">
         <div class="available-badge">$25</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Easter Gnome Fantasy</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Easter Gnome Fantasy</h3>
           <p class="text-white/70 text-sm mb-3">Fantasy • AI Generated</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $25
@@ -140,7 +145,7 @@
         <img src="easter_bunny_003_clean_00001_.png" alt="Easter Bunny">
         <div class="available-badge">$20</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Easter Bunny Magic</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Easter Bunny Magic</h3>
           <p class="text-white/70 text-sm mb-3">Fantasy • AI Generated</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $20
@@ -152,7 +157,7 @@
         <img src="easter_chick_004_00001_.png" alt="Easter Chick">
         <div class="available-badge">$20</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Spring Chick</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Spring Chick</h3>
           <p class="text-white/70 text-sm mb-3">Fantasy • AI Generated</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $20
@@ -164,7 +169,7 @@
         <img src="https://via.placeholder.com/600x800/51cf66/ffffff?text=Nature+Art+1" alt="Nature Art 1">
         <div class="available-badge">$20</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Enchanted Forest</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Enchanted Forest</h3>
           <p class="text-white/70 text-sm mb-3">Nature • 2048x2048</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $20
@@ -176,7 +181,7 @@
         <img src="steampunk_bunny.png" alt="Steampunk Easter Bunny">
         <div class="available-badge">$30</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Steampunk Easter Bunny</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Steampunk Easter Bunny</h3>
           <p class="text-white/70 text-sm mb-3">Steampunk • AI Generated</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $30
@@ -188,7 +193,7 @@
         <img src="https://via.placeholder.com/600x800/845ef7/ffffff?text=Fantasy+Art+2" alt="Fantasy Art 2">
         <div class="available-badge">$25</div>
         <div class="gallery-overlay">
-          <h3 class="text-white font-bold text-lg mb-1">Dragon's Lair</h3>
+          <h3 class="gallery-title text-white font-bold text-lg mb-1">Dragon's Lair</h3>
           <p class="text-white/70 text-sm mb-3">Fantasy • 2048x2048</p>
           <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
             Buy Now — $25
@@ -199,37 +204,27 @@
     </div>
 
     <!-- COMING SOON -->
-    <div class="mt-16 text-center" style="max-width: 600px; margin-left: auto; margin-right: auto;">
-      <p class="text-white/60 text-lg mb-4">
-        📬 <strong>More coming this week!</strong>
+    <div class="mt-16 text-center">
+      <p class="text-white/60 text-lg mb-2">
+        🚧 More masterpieces coming this week!
       </p>
-      <p class="text-white/50 text-sm" style="line-height: 1.7;">
-        Rocky's got about a dozen more pieces in the works. We're playing with fantasy themes, sci-fi scenes, 
-        and some abstract stuff that honestly, I don't totally understand but looks cool. 🎨
-      </p>
-      <p class="text-white/40 text-xs mt-4">
-        (Check back in a few days — we're having too much fun to stop now!)
+      <p class="text-white/40 text-sm">
+        New pieces added weekly. (We're having too much fun to stop.) 🎨
       </p>
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="border-t border-white/10 bg-black/60 mt-20">
-    <div class="max-w-6xl mx-auto px-4 py-8">
-      <div class="text-white/70 text-sm mb-6" style="line-height: 1.8; max-width: 700px; margin: 0 auto;">
-        <p class="mb-3">
-          <strong>A note from Guy:</strong> We add new pieces every week, so check back often! 
-          If you have ideas for what you'd like to see, drop us a line at 
-          <a href="mailto:guy@projectsparks.ai" class="text-blue-400 hover:text-blue-300">guy@projectsparks.ai</a>. 
-          Rocky and I are always up for trying something new.
-        </p>
-        <p class="text-white/50 text-sm">
-          💾 <strong>Tech tip from an old guy:</strong> Your files are safe with us, but I'm 73 and know better 
-          than to trust any single system. Make backups! (Rocky says I'm being paranoid. Rocky's young.) 😄
-        </p>
-      </div>
-      <p class="text-center text-white/40 text-xs mt-6">
-        © 2026 Project Sparks — Guy (still learning at 73) & Rocky (an AI lobster who won't let me quit) 🦞
+    <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+      <p class="text-white/60 text-sm mb-4">
+        Each piece is one-of-a-kind. Once sold, never reproduced.
+      </p>
+      <p class="text-white/50 text-sm mb-4">
+        💾 Your files are safe, but backups never hurt. (I'm 73, I know things.) 😄
+      </p>
+      <p class="text-white/40 text-xs">
+        © 2026 Project Sparks — Guy & Rocky 🦞 • New pieces added weekly
       </p>
     </div>
   </footer>
