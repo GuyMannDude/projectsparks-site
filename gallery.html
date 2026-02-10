@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Art Gallery — Project Sparks</title>
+  
+  <link rel="canonical" href="https://projectsparks.ai/gallery.html" />
+  <meta name="description" content="Unique AI-generated masterpieces. One-of-a-kind art, never reproduced. Curated by Guy & Rocky." />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { display: ['Orbitron', 'ui-sans-serif', 'system-ui'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: #1a1a1a;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+      padding: 20px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    .sold-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff6b6b;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .available-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #51cf66;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- HEADER -->
+  <header class="border-b border-white/10 bg-black/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="font-display text-2xl font-bold text-white hover:text-blue-400">
+        🦞 Project Sparks
+      </a>
+      <nav class="flex gap-6">
+        <a href="/gallery.html" class="text-blue-400 font-semibold">Gallery</a>
+        <a href="/" class="text-white/70 hover:text-white">Home</a>
+        <a href="/ArtForge-Gallery-2/index.html" class="text-white/70 hover:text-white">ArtForge</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="py-16 px-4 text-center border-b border-white/10">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="font-display text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+        AI Art Gallery
+      </h1>
+      <p class="text-xl text-white/80 mb-2">
+        Unique AI-Generated Masterpieces
+      </p>
+      <p class="text-white/60">
+        🎨 One-of-a-Kind • Curated by Guy & Rocky • Never Reproduced
+      </p>
+    </div>
+  </section>
+
+  <!-- FILTER -->
+  <section class="py-8 px-4 border-b border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-wrap gap-3 justify-center">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="fantasy">Fantasy</button>
+      <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+      <button class="filter-btn" data-filter="abstract">Abstract</button>
+      <button class="filter-btn" data-filter="nature">Nature</button>
+      <button class="filter-btn" data-filter="steampunk">Steampunk</button>
+    </div>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <main class="max-w-6xl mx-auto px-4 py-12">
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- PLACEHOLDER ITEMS (will be replaced with real art) -->
+      
+      <div class="gallery-item" data-category="fantasy">
+        <img src="https://via.placeholder.com/600x800/667eea/ffffff?text=Fantasy+Art+1" alt="Fantasy Art 1">
+        <div class="available-badge">$25</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Wizard's Dawn</h3>
+          <p class="text-white/70 text-sm mb-3">Fantasy • 2048x2048</p>
+          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Buy Now — $25
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="scifi">
+        <img src="https://via.placeholder.com/600x800/764ba2/ffffff?text=Sci-Fi+Art+1" alt="Sci-Fi Art 1">
+        <div class="available-badge">$30</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Neon City</h3>
+          <p class="text-white/70 text-sm mb-3">Sci-Fi • 2048x2048</p>
+          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Buy Now — $30
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="abstract">
+        <img src="https://via.placeholder.com/600x800/f093fb/ffffff?text=Abstract+Art+1" alt="Abstract Art 1">
+        <div class="sold-badge">SOLD</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Quantum Dreams</h3>
+          <p class="text-white/70 text-sm mb-3">Abstract • 2048x2048</p>
+          <button class="w-full bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg cursor-not-allowed" disabled>
+            Sold Out
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="nature">
+        <img src="https://via.placeholder.com/600x800/51cf66/ffffff?text=Nature+Art+1" alt="Nature Art 1">
+        <div class="available-badge">$20</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Enchanted Forest</h3>
+          <p class="text-white/70 text-sm mb-3">Nature • 2048x2048</p>
+          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Buy Now — $20
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="steampunk">
+        <img src="https://via.placeholder.com/600x800/f59f00/ffffff?text=Steampunk+Art+1" alt="Steampunk Art 1">
+        <div class="available-badge">$35</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Clockwork Dragon</h3>
+          <p class="text-white/70 text-sm mb-3">Steampunk • 2048x2048</p>
+          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Buy Now — $35
+          </button>
+        </div>
+      </div>
+
+      <div class="gallery-item" data-category="fantasy">
+        <img src="https://via.placeholder.com/600x800/845ef7/ffffff?text=Fantasy+Art+2" alt="Fantasy Art 2">
+        <div class="available-badge">$25</div>
+        <div class="gallery-overlay">
+          <h3 class="text-white font-bold text-lg mb-1">Dragon's Lair</h3>
+          <p class="text-white/70 text-sm mb-3">Fantasy • 2048x2048</p>
+          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Buy Now — $25
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="mt-16 text-center">
+      <p class="text-white/60 text-lg mb-4">
+        🚧 More masterpieces coming this week!
+      </p>
+      <p class="text-white/40 text-sm">
+        New pieces added weekly. Follow for updates.
+      </p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 bg-black/60 mt-20">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-center">
+      <p class="text-white/60 text-sm mb-4">
+        Each piece is one-of-a-kind. Once sold, never reproduced.
+      </p>
+      <p class="text-white/40 text-xs">
+        © 2026 Project Sparks — AI Art curated by Guy & Rocky 🦞
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.dataset.filter;
+        
+        // Filter items
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Buy button placeholder
+    document.querySelectorAll('.gallery-overlay button:not([disabled])').forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('🚧 Payment system connecting soon!\n\nStripe checkout will be integrated this week.');
+      });
+    });
+  </script>
+
+  <style>
+    .filter-btn {
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: rgba(102, 126, 234, 0.5);
+      color: white;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-color: #667eea;
+      color: white;
+    }
+  </style>
+</body>
+</html>
