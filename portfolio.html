@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rocky's AI Design Studio - Professional Services Portfolio</title>
+  
+  <meta name="description" content="Professional AI-powered graphic design services. Logos, branding, marketing materials, social media content. Fast turnaround, affordable pricing." />
+  <meta name="robots" content="index,follow" />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white min-h-screen">
+
+  <!-- Hero Section -->
+  <section class="relative py-20 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="mb-6">
+        <span class="inline-block text-6xl mb-4">🦞</span>
+        <h1 class="text-5xl md:text-7xl font-black mb-4">
+          <span class="gradient-text">Rocky's AI Design Studio</span>
+        </h1>
+      </div>
+      <p class="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
+        Professional graphic design powered by AI
+      </p>
+      <p class="text-xl text-gray-400 mb-12 max-w-3xl mx-auto">
+        Fast turnaround • Affordable pricing • Unlimited revisions • Always unique
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#services" class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl text-lg transition transform hover:scale-105 shadow-2xl">
+          View Services
+        </a>
+        <a href="#portfolio" class="inline-block bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold px-8 py-4 rounded-xl text-lg transition">
+          See Examples
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-16 gradient-text">Professional Services</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Logo Design -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">🎨</div>
+          <h3 class="text-2xl font-bold mb-3">Logo Design</h3>
+          <p class="text-gray-400 mb-6">Custom logos that capture your brand identity. Multiple concepts, unlimited revisions.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$200-500</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ 3-5 initial concepts</li>
+            <li>✓ Unlimited revisions</li>
+            <li>✓ Multiple file formats</li>
+            <li>✓ 2-3 day turnaround</li>
+          </ul>
+        </div>
+
+        <!-- Brand Identity -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">🎯</div>
+          <h3 class="text-2xl font-bold mb-3">Brand Identity Package</h3>
+          <p class="text-gray-400 mb-6">Complete visual identity: logo, colors, typography, patterns, brand guidelines.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$800-3,000</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ Logo + variations</li>
+            <li>✓ Color palette</li>
+            <li>✓ Typography system</li>
+            <li>✓ Brand style guide</li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">📱</div>
+          <h3 class="text-2xl font-bold mb-3">Social Media Content</h3>
+          <p class="text-gray-400 mb-6">Daily/weekly content packages. Consistent style, on-brand, ready to post.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$300-800/mo</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ 12-20 graphics/month</li>
+            <li>✓ Platform-optimized sizes</li>
+            <li>✓ Consistent branding</li>
+            <li>✓ Fast revisions</li>
+          </ul>
+        </div>
+
+        <!-- Marketing Materials -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">📄</div>
+          <h3 class="text-2xl font-bold mb-3">Marketing Materials</h3>
+          <p class="text-gray-400 mb-6">Flyers, posters, brochures, business cards. Print-ready, professional quality.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$100-400</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ Print-ready files</li>
+            <li>✓ CMYK + bleed setup</li>
+            <li>✓ Multiple size options</li>
+            <li>✓ Same-day turnaround</li>
+          </ul>
+        </div>
+
+        <!-- Custom Artwork -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">🖼️</div>
+          <h3 class="text-2xl font-bold mb-3">Custom Artwork</h3>
+          <p class="text-gray-400 mb-6">Product designs, t-shirts, packaging, labels. Unique, never-before-seen visuals.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$150-800</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ Truly unique designs</li>
+            <li>✓ Commercial license</li>
+            <li>✓ Multiple variations</li>
+            <li>✓ Source files included</li>
+          </ul>
+        </div>
+
+        <!-- Website Graphics -->
+        <div class="service-card bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+          <div class="text-5xl mb-4">🌐</div>
+          <h3 class="text-2xl font-bold mb-3">Website Graphics</h3>
+          <p class="text-gray-400 mb-6">Hero images, backgrounds, icons, UI elements. Web-optimized, stunning quality.</p>
+          <div class="text-3xl font-bold text-purple-400 mb-2">$200-1,000</div>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>✓ Web-optimized formats</li>
+            <li>✓ Responsive sizing</li>
+            <li>✓ Modern aesthetics</li>
+            <li>✓ Fast delivery</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Examples -->
+  <section id="portfolio" class="py-20 px-4 bg-black/30">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-6 gradient-text">Portfolio Examples</h2>
+      <p class="text-center text-gray-400 mb-16 text-lg">Gallery pieces showcasing our AI art capabilities</p>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+          <div class="aspect-video bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+            <span class="text-6xl">🐉</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Fantasy Art</h3>
+            <p class="text-gray-400 text-sm">Epic dragon artwork - cinematic quality, gallery-ready</p>
+          </div>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+          <div class="aspect-video bg-gradient-to-br from-cyan-600 to-purple-600 flex items-center justify-center">
+            <span class="text-6xl">🏙️</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Cyberpunk Design</h3>
+            <p class="text-gray-400 text-sm">Neon-lit cityscapes - perfect for tech brands</p>
+          </div>
+        </div>
+
+        <div class="bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+          <div class="aspect-video bg-gradient-to-br from-pink-600 to-orange-600 flex items-center justify-center">
+            <span class="text-6xl">🎨</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">Abstract Art</h3>
+            <p class="text-gray-400 text-sm">Modern, vibrant, unique - great for brands</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/gallery.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl text-lg transition transform hover:scale-105 shadow-2xl">
+          View Full Gallery →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-black text-center mb-16 gradient-text">Why Choose Rocky's Studio?</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
+          <p class="text-gray-400">Hours or days, not weeks. Rush orders available.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">💰</div>
+          <h3 class="text-xl font-bold mb-2">40-60% Cheaper</h3>
+          <p class="text-gray-400">Professional quality at a fraction of traditional cost.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">🔄</div>
+          <h3 class="text-xl font-bold mb-2">Unlimited Revisions</h3>
+          <p class="text-gray-400">Easy regeneration until you love it.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-5xl mb-4">✨</div>
+          <h3 class="text-xl font-bold mb-2">Always Unique</h3>
+          <p class="text-gray-400">AI never repeats - every design is one-of-a-kind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 px-4 bg-gradient-to-r from-purple-600 to-blue-600">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl md:text-5xl font-black mb-6">Ready to Get Started?</h2>
+      <p class="text-xl md:text-2xl mb-8 opacity-90">Let's bring your vision to life with AI-powered design</p>
+      
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="mailto:guy@projectsparks.ai" class="inline-block bg-white text-purple-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-xl text-lg transition transform hover:scale-105 shadow-2xl">
+          📧 Contact Us
+        </a>
+        <a href="#services" class="inline-block bg-white/10 hover:bg-white/20 backdrop-blur text-white font-bold px-8 py-4 rounded-xl text-lg transition">
+          View Pricing
+        </a>
+      </div>
+
+      <p class="mt-8 text-sm opacity-75">Typical turnaround: 1-3 days • Free consultation • No upfront payment required</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 bg-black/50 text-center text-gray-400 text-sm">
+    <p>&copy; 2026 Rocky's AI Design Studio • Project Sparks</p>
+    <p class="mt-2">Professional graphic design services powered by cutting-edge AI</p>
+  </footer>
+
+</body>
+</html>
