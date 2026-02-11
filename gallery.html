@@ -200,7 +200,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-6">
         <h2 class="font-display text-2xl font-bold mb-2 text-white">🔥 Top 5 This Week</h2>
-        <p class="text-white/60 text-sm">Most voted pieces — they might sell by next week!</p>
+        <p class="text-white/60 text-sm">Most voted pieces — your favorites rise to the top!</p>
       </div>
       <div id="top-five" class="flex flex-wrap gap-3 justify-center text-sm">
         <div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">
@@ -748,42 +748,7 @@
       }
     }
     
-    // Vote function
-    window.vote = async function(pieceId, button) {
-      // Check if already voted
-      if (localStorage.getItem(`voted-${pieceId}`) === 'true') {
-        return; // Already voted, do nothing
-      }
-      
-      await waitForFirebase();
-      const db = window.db;
-      const docRef = doc(db, 'gallery-votes', pieceId);
-      
-      try {
-        // Increment vote count in Firestore
-        await setDoc(docRef, { votes: increment(1) }, { merge: true });
-        
-        // Update UI
-        const countSpan = button.querySelector('.vote-count');
-        const currentCount = parseInt(countSpan.textContent) || 0;
-        countSpan.textContent = currentCount + 1;
-        
-        // Mark as voted
-        button.classList.add('voted');
-        localStorage.setItem(`voted-${pieceId}`, 'true');
-        
-        // Brief success feedback
-        button.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-          button.style.transform = '';
-        }, 200);
-        
-        // Refresh Top 5 after vote
-        loadTopFive();
-        
-      } catch (error) {
-        console.error('Error voting:', error);
-        alert('Vote failed - please try again!');
+    
       }
     };
     
@@ -866,6 +831,54 @@
     loadVotes();
     loadTopFive();
   </script>
+<!-- Voting Script (after module) -->
+<script>
+  // This needs to be accessible globally for onclick handlers
+  window.vote = async function(pieceId, button) {
+    // Check if already voted
+    if (localStorage.getItem(`voted-${pieceId}`) === 'true') {
+      console.log('Already voted for', pieceId);
+      return;
+    }
+    
+    // Wait for Firebase
+    if (!window.db) {
+      console.error('Firebase not ready');
+      alert('Please wait, loading...');
+      return;
+    }
+    
+    try {
+      const { doc, setDoc, increment } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+      const docRef = doc(window.db, 'gallery-votes', pieceId);
+      
+      // Increment vote
+      await setDoc(docRef, { votes: increment(1) }, { merge: true });
+      
+      // Update UI
+      const countSpan = button.querySelector('.vote-count');
+      const currentCount = parseInt(countSpan.textContent) || 0;
+      countSpan.textContent = currentCount + 1;
+      
+      // Mark voted
+      button.classList.add('voted');
+      localStorage.setItem(`voted-${pieceId}`, 'true');
+      
+      // Animation
+      button.style.transform = 'scale(1.1)';
+      setTimeout(() => button.style.transform = '', 200);
+      
+      // Refresh Top 5
+      if (window.loadTopFive) window.loadTopFive();
+      
+      console.log('Voted for', pieceId);
+    } catch (error) {
+      console.error('Vote error:', error);
+      alert('Vote failed - please try again!');
+    }
+  };
+</script>
+
 
   <script>
     // Filter functionality
