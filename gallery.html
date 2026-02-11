@@ -29,6 +29,12 @@
     const db = getFirestore(app);
     window.db = db;
     window.firestoreReady = true;
+    
+    // Expose Firestore functions globally for onclick handlers
+    window.firestoreDoc = doc;
+    window.firestoreSetDoc = setDoc;
+    window.firestoreIncrement = increment;
+    window.firestoreGetDoc = getDoc;
   </script>
   
   <script>
@@ -56,6 +62,7 @@
       width: 100%;
       height: auto;
       display: block;
+      cursor: pointer;
     }
     .gallery-overlay {
       position: absolute;
@@ -140,6 +147,90 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
     }
+    
+    /* Lightbox Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      animation: zoomIn 0.3s ease;
+    }
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: rgba(102, 126, 234, 0.5);
+      color: white;
+    }
+    .filter-btn.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-color: #667eea;
+      color: white;
+    }
   </style>
 </head>
 <body class="bg-black text-white">
@@ -214,10 +305,10 @@
   <main class="max-w-6xl mx-auto px-4 py-12">
     <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- PLACEHOLDER ITEMS (will be replaced with real art) -->
+      <!-- Gallery Items -->
       
       <div class="gallery-item" data-category="fantasy" data-piece-id="crystal-dragon-001">
-        <img src="gallery-fantasy-06-crystal-dragon.jpg" alt="Crystal Dragon">
+        <img src="gallery-fantasy-06-crystal-dragon.jpg" alt="Crystal Dragon" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('crystal-dragon-001', this)">
           <span class="thumb">👍</span>
@@ -233,7 +324,7 @@
       </div>
 
       <div class="gallery-item" data-category="fantasy" data-piece-id="enchanted-forest-001">
-        <img src="gallery-fantasy-07-enchanted-forest.jpg" alt="Enchanted Forest">
+        <img src="gallery-fantasy-07-enchanted-forest.jpg" alt="Enchanted Forest" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('enchanted-forest-001', this)">
           <span class="thumb">👍</span>
@@ -249,7 +340,7 @@
       </div>
 
       <div class="gallery-item" data-category="fantasy" data-piece-id="sky-castle-001">
-        <img src="gallery-fantasy-08-sky-castle.jpg" alt="Sky Castle">
+        <img src="gallery-fantasy-08-sky-castle.jpg" alt="Sky Castle" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('sky-castle-001', this)">
           <span class="thumb">👍</span>
@@ -265,7 +356,7 @@
       </div>
 
       <div class="gallery-item" data-category="fantasy" data-piece-id="phoenix-001">
-        <img src="gallery-fantasy-09-phoenix.jpg" alt="Rising Phoenix">
+        <img src="gallery-fantasy-09-phoenix.jpg" alt="Rising Phoenix" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('phoenix-001', this)">
           <span class="thumb">👍</span>
@@ -281,7 +372,7 @@
       </div>
 
       <div class="gallery-item" data-category="fantasy" data-piece-id="unicorn-001">
-        <img src="gallery-fantasy-10-unicorn.jpg" alt="Unicorn Meadow">
+        <img src="gallery-fantasy-10-unicorn.jpg" alt="Unicorn Meadow" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('unicorn-001', this)">
           <span class="thumb">👍</span>
@@ -297,7 +388,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="mountains-001">
-        <img src="gallery-nature-01-mountains.jpg" alt="Mountain Vista">
+        <img src="gallery-nature-01-mountains.jpg" alt="Mountain Vista" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$25</div>
         <div class="vote-button" onclick="vote('mountains-001', this)">
           <span class="thumb">👍</span>
@@ -313,7 +404,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="aurora-001">
-        <img src="gallery-nature-02-aurora.jpg" alt="Aurora Borealis">
+        <img src="gallery-nature-02-aurora.jpg" alt="Aurora Borealis" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('aurora-001', this)">
           <span class="thumb">👍</span>
@@ -329,7 +420,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="ocean-001">
-        <img src="gallery-nature-03-ocean.jpg" alt="Ocean Sunset">
+        <img src="gallery-nature-03-ocean.jpg" alt="Ocean Sunset" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$25</div>
         <div class="vote-button" onclick="vote('ocean-001', this)">
           <span class="thumb">👍</span>
@@ -345,7 +436,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="redwoods-001">
-        <img src="gallery-nature-04-redwoods.jpg" alt="Ancient Redwoods">
+        <img src="gallery-nature-04-redwoods.jpg" alt="Ancient Redwoods" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('redwoods-001', this)">
           <span class="thumb">👍</span>
@@ -361,7 +452,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="wolf-001">
-        <img src="gallery-nature-05-wolf.jpg" alt="Wild Wolf">
+        <img src="gallery-nature-05-wolf.jpg" alt="Wild Wolf" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('wolf-001', this)">
           <span class="thumb">👍</span>
@@ -377,7 +468,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="waterfall-001">
-        <img src="gallery-nature-06-waterfall.jpg" alt="Cascade Falls">
+        <img src="gallery-nature-06-waterfall.jpg" alt="Cascade Falls" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('waterfall-001', this)">
           <span class="thumb">👍</span>
@@ -393,7 +484,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="mountain-lake-001">
-        <img src="gallery-nature-08-mountain-lake.jpg" alt="Mountain Lake">
+        <img src="gallery-nature-08-mountain-lake.jpg" alt="Mountain Lake" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('mountain-lake-001', this)">
           <span class="thumb">👍</span>
@@ -409,7 +500,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="rainforest-001">
-        <img src="gallery-nature-08.jpg" alt="Rainforest Waterfall">
+        <img src="gallery-nature-08.jpg" alt="Rainforest Waterfall" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('rainforest-001', this)">
           <span class="thumb">👍</span>
@@ -425,7 +516,7 @@
       </div>
 
       <div class="gallery-item" data-category="nature" data-piece-id="summit-001">
-        <img src="gallery-nature-09.jpg" alt="Mountain Summit">
+        <img src="gallery-nature-09.jpg" alt="Mountain Summit" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('summit-001', this)">
           <span class="thumb">👍</span>
@@ -441,7 +532,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="cyberpunk-city-001">
-        <img src="gallery-scifi-01-cyberpunk-city.jpg" alt="Cyberpunk City">
+        <img src="gallery-scifi-01-cyberpunk-city.jpg" alt="Cyberpunk City" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('cyberpunk-city-001', this)">
           <span class="thumb">👍</span>
@@ -457,7 +548,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="space-station-001">
-        <img src="gallery-scifi-02-space-station.jpg" alt="Orbital Station">
+        <img src="gallery-scifi-02-space-station.jpg" alt="Orbital Station" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('space-station-001', this)">
           <span class="thumb">👍</span>
@@ -473,7 +564,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="robot-001">
-        <img src="gallery-scifi-03-robot.jpg" alt="AI Guardian">
+        <img src="gallery-scifi-03-robot.jpg" alt="AI Guardian" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('robot-001', this)">
           <span class="thumb">👍</span>
@@ -489,7 +580,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="spacecraft-001">
-        <img src="gallery-scifi-04-spacecraft.jpg" alt="Interstellar Ship">
+        <img src="gallery-scifi-04-spacecraft.jpg" alt="Interstellar Ship" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('spacecraft-001', this)">
           <span class="thumb">👍</span>
@@ -505,7 +596,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="ai-mind-001">
-        <img src="gallery-scifi-05-ai-mind.jpg" alt="Digital Consciousness">
+        <img src="gallery-scifi-05-ai-mind.jpg" alt="Digital Consciousness" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('ai-mind-001', this)">
           <span class="thumb">👍</span>
@@ -521,7 +612,7 @@
       </div>
 
       <div class="gallery-item" data-category="scifi" data-piece-id="astronaut-001">
-        <img src="gallery-scifi-07.jpg" alt="Solitary Astronaut">
+        <img src="gallery-scifi-07.jpg" alt="Solitary Astronaut" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('astronaut-001', this)">
           <span class="thumb">👍</span>
@@ -537,7 +628,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="fluid-gold-001">
-        <img src="gallery-abstract-01-fluid-gold.jpg" alt="Fluid Gold">
+        <img src="gallery-abstract-01-fluid-gold.jpg" alt="Fluid Gold" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$25</div>
         <div class="vote-button" onclick="vote('fluid-gold-001', this)">
           <span class="thumb">👍</span>
@@ -553,7 +644,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="geometric-001">
-        <img src="gallery-abstract-01-geometric.jpg" alt="Geometric Dreams">
+        <img src="gallery-abstract-01-geometric.jpg" alt="Geometric Dreams" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$25</div>
         <div class="vote-button" onclick="vote('geometric-001', this)">
           <span class="thumb">👍</span>
@@ -569,7 +660,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="liquid-metal-001">
-        <img src="gallery-abstract-03-liquid-metal.jpg" alt="Liquid Metal">
+        <img src="gallery-abstract-03-liquid-metal.jpg" alt="Liquid Metal" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('liquid-metal-001', this)">
           <span class="thumb">👍</span>
@@ -585,7 +676,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="minimalist-zen-001">
-        <img src="gallery-abstract-03-minimalist-zen.jpg" alt="Zen Minimalism">
+        <img src="gallery-abstract-03-minimalist-zen.jpg" alt="Zen Minimalism" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$25</div>
         <div class="vote-button" onclick="vote('minimalist-zen-001', this)">
           <span class="thumb">👍</span>
@@ -601,7 +692,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="liquid-ribbons-001">
-        <img src="gallery-abstract-04-liquid-ribbons.jpg" alt="Liquid Ribbons">
+        <img src="gallery-abstract-04-liquid-ribbons.jpg" alt="Liquid Ribbons" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$35</div>
         <div class="vote-button" onclick="vote('liquid-ribbons-001', this)">
           <span class="thumb">👍</span>
@@ -617,7 +708,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="mandala-001">
-        <img src="gallery-abstract-04-mandala.jpg" alt="Sacred Mandala">
+        <img src="gallery-abstract-04-mandala.jpg" alt="Sacred Mandala" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('mandala-001', this)">
           <span class="thumb">👍</span>
@@ -633,7 +724,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="cosmic-001">
-        <img src="gallery-abstract-05-cosmic.jpg" alt="Cosmic Swirl">
+        <img src="gallery-abstract-05-cosmic.jpg" alt="Cosmic Swirl" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('cosmic-001', this)">
           <span class="thumb">👍</span>
@@ -649,7 +740,7 @@
       </div>
 
       <div class="gallery-item" data-category="abstract" data-piece-id="paint-explosion-001">
-        <img src="gallery-abstract-06.jpg" alt="Paint Explosion">
+        <img src="gallery-abstract-06.jpg" alt="Paint Explosion" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('paint-explosion-001', this)">
           <span class="thumb">👍</span>
@@ -665,7 +756,7 @@
       </div>
 
       <div class="gallery-item" data-category="steampunk" data-piece-id="steampunk-bunny-001">
-        <img src="steampunk_bunny.png" alt="Steampunk Easter Bunny">
+        <img src="steampunk_bunny.png" alt="Steampunk Easter Bunny" onclick="openLightbox(this.src, this.alt)">
         <div class="available-badge">$30</div>
         <div class="vote-button" onclick="vote('steampunk-bunny-001', this)">
           <span class="thumb">👍</span>
@@ -708,9 +799,16 @@
     </div>
   </footer>
 
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">×</button>
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
   <script type="module">
-    import { getFirestore, doc, getDoc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-    
     // Wait for Firebase to be ready
     const waitForFirebase = () => new Promise(resolve => {
       const check = () => {
@@ -724,6 +822,7 @@
     async function loadVotes() {
       await waitForFirebase();
       const db = window.db;
+      const { doc, getDoc } = { doc: window.firestoreDoc, getDoc: window.firestoreGetDoc };
       
       const voteButtons = document.querySelectorAll('.vote-button');
       for (const button of voteButtons) {
@@ -748,13 +847,11 @@
       }
     }
     
-    // Export for global access
-    window.loadTopFive = loadTopFive;
-    
     // Load Top 5 pieces
     async function loadTopFive() {
       await waitForFirebase();
       const db = window.db;
+      const { doc, getDoc } = { doc: window.firestoreDoc, getDoc: window.firestoreGetDoc };
       
       // Map piece IDs to their display info
       const pieceInfo = {
@@ -787,7 +884,6 @@
         'cosmic-001': { title: 'Cosmic Swirl', category: 'Abstract' },
         'paint-explosion-001': { title: 'Paint Explosion', category: 'Abstract' },
         'steampunk-bunny-001': { title: 'Steampunk Easter Bunny', category: 'Steampunk' }
-      };
       };
       
       try {
@@ -826,59 +922,89 @@
       }
     }
     
+    // Export to global scope
+    window.loadTopFive = loadTopFive;
+    
     // Initialize
     loadVotes();
     loadTopFive();
   </script>
-<!-- Voting Script (after module) -->
-<script>
-  // This needs to be accessible globally for onclick handlers
-  window.vote = async function(pieceId, button) {
-    // Check if already voted
-    if (localStorage.getItem(`voted-${pieceId}`) === 'true') {
-      console.log('Already voted for', pieceId);
-      return;
-    }
-    
-    // Wait for Firebase
-    if (!window.db) {
-      console.error('Firebase not ready');
-      alert('Please wait, loading...');
-      return;
-    }
-    
-    try {
-      const { doc, setDoc, increment } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
-      const docRef = doc(window.db, 'gallery-votes', pieceId);
-      
-      // Increment vote
-      await setDoc(docRef, { votes: increment(1) }, { merge: true });
-      
-      // Update UI
-      const countSpan = button.querySelector('.vote-count');
-      const currentCount = parseInt(countSpan.textContent) || 0;
-      countSpan.textContent = currentCount + 1;
-      
-      // Mark voted
-      button.classList.add('voted');
-      localStorage.setItem(`voted-${pieceId}`, 'true');
-      
-      // Animation
-      button.style.transform = 'scale(1.1)';
-      setTimeout(() => button.style.transform = '', 200);
-      
-      // Refresh Top 5
-      if (window.loadTopFive) window.loadTopFive();
-      
-      console.log('Voted for', pieceId);
-    } catch (error) {
-      console.error('Vote error:', error);
-      alert('Vote failed - please try again!');
-    }
-  };
-</script>
 
+  <!-- Voting Script (global scope for onclick handlers) -->
+  <script>
+    // Global vote function for onclick handlers
+    window.vote = async function(pieceId, button) {
+      // Check if already voted
+      if (localStorage.getItem(`voted-${pieceId}`) === 'true') {
+        console.log('Already voted for', pieceId);
+        return;
+      }
+      
+      // Wait for Firebase
+      if (!window.db || !window.firestoreDoc) {
+        console.error('Firebase not ready');
+        alert('Please wait, loading...');
+        return;
+      }
+      
+      try {
+        const docRef = window.firestoreDoc(window.db, 'gallery-votes', pieceId);
+        
+        // Increment vote
+        await window.firestoreSetDoc(docRef, { 
+          votes: window.firestoreIncrement(1) 
+        }, { merge: true });
+        
+        // Update UI
+        const countSpan = button.querySelector('.vote-count');
+        const currentCount = parseInt(countSpan.textContent) || 0;
+        countSpan.textContent = currentCount + 1;
+        
+        // Mark voted
+        button.classList.add('voted');
+        localStorage.setItem(`voted-${pieceId}`, 'true');
+        
+        // Animation
+        button.style.transform = 'scale(1.1)';
+        setTimeout(() => button.style.transform = '', 200);
+        
+        // Refresh Top 5
+        if (window.loadTopFive) {
+          setTimeout(() => window.loadTopFive(), 500);
+        }
+        
+        console.log('✅ Voted for', pieceId);
+      } catch (error) {
+        console.error('Vote error:', error);
+        alert('Vote failed - please try again!');
+      }
+    };
+    
+    // Lightbox functions
+    window.openLightbox = function(src, alt) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      img.alt = alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    };
+    
+    window.closeLightbox = function() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Restore scrolling
+    };
+    
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
+  <!-- Filter & Buy Button Scripts -->
   <script>
     // Filter functionality
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -907,162 +1033,6 @@
     document.querySelectorAll('.gallery-overlay button:not([disabled])').forEach(btn => {
       btn.addEventListener('click', function() {
         alert('🚧 Payment system connecting soon!\n\nStripe checkout will be integrated this week.');
-      });
-    });
-  </script>
-
-  <style>
-    .filter-btn {
-      padding: 8px 20px;
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      color: rgba(255,255,255,0.7);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .filter-btn:hover {
-      background: rgba(102, 126, 234, 0.2);
-      border-color: rgba(102, 126, 234, 0.5);
-      color: white;
-    }
-    .filter-btn.active {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-color: #667eea;
-      color: white;
-    }
-    
-    /* Lightbox Styles */
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .lightbox.active {
-      display: flex;
-      opacity: 1;
-    }
-    .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90vh;
-      animation: zoomIn 0.3s ease;
-    }
-    .lightbox-content img {
-      width: 100%;
-      height: auto;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-    }
-    .lightbox-close {
-      position: absolute;
-      top: -50px;
-      right: 0;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      font-size: 32px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      line-height: 1;
-    }
-    .lightbox-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: rotate(90deg);
-    }
-    @keyframes zoomIn {
-      from {
-        transform: scale(0.8);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-    .gallery-item img {
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .lightbox-content {
-        max-width: 95%;
-      }
-      .lightbox-close {
-        top: -45px;
-        width: 45px;
-        height: 45px;
-        font-size: 28px;
-      }
-    }
-  </style>
-
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <div class="lightbox-content">
-      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-      <img id="lightbox-img" src="" alt="">
-    </div>
-  </div>
-
-  <script>
-    // Lightbox functionality
-    function openLightbox(imgSrc, imgAlt) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.src = imgSrc;
-      lightboxImg.alt = imgAlt;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    }
-
-    function closeLightbox() {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
-    }
-
-    // Add click handlers to all gallery images
-    document.addEventListener('DOMContentLoaded', function() {
-      const galleryImages = document.querySelectorAll('.gallery-item img');
-      galleryImages.forEach(img => {
-        img.addEventListener('click', function(e) {
-          // Don't open lightbox if clicking vote button area
-          if (e.target.closest('.vote-button')) return;
-          openLightbox(this.src, this.alt);
-        });
-      });
-
-      // Close lightbox on ESC key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          closeLightbox();
-        }
-      });
-
-      // Close lightbox when clicking outside image
-      document.getElementById('lightbox').addEventListener('click', function(e) {
-        if (e.target === this) {
-          closeLightbox();
-        }
       });
     });
   </script>
