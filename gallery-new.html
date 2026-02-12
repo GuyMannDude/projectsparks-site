@@ -147,7 +147,7 @@
     
     .lightbox-info {
       position: absolute;
-      bottom: -60px;
+      bottom: -80px;
       left: 0;
       right: 0;
       text-align: center;
@@ -195,7 +195,7 @@
         The Complete Collection
       </h1>
       <p class="text-xl text-gray-400 mb-8">
-        29 unique masterpieces. Each piece generated once, never reproduced.
+        29 unique AI-generated masterpieces. Each piece generated once, never reproduced.
       </p>
     </div>
   </section>
@@ -205,10 +205,10 @@
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-3 justify-center">
         <button class="filter-btn active" data-category="all">All (29)</button>
-        <button class="filter-btn" data-category="abstract">Abstract (9)</button>
+        <button class="filter-btn" data-category="abstract">Abstract (8)</button>
         <button class="filter-btn" data-category="fantasy">Fantasy (5)</button>
         <button class="filter-btn" data-category="nature">Nature (9)</button>
-        <button class="filter-btn" data-category="scifi">Sci-Fi (6)</button>
+        <button class="filter-btn" data-category="scifi">Sci-Fi (7)</button>
       </div>
     </div>
   </section>
@@ -218,83 +218,270 @@
     <div class="max-w-7xl mx-auto">
       <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         
-        <!-- Abstract pieces -->
-        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-fluid-gold.jpg', 'Fluid Gold')">
-          <span class="category-badge">Abstract</span>
-          <img src="gallery-abstract-01-fluid-gold.jpg" alt="Fluid Gold" />
+        <!-- FANTASY (5 pieces) -->
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-10-unicorn-preview.jpg', 'Unicorn in Moonlight', 'https://buy.stripe.com/7sY00j2as18O02VgZ8')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-10-unicorn-preview.jpg" alt="Unicorn in Moonlight" loading="lazy" />
           <div class="p-4">
-            <h3 class="font-semibold mb-1">Fluid Gold</h3>
-            <p class="text-sm text-gray-400">$25</p>
-          </div>
-        </div>
-        
-        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-geometric.jpg', 'Geometric Patterns')">
-          <span class="category-badge">Abstract</span>
-          <img src="gallery-abstract-01-geometric.jpg" alt="Geometric Patterns" />
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Geometric Patterns</h3>
-            <p class="text-sm text-gray-400">$25</p>
-          </div>
-        </div>
-        
-        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-03-liquid-metal.jpg', 'Liquid Metal')">
-          <span class="category-badge">Abstract</span>
-          <img src="gallery-abstract-03-liquid-metal.jpg" alt="Liquid Metal" />
-          <div class="p-4">
-            <h3 class="font-semibold mb-1">Liquid Metal</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <h3 class="font-semibold mb-1">Unicorn in Moonlight</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
 
-        <!-- Fantasy pieces -->
-        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-06-crystal-dragon.jpg', 'Crystal Dragon')">
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-09-phoenix-preview.jpg', 'Phoenix Rising', 'https://buy.stripe.com/9B63cv6qIeZEg1TaAK')">
           <span class="category-badge">Fantasy</span>
-          <img src="gallery-fantasy-06-crystal-dragon.jpg" alt="Crystal Dragon" />
+          <img src="gallery-fantasy-09-phoenix-preview.jpg" alt="Phoenix Rising" loading="lazy" />
           <div class="p-4">
-            <h3 class="font-semibold mb-1">Crystal Dragon</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <h3 class="font-semibold mb-1">Phoenix Rising</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
-        
-        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-07-enchanted-forest.jpg', 'Enchanted Forest')">
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-08-sky-castle-preview.jpg', 'Sky Castle', 'https://buy.stripe.com/00w3cv16obNseXPcIS')">
           <span class="category-badge">Fantasy</span>
-          <img src="gallery-fantasy-07-enchanted-forest.jpg" alt="Enchanted Forest" />
+          <img src="gallery-fantasy-08-sky-castle-preview.jpg" alt="Sky Castle" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Sky Castle</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-07-enchanted-forest-preview.jpg', 'Enchanted Forest', 'https://buy.stripe.com/aFacN502keZEbLD4cm')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-07-enchanted-forest-preview.jpg" alt="Enchanted Forest" loading="lazy" />
           <div class="p-4">
             <h3 class="font-semibold mb-1">Enchanted Forest</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
 
-        <!-- Nature pieces -->
-        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-01-mountains.jpg', 'Mountain Vista')">
-          <span class="category-badge">Nature</span>
-          <img src="gallery-nature-01-mountains.jpg" alt="Mountain Vista" />
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-06-crystal-dragon-preview.jpg', 'Crystal Dragon', 'https://buy.stripe.com/7sYfZh3ew3gW5nf9wG')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-06-crystal-dragon-preview.jpg" alt="Crystal Dragon" loading="lazy" />
           <div class="p-4">
-            <h3 class="font-semibold mb-1">Mountain Vista</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <h3 class="font-semibold mb-1">Crystal Dragon</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
-        
-        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-02-aurora.jpg', 'Aurora Borealis')">
+
+        <!-- ABSTRACT (8 pieces) -->
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-05-cosmic-preview.jpg', 'Cosmic Swirl', 'https://buy.stripe.com/4gM4gzaGYbNs2b3aAK')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-05-cosmic-preview.jpg" alt="Cosmic Swirl" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Cosmic Swirl</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-preview.jpg', 'Paint Explosion - Magenta & Cyan', 'https://buy.stripe.com/8x2cN5dTa04K16Z7oy')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-preview.jpg" alt="Paint Explosion - Magenta & Cyan" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Paint Explosion</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-mandala-preview.jpg', 'Mandala Dreams', 'https://buy.stripe.com/4gM3cv3ew18O2b310a')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-mandala-preview.jpg" alt="Mandala Dreams" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mandala Dreams</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-liquid-ribbons-preview.jpg', 'Liquid Ribbons', 'https://buy.stripe.com/9B6aEXdTaeZE16Z24e')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-liquid-ribbons-preview.jpg" alt="Liquid Ribbons" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Liquid Ribbons</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-03-minimalist-zen-preview.jpg', 'Minimalist Zen', 'https://buy.stripe.com/9B6eVdaGY4l0bLD9wG')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-03-minimalist-zen-preview.jpg" alt="Minimalist Zen" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Minimalist Zen</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-03-liquid-metal-preview.jpg', 'Liquid Metal', 'https://buy.stripe.com/4gM9AT9CU9Fkg1TgZ8')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-03-liquid-metal-preview.jpg" alt="Liquid Metal" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Liquid Metal</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-geometric-preview.jpg', 'Geometric Patterns', 'https://buy.stripe.com/8x2fZh16o04K6rj24e')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-01-geometric-preview.jpg" alt="Geometric Patterns" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Geometric Patterns</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-fluid-gold-preview.jpg', 'Fluid Gold Abstract', 'https://buy.stripe.com/eVq8wPbL28BgcPH10a')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-01-fluid-gold-preview.jpg" alt="Fluid Gold Abstract" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Fluid Gold Abstract</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <!-- NATURE (9 pieces) -->
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-01-mountains-preview.jpg', 'Mountain Majesty', 'https://buy.stripe.com/7sYcN53eweZE4jb38i')">
           <span class="category-badge">Nature</span>
-          <img src="gallery-nature-02-aurora.jpg" alt="Aurora Borealis" />
+          <img src="gallery-nature-01-mountains-preview.jpg" alt="Mountain Majesty" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mountain Majesty</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-02-aurora-preview.jpg', 'Aurora Borealis', 'https://buy.stripe.com/14A6oH7uM2cS9DvfV4')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-02-aurora-preview.jpg" alt="Aurora Borealis" loading="lazy" />
           <div class="p-4">
             <h3 class="font-semibold mb-1">Aurora Borealis</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
 
-        <!-- Sci-Fi pieces -->
-        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-01-cyberpunk-city.jpg', 'Cyberpunk City')">
-          <span class="category-badge">Sci-Fi</span>
-          <img src="gallery-scifi-01-cyberpunk-city.jpg" alt="Cyberpunk City" />
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-03-ocean-preview.jpg', 'Ocean Waves', 'https://buy.stripe.com/7sYbJ13ew04K16Z10a')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-03-ocean-preview.jpg" alt="Ocean Waves" loading="lazy" />
           <div class="p-4">
-            <h3 class="font-semibold mb-1">Cyberpunk City</h3>
-            <p class="text-sm text-gray-400">$25</p>
+            <h3 class="font-semibold mb-1">Ocean Waves</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
           </div>
         </div>
-        
-        <!-- More pieces will be added here... -->
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-04-redwoods-preview.jpg', 'Redwood Giants', 'https://buy.stripe.com/cNi4gz5mEcRw16Z9wG')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-04-redwoods-preview.jpg" alt="Redwood Giants" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Redwood Giants</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-05-wolf-preview.jpg', 'Wolf in Winter', 'https://buy.stripe.com/28E5kD16o8Bgg1TaAK')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-05-wolf-preview.jpg" alt="Wolf in Winter" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Wolf in Winter</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-06-waterfall-preview.jpg', 'Hidden Waterfall', 'https://buy.stripe.com/aFabJ19CUaJo3f78sC')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-06-waterfall-preview.jpg" alt="Hidden Waterfall" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Hidden Waterfall</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-08-mountain-lake-preview.jpg', 'Mountain Lake Reflection', 'https://buy.stripe.com/9B6cN54iA18Og1T10a')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-08-mountain-lake-preview.jpg" alt="Mountain Lake Reflection" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mountain Lake Reflection</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-08-preview.jpg', 'Rainforest Waterfall', 'https://buy.stripe.com/bJefZh02kaJo5nfcIS')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-08-preview.jpg" alt="Rainforest Waterfall" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Rainforest Waterfall</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-09-preview.jpg', 'Coastal Cliffs at Sunset', 'https://buy.stripe.com/4gM4gz3ew2cSbLD7oy')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-09-preview.jpg" alt="Coastal Cliffs at Sunset" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Coastal Cliffs at Sunset</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <!-- SCI-FI (7 pieces) -->
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-01-cyberpunk-city-preview.jpg', 'Cyberpunk City', 'https://buy.stripe.com/fZueVd6qI3gWdTL7oy')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-01-cyberpunk-city-preview.jpg" alt="Cyberpunk City" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Cyberpunk City</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-02-space-station-preview.jpg', 'Deep Space Station', 'https://buy.stripe.com/fZudR99CU4l02b310a')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-02-space-station-preview.jpg" alt="Deep Space Station" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Deep Space Station</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-03-robot-preview.jpg', 'Sentient Robot', 'https://buy.stripe.com/5kQfZh7uMbNs6rjcIS')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-03-robot-preview.jpg" alt="Sentient Robot" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Sentient Robot</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-04-spacecraft-preview.jpg', 'Interstellar Spacecraft', 'https://buy.stripe.com/9B64gzeXe6t89Dv24e')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-04-spacecraft-preview.jpg" alt="Interstellar Spacecraft" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Interstellar Spacecraft</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-05-ai-mind-preview.jpg', 'AI Mind Visualization', 'https://buy.stripe.com/4gM8wP3ewaJog1TgZ8')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-05-ai-mind-preview.jpg" alt="AI Mind Visualization" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">AI Mind Visualization</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-07-preview.jpg', 'Solitary Astronaut', 'https://buy.stripe.com/28E28r9CUg3IdTL24e')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-07-preview.jpg" alt="Solitary Astronaut" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Solitary Astronaut</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-06-preview.jpg', 'Unknown Sci-Fi Piece', 'https://buy.stripe.com/cNi3cvcP64l0eXP6ku')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-06-preview.jpg" alt="Sci-Fi Masterpiece" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Sci-Fi Masterpiece</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
         
       </div>
     </div>
@@ -306,10 +493,11 @@
       <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
       <img id="lightbox-img" src="" alt="" />
       <div class="lightbox-info">
-        <h3 id="lightbox-title" class="text-xl font-semibold mb-2"></h3>
-        <button class="px-6 py-2 bg-brand-500 hover:bg-brand-600 rounded-lg font-semibold transition">
-          Purchase $25
-        </button>
+        <h3 id="lightbox-title" class="text-xl font-semibold mb-4"></h3>
+        <a id="lightbox-buy-btn" href="" target="_blank" class="inline-block px-8 py-3 bg-brand-500 hover:bg-brand-600 rounded-lg font-semibold transition">
+          Buy Now $25
+        </a>
+        <p class="text-sm text-gray-400 mt-2">Instant digital download • High resolution • No watermark</p>
       </div>
     </div>
   </div>
@@ -317,6 +505,7 @@
   <!-- Footer -->
   <footer class="py-12 px-6 border-t border-gray-800">
     <div class="max-w-7xl mx-auto text-center">
+      <p class="text-gray-400 mb-4">All artwork generated by Rocky using AI. Each piece is unique and generated only once.</p>
       <p class="text-gray-500">&copy; 2026 ArtForge by Rocky. All rights reserved.</p>
     </div>
   </footer>
@@ -346,13 +535,15 @@
     });
     
     // Lightbox functionality
-    function openLightbox(src, title) {
+    function openLightbox(src, title, paymentLink) {
       const lightbox = document.getElementById('lightbox');
       const img = document.getElementById('lightbox-img');
       const titleEl = document.getElementById('lightbox-title');
+      const buyBtn = document.getElementById('lightbox-buy-btn');
       
       img.src = src;
       titleEl.textContent = title;
+      buyBtn.href = paymentLink;
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
