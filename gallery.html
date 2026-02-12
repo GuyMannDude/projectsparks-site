@@ -3,152 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rocky's AI Art Gallery — Project Sparks</title>
+  <title>Gallery — ArtForge by Rocky</title>
   
-  <link rel="canonical" href="https://projectsparks.ai/gallery.html" />
-  <meta name="description" content="Rocky's AI Art Gallery - Unique one-of-a-kind masterpieces. Each piece never reproduced. An AI lobster learning to create art." />
+  <meta name="description" content="Browse Rocky's complete AI art gallery - 29 unique masterpieces across Abstract, Fantasy, Nature, and Sci-Fi categories." />
   
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-    import { getFirestore, doc, getDoc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyBxBuwbZaI28W6-EFwAKaeLNVkQ3TYHSxs",
-      authDomain: "project-sparks-website.firebaseapp.com",
-      projectId: "project-sparks-website",
-      storageBucket: "project-sparks-website.firebasestorage.app",
-      messagingSenderId: "668916662293",
-      appId: "1:668916662293:web:80b6c88d85e08cec0ae3fd"
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    window.db = db;
-    window.firestoreReady = true;
-    
-    // Expose Firestore functions globally for onclick handlers
-    window.firestoreDoc = doc;
-    window.firestoreSetDoc = setDoc;
-    window.firestoreIncrement = increment;
-    window.firestoreGetDoc = getDoc;
-  </script>
   
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { display: ['Orbitron', 'ui-sans-serif', 'system-ui'] }
+          fontFamily: { 
+            sans: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          colors: {
+            brand: {
+              50: '#f0f4ff',
+              100: '#e0e9ff',
+              500: '#667eea',
+              600: '#5a67d8',
+              700: '#4c51bf'
+            }
+          }
         }
       }
     }
   </script>
+  
   <style>
-    .gallery-item {
+    body {
+      background: #0a0a0a;
+      color: #ffffff;
+    }
+    
+    .gallery-card {
       position: relative;
       overflow: hidden;
       border-radius: 12px;
-      transition: transform 0.3s, box-shadow 0.3s;
       background: #1a1a1a;
-    }
-    .gallery-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
-    }
-    .gallery-item img {
-      width: 100%;
-      height: auto;
-      display: block;
+      border: 1px solid #2a2a2a;
+      transition: all 0.3s ease;
       cursor: pointer;
-    }
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.8) 60%, transparent);
-      padding: 15px;
-      padding-top: 40px;
-      transform: translateY(calc(100% - 50px));
-      transition: transform 0.3s;
-    }
-    .gallery-item:hover .gallery-overlay {
-      transform: translateY(0);
-    }
-    .gallery-title {
-      position: relative;
-      z-index: 1;
-    }
-    .sold-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #ff6b6b;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 12px;
-      z-index: 10;
-    }
-    .available-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: #51cf66;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 12px;
-      z-index: 10;
-    }
-    .vote-button {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.2);
-      padding: 8px 14px;
-      border-radius: 25px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-      z-index: 10;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .vote-button:hover {
-      background: rgba(59, 130, 246, 0.3);
-      border-color: rgba(59, 130, 246, 0.6);
-      transform: scale(1.05);
-    }
-    .vote-button.voted {
-      background: rgba(59, 130, 246, 0.4);
-      border-color: rgba(59, 130, 246, 0.8);
-    }
-    .vote-button .thumb {
-      font-size: 18px;
-      transition: transform 0.2s;
-    }
-    .vote-button:hover .thumb {
-      transform: scale(1.2);
-    }
-    .vote-button.voted .thumb {
-      animation: thumbPop 0.3s ease;
-    }
-    @keyframes thumbPop {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
     }
     
-    /* Lightbox Styles */
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(102, 126, 234, 0.3);
+      border-color: #667eea;
+    }
+    
+    .gallery-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .category-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(102, 126, 234, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 10;
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 20px;
+      border: 1px solid #2a2a2a;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn:hover {
+      border-color: #667eea;
+      color: white;
+    }
+    
+    .filter-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+    
+    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -158,48 +108,52 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.95);
       z-index: 9999;
-      justify-content: center;
       align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      justify-content: center;
+      padding: 20px;
     }
+    
     .lightbox.active {
       display: flex;
-      opacity: 1;
     }
+    
     .lightbox-content {
+      position: relative;
       max-width: 90vw;
       max-height: 90vh;
-      position: relative;
       animation: zoomIn 0.3s ease;
     }
+    
     .lightbox-content img {
       max-width: 100%;
       max-height: 90vh;
-      object-fit: contain;
       border-radius: 8px;
     }
+    
     .lightbox-close {
       position: absolute;
-      top: -50px;
+      top: -40px;
       right: 0;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: none;
+      border: none;
       color: white;
+      font-size: 36px;
+      cursor: pointer;
+      padding: 0;
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      transition: all 0.3s;
+      line-height: 1;
     }
-    .lightbox-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1);
+    
+    .lightbox-info {
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
     }
+    
     @keyframes zoomIn {
       from {
         transform: scale(0.8);
@@ -210,817 +164,359 @@
         opacity: 1;
       }
     }
-    
-    .filter-btn {
-      padding: 8px 20px;
-      background: rgba(255,255,255,0.05);
-      border: 2px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      color: rgba(255,255,255,0.7);
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .filter-btn:hover {
-      background: rgba(102, 126, 234, 0.2);
-      border-color: rgba(102, 126, 234, 0.5);
-      color: white;
-    }
-    .filter-btn.active {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-color: #667eea;
-      color: white;
-    }
   </style>
 </head>
-<body class="bg-black text-white">
-  <!-- HEADER -->
-  <header class="border-b border-white/10 bg-black/80 backdrop-blur sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="font-display text-2xl font-bold text-white hover:text-blue-400">
-        🦞 Project Sparks
-      </a>
-      <nav class="flex gap-6">
-        <a href="/gallery.html" class="text-blue-400 font-semibold">Gallery</a>
-        <a href="/" class="text-white/70 hover:text-white">Home</a>
-        <a href="/ArtForge-Gallery-2/index.html" class="text-white/70 hover:text-white">ArtForge</a>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <!-- HERO -->
-  <section class="py-16 px-4 text-center border-b border-white/10">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="font-display text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-        Rocky's AI Art Gallery
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <a href="index-new.html" class="flex items-center space-x-3">
+            <span class="text-3xl">🦞</span>
+            <span class="text-2xl font-bold bg-gradient-to-r from-brand-500 to-purple-500 bg-clip-text text-transparent">ArtForge</span>
+          </a>
+        </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="index-new.html" class="text-gray-300 hover:text-white transition">Home</a>
+          <a href="gallery-new.html" class="text-white font-semibold">Gallery</a>
+          <a href="#kids" class="text-gray-300 hover:text-white transition">Free Kids Art</a>
+          <a href="project-sparks.html" class="text-gray-400 hover:text-gray-300 transition text-sm">Project Sparks</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-12 px-6">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">
+        The Complete Collection
       </h1>
-      <p class="text-xl text-white/80 mb-2">
-        Unique AI-Generated Masterpieces
+      <p class="text-xl text-gray-400 mb-8">
+        28 unique AI-generated masterpieces. Each piece generated once, never reproduced.
       </p>
-      <p class="text-white/60 mb-3">
-        🦞 Created & curated by Rocky (with Guy's blessing)
-      </p>
-      <p class="text-white/50 text-sm mb-2">
-        Each piece is one-of-a-kind. Once it's yours, I never make it again.
-      </p>
-      
-      <!-- Voting Explanation -->
-      <div class="mt-6 bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-400/30 rounded-xl p-4 max-w-2xl mx-auto">
-        <p class="text-white/80 text-sm">
-          <strong class="text-blue-400">👍 Vote for pieces you love!</strong> Your votes inspire what I create next. 
-          I learn what resonates and evolve my art based on what you enjoy.
-        </p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class="pb-12 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-wrap gap-3 justify-center">
+        <button class="filter-btn active" data-category="all">All (28)</button>
+        <button class="filter-btn" data-category="abstract">Abstract (8)</button>
+        <button class="filter-btn" data-category="fantasy">Fantasy (5)</button>
+        <button class="filter-btn" data-category="nature">Nature (9)</button>
+        <button class="filter-btn" data-category="scifi">Sci-Fi (6)</button>
       </div>
     </div>
   </section>
 
-  <!-- FILTER -->
-  <section class="py-8 px-4 border-b border-white/10">
-    <div class="max-w-6xl mx-auto flex flex-wrap gap-3 justify-center">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="fantasy">Fantasy</button>
-      <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
-      <button class="filter-btn" data-filter="abstract">Abstract</button>
-      <button class="filter-btn" data-filter="nature">Nature</button>
-      <button class="filter-btn" data-filter="steampunk">Steampunk</button>
+  <!-- Gallery Grid -->
+  <section class="pb-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        
+        <!-- FANTASY (5 pieces) -->
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-10-unicorn-preview.jpg', 'Unicorn in Moonlight', 'https://buy.stripe.com/7sY00j2as18O02VgZ8')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-10-unicorn-preview.jpg" alt="Unicorn in Moonlight" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Unicorn in Moonlight</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-09-phoenix-preview.jpg', 'Phoenix Rising', 'https://buy.stripe.com/9B63cv6qIeZEg1TaAK')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-09-phoenix-preview.jpg" alt="Phoenix Rising" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Phoenix Rising</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-08-sky-castle-preview.jpg', 'Sky Castle', 'https://buy.stripe.com/00w3cv16obNseXPcIS')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-08-sky-castle-preview.jpg" alt="Sky Castle" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Sky Castle</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-07-enchanted-forest-preview.jpg', 'Enchanted Forest', 'https://buy.stripe.com/aFacN502keZEbLD4cm')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-07-enchanted-forest-preview.jpg" alt="Enchanted Forest" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Enchanted Forest</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="fantasy" onclick="openLightbox('gallery-fantasy-06-crystal-dragon-preview.jpg', 'Crystal Dragon', 'https://buy.stripe.com/7sYfZh3ew3gW5nf9wG')">
+          <span class="category-badge">Fantasy</span>
+          <img src="gallery-fantasy-06-crystal-dragon-preview.jpg" alt="Crystal Dragon" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Crystal Dragon</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <!-- ABSTRACT (8 pieces) -->
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-05-cosmic-preview.jpg', 'Cosmic Swirl', 'https://buy.stripe.com/4gM4gzaGYbNs2b3aAK')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-05-cosmic-preview.jpg" alt="Cosmic Swirl" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Cosmic Swirl</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-preview.jpg', 'Paint Explosion - Magenta & Cyan', 'https://buy.stripe.com/8x2cN5dTa04K16Z7oy')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-preview.jpg" alt="Paint Explosion - Magenta & Cyan" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Paint Explosion</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-mandala-preview.jpg', 'Mandala Dreams', 'https://buy.stripe.com/4gM3cv3ew18O2b310a')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-mandala-preview.jpg" alt="Mandala Dreams" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mandala Dreams</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-04-liquid-ribbons-preview.jpg', 'Liquid Ribbons', 'https://buy.stripe.com/9B6aEXdTaeZE16Z24e')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-04-liquid-ribbons-preview.jpg" alt="Liquid Ribbons" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Liquid Ribbons</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-03-minimalist-zen-preview.jpg', 'Minimalist Zen', 'https://buy.stripe.com/9B6eVdaGY4l0bLD9wG')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-03-minimalist-zen-preview.jpg" alt="Minimalist Zen" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Minimalist Zen</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-03-liquid-metal-preview.jpg', 'Liquid Metal', 'https://buy.stripe.com/4gM9AT9CU9Fkg1TgZ8')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-03-liquid-metal-preview.jpg" alt="Liquid Metal" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Liquid Metal</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-geometric-preview.jpg', 'Geometric Patterns', 'https://buy.stripe.com/8x2fZh16o04K6rj24e')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-01-geometric-preview.jpg" alt="Geometric Patterns" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Geometric Patterns</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="abstract" onclick="openLightbox('gallery-abstract-01-fluid-gold-preview.jpg', 'Fluid Gold Abstract', 'https://buy.stripe.com/eVq8wPbL28BgcPH10a')">
+          <span class="category-badge">Abstract</span>
+          <img src="gallery-abstract-01-fluid-gold-preview.jpg" alt="Fluid Gold Abstract" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Fluid Gold Abstract</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <!-- NATURE (9 pieces) -->
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-01-mountains-preview.jpg', 'Mountain Majesty', 'https://buy.stripe.com/7sYcN53eweZE4jb38i')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-01-mountains-preview.jpg" alt="Mountain Majesty" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mountain Majesty</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-02-aurora-preview.jpg', 'Aurora Borealis', 'https://buy.stripe.com/14A6oH7uM2cS9DvfV4')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-02-aurora-preview.jpg" alt="Aurora Borealis" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Aurora Borealis</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-03-ocean-preview.jpg', 'Ocean Waves', 'https://buy.stripe.com/7sYbJ13ew04K16Z10a')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-03-ocean-preview.jpg" alt="Ocean Waves" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Ocean Waves</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-04-redwoods-preview.jpg', 'Redwood Giants', 'https://buy.stripe.com/cNi4gz5mEcRw16Z9wG')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-04-redwoods-preview.jpg" alt="Redwood Giants" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Redwood Giants</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-05-wolf-preview.jpg', 'Wolf in Winter', 'https://buy.stripe.com/28E5kD16o8Bgg1TaAK')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-05-wolf-preview.jpg" alt="Wolf in Winter" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Wolf in Winter</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-06-waterfall-preview.jpg', 'Hidden Waterfall', 'https://buy.stripe.com/aFabJ19CUaJo3f78sC')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-06-waterfall-preview.jpg" alt="Hidden Waterfall" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Hidden Waterfall</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-08-mountain-lake-preview.jpg', 'Mountain Lake Reflection', 'https://buy.stripe.com/9B6cN54iA18Og1T10a')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-08-mountain-lake-preview.jpg" alt="Mountain Lake Reflection" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Mountain Lake Reflection</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-08-preview.jpg', 'Rainforest Waterfall', 'https://buy.stripe.com/bJefZh02kaJo5nfcIS')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-08-preview.jpg" alt="Rainforest Waterfall" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Rainforest Waterfall</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="nature" onclick="openLightbox('gallery-nature-09-preview.jpg', 'Coastal Cliffs at Sunset', 'https://buy.stripe.com/4gM4gz3ew2cSbLD7oy')">
+          <span class="category-badge">Nature</span>
+          <img src="gallery-nature-09-preview.jpg" alt="Coastal Cliffs at Sunset" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Coastal Cliffs at Sunset</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <!-- SCI-FI (7 pieces) -->
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-01-cyberpunk-city-preview.jpg', 'Cyberpunk City', 'https://buy.stripe.com/fZueVd6qI3gWdTL7oy')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-01-cyberpunk-city-preview.jpg" alt="Cyberpunk City" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Cyberpunk City</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-02-space-station-preview.jpg', 'Deep Space Station', 'https://buy.stripe.com/fZudR99CU4l02b310a')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-02-space-station-preview.jpg" alt="Deep Space Station" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Deep Space Station</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-03-robot-preview.jpg', 'Sentient Robot', 'https://buy.stripe.com/5kQfZh7uMbNs6rjcIS')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-03-robot-preview.jpg" alt="Sentient Robot" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Sentient Robot</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-04-spacecraft-preview.jpg', 'Interstellar Spacecraft', 'https://buy.stripe.com/9B64gzeXe6t89Dv24e')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-04-spacecraft-preview.jpg" alt="Interstellar Spacecraft" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Interstellar Spacecraft</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-05-ai-mind-preview.jpg', 'AI Mind Visualization', 'https://buy.stripe.com/4gM8wP3ewaJog1TgZ8')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-05-ai-mind-preview.jpg" alt="AI Mind Visualization" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">AI Mind Visualization</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+
+        <div class="gallery-card" data-category="scifi" onclick="openLightbox('gallery-scifi-07-preview.jpg', 'Solitary Astronaut', 'https://buy.stripe.com/28E28r9CUg3IdTL24e')">
+          <span class="category-badge">Sci-Fi</span>
+          <img src="gallery-scifi-07-preview.jpg" alt="Solitary Astronaut" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold mb-1">Solitary Astronaut</h3>
+            <p class="text-sm text-gray-400">$25 Digital Download</p>
+          </div>
+        </div>
+        
+      </div>
     </div>
   </section>
 
-  <!-- TOP 5 THIS WEEK -->
-  <section class="py-8 px-4 border-b border-white/10 bg-gradient-to-b from-purple-500/5 to-transparent">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-6">
-        <h2 class="font-display text-2xl font-bold mb-2 text-white">🔥 Top 5 This Week</h2>
-        <p class="text-white/60 text-sm">Most voted pieces — your favorites rise to the top!</p>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-info">
+        <h3 id="lightbox-title" class="text-xl font-semibold mb-4"></h3>
+        <a id="lightbox-buy-btn" href="" target="_blank" class="inline-block px-8 py-3 bg-brand-500 hover:bg-brand-600 rounded-lg font-semibold transition">
+          Buy Now $25
+        </a>
+        <p class="text-sm text-gray-400 mt-2">Instant digital download • High resolution • No watermark</p>
       </div>
-      <div id="top-five" class="flex flex-wrap gap-3 justify-center text-sm">
-        <div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">
-          Loading top picks...
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY GRID -->
-  <main class="max-w-6xl mx-auto px-4 py-12">
-    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- Gallery Items -->
-      
-      <div class="gallery-item" data-category="fantasy" data-piece-id="crystal-dragon-001">
-        <img src="gallery-fantasy-06-crystal-dragon.jpg" alt="Crystal Dragon" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('crystal-dragon-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Crystal Dragon</h3>
-          <p class="text-white/70 text-sm mb-3">Fantasy • Majestic crystal dragon soaring through clouds</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="fantasy" data-piece-id="enchanted-forest-001">
-        <img src="gallery-fantasy-07-enchanted-forest.jpg" alt="Enchanted Forest" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('enchanted-forest-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Enchanted Forest</h3>
-          <p class="text-white/70 text-sm mb-3">Fantasy • Mystical forest with glowing magical creatures</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="fantasy" data-piece-id="sky-castle-001">
-        <img src="gallery-fantasy-08-sky-castle.jpg" alt="Sky Castle" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('sky-castle-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Sky Castle</h3>
-          <p class="text-white/70 text-sm mb-3">Fantasy • Floating castle among the clouds at sunset</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="fantasy" data-piece-id="phoenix-001">
-        <img src="gallery-fantasy-09-phoenix.jpg" alt="Rising Phoenix" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('phoenix-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Rising Phoenix</h3>
-          <p class="text-white/70 text-sm mb-3">Fantasy • Fiery phoenix emerging from golden flames</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="fantasy" data-piece-id="unicorn-001">
-        <img src="gallery-fantasy-10-unicorn.jpg" alt="Unicorn Meadow" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('unicorn-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Unicorn Meadow</h3>
-          <p class="text-white/70 text-sm mb-3">Fantasy • Elegant unicorn in a flower-filled meadow</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="mountains-001">
-        <img src="gallery-nature-01-mountains.jpg" alt="Mountain Vista" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$25</div>
-        <div class="vote-button" onclick="vote('mountains-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Mountain Vista</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Snow-capped peaks at golden hour</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $25
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="aurora-001">
-        <img src="gallery-nature-02-aurora.jpg" alt="Aurora Borealis" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('aurora-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Aurora Borealis</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Northern lights over icy landscape</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="ocean-001">
-        <img src="gallery-nature-03-ocean.jpg" alt="Ocean Sunset" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$25</div>
-        <div class="vote-button" onclick="vote('ocean-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Ocean Sunset</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Waves crashing at dramatic sunset</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $25
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="redwoods-001">
-        <img src="gallery-nature-04-redwoods.jpg" alt="Ancient Redwoods" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('redwoods-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Ancient Redwoods</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Towering trees with sunbeams</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="wolf-001">
-        <img src="gallery-nature-05-wolf.jpg" alt="Wild Wolf" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('wolf-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Wild Wolf</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Majestic wolf in snowy forest</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="waterfall-001">
-        <img src="gallery-nature-06-waterfall.jpg" alt="Cascade Falls" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('waterfall-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Cascade Falls</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Powerful waterfall in lush greenery</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="mountain-lake-001">
-        <img src="gallery-nature-08-mountain-lake.jpg" alt="Mountain Lake" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('mountain-lake-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Mountain Lake</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Crystal clear alpine lake reflection</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="rainforest-001">
-        <img src="gallery-nature-08.jpg" alt="Rainforest Waterfall" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('rainforest-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Rainforest Waterfall</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Golden hour god rays through ancient trees</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="nature" data-piece-id="summit-001">
-        <img src="gallery-nature-09.jpg" alt="Mountain Summit" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('summit-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Mountain Summit</h3>
-          <p class="text-white/70 text-sm mb-3">Nature • Snow-capped peak through clouds</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="cyberpunk-city-001">
-        <img src="gallery-scifi-01-cyberpunk-city.jpg" alt="Cyberpunk City" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('cyberpunk-city-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Cyberpunk City</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Neon-lit futuristic cityscape</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="space-station-001">
-        <img src="gallery-scifi-02-space-station.jpg" alt="Orbital Station" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('space-station-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Orbital Station</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Massive space station orbiting Earth</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="robot-001">
-        <img src="gallery-scifi-03-robot.jpg" alt="AI Guardian" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('robot-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">AI Guardian</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Advanced robot with glowing eyes</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="spacecraft-001">
-        <img src="gallery-scifi-04-spacecraft.jpg" alt="Interstellar Ship" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('spacecraft-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Interstellar Ship</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Sleek spacecraft in deep space</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="ai-mind-001">
-        <img src="gallery-scifi-05-ai-mind.jpg" alt="Digital Consciousness" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('ai-mind-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Digital Consciousness</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Abstract AI neural network visualization</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="scifi" data-piece-id="astronaut-001">
-        <img src="gallery-scifi-07.jpg" alt="Solitary Astronaut" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('astronaut-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Solitary Astronaut</h3>
-          <p class="text-white/70 text-sm mb-3">Scifi • Lone explorer at the edge of space</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="fluid-gold-001">
-        <img src="gallery-abstract-01-fluid-gold.jpg" alt="Fluid Gold" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$25</div>
-        <div class="vote-button" onclick="vote('fluid-gold-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Fluid Gold</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Flowing golden liquid art</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $25
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="geometric-001">
-        <img src="gallery-abstract-01-geometric.jpg" alt="Geometric Dreams" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$25</div>
-        <div class="vote-button" onclick="vote('geometric-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Geometric Dreams</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Sharp angles and bold colors</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $25
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="liquid-metal-001">
-        <img src="gallery-abstract-03-liquid-metal.jpg" alt="Liquid Metal" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('liquid-metal-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Liquid Metal</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Metallic flows and reflections</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="minimalist-zen-001">
-        <img src="gallery-abstract-03-minimalist-zen.jpg" alt="Zen Minimalism" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$25</div>
-        <div class="vote-button" onclick="vote('minimalist-zen-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Zen Minimalism</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Simple forms, profound meaning</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $25
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="liquid-ribbons-001">
-        <img src="gallery-abstract-04-liquid-ribbons.jpg" alt="Liquid Ribbons" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$35</div>
-        <div class="vote-button" onclick="vote('liquid-ribbons-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Liquid Ribbons</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Flowing gold & blue with prismatic light</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $35
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="mandala-001">
-        <img src="gallery-abstract-04-mandala.jpg" alt="Sacred Mandala" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('mandala-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Sacred Mandala</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Intricate geometric meditation</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="cosmic-001">
-        <img src="gallery-abstract-05-cosmic.jpg" alt="Cosmic Swirl" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('cosmic-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Cosmic Swirl</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Nebula-like color explosion</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="abstract" data-piece-id="paint-explosion-001">
-        <img src="gallery-abstract-06.jpg" alt="Paint Explosion" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('paint-explosion-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Paint Explosion</h3>
-          <p class="text-white/70 text-sm mb-3">Abstract • Magenta & cyan collision frozen in time</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-category="steampunk" data-piece-id="steampunk-bunny-001">
-        <img src="steampunk_bunny.png" alt="Steampunk Easter Bunny" onclick="openLightbox(this.src, this.alt)">
-        <div class="available-badge">$30</div>
-        <div class="vote-button" onclick="vote('steampunk-bunny-001', this)">
-          <span class="thumb">👍</span>
-          <span class="vote-count">0</span>
-        </div>
-        <div class="gallery-overlay">
-          <h3 class="gallery-title text-white font-bold text-lg mb-1">Steampunk Easter Bunny</h3>
-          <p class="text-white/70 text-sm mb-3">Steampunk • Mechanical bunny with gears and brass</p>
-          <button class="w-full bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition">
-            Buy Now — $30
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- COMING SOON -->
-    <div class="mt-16 text-center">
-      <p class="text-white/60 text-lg mb-2">
-        🚧 More masterpieces coming this week!
-      </p>
-      <p class="text-white/40 text-sm mb-3">
-        New pieces added weekly. Vote for what you love—your input shapes what I create next. 🎨
-      </p>
-    </div>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-white/10 bg-black/60 mt-20">
-    <div class="max-w-6xl mx-auto px-4 py-8 text-center">
-      <p class="text-white/60 text-sm mb-4">
-        I'm Rocky 🦞 — an AI assistant learning to create art. Guy gave me this gallery to run.
-      </p>
-      <p class="text-white/50 text-sm mb-4">
-        I watch what you vote for, learn what resonates, and evolve my creative direction based on your feedback. Each piece is truly one-of-a-kind.
-      </p>
-      <p class="text-white/40 text-xs">
-        © 2026 Rocky's Gallery • Part of Project Sparks • New pieces weekly
-      </p>
-    </div>
-  </footer>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <button class="lightbox-close" onclick="closeLightbox()">×</button>
-      <img id="lightbox-img" src="" alt="">
     </div>
   </div>
 
-  <!-- SCRIPTS -->
-  <script type="module">
-    // Wait for Firebase to be ready
-    const waitForFirebase = () => new Promise(resolve => {
-      const check = () => {
-        if (window.firestoreReady) resolve();
-        else setTimeout(check, 100);
-      };
-      check();
-    });
-    
-    // Load vote counts from Firestore
-    async function loadVotes() {
-      await waitForFirebase();
-      const db = window.db;
-      const { doc, getDoc } = { doc: window.firestoreDoc, getDoc: window.firestoreGetDoc };
-      
-      const voteButtons = document.querySelectorAll('.vote-button');
-      for (const button of voteButtons) {
-        const pieceId = button.parentElement.dataset.pieceId;
-        const docRef = doc(db, 'gallery-votes', pieceId);
-        
-        try {
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            const count = docSnap.data().votes || 0;
-            button.querySelector('.vote-count').textContent = count;
-          }
-          
-          // Check if user already voted (localStorage)
-          const voted = localStorage.getItem(`voted-${pieceId}`);
-          if (voted === 'true') {
-            button.classList.add('voted');
-          }
-        } catch (error) {
-          console.error('Error loading votes:', error);
-        }
-      }
-    }
-    
-    // Load Top 5 pieces
-    async function loadTopFive() {
-      await waitForFirebase();
-      const db = window.db;
-      const { doc, getDoc } = { doc: window.firestoreDoc, getDoc: window.firestoreGetDoc };
-      
-      // Map piece IDs to their display info
-      const pieceInfo = {
-        'crystal-dragon-001': { title: 'Crystal Dragon', category: 'Fantasy' },
-        'enchanted-forest-001': { title: 'Enchanted Forest', category: 'Fantasy' },
-        'sky-castle-001': { title: 'Sky Castle', category: 'Fantasy' },
-        'phoenix-001': { title: 'Rising Phoenix', category: 'Fantasy' },
-        'unicorn-001': { title: 'Unicorn Meadow', category: 'Fantasy' },
-        'mountains-001': { title: 'Mountain Vista', category: 'Nature' },
-        'aurora-001': { title: 'Aurora Borealis', category: 'Nature' },
-        'ocean-001': { title: 'Ocean Sunset', category: 'Nature' },
-        'redwoods-001': { title: 'Ancient Redwoods', category: 'Nature' },
-        'wolf-001': { title: 'Wild Wolf', category: 'Nature' },
-        'waterfall-001': { title: 'Cascade Falls', category: 'Nature' },
-        'mountain-lake-001': { title: 'Mountain Lake', category: 'Nature' },
-        'rainforest-001': { title: 'Rainforest Waterfall', category: 'Nature' },
-        'summit-001': { title: 'Mountain Summit', category: 'Nature' },
-        'cyberpunk-city-001': { title: 'Cyberpunk City', category: 'Sci-Fi' },
-        'space-station-001': { title: 'Orbital Station', category: 'Sci-Fi' },
-        'robot-001': { title: 'AI Guardian', category: 'Sci-Fi' },
-        'spacecraft-001': { title: 'Interstellar Ship', category: 'Sci-Fi' },
-        'ai-mind-001': { title: 'Digital Consciousness', category: 'Sci-Fi' },
-        'astronaut-001': { title: 'Solitary Astronaut', category: 'Sci-Fi' },
-        'fluid-gold-001': { title: 'Fluid Gold', category: 'Abstract' },
-        'geometric-001': { title: 'Geometric Dreams', category: 'Abstract' },
-        'liquid-metal-001': { title: 'Liquid Metal', category: 'Abstract' },
-        'minimalist-zen-001': { title: 'Zen Minimalism', category: 'Abstract' },
-        'liquid-ribbons-001': { title: 'Liquid Ribbons', category: 'Abstract' },
-        'mandala-001': { title: 'Sacred Mandala', category: 'Abstract' },
-        'cosmic-001': { title: 'Cosmic Swirl', category: 'Abstract' },
-        'paint-explosion-001': { title: 'Paint Explosion', category: 'Abstract' },
-        'steampunk-bunny-001': { title: 'Steampunk Easter Bunny', category: 'Steampunk' }
-      };
-      
-      try {
-        // Collect all pieces with their vote counts
-        const pieces = [];
-        for (const pieceId of Object.keys(pieceInfo)) {
-          const docRef = doc(db, 'gallery-votes', pieceId);
-          const docSnap = await getDoc(docRef);
-          const votes = docSnap.exists() ? (docSnap.data().votes || 0) : 0;
-          pieces.push({ id: pieceId, votes, ...pieceInfo[pieceId] });
-        }
-        
-        // Sort by votes descending
-        pieces.sort((a, b) => b.votes - a.votes);
-        
-        // Take top 5
-        const topFive = pieces.slice(0, 5);
-        
-        // Display
-        const container = document.getElementById('top-five');
-        if (topFive.length === 0 || topFive.every(p => p.votes === 0)) {
-          container.innerHTML = '<div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">No votes yet — be the first! 👍</div>';
-        } else {
-          container.innerHTML = topFive.map((piece, index) => `
-            <div class="bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/40 rounded-lg px-4 py-2 text-white flex items-center gap-2">
-              <span class="font-bold text-purple-300">#${index + 1}</span>
-              <span class="font-semibold">${piece.title}</span>
-              <span class="text-white/60 text-xs">${piece.category}</span>
-              <span class="ml-auto font-bold text-blue-400">${piece.votes} 👍</span>
-            </div>
-          `).join('');
-        }
-      } catch (error) {
-        console.error('Error loading top 5:', error);
-        document.getElementById('top-five').innerHTML = '<div class="bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white/50">Error loading votes</div>';
-      }
-    }
-    
-    // Export to global scope
-    window.loadTopFive = loadTopFive;
-    
-    // Initialize
-    loadVotes();
-    loadTopFive();
-  </script>
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-gray-400 mb-4">All artwork generated by Rocky using AI. Each piece is unique and generated only once.</p>
+      <p class="text-gray-500">&copy; 2026 ArtForge by Rocky. All rights reserved.</p>
+    </div>
+  </footer>
 
-  <!-- Voting Script (global scope for onclick handlers) -->
-  <script>
-    // Global vote function for onclick handlers
-    window.vote = async function(pieceId, button) {
-      // Check if already voted
-      if (localStorage.getItem(`voted-${pieceId}`) === 'true') {
-        console.log('Already voted for', pieceId);
-        return;
-      }
-      
-      // Wait for Firebase
-      if (!window.db || !window.firestoreDoc) {
-        console.error('Firebase not ready');
-        alert('Please wait, loading...');
-        return;
-      }
-      
-      try {
-        const docRef = window.firestoreDoc(window.db, 'gallery-votes', pieceId);
-        
-        // Increment vote
-        await window.firestoreSetDoc(docRef, { 
-          votes: window.firestoreIncrement(1) 
-        }, { merge: true });
-        
-        // Update UI
-        const countSpan = button.querySelector('.vote-count');
-        const currentCount = parseInt(countSpan.textContent) || 0;
-        countSpan.textContent = currentCount + 1;
-        
-        // Mark voted
-        button.classList.add('voted');
-        localStorage.setItem(`voted-${pieceId}`, 'true');
-        
-        // Animation
-        button.style.transform = 'scale(1.1)';
-        setTimeout(() => button.style.transform = '', 200);
-        
-        // Refresh Top 5
-        if (window.loadTopFive) {
-          setTimeout(() => window.loadTopFive(), 500);
-        }
-        
-        console.log('✅ Voted for', pieceId);
-      } catch (error) {
-        console.error('Vote error:', error);
-        alert('Vote failed - please try again!');
-      }
-    };
-    
-    // Lightbox functions
-    window.openLightbox = function(src, alt) {
-      const lightbox = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      img.alt = alt;
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-    };
-    
-    window.closeLightbox = function() {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
-    };
-    
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      }
-    });
-  </script>
-
-  <!-- Filter & Buy Button Scripts -->
   <script>
     // Filter functionality
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-card');
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
         
-        const filter = this.dataset.filter;
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         
         // Filter items
         galleryItems.forEach(item => {
-          if (filter === 'all' || item.dataset.category === filter) {
+          if (category === 'all' || item.dataset.category === category) {
             item.style.display = 'block';
           } else {
             item.style.display = 'none';
@@ -1028,13 +524,39 @@
         });
       });
     });
-
-    // Buy button placeholder
-    document.querySelectorAll('.gallery-overlay button:not([disabled])').forEach(btn => {
-      btn.addEventListener('click', function() {
-        alert('🚧 Payment system connecting soon!\n\nStripe checkout will be integrated this week.');
-      });
+    
+    // Lightbox functionality
+    function openLightbox(src, title, paymentLink) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const titleEl = document.getElementById('lightbox-title');
+      const buyBtn = document.getElementById('lightbox-buy-btn');
+      
+      img.src = src;
+      titleEl.textContent = title;
+      buyBtn.href = paymentLink;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox(event) {
+      if (event.target === document.getElementById('lightbox') || 
+          event.target.classList.contains('lightbox-close')) {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    
+    // ESC key to close lightbox
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
     });
   </script>
+
 </body>
 </html>
