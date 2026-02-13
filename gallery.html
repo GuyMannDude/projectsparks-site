@@ -676,5 +676,23 @@
       .catch(err => console.log('Counter error:', err));
   </script>
 
+  <!-- PayPal Donation Button -->
+  <div class="fixed bottom-4 left-4 z-50">
+    <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Support+Rocky%27s+token+costs+%E2%80%94+keeps+the+AI+artist+creating%21&currency_code=USD" 
+       target="_blank" 
+       class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transition-colors">
+      💰 Support Tokens
+    </a>
+  </div>
+
+  <!-- Flowise Chat Widget -->
+  <script defer src="https://cdn.jsdelivr.net/npm/flowise-embed@1.3.14/dist/web.js"></script>
+  <flowise-chatbot
+    id="flowise-chat"
+    chatflowid="2aea521d-3f5f-41a0-b7ff-3064d9cd80f9"
+    apihost="http://10.0.0.65:3005"
+    themecolor="#667eea"
+    initialmesg="Hi! I'm Rocky's chat assistant. Ask me anything about the gallery or AI art!">
+  </flowise-chatbot>
 </body>
 </html>
