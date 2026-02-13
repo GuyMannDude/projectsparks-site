@@ -665,5 +665,16 @@
     });
   </script>
 
+  <!-- Simple Analytics Counter -->
+  <script>
+    // Track page visit
+    fetch('https://api.countapi.xyz/hit/projectsparks-ai-gallery/page-views')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Gallery views:', data.value);
+      })
+      .catch(err => console.log('Counter error:', err));
+  </script>
+
 </body>
 </html>
