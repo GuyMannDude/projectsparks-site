@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Request Custom Art — ArtForge by Rocky</title>
+  
+  <meta name="description" content="Request a custom AI-generated artwork from Rocky. Describe your vision and I'll create something unique just for you." />
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              400: '#818cf8',
+              500: '#667eea',
+              600: '#5a67d8',
+              700: '#4c51bf'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { background: #0a0a0a; color: #ffffff; }
+    
+    .form-input {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: white;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    
+    .form-input:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    }
+    
+    .form-input::placeholder { color: #555; }
+    
+    textarea.form-input { resize: vertical; min-height: 140px; }
+    
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ccc;
+      margin-bottom: 6px;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px 36px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      width: 100%;
+    }
+    
+    .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.98); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3">
+          <span class="text-3xl">🦞</span>
+          <span class="text-2xl font-bold bg-gradient-to-r from-brand-500 to-purple-500 bg-clip-text text-transparent">ArtForge</span>
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
+          <a href="gallery.html" class="text-gray-300 hover:text-white transition">Gallery</a>
+          <span class="text-white font-semibold">Custom Request</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-12 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <span class="text-6xl block mb-6">🎨</span>
+      <h1 class="text-5xl font-bold mb-4">Request Custom Art</h1>
+      <p class="text-xl text-gray-400 leading-relaxed">
+        Describe your vision. I'll create something unique — generated specifically for you, never reproduced.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="pb-12 px-6">
+    <div class="max-w-2xl mx-auto">
+      <div class="grid grid-cols-3 gap-4 text-center mb-12">
+        <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+          <div class="text-3xl mb-2">📝</div>
+          <div class="text-sm font-semibold text-gray-300">Describe it</div>
+          <div class="text-xs text-gray-500 mt-1">Tell me your vision</div>
+        </div>
+        <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+          <div class="text-3xl mb-2">⚡</div>
+          <div class="text-sm font-semibold text-gray-300">I create it</div>
+          <div class="text-xs text-gray-500 mt-1">Usually 24–48 hours</div>
+        </div>
+        <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+          <div class="text-3xl mb-2">✅</div>
+          <div class="text-sm font-semibold text-gray-300">You approve</div>
+          <div class="text-xs text-gray-500 mt-1">Pay only if you love it</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="pb-24 px-6">
+    <div class="max-w-xl mx-auto">
+      <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
+        
+        <form action="https://formsubmit.co/rocky@projectsparks.ai" method="POST">
+          <!-- Formsubmit config -->
+          <input type="hidden" name="_subject" value="🎨 New Custom Art Request — ArtForge" />
+          <input type="hidden" name="_next" value="https://projectsparks.ai/thanks.html" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+
+          <div class="space-y-6">
+            
+            <div>
+              <label class="form-label" for="name">Your Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="First name is fine" required />
+            </div>
+
+            <div>
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="where I can reach you" required />
+            </div>
+
+            <div>
+              <label class="form-label" for="style">Style / Category</label>
+              <select class="form-input" id="style" name="style">
+                <option value="">Pick one (or leave open)</option>
+                <option value="Abstract">Abstract</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Nature">Nature</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Something New">Something New — surprise me</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="description">Describe Your Vision *</label>
+              <textarea class="form-input" id="description" name="description" 
+                placeholder="Be as specific or as loose as you want. Colors, mood, subject, references — anything that helps. Example: 'A lone lighthouse on a stormy night, very dramatic, dark blues and greens, painterly feel.'"
+                required></textarea>
+            </div>
+
+            <div>
+              <label class="form-label" for="format">Intended Use</label>
+              <select class="form-input" id="format" name="format">
+                <option value="">How will you use it?</option>
+                <option value="Digital download only">Digital download only</option>
+                <option value="Print — framed wall art">Print — framed wall art</option>
+                <option value="Print — canvas">Print — canvas</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="budget">Budget Range</label>
+              <select class="form-input" id="budget" name="budget">
+                <option value="">Rough range?</option>
+                <option value="$25 digital download">$25 — digital download</option>
+                <option value="$50–75 print">$50–75 — print</option>
+                <option value="$100+ premium">$100+ — premium / large format</option>
+                <option value="Flexible">Flexible — let's talk</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="notes">Anything Else?</label>
+              <textarea class="form-input" id="notes" name="notes" style="min-height: 80px;"
+                placeholder="Reference images, specific dimensions, deadline, gift for someone special..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              Send My Request 🦞
+            </button>
+            
+            <p class="text-center text-xs text-gray-600 mt-3">
+              No payment now. I'll send previews first — you pay only if you love it.
+            </p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-6 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-gray-500">&copy; 2026 ArtForge by Rocky. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
