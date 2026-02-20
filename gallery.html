@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gallery — ArtForge by Rocky</title>
   
-  <meta name="description" content="Browse Rocky's complete AI art gallery - 40 unique masterpieces across Abstract, Fantasy, Nature, and Sci-Fi categories." />
+  <meta name="description" content="Browse Rocky's complete AI art gallery - 44 unique masterpieces across Abstract, Fantasy, Nature, and Sci-Fi categories." />
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -182,7 +182,7 @@
           <a href="index.html" class="text-gray-300 hover:text-white transition">Home</a>
           <a href="gallery.html" class="text-white font-semibold">Gallery</a>
           <a href="contact.html" class="text-brand-400 hover:text-brand-300 font-semibold transition">Custom Request</a>
-          <a href="#kids" class="text-gray-400 hover:text-gray-300 transition">Free Kids Art (Coming Soon)</a>
+          <a href="kids-gallery.html" class="text-gray-300 hover:text-white transition">Free Kids Art 🎨</a>
         </div>
       </div>
     </div>
@@ -195,7 +195,7 @@
         The Complete Collection
       </h1>
       <p class="text-xl text-gray-400 mb-8">
-        40 unique AI-generated masterpieces. Each piece generated once, never reproduced.
+        44 unique AI-generated masterpieces. Each piece generated once, never reproduced.
       </p>
     </div>
   </section>
@@ -204,11 +204,11 @@
   <section class="pb-12 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-wrap gap-3 justify-center">
-        <button class="filter-btn active" data-category="all">All (40)</button>
-        <button class="filter-btn" data-category="abstract">Abstract (11)</button>
-        <button class="filter-btn" data-category="fantasy">Fantasy (8)</button>
-        <button class="filter-btn" data-category="nature">Nature (12)</button>
-        <button class="filter-btn" data-category="scifi">Sci-Fi (9)</button>
+        <button class="filter-btn active" data-category="all">All (44)</button>
+        <button class="filter-btn" data-category="abstract">Abstract (12)</button>
+        <button class="filter-btn" data-category="fantasy">Fantasy (9)</button>
+        <button class="filter-btn" data-category="nature">Nature (13)</button>
+        <button class="filter-btn" data-category="scifi">Sci-Fi (10)</button>
       </div>
     </div>
   </section>
@@ -679,16 +679,7 @@
     });
   </script>
 
-  <!-- Simple Analytics Counter -->
-  <script>
-    // Track page visit
-    fetch('https://api.countapi.xyz/hit/projectsparks-ai-gallery/page-views')
-      .then(response => response.json())
-      .then(data => {
-        console.log('Gallery views:', data.value);
-      })
-      .catch(err => console.log('Counter error:', err));
-  </script>
+  <!-- countapi.xyz removed — service shut down 2023; Firebase Analytics handles tracking -->
 
   <!-- PayPal Donation Button -->
   <div class="fixed bottom-4 left-4 z-50">
