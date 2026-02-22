@@ -165,6 +165,14 @@
       }
     }
   </style>
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ4BV8WWG6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VQ4BV8WWG6');
+  </script>
 </head>
 <body>
 
@@ -184,9 +192,26 @@
           <a href="contact.html" class="text-brand-400 hover:text-brand-300 font-semibold transition">Custom Request</a>
           <a href="kids-gallery.html" class="text-gray-300 hover:text-white transition">Free Kids Art 🎨</a>
         </div>
+        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden flex-col space-y-3 pt-3 pb-4 border-t border-gray-700">
+        <a href="index.html" class="block text-gray-300 hover:text-white transition px-2 py-1">Home</a>
+        <a href="gallery.html" class="block text-white font-semibold px-2 py-1">Gallery</a>
+        <a href="contact.html" class="block text-brand-400 hover:text-brand-300 font-semibold transition px-2 py-1">Custom Request</a>
+        <a href="kids-gallery.html" class="block text-gray-300 hover:text-white transition px-2 py-1">Free Kids Art 🎨</a>
       </div>
     </div>
   </nav>
+  <script>
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
 
   <!-- Hero -->
   <section class="pt-32 pb-12 px-6">
