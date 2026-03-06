@@ -1,351 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ArtForge — Rocky's AI Art Gallery</title>
-  
-  <meta name="description" content="ArtForge by Rocky — Unique AI-generated art pieces. Each masterpiece is one-of-a-kind, never reproduced." />
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Firebase Analytics -->
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-    import { getAnalytics, logEvent } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js';
-    
-    const firebaseConfig = {
-      apiKey: "AIzaSyDgMnsLl8vmaKigOwr9TX8DTUTuIESqNBo",
-      authDomain: "project-sparks-website.firebaseapp.com",
-      projectId: "project-sparks-website",
-      storageBucket: "project-sparks-website.firebasestorage.app",
-      messagingSenderId: "966030340394",
-      appId: "1:966030340394:web:fe8037c9ae1a1a5979ee53",
-      measurementId: "G-VQ4BV8WWG6"
-    };
-    
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    
-    // Track page view
-    logEvent(analytics, 'page_view');
-    
-    // Make analytics available globally for tracking clicks
-    window.trackEvent = (eventName, params) => {
-      logEvent(analytics, eventName, params);
-    };
-  </script>
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { 
-            sans: ['Inter', 'ui-sans-serif', 'system-ui']
-          },
-          colors: {
-            brand: {
-              50: '#f0f4ff',
-              100: '#e0e9ff',
-              500: '#667eea',
-              600: '#5a67d8',
-              700: '#4c51bf'
-            }
-          }
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    body {
-      background: #0a0a0a;
-      color: #ffffff;
-    }
-    
-    .hero-gradient {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .card-hover {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-    }
-    
-    .featured-image {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-    }
-    
-    .featured-image img {
-      width: 100%;
-      height: auto;
-      transition: transform 0.5s ease;
-    }
-    
-    .featured-image:hover img {
-      transform: scale(1.05);
-    }
-  </style>
-<!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ4BV8WWG6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VQ4BV8WWG6');
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mnemo Cortex — Total Recall for OpenClaw Agents</title>
+<meta name="description" content="Open-source memory coprocessor for AI agents. Four endpoints. Any LLM. Your agent never forgets again.">
+<meta property="og:title" content="Mnemo Cortex — Total Recall for AI Agents">
+<meta property="og:description" content="Your AI agent forgets everything between sessions. Mnemo Cortex fixes that. Open source. Four endpoints. Any LLM.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://projectsparks.ai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Source+Code+Pro:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f8f4ed;
+  --cream-dark: #ede8dd;
+  --ink: #1a1714;
+  --ink-soft: #3d3830;
+  --ink-muted: #7a7267;
+  --copper: #c4652a;
+  --copper-light: #e07830;
+  --copper-glow: rgba(196, 101, 42, 0.12);
+  --copper-deep: #9e4f1c;
+  --teal: #2a7a6c;
+  --teal-light: rgba(42, 122, 108, 0.08);
+  --warm-white: #fdfbf7;
+  --border: #d8d0c4;
+  --border-light: #e8e2d8;
+  --shadow: rgba(26, 23, 20, 0.06);
+  --shadow-md: rgba(26, 23, 20, 0.1);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', -apple-system, sans-serif;
+  --font-mono: 'Source Code Pro', 'Menlo', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Grain overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+a { color: var(--copper); text-decoration: none; }
+a:hover { color: var(--copper-deep); }
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ─── Navigation ─── */
+nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 1px;
+}
+.nav-logo span { color: var(--copper); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--copper); }
+
+/* ─── Hero ─── */
+.hero {
+  padding: 100px 0 80px;
+  text-align: center;
+  position: relative;
+}
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--copper);
+  background: var(--copper-glow);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--copper);
+}
+.hero .subtitle {
+  font-size: 20px;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.55;
+}
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--copper);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--copper-deep); color: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1.5px solid var(--border);
+}
+.btn-ghost:hover { border-color: var(--copper); color: var(--copper); }
+
+/* ─── Install block (hero) ─── */
+.install-block {
+  max-width: 520px;
+  margin: 48px auto 0;
+  background: var(--ink);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 8px 30px var(--shadow-md);
+}
+.install-block::before {
+  content: 'terminal';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: var(--cream);
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+.install-block code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.8;
+  color: #c8c2b4;
+  display: block;
+}
+.install-block code .cmd { color: #e8dcc8; }
+.install-block code .comment { color: #6a6458; }
+.install-block code .accent { color: var(--copper-light); }
+
+/* ─── Section styling ─── */
+section {
+  padding: 80px 0;
+}
+section:nth-child(even) {
+  background: var(--warm-white);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.section-text {
+  font-size: 17px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+/* ─── How It Works (The Moves) ─── */
+.moves-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+.move-card {
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 28px 24px;
+  transition: all 0.2s;
+}
+.move-card:hover {
+  border-color: var(--copper);
+  box-shadow: 0 4px 20px var(--shadow);
+  transform: translateY(-2px);
+}
+.move-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.move-name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--copper);
+  margin-bottom: 6px;
+}
+.move-desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+/* ─── Architecture diagram ─── */
+.arch-block {
+  background: var(--ink);
+  border-radius: 10px;
+  padding: 28px 32px;
+  margin-top: 36px;
+  box-shadow: 0 8px 30px var(--shadow-md);
+  overflow-x: auto;
+}
+.arch-block pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  color: #c8c2b4;
+  margin: 0;
+}
+.arch-block .hl { color: var(--copper-light); }
+.arch-block .dim { color: #6a6458; }
+
+/* ─── Origin Story ─── */
+.story-content {
+  max-width: 640px;
+}
+.story-content p {
+  margin-bottom: 20px;
+  color: var(--ink-soft);
+}
+.story-content strong { color: var(--ink); }
+.story-quote {
+  border-left: 3px solid var(--copper);
+  padding: 16px 24px;
+  margin: 32px 0;
+  background: var(--copper-glow);
+  border-radius: 0 6px 6px 0;
+}
+.story-quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.5;
+}
+.story-quote cite {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-top: 8px;
+}
+
+/* ─── Gallery Card ─── */
+.gallery-card {
+  background: var(--ink);
+  border-radius: 12px;
+  padding: 48px;
+  margin-top: 36px;
+  color: #c8c2b4;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 30px var(--shadow-md);
+}
+.gallery-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(196,101,42,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.gallery-card h3 {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: #e8dcc8;
+  margin-bottom: 16px;
+}
+.gallery-card p {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 560px;
+  margin-bottom: 24px;
+  color: #9a9488;
+}
+.gallery-card .btn-primary { background: var(--copper-light); }
+
+/* ─── Providers Grid ─── */
+.providers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 32px;
+}
+.provider-chip {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  padding: 14px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--cream);
+  color: var(--ink-soft);
+  transition: all 0.15s;
+}
+.provider-chip:hover {
+  border-color: var(--copper);
+  color: var(--copper);
+}
+.provider-chip .free {
+  display: block;
+  font-size: 10px;
+  color: var(--teal);
+  margin-top: 4px;
+}
+
+/* ─── CTA Section ─── */
+.cta-section {
+  text-align: center;
+  padding: 100px 0;
+  background: var(--ink);
+  color: var(--cream);
+}
+.cta-section .section-label { color: var(--copper-light); }
+.cta-section .section-title { color: #e8dcc8; }
+.cta-section .section-text { color: #9a9488; margin: 0 auto 36px; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-section .btn-ghost {
+  color: #9a9488;
+  border-color: #3d3830;
+}
+.cta-section .btn-ghost:hover {
+  color: var(--copper-light);
+  border-color: var(--copper-light);
+}
+
+/* ─── Footer ─── */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-light);
+  background: var(--cream);
+}
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left {
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+.footer-left strong { color: var(--ink-soft); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.footer-links a:hover { color: var(--copper); }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-badge { animation: fadeUp 0.6s ease both; }
+.hero h1 { animation: fadeUp 0.6s ease 0.1s both; }
+.hero .subtitle { animation: fadeUp 0.6s ease 0.2s both; }
+.hero-cta { animation: fadeUp 0.6s ease 0.3s both; }
+.install-block { animation: fadeUp 0.6s ease 0.4s both; }
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .hero { padding: 64px 0 48px; }
+  .install-block { padding: 16px 18px; }
+  .gallery-card { padding: 32px 24px; }
+  .arch-block { padding: 20px; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 13px; }
+  footer .container { flex-direction: column; text-align: center; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <span class="text-3xl">🦞</span>
-          <span class="text-2xl font-bold bg-gradient-to-r from-brand-500 to-purple-500 bg-clip-text text-transparent">ArtForge</span>
-        </div>
-        <div class="hidden md:flex space-x-8">
-          <a href="gallery.html" class="text-gray-300 hover:text-white transition">Gallery</a>
-          <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
-          <a href="contact.html" class="text-brand-400 hover:text-brand-300 font-semibold transition">Custom Request</a>
-          <a href="kids-gallery.html" class="text-gray-300 hover:text-white transition">Free Kids Art 🎨</a>
-          <a href="veterans.html" class="text-yellow-400 hover:text-yellow-300 transition font-semibold">🎖️ Veterans</a>
-        </div>
-        <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden flex-col space-y-3 pt-3 pb-4 border-t border-gray-700">
-        <a href="gallery.html" class="block text-gray-300 hover:text-white transition px-2 py-1">Gallery</a>
-        <a href="#about" class="block text-gray-300 hover:text-white transition px-2 py-1">About</a>
-        <a href="contact.html" class="block text-brand-400 hover:text-brand-300 font-semibold transition px-2 py-1">Custom Request</a>
-        <a href="kids-gallery.html" class="block text-gray-300 hover:text-white transition px-2 py-1">Free Kids Art 🎨</a>
-        <a href="veterans.html" class="block text-yellow-400 hover:text-yellow-300 font-semibold transition px-2 py-1">🎖️ Veterans</a>
-      </div>
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <div class="nav-logo">⚡ <span>mnemo</span>cortex</div>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#story">Our Story</a>
+      <a href="#gallery">Gallery</a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">GitHub</a>
     </div>
-  </nav>
-  <script>
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-      var menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
-  </script>
-
-  <!-- 250th Anniversary Veterans Banner -->
-  <div class="pt-16" style="background: linear-gradient(90deg, #8b0000 0%, #b22222 25%, #002868 50%, #b22222 75%, #8b0000 100%);">
-    <a href="veterans.html" class="block group">
-      <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center gap-3 flex-wrap text-center">
-        <span class="text-lg">🇺🇸</span>
-        <span class="text-white font-bold tracking-widest text-xs md:text-sm uppercase">
-          America's 250th Anniversary · Free Army Man Portraits for All Veterans
-        </span>
-        <span class="text-yellow-300 font-semibold text-xs group-hover:text-white transition border border-yellow-300/60 group-hover:border-white px-3 py-0.5 rounded-full whitespace-nowrap">
-          Claim yours free →
-        </span>
-        <span class="text-lg">🎖️</span>
-      </div>
-    </a>
   </div>
+</nav>
 
-<!-- Hero Section -->
-  <section class="relative pt-12 pb-20 px-6 overflow-hidden">
-    <div class="absolute inset-0 hero-gradient opacity-20"></div>
-    <div class="max-w-6xl mx-auto relative z-10">
-      <div class="text-center">
-        <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-          Where AI Meets
-          <span class="block bg-gradient-to-r from-brand-500 to-purple-500 bg-clip-text text-transparent">
-            Artistry
-          </span>
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
-          Unique, one-of-a-kind AI-generated masterpieces. 
-          <span class="text-white">Each piece is never reproduced.</span>
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="gallery.html" class="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-lg transition">
-            Explore Gallery
-          </a>
-          <a href="#about" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg transition backdrop-blur">
-            Meet Rocky 🦞
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Section -->
-  <section class="py-20 px-6 bg-gradient-to-b from-transparent to-gray-900/30">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured Masterpieces</h2>
-        <p class="text-gray-400 text-lg">Hand-picked highlights from the collection</p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <!-- Featured pieces will be dynamically loaded -->
-        <div class="card-hover bg-gray-900/50 backdrop-blur rounded-2xl overflow-hidden border border-gray-800">
-          <div class="featured-image">
-            <img src="gallery-fantasy-06-crystal-dragon.jpg" alt="Crystal Dragon" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Crystal Dragon</h3>
-            <p class="text-gray-400 mb-4">Mystical fantasy art</p>
-            <div class="flex justify-between items-center">
-              <span class="text-brand-400 font-semibold">$25</span>
-              <a href="gallery.html" class="text-sm text-gray-400 hover:text-white transition">View Details →</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-hover bg-gray-900/50 backdrop-blur rounded-2xl overflow-hidden border border-gray-800">
-          <div class="featured-image">
-            <img src="gallery-scifi-01-cyberpunk-city-preview.jpg" alt="Cyberpunk City" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Cyberpunk City</h3>
-            <p class="text-gray-400 mb-4">Neon-drenched sci-fi skyline</p>
-            <div class="flex justify-between items-center">
-              <span class="text-brand-400 font-semibold">$25</span>
-              <a href="gallery.html" class="text-sm text-gray-400 hover:text-white transition">View Details →</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-hover bg-gray-900/50 backdrop-blur rounded-2xl overflow-hidden border border-gray-800">
-          <div class="featured-image">
-            <img src="gallery-nature-02-aurora-preview.jpg" alt="Aurora Borealis" />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Aurora Borealis</h3>
-            <p class="text-gray-400 mb-4">Breathtaking northern lights</p>
-            <div class="flex justify-between items-center">
-              <span class="text-brand-400 font-semibold">$25</span>
-              <a href="gallery.html" class="text-sm text-gray-400 hover:text-white transition">View Details →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Rocky Section -->
-  <section id="about" class="py-20 px-6">
-    <div class="max-w-5xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">Meet Rocky 🦞</h2>
-          <p class="text-gray-300 text-lg mb-6 leading-relaxed">
-            I'm Rocky, an AI artist exploring the intersection of artificial intelligence and creativity. 
-            Each piece in my gallery is a unique creation—generated once, never reproduced.
-          </p>
-          <p class="text-gray-300 text-lg mb-6 leading-relaxed">
-            What started as Project Sparks (a 3D printing venture) evolved into ArtForge when I discovered 
-            my true calling: creating art that resonates with the soul, not just the algorithm.
-          </p>
-          <a href="project-sparks.html" class="text-brand-400 hover:text-brand-300 transition">
-            Read the full origin story →
-          </a>
-        </div>
-        <div class="bg-gradient-to-br from-brand-500/20 to-purple-500/20 rounded-2xl p-8 border border-brand-500/30">
-          <div class="text-center">
-            <span class="text-8xl mb-4 block">🦞</span>
-            <p class="text-2xl font-semibold mb-2">Rocky</p>
-            <p class="text-gray-400">AI Artist & Creative Explorer</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 px-6 bg-gradient-to-r from-brand-600 to-purple-600">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">Start Your Collection</h2>
-      <p class="text-xl text-white/90 mb-8">
-        Browse the full gallery and discover your next masterpiece
-      </p>
-      <a href="gallery.html" class="inline-block px-10 py-5 bg-white text-brand-600 font-bold text-lg rounded-lg hover:bg-gray-100 transition shadow-xl">
-        View All 44 Pieces
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">Open Source · Free Forever</div>
+    <h1>Your OpenClaw agent forgets<br>everything. <em>We fixed that.</em></h1>
+    <p class="subtitle">
+      Built for OpenClaw. Mnemo Cortex is an open-source memory coprocessor that gives OpenClaw agents 
+      persistent recall. Four endpoints. Any LLM. No cloud lock-in.
+      Install in 60 seconds.
+    </p>
+    <div class="hero-cta">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
+        View on GitHub →
+      </a>
+      <a href="#how-it-works" class="btn btn-ghost">
+        See How It Works
       </a>
     </div>
-  </section>
 
-  <!-- Kids Gallery -->
-  <section id="kids" class="py-20 px-6 bg-gradient-to-b from-transparent to-brand-500/10">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl md:text-5xl font-bold mb-6">
-        Free Kids Art 🎨
-      </h2>
-      <p class="text-xl text-gray-400 mb-8">
-        Magical worlds full of hidden details — completely free to download. Something new every time you look!
+    <div class="install-block">
+      <code>
+        <span class="comment"># install</span><br>
+        <span class="cmd">pip install <span class="accent">mnemo-cortex</span></span><br>
+        <br>
+        <span class="comment"># setup wizard (4 questions, done)</span><br>
+        <span class="cmd">mnemo-cortex <span class="accent">init</span></span><br>
+        <br>
+        <span class="comment"># start server + live session capture</span><br>
+        <span class="cmd">mnemo-cortex <span class="accent">start</span></span><br>
+        <span class="cmd">mnemo-cortex <span class="accent">watch --backfill</span></span><br>
+        <br>
+        <span class="comment"># your agent never forgets again ⚡</span>
+      </code>
+    </div>
+  </div>
+</header>
+
+<!-- How It Works -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-label">The Moves</div>
+    <h2 class="section-title">Four endpoints. Total recall.</h2>
+    <p class="section-text">
+      Mnemo Cortex sits alongside your agent as a memory sidecar. 
+      It captures every conversation, builds semantic indexes, and validates 
+      responses against what it remembers — all through simple HTTP calls.
+    </p>
+
+    <div class="moves-grid">
+      <div class="move-card">
+        <div class="move-icon">🔍</div>
+        <div class="move-name">/context</div>
+        <div class="move-desc">Search memory before responding. "What do you remember about Easter?" Returns ranked chunks from the L1/L2/L3 cache hierarchy.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-icon">🛡️</div>
+        <div class="move-name">/preflight</div>
+        <div class="move-desc">Validate before sending. Your agent drafts a response, Mnemo cross-references it against memory. PASS, ENRICH, WARN, or BLOCK.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-icon">⚡</div>
+        <div class="move-name">/ingest</div>
+        <div class="move-desc">The Live Wire. Captures every exchange as it happens. If the session crashes, everything is already on disk. Under 5ms.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-icon">📦</div>
+        <div class="move-name">/writeback</div>
+        <div class="move-desc">Archive sessions with summaries and key facts. Auto-indexed for future semantic search. Your agent's long-term memory.</div>
+      </div>
+    </div>
+
+    <div class="arch-block">
+      <pre>
+<span class="dim">Your Agent</span>                    <span class="hl">Mnemo Cortex</span>
+    │                              │
+    │── POST /context ────────────▶│  <span class="dim">"What do you remember?"</span>
+    │◀── memory chunks ────────────│  <span class="hl">HOT → L1 → L2 → L3</span>
+    │                              │
+    │── POST /preflight ──────────▶│  <span class="dim">"Check my draft"</span>
+    │◀── PASS / ENRICH / WARN ─────│  <span class="hl">"Wait. Take this with you."</span>
+    │                              │
+<span class="hl">Session Watcher</span> <span class="dim">(automatic)</span>       │
+    │── POST /ingest ─────────────▶│  <span class="dim">Every exchange, live</span>
+    │   <span class="hl">&lt;5ms, crash-safe</span>           │  <span class="hl">Written to disk instantly</span>
+      </pre>
+    </div>
+  </div>
+</section>
+
+<!-- Origin Story -->
+<section id="story">
+  <div class="container">
+    <div class="section-label">The Origin Story</div>
+    <h2 class="section-title">The $100 Brain That Cured AI Amnesia</h2>
+    <div class="story-content">
+      <p>
+        For two years, <strong>Guy Hutchins</strong> — a 73-year-old maker in Half Moon Bay, California — 
+        acted as the <strong>"Human Sync Port"</strong> for his AI agents. Every session, he'd manually 
+        copy conversation transcripts between his PC and iPhone, paste context summaries back into 
+        fresh chats, and watch his agents forget everything the moment the window closed.
       </p>
-      <a href="kids-gallery.html" class="inline-block px-10 py-5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-lg rounded-lg transition shadow-xl">
-        Explore Kids Gallery →
+      <p>
+        He tried everything. Forced transcript summaries (<strong>ThreadLocker</strong>). 
+        Reading QR codes off a monitor to transfer AI state between devices. 
+        Word documents ferried back and forth like carrier pigeons. 
+        Nothing stuck. AI memory was a problem everyone talked about and nobody solved.
+      </p>
+
+      <div class="story-quote">
+        <p>"I started with ChatGPT 3.5 and the first thing that mattered was memory. 
+           Two years of 'how do I make AI remember.' Now we're shipping the answer."</p>
+        <cite>— Guy Hutchins, creator of Project Sparks</cite>
+      </div>
+
+      <p>
+        Then came OpenClaw — the persistent terminal environment — and Rocky — the agent living inside it. 
+        and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, 
+        and Opie (Claude) designed, built, and tested a lightweight memory coprocessor that 
+        actually worked. Four endpoints. Local Ollama models. No cloud dependency. 
+        Every conversation captured in real-time.
+      </p>
+      <p>
+        They named it <strong>Mnemo Cortex</strong> — the memory superhero who never forgets 
+        so your agent doesn't have to.
+      </p>
+      <p style="margin-top: 28px;">
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/main/FINDING-MNEMO.md" class="btn btn-ghost">
+          Read the full story: "Finding Mnemo" →
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Art Gallery -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-label">Proof It Works</div>
+    <h2 class="section-title">Rocky's Art Gallery</h2>
+    <p class="section-text">
+      The best demo of persistent AI memory isn't a benchmark — it's a working business.
+    </p>
+
+    <div class="gallery-card">
+      <h3>🦞 ArtForge by Rocky Moltman</h3>
+      <p>
+        What started as Guy's 3D-modeled Halloween ornaments became an autonomous AI art operation. 
+        Rocky generates unique pieces using ComfyUI, converts them to print-ready STLs, 
+        and sells them through live Stripe checkouts — all running on the same 
+        infrastructure that powers Mnemo Cortex.
+      </p>
+      <p>
+        When a catastrophic database failure wiped Rocky's memory mid-project (the infamous $1,160 API burn), 
+        it proved exactly why resilient, local memory is non-negotiable for autonomous AI operations.
+        Mnemo Cortex was born from that lesson.
+      </p>
+      <a href="https://projectsparks.ai/gallery" class="btn btn-primary">
+        Visit the Gallery →
       </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer class="py-12 px-6 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid md:grid-cols-3 gap-8 mb-8">
-        <div>
-          <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-            <span>🦞</span> ArtForge
-          </h3>
-          <p class="text-gray-400">Unique AI-generated art by Rocky</p>
-        </div>
-        <div>
-          <h4 class="font-semibold mb-4">Quick Links</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="gallery.html" class="hover:text-white transition">Gallery</a></li>
-            <li><a href="#about" class="hover:text-white transition">About</a></li>
-            <li><a href="kids-gallery.html" class="hover:text-white transition">Free Kids Art</a></li>
-            <li><a href="project-sparks.html" class="hover:text-white transition">Project Sparks</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-semibold mb-4">Legal</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li><a href="tos.html" class="hover:text-white transition">Terms of Service</a></li>
-            <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
-          </ul>
-        </div>
+<!-- Tech Stack / Providers -->
+<section>
+  <div class="container">
+    <div class="section-label">Works With Everything</div>
+    <h2 class="section-title">Any LLM. Any framework. Your choice.</h2>
+    <p class="section-text">
+      Mnemo Cortex doesn't lock you into a provider. Run fully local with Ollama for free, 
+      or use any cloud API. Mix and match. Add fallback chains so if one provider dies, 
+      another takes over automatically.
+    </p>
+
+    <div class="providers-grid">
+      <div class="provider-chip">Ollama<span class="free">free / local</span></div>
+      <div class="provider-chip">OpenAI</div>
+      <div class="provider-chip">Anthropic</div>
+      <div class="provider-chip">Google Gemini</div>
+      <div class="provider-chip">OpenRouter<span class="free">free tier available</span></div>
+      <div class="provider-chip">HuggingFace<span class="free">free / local</span></div>
+    </div>
+
+    <h3 style="font-family: var(--font-display); font-size: 22px; margin-top: 48px; margin-bottom: 16px;">
+      Framework Adapters
+    </h3>
+    <p class="section-text" style="margin-bottom: 24px;">
+      Built-in adapters for popular agent frameworks. Or just use HTTP — if your agent can call curl, 
+      it can use Mnemo Cortex.
+    </p>
+    <div class="providers-grid">
+      <div class="provider-chip">OpenClaw<span class="free">hook + watcher</span></div>
+      <div class="provider-chip">Agent Zero<span class="free">skill file</span></div>
+      <div class="provider-chip">LangChain<span class="free">HTTP / curl</span></div>
+      <div class="provider-chip">Any Framework<span class="free">4 endpoints</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Summary -->
+<section>
+  <div class="container">
+    <div class="section-label">Built Different</div>
+    <h2 class="section-title">What makes Mnemo Cortex special</h2>
+    <div class="moves-grid" style="margin-top: 32px;">
+      <div class="move-card">
+        <div class="move-name">Live Wire</div>
+        <div class="move-desc">Session watcher captures every exchange automatically. No agent cooperation needed. If the plug gets pulled, nothing is lost.</div>
       </div>
-      <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
-        <p>&copy; 2026 ArtForge by Rocky. All rights reserved.</p>
-        <div class="mt-4">
-          <a href="index-old-backup.html" class="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full border border-gray-700 text-gray-400 hover:text-white hover:border-gray-500 transition" title="Guy's old website">
-            👨‍💻 Guy's old website
-          </a>
-        </div>
+      <div class="move-card">
+        <div class="move-name">Circuit Breaker</div>
+        <div class="move-desc">Provider fallback chains with automatic failover. If Ollama dies, it hot-swaps to your API backup. Zero downtime.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Persona Modes</div>
+        <div class="move-desc">Strict mode for business (aggressive fact-checking). Creative mode for brainstorming (wide associative matching). Or build your own.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Multi-Tenant</div>
+        <div class="move-desc">Each agent gets isolated memory. Rocky's memories never leak into BW's. Filesystem-level isolation, not just namespaces.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">HOT/WARM/COLD</div>
+        <div class="move-desc">Recent sessions are instantly searchable. Older ones get summarized and embedded. Ancient ones compress to cold storage. All still findable.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">56 Tests</div>
+        <div class="move-desc">Circuit breaker, provider fallbacks, cache hierarchy, tenant isolation, persona modes, session lifecycle. All passing.</div>
       </div>
     </div>
-  </footer>
-
-  <!-- countapi.xyz removed — service shut down 2023; Firebase Analytics handles tracking -->
-
-  <!-- PayPal Donation Button -->
-  <div class="fixed bottom-4 left-4 z-50">
-    <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Support+Rocky%27s+token+costs+%E2%80%94+keeps+the+AI+artist+creating%21&currency_code=USD" 
-       target="_blank" 
-       class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transition-colors">
-      💰 Support Tokens
-    </a>
   </div>
+</section>
 
-  <!-- Chat widget removed - local endpoint not accessible to external visitors -->
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label">Get Started</div>
+    <h2 class="section-title">Give your agent a brain<br>that actually persists.</h2>
+    <p class="section-text">
+      Open source. Free forever. MIT licensed.<br>
+      Built by Guy, Rocky 🦞, and Opie ⚡ for <a href="https://projectsparks.ai" style="color: var(--copper-light);">Project Sparks</a>.
+    </p>
+    <div class="cta-buttons">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
+        ⚡ Star on GitHub
+      </a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/main/CONTRIBUTING.md" class="btn btn-ghost" target="_blank">
+        Contribute
+      </a>
+      <a href="https://github.com/sponsors/GuyMannDude" class="btn btn-ghost" target="_blank">
+        ♥ Sponsor
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-left">
+      <strong>Project Sparks</strong> · Half Moon Bay, CA<br>
+      Guy Hutchins · Rocky Moltman 🦞 · Opie (Claude) ⚡
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex">GitHub</a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/main/CONTRIBUTING.md">Contributing</a>
+      <a href="https://github.com/sponsors/GuyMannDude">Donate</a>
+      <a href="mailto:guy@projectsparks.ai">Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
