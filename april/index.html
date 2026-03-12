@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="April's curated local succulent collection.">
+    <title>April's Succulents</title>
+    <style>
+        :root {
+            --primary: #2A402D; /* Deep earthy green */
+            --secondary: #6A8A6D; /* Soft sage green */
+            --bg-color: #Fdfbf7; /* Warm off-white */
+            --text-color: #333333;
+            --accent: #D3A77C; /* Terracotta pot color */
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            padding: 3rem 1rem;
+            width: 100%;
+        }
+
+        .intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent);
+            display: block;
+        }
+
+        .card-details {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-details h3 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-details p.description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.4;
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>April's Succulents</h1>
+        <p>Curated Botanical Arrangements</p>
+    </header>
+
+    <div class="container">
+        <div class="intro">
+            <p>Welcome to my local collection. Each succulent arrangement is carefully hand-planted in curated vessels to bring a touch of resilient, low-maintenance nature directly into your home or office space. Currently serving local pick-ups only.</p>
+        </div>
+
+        <div class="gallery">
+            <div class="card">
+                <img src="/april/1.jpeg" alt="Succulent Arrangement 1">
+                <div class="card-details">
+                    <h3>Hello Kitty Multi-Succulent Arrangement</h3>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/2.jpeg" alt="Succulent Arrangement 2">
+                <div class="card-details">
+                    <h3>Terracotta Classic</h3>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/3.jpeg" alt="Succulent Arrangement 3">
+                <div class="card-details">
+                    <h3>The Jade Cluster</h3>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/4.jpeg" alt="Succulent Arrangement 4">
+                <div class="card-details">
+                    <h3>Nightmare Before Xmas Mini Arrangement</h3>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="/april/5.jpeg" alt="Succulent Arrangement 5">
+                <div class="card-details">
+                    <h3>Aqua Ceramic Teapot</h3>
+                    <p class="description">Hand-potted soft-pastel succulents nestle inside a glossy aqua ceramic teapot for a whimsical, space-saving display. Perfect for windowsills, desks, or gift baskets, this ready-to-enjoy teapot planter comes on a bamboo coaster and needs only bright, indirect light and occasional watering.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/6.jpeg" alt="Succulent Arrangement 6">
+                <div class="card-details">
+                    <h3>Pink Character Ceramic</h3>
+                    <p class="description">Bring a smile to any shelf with this kawaii-inspired pink character planter, overflowing with petite succulents and trailing accents. Bright, glossy ceramic and a bamboo base make it a charming, low-effort decor piece perfect for gifting or brightening small spaces.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/7.jpeg" alt="Succulent Arrangement 7">
+                <div class="card-details">
+                    <h3>White Watering Can (Style A)</h3>
+                    <p class="description">This charming white watering-can planter, stamped with a sunny wreath motif, is filled with a mixed succulent arrangement and white stone top dressing for a clean, farmhouse look. Lightweight and ready to display on mantels or tabletops, it’s an artisanal accent that brings soft greenery into cozy interiors.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/april/8.jpeg" alt="Succulent Arrangement 8">
+                <div class="card-details">
+                    <h3>White Watering Can (Style B)</h3>
+                    <p class="description">This charming white watering-can planter, stamped with a sunny wreath motif, is filled with a mixed succulent arrangement and white stone top dressing for a clean, farmhouse look. Lightweight and ready to display on mantels or tabletops, it’s an artisanal accent that brings soft greenery into cozy interiors.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="mailto:info@hoffmanbedding.com" class="contact-btn">Inquire About Availability</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 April Hoffman | Hosted by <a href="/" style="color: var(--secondary); text-decoration: none;">ProjectSparks</a></p>
+    </footer>
+
+</body>
+</html>
