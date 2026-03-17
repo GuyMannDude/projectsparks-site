@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mnemo Cortex — Total Recall for OpenClaw Agents</title>
-<meta name="description" content="Open-source memory coprocessor for AI agents. Four endpoints. Any LLM. Your agent never forgets again.">
-<meta property="og:title" content="Mnemo Cortex — Total Recall for AI Agents">
-<meta property="og:description" content="Your AI agent forgets everything between sessions. Mnemo Cortex fixes that. Open source. Four endpoints. Any LLM.">
+<title>Project Sparks — Open-Source Tools for AI Agents</title>
+<meta name="description" content="Mnemo Cortex (memory) and Sparks Router (smart routing). Open-source tools for OpenClaw agents. Free forever.">
+<meta property="og:title" content="Project Sparks — Open-Source Tools for AI Agents">
+<meta property="og:description" content="Mnemo Cortex gives agents memory. Sparks Router stops them burning tokens on heartbeats. Open source. Free forever.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://projectsparks.ai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -466,12 +466,12 @@ footer .container {
 <!-- Navigation -->
 <nav>
   <div class="container">
-    <div class="nav-logo">⚡ <span>mnemo</span>cortex</div>
+    <div class="nav-logo">⚡ <span>project</span>sparks</div>
     <div class="nav-links">
-      <a href="#how-it-works">How It Works</a>
+      <a href="#mnemo">Mnemo Cortex</a>
+      <a href="#router">Sparks Router</a>
       <a href="#story">Our Story</a>
-      <a href="#v2">v2.0 Release</a>
-      <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">GitHub</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
     </div>
   </div>
 </nav>
@@ -480,52 +480,23 @@ footer .container {
 <header class="hero">
   <div class="container">
     <div class="hero-badge">Open Source · Free Forever</div>
-    <h1>Your AI agent forgets everything.<br><em>We fixed that.</em></h1>
+    <h1>Open-source tools<br>for <em>AI agents.</em></h1>
     <p class="subtitle">
-      <strong>"Don't Fear the /new!"</strong><br>
-      Mnemo Cortex v2.0 is an open-source memory coprocessor that gives AI agents
-      persistent recall. SQLite-backed. Any LLM. No cloud lock-in.
-      Now proven on two live agents — Rocky with six weeks of recall, Alice with one.
+      Memory that persists. Routing that saves money. Two tools, proven on live agents, built in the open.
     </p>
     <div class="hero-cta">
-      <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
-        View on GitHub →
+      <a href="#mnemo" class="btn btn-primary">
+        Mnemo Cortex →
       </a>
-      <a href="#how-it-works" class="btn btn-ghost">
-        See How It Works
+      <a href="#router" class="btn btn-ghost">
+        Sparks Router →
       </a>
-    </div>
-    <div style="margin-top: 24px; padding: 20px 28px; background: var(--teal-light); border: 1px solid var(--teal); border-radius: 10px; display: inline-block;">
-      <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">
-        🤖 ClaudePilot Enabled
-      </div>
-      <div style="font-size: 15px; color: var(--ink-soft); line-height: 1.5;">
-        Designed for Claude (free). Works with ChatGPT, Gemini, and others.<br>
-        <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/CLAUDEPILOT.md" target="_blank" style="color: var(--copper-light); font-weight: 500;">Follow the guide</a> and paste it into <a href="https://claude.ai" target="_blank" style="color: var(--copper-light); font-weight: 500;">claude.ai</a>. Claude becomes your personal installer.
-      </div>
-    </div>
-
-    <div class="install-block">
-      <code>
-        <span class="comment"># install</span><br>
-        <span class="cmd">pip install <span class="accent">mnemo-cortex</span></span><br>
-        <br>
-        <span class="comment"># setup wizard (4 questions, done)</span><br>
-        <span class="cmd">mnemo-cortex <span class="accent">init</span></span><br>
-        <br>
-        <span class="comment"># start server + live session capture</span><br>
-        <span class="cmd">mnemo-cortex <span class="accent">start</span></span><br>
-        <span class="cmd">mnemo-cortex <span class="accent">watch --backfill</span></span><br>
-        <span class="cmd">mnemo-cortex <span class="accent">refresh --watch</span></span><br>
-        <br>
-        <span class="comment"># your agent never forgets again ⚡</span>
-      </code>
     </div>
   </div>
 </header>
 
-<!-- How It Works -->
-<section id="how-it-works">
+<!-- Mnemo Cortex -->
+<section id="mnemo">
   <div class="container">
     <div class="section-label">The Moves</div>
     
@@ -700,7 +671,7 @@ footer .container {
   </div>
 </section>
 
-<!-- v2.0 Released -->
+<!-- Mnemo v2.0 -->
 <section id="v2">
   <div class="container">
     <div class="section-label">NEW RELEASE</div>
@@ -745,6 +716,60 @@ footer .container {
   </div>
 </section>
 
+<!-- Sparks Router -->
+<section id="router">
+  <div class="container">
+    <div class="section-label">NEW RELEASE</div>
+    <h2 class="section-title">Don't burn tokens on heartbeats.</h2>
+    <p class="section-text" style="margin-bottom: 32px;">
+      Sparks Router is a lightweight proxy between OpenClaw and OpenRouter.
+      It classifies every request into <strong>smart</strong>, <strong>utility</strong>, or <strong>free</strong> tiers
+      and routes to the right model automatically. Daily budget caps keep spending in check.
+      Heartbeats and background noise cost nothing. Your expensive model only fires when it needs to.
+    </p>
+
+    <div class="moves-grid">
+      <div class="move-card">
+        <div class="move-name">Smart Tier</div>
+        <div class="move-desc">Reasoning, analysis, planning, long conversations. Routes to Gemini 3.1 Pro. Only fires when the request actually needs it.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Utility Tier</div>
+        <div class="move-desc">Tool calls, search, file ops, short chat. Routes to Gemini 2.5 Flash. Fast and cheap — handles most agent traffic.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Free Tier</div>
+        <div class="move-desc">Heartbeats, cron, health checks, background. Routes to Nemotron 120B (free). Zero cost. Always.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Budget Caps</div>
+        <div class="move-desc">Daily spending limits per tier with automatic downgrade. Hit the cap? Requests fall back to free. Your agent keeps working.</div>
+      </div>
+    </div>
+
+    <div class="story-quote" style="margin-top: 36px;">
+      <p>"Proven on two live agents — Rocky (IGOR) and Alice (THE VAULT). Zero token waste on background traffic."</p>
+      <cite>— Live deployment, March 2026</cite>
+    </div>
+
+    <div style="margin-top: 24px; padding: 20px 28px; background: var(--teal-light); border: 1px solid var(--teal); border-radius: 10px; display: inline-block;">
+      <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">
+        🤖 ClaudePilot Enabled
+      </div>
+      <div style="font-size: 15px; color: var(--ink-soft); line-height: 1.5;">
+        Designed for Claude (free). Works with ChatGPT, Gemini, and others.<br>
+        <a href="https://github.com/GuyMannDude/sparks-router/blob/main/CLAUDEPILOT.md" target="_blank" style="color: var(--copper-light); font-weight: 500;">Follow the guide</a> and paste it into <a href="https://claude.ai" target="_blank" style="color: var(--copper-light); font-weight: 500;">claude.ai</a>. Claude becomes your personal installer.
+      </div>
+    </div>
+
+    <p style="margin-top: 28px;">
+      <a href="https://github.com/GuyMannDude/sparks-router" class="btn btn-primary" target="_blank">
+        Get Sparks Router on GitHub →
+      </a>
+    </p>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
   <div class="container">
@@ -756,16 +781,13 @@ footer .container {
     </p>
     <div class="cta-buttons">
       <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
-        ⚡ Star on GitHub
+        Mnemo Cortex →
       </a>
-      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/CLAUDEPILOT.md" class="btn btn-ghost" target="_blank">
-        🤖 ClaudePilot Install
-      </a>
-      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/main/CONTRIBUTING.md" class="btn btn-ghost" target="_blank">
-        Contribute
+      <a href="https://github.com/GuyMannDude/sparks-router" class="btn btn-primary" target="_blank">
+        Sparks Router →
       </a>
       <a href="https://github.com/sponsors/GuyMannDude" class="btn btn-ghost" target="_blank">
-        ♥ Sponsor
+        Sponsor
       </a>
     </div>
   </div>
@@ -776,11 +798,12 @@ footer .container {
   <div class="container">
     <div class="footer-left">
       <strong>Project Sparks</strong> · Half Moon Bay, CA<br>
-      Guy Hutchins · Rocky Moltman 🦞 · Opie (Claude) ⚡ · AL (ChatGPT 5.4) ✨
+      Guy Hutchins · Rocky Moltman 🦞 · Opie (Claude) ⚡ · AL (ChatGPT) ✨ · CC (Claude Code)
     </div>
     <div class="footer-links">
-      <a href="https://github.com/GuyMannDude/mnemo-cortex">GitHub</a>
-      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/main/CONTRIBUTING.md">Contributing</a>
+      <a href="https://github.com/GuyMannDude">GitHub</a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex">Mnemo Cortex</a>
+      <a href="https://github.com/GuyMannDude/sparks-router">Sparks Router</a>
       <a href="https://github.com/sponsors/GuyMannDude">Donate</a>
       <a href="mailto:guy@projectsparks.ai">Contact</a>
     </div>
