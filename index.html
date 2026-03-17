@@ -496,11 +496,12 @@ footer .container {
 <header class="hero">
   <div class="container">
     <div class="hero-badge">Open Source · Free Forever</div>
-    <h1>Your OpenClaw agent forgets<br>everything. <em>We fixed that.</em></h1>
+    <h1>Your AI agent forgets everything.<br><em>We fixed that.</em></h1>
     <p class="subtitle">
-      Built for OpenClaw. Mnemo Cortex is an open-source memory coprocessor that gives OpenClaw agents 
-      persistent recall. Four endpoints. Any LLM. No cloud lock-in.
-      Install in 60 seconds.
+      <strong>"Don't Fear the /new!"</strong><br>
+      Mnemo Cortex v2.0 is an open-source memory coprocessor that gives AI agents
+      persistent recall. SQLite-backed. Any LLM. No cloud lock-in.
+      Now proven on two live agents with six weeks of recall.
     </p>
     <div class="hero-cta">
       <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
@@ -738,6 +739,51 @@ footer .container {
   </div>
 </section>
 
+<!-- v2.0 Released -->
+<section id="v2">
+  <div class="container">
+    <div class="section-label">v2.0.0 Released</div>
+    <h2 class="section-title">"Don't Fear the /new!"</h2>
+    <p class="section-text" style="margin-bottom: 32px;">
+      Your AI agent forgets everything between sessions. Mnemo Cortex fixes that.
+      Now proven on two live agents with six weeks of recall.
+      v2.0 replaces JSONL files with <strong>SQLite + FTS5</strong>, introduces a
+      <strong>context frontier with active compaction</strong> (80% compression, perfect recall),
+      and adds <strong>DAG-based summary lineage</strong> so every summary traces back to its source.
+    </p>
+
+    <div class="moves-grid">
+      <div class="move-card">
+        <div class="move-name">SQLite + FTS5</div>
+        <div class="move-desc">All memory in a single database with full-text search. Fast, portable, zero dependencies. No more JSONL files.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Active Compaction</div>
+        <div class="move-desc">A rolling frontier of context items. Older messages get summarized automatically — 80% compression, perfect recall.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Summary Lineage</div>
+        <div class="move-desc">Every summary tracks which messages built it via a directed acyclic graph. Expand any summary back to verbatim source.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Sidecar Design</div>
+        <div class="move-desc">Observes session files from outside — never patches the agent. If v2.0 crashes, the agent keeps working. Clean separation.</div>
+      </div>
+    </div>
+
+    <div class="story-quote" style="margin-top: 36px;">
+      <p>"3,000+ messages ingested, 429 summaries, recall to Day One. Two agents, two machines, six weeks."</p>
+      <cite>— Live stats from Rocky (IGOR) and Alice (THE VAULT), March 2026</cite>
+    </div>
+
+    <p style="margin-top: 28px;">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/v2.0.0" class="btn btn-primary" target="_blank">
+        Get v2.0.0 on GitHub →
+      </a>
+    </p>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
   <div class="container">
@@ -745,7 +791,7 @@ footer .container {
     <h2 class="section-title">Give your agent a brain<br>that actually persists.</h2>
     <p class="section-text">
       Open source. Free forever. MIT licensed.<br>
-      Built by Guy, Rocky 🦞, and Opie ⚡ for <a href="https://projectsparks.ai" style="color: var(--copper-light);">Project Sparks</a>.
+      Built by Guy, Rocky 🦞, Opie (Claude) ⚡, AL (ChatGPT), and CC (Claude Code) for <a href="https://projectsparks.ai" style="color: var(--copper-light);">Project Sparks</a>.
     </p>
     <div class="cta-buttons">
       <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">
