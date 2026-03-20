@@ -438,64 +438,6 @@ footer .container {
 }
 .footer-links a:hover { color: var(--copper); }
 
-/* ─── Splash Hero (one-screen) ─── */
-.splash {
-  height: calc(100vh - 61px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 28px;
-  background: var(--cream);
-  text-align: center;
-  gap: 0;
-  overflow: hidden;
-}
-.splash-logo {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 900;
-  color: var(--ink);
-  letter-spacing: -0.5px;
-  margin-bottom: 20px;
-  animation: fadeUp 0.5s ease both;
-}
-.splash-logo span { color: var(--copper); }
-.splash-images {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-  max-width: 960px;
-  flex: 1;
-  min-height: 0;
-  margin-bottom: 24px;
-  animation: fadeUp 0.6s ease 0.1s both;
-}
-.splash-images img {
-  flex: 1;
-  min-width: 0;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px var(--shadow-md);
-}
-.splash-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp 0.6s ease 0.2s both;
-}
-
-@media (max-width: 640px) {
-  .splash { padding: 16px 16px; height: calc(100svh - 61px); }
-  .splash-logo { font-size: 24px; margin-bottom: 12px; }
-  .splash-images { flex-direction: column; gap: 12px; }
-  .splash-buttons { gap: 10px; }
-  .splash-buttons .btn { padding: 10px 18px; font-size: 12px; }
-}
-
 /* ─── Animations ─── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -533,20 +475,6 @@ footer .container {
     </div>
   </div>
 </nav>
-
-<!-- Splash Hero -->
-<section class="splash">
-  <div class="splash-logo"><span>Project</span> Sparks</div>
-  <div class="splash-images">
-    <img src="assets/images/site/mnemo-cortex-hero.png" alt="Mnemo Cortex — Memory for AI Agents">
-    <img src="assets/images/site/sparks-router-banner.png" alt="Sparks Router — Smart Model Routing">
-  </div>
-  <div class="splash-buttons">
-    <a href="#mnemo" class="btn btn-primary">Mnemo Cortex</a>
-    <a href="#router" class="btn btn-primary">Sparks Router</a>
-    <a href="https://github.com/GuyMannDude/claudepilot-openclaw" class="btn btn-ghost" target="_blank">ClaudePilot OpenClaw</a>
-  </div>
-</section>
 
 <!-- Hero -->
 <header class="hero">
