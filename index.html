@@ -438,6 +438,62 @@ footer .container {
 }
 .footer-links a:hover { color: var(--copper); }
 
+/* ─── Splash Hero (one-screen) ─── */
+.splash {
+  height: calc(100vh - 61px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 28px;
+  background: var(--cream);
+  text-align: center;
+  gap: 0;
+  overflow: hidden;
+}
+.splash-logo {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.5s ease both;
+}
+.splash-logo span { color: var(--copper); }
+.splash-images {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 960px;
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.splash-images img {
+  flex: 1;
+  min-width: 0;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px var(--shadow-md);
+}
+.splash-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+@media (max-width: 640px) {
+  .splash { padding: 16px 16px; height: calc(100svh - 61px); }
+  .splash-logo { font-size: 24px; margin-bottom: 12px; }
+  .splash-images { flex-direction: column; gap: 12px; }
+  .splash-buttons { gap: 10px; }
+  .splash-buttons .btn { padding: 10px 18px; font-size: 12px; }
+}
+
 /* ─── Animations ─── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -476,11 +532,29 @@ footer .container {
   </div>
 </nav>
 
+<!-- Splash Hero -->
+<section class="splash">
+  <div class="splash-logo"><span>Project</span> Sparks</div>
+  <div class="splash-images">
+    <img src="assets/images/site/mnemo-cortex-hero.png" alt="Mnemo Cortex — Memory for AI Agents">
+    <img src="assets/images/site/sparks-router-banner.png" alt="Sparks Router — Smart Model Routing">
+  </div>
+  <div class="splash-buttons">
+    <a href="#mnemo" class="btn btn-primary">Mnemo Cortex</a>
+    <a href="#router" class="btn btn-primary">Sparks Router</a>
+    <a href="https://github.com/GuyMannDude/claudepilot-openclaw" class="btn btn-ghost" target="_blank">ClaudePilot OpenClaw</a>
+  </div>
+</section>
+
 <!-- Hero -->
 <header class="hero">
   <div class="container">
     <div class="hero-badge">Open Source · Free Forever</div>
-    <h1>Open-source tools<br>for <em>AI agents.</em></h1>
+    <img src="assets/images/site/mnemo-mascot.png" alt="Mnemo Cortex Mascot — The Elephant-Lobster" style="width: 280px; height: 280px; object-fit: cover; border-radius: 50%; margin-bottom: 32px; box-shadow: 0 0 60px rgba(42, 160, 220, 0.3), 0 8px 30px rgba(26, 23, 20, 0.2); animation: fadeUp 0.5s ease both;">
+    <h1>Your AI agent forgets<br><em>everything.</em> We fixed that.</h1>
+    <p class="subtitle" style="font-size: 22px; font-weight: 600; margin-bottom: 12px;">
+      A Crustacean That Never Forgets 🧠🦞
+    </p>
     <p class="subtitle">
       Memory that persists. Routing that saves money. Two tools, proven on live agents, built in the open.
     </p>
@@ -719,52 +793,174 @@ footer .container {
 <!-- Sparks Router -->
 <section id="router">
   <div class="container">
-    <div class="section-label">NEW RELEASE</div>
+    <div class="section-label">Sparks Router v2.0</div>
     <h2 class="section-title">Don't burn tokens on heartbeats.</h2>
-    <p class="section-text" style="margin-bottom: 32px;">
-      Sparks Router is a lightweight proxy between OpenClaw and OpenRouter.
-      It classifies every request into <strong>smart</strong>, <strong>utility</strong>, or <strong>free</strong> tiers
-      and routes to the right model automatically. Daily budget caps keep spending in check.
-      Heartbeats and background noise cost nothing. Your expensive model only fires when it needs to.
-    </p>
 
+    <!-- Hero banner -->
+    <img src="assets/images/site/sparks-router-banner.png" alt="Sparks Router — Smart, Utility, Free tiers" style="width: 100%; max-width: 960px; border-radius: 12px; margin-bottom: 32px; box-shadow: 0 8px 30px var(--shadow-md);">
+
+    <div class="story-content">
+      <p><strong>Every AI agent burns tokens on tasks that don't need expensive models.</strong> A heartbeat check doesn't need Opus. A quick lookup doesn't need Gemini Pro. But without routing, every request hits the same model at the same price.</p>
+      <p>Sparks Router is a task-based model routing proxy for <a href="https://openclaw.ai" target="_blank">OpenClaw</a> agents. It reads your prompts, classifies the task complexity, and routes to the right model tier automatically. Three tiers. Automatic classification. Budget caps. You set the ceiling, the router handles the rest.</p>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 48px;">Three tiers. Automatic classification.</h2>
     <div class="moves-grid">
       <div class="move-card">
-        <div class="move-name">Smart Tier</div>
-        <div class="move-desc">Reasoning, analysis, planning, long conversations. Routes to Gemini 3.1 Pro. Only fires when the request actually needs it.</div>
+        <div class="move-icon">🧠</div>
+        <div class="move-name">Smart Tier — $$$</div>
+        <div class="move-desc">Deep reasoning, architecture, complex analysis, multi-step planning. Routes to <strong>Gemini 3.1 Pro</strong>. Only fires when the request actually needs heavy thinking. The expensive model earns its keep.</div>
       </div>
       <div class="move-card">
-        <div class="move-name">Utility Tier</div>
-        <div class="move-desc">Tool calls, search, file ops, short chat. Routes to Gemini 2.5 Flash. Fast and cheap — handles most agent traffic.</div>
+        <div class="move-icon">⚙️</div>
+        <div class="move-name">Utility Tier — $$</div>
+        <div class="move-desc">Code generation, summaries, structured tasks, tool calls, search. Routes to <strong>Gemini 2.5 Flash</strong>. Fast, cheap, and handles most of your agent's daily traffic.</div>
       </div>
       <div class="move-card">
-        <div class="move-name">Free Tier</div>
-        <div class="move-desc">Heartbeats, cron, health checks, background. Routes to Nemotron 120B (free). Zero cost. Always.</div>
+        <div class="move-icon">🔓</div>
+        <div class="move-name">Free Tier — $0</div>
+        <div class="move-desc">Heartbeats, cron jobs, health checks, lookups, formatting. Routes to <strong>Nemotron 120B</strong> (free via OpenRouter). Zero cost. Always. This is where the savings live.</div>
+      </div>
+    </div>
+
+    <!-- Architecture diagram -->
+    <div class="arch-block">
+      <pre>
+<span class="dim">Incoming Request</span>              <span class="hl">Sparks Router</span>                <span class="dim">OpenRouter</span>
+    │                              │                              │
+    │── "Analyze tradeoffs" ──────▶│  <span class="hl">→ SMART</span>  gemini-3.1-pro ──▶│
+    │── "Write a function" ───────▶│  <span class="hl">→ UTILITY</span> gemini-2.5-flash ▶│
+    │── "heartbeat" ──────────────▶│  <span class="hl">→ FREE</span>   nemotron-120b ───▶│  <span class="dim">$0.00</span>
+    │                              │                              │
+    │                         <span class="hl">Budget Cap Hit?</span>                    │
+    │                         <span class="dim">Auto-downgrade to FREE</span>              │
+      </pre>
+    </div>
+  </div>
+</section>
+
+<!-- Router Features -->
+<section>
+  <div class="container">
+    <div class="section-label">Built Different</div>
+    <h2 class="section-title">What makes Sparks Router special</h2>
+    <div class="moves-grid" style="margin-top: 32px;">
+      <div class="move-card">
+        <div class="move-name">Keyword Classifier</div>
+        <div class="move-desc">Configurable trigger words per tier. "analyze" → Smart. "summarize" → Utility. "ping" → Free. Customize for your workflow.</div>
       </div>
       <div class="move-card">
         <div class="move-name">Budget Caps</div>
-        <div class="move-desc">Daily spending limits per tier with automatic downgrade. Hit the cap? Requests fall back to free. Your agent keeps working.</div>
+        <div class="move-desc">Set a daily spending limit per tier. Hit the cap? Requests auto-downgrade to free. Your agent keeps working. Your wallet stays closed.</div>
       </div>
+      <div class="move-card">
+        <div class="move-name">Profile Presets</div>
+        <div class="move-desc">Save named routing configs. Standard Dive for daily work. Budget Dive for cost control. Full Throttle for critical work. Up to 10 slots.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Streaming</div>
+        <div class="move-desc">Full SSE streaming passthrough. Your agent gets responses token by token, just like talking to OpenRouter directly. Completely transparent.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Drop-In Proxy</div>
+        <div class="move-desc">Same API format as OpenRouter. Change one URL in your agent config. No code changes. Your agent doesn't even know the router exists.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Cost Tracking</div>
+        <div class="move-desc">Every response includes token counts and cost data. Track cumulative spending per tier, per day. Know exactly where your money goes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Consensus Engine -->
+<section>
+  <div class="container">
+    <div class="section-label">Advanced</div>
+    <h2 class="section-title">Consensus Engine (PMO)</h2>
+    <div class="story-content">
+      <p><strong>Poor Man's Opie</strong> — when one model isn't enough. Fan a critical task out to multiple models and synthesize a consensus response. Four models argue, one judge arbitrates. Better answers than any single model for the decisions that matter most.</p>
+    </div>
+
+    <div class="arch-block">
+      <pre>
+<span class="dim">Your Question</span>                     <span class="hl">PMO Consensus</span>
+    │                              │
+    ├──▶ <span class="hl">Gemini Pro</span> ──────────────▶│
+    ├──▶ <span class="hl">Claude Sonnet</span> ────────────▶│  <span class="dim">4 models respond</span>
+    ├──▶ <span class="hl">GPT-4.1</span> ──────────────────▶│  <span class="dim">1 judge synthesizes</span>
+    ├──▶ <span class="hl">DeepSeek R1</span> ──────────────▶│
+    │                              │
+    │◀── <span class="hl">Consensus Answer</span> ─────────│  <span class="dim">Best of all four</span>
+      </pre>
     </div>
 
     <div class="story-quote" style="margin-top: 36px;">
-      <p>"Proven on two live agents — Rocky (IGOR) and Alice (THE VAULT). Zero token waste on background traffic."</p>
-      <cite>— Live deployment, March 2026</cite>
+      <p>"Proven on two live agents — Rocky (IGOR) and Alice (THE VAULT). Zero token waste on background traffic. Every heartbeat costs nothing."</p>
+      <cite>— Live deployment on two machines, March 2026</cite>
+    </div>
+  </div>
+</section>
+
+<!-- Submarine Console UI -->
+<section>
+  <div class="container">
+    <div class="section-label">The Console</div>
+    <h2 class="section-title">Submarine Command Console</h2>
+    <p class="section-text" style="margin-bottom: 32px;">
+      A steampunk-themed web UI for managing your routing profiles, models, and monitoring.
+      Brass portholes. Pressure gauges. Bubble animations. Because infrastructure should look as good as it works.
+    </p>
+
+    <img src="assets/images/site/sparks-router-ui.png" alt="Sparks Router Submarine Console UI" style="width: 100%; max-width: 960px; border-radius: 12px; box-shadow: 0 8px 30px var(--shadow-md); border: 1px solid var(--border-light);">
+    <p style="font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); margin-top: 12px; text-align: center; letter-spacing: 1px;">
+      The Submarine Console — live on THE VAULT at artforge:50085
+    </p>
+
+    <div class="moves-grid" style="margin-top: 32px;">
+      <div class="move-card">
+        <div class="move-name">Standard Mode</div>
+        <div class="move-desc">Curated model dropdowns per tier. Pick from proven models. Change with one click.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Pro Mode</div>
+        <div class="move-desc">Paste any OpenRouter model string. Format validation. Use any model from any provider.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">10 Presets</div>
+        <div class="move-desc">Named profile slots that survive restarts. Save, load, switch, delete. Factory Reset returns to defaults.</div>
+      </div>
+      <div class="move-card">
+        <div class="move-name">Health Monitor</div>
+        <div class="move-desc">Live OpenRouter status indicator. Green/Yellow/Red. Pings every 30 seconds. Know before your agent does.</div>
+      </div>
     </div>
 
-    <div style="margin-top: 24px; padding: 20px 28px; background: var(--teal-light); border: 1px solid var(--teal); border-radius: 10px; display: inline-block;">
-      <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">
-        🤖 ClaudePilot Enabled
+    <!-- ClaudePilot + cross-links -->
+    <div style="margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 280px; padding: 20px 28px; background: var(--teal-light); border: 1px solid var(--teal); border-radius: 10px;">
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">
+          🤖 ClaudePilot Enabled
+        </div>
+        <div style="font-size: 15px; color: var(--ink-soft); line-height: 1.5;">
+          Open the <a href="https://github.com/GuyMannDude/sparks-router/blob/main/INSTALL-GUIDE.md" target="_blank" style="color: var(--copper-light); font-weight: 500;">Install Guide</a> in Claude Code — it becomes your personal installation assistant. 12 phases, one step at a time, with troubleshooting built in.<br>
+          Or paste it into <a href="https://claude.ai" target="_blank" style="color: var(--copper-light); font-weight: 500;">claude.ai</a> (free). Works with ChatGPT, Gemini, and others.
+        </div>
       </div>
-      <div style="font-size: 15px; color: var(--ink-soft); line-height: 1.5;">
-        Designed for Claude (free). Works with ChatGPT, Gemini, and others.<br>
-        <a href="https://github.com/GuyMannDude/sparks-router/blob/main/CLAUDEPILOT.md" target="_blank" style="color: var(--copper-light); font-weight: 500;">Follow the guide</a> and paste it into <a href="https://claude.ai" target="_blank" style="color: var(--copper-light); font-weight: 500;">claude.ai</a>. Claude becomes your personal installer.
+      <div style="flex: 1; min-width: 280px; padding: 20px 28px; background: var(--copper-glow); border: 1px solid var(--copper); border-radius: 10px;">
+        <div style="font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px;">
+          🧠 Works great with Mnemo Cortex
+        </div>
+        <div style="font-size: 15px; color: var(--ink-soft); line-height: 1.5;">
+          Smart routing + persistent memory = agents that remember everything and never overspend.
+          <a href="#mnemo" style="color: var(--copper-light); font-weight: 500;">See Mnemo Cortex above</a> or <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank" style="color: var(--copper-light); font-weight: 500;">get it on GitHub</a>.
+        </div>
       </div>
     </div>
 
     <p style="margin-top: 28px;">
       <a href="https://github.com/GuyMannDude/sparks-router" class="btn btn-primary" target="_blank">
-        Get Sparks Router on GitHub →
+        Get Sparks Router v2 on GitHub →
       </a>
     </p>
   </div>
