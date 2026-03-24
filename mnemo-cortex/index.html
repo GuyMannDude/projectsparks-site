@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mnemo Cortex — Memory for AI Agents</title>
+<meta name="description" content="Mnemo Cortex gives AI agents persistent memory. Four endpoints. Total recall. Open source.">
+<meta property="og:title" content="Mnemo Cortex — Memory for AI Agents">
+<meta property="og:description" content="Persistent memory for AI agents. Four endpoints, total recall, 80% compression. Open source from Project Sparks.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/mnemo-cortex">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mnemo Cortex — Memory for AI Agents">
+<meta name="twitter:description" content="Persistent memory for AI agents. Four endpoints, total recall, 80% compression. Open source from Project Sparks.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #08080f;
+    --gold: #e8b830;
+    --gold-bright: #ffd54f;
+    --gold-glow: rgba(232, 184, 48, 0.5);
+    --gold-dim: rgba(232, 184, 48, 0.25);
+    --amber: #f09030;
+    --copper: #d47030;
+    --copper-glow: rgba(212, 112, 48, 0.3);
+    --text: #ededf4;
+    --text-bright: #ffffff;
+    --text-sub: #a0a0b4;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(232, 184, 48, 0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-bright); }
+
+  /* Nav */
+  nav {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+
+  /* Sections */
+  section { padding: 88px 0; }
+  section + section { border-top: 1px solid var(--card-border); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 18px;
+    text-shadow: 0 0 20px var(--copper-glow);
+  }
+  h1 {
+    font-weight: 300; font-size: 60px;
+    letter-spacing: 8px; color: var(--text-bright);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  h2 {
+    font-weight: 400; font-size: 38px;
+    color: var(--text-bright); margin-bottom: 22px;
+  }
+  .subtitle {
+    font-size: 32px; color: var(--gold-bright);
+    font-style: italic; margin-bottom: 44px;
+    text-shadow: 0 0 30px var(--gold-glow);
+  }
+
+  /* Cards grid */
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px; margin-top: 36px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 28px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 24px var(--copper-glow);
+  }
+  .card .icon { font-size: 32px; margin-bottom: 14px; }
+  .card .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px; font-weight: 500;
+    color: var(--gold); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
+
+  /* Arch diagram */
+  .arch {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 32px;
+    margin-top: 36px; overflow-x: auto;
+  }
+  .arch pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; line-height: 1.8;
+    color: var(--text-sub);
+  }
+  .arch .hl { color: var(--gold-bright); text-shadow: 0 0 12px var(--gold-glow); }
+  .arch .dim { color: var(--text-sub); opacity: 0.6; }
+
+  /* Quote */
+  .quote {
+    border-left: 3px solid var(--amber);
+    padding: 24px 32px; margin: 36px 0;
+    background: var(--card-bg); border-radius: 0 10px 10px 0;
+  }
+  .quote p { font-size: 21px; font-style: italic; color: var(--text); }
+  .quote cite { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-sub); display: block; margin-top: 14px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block; padding: 16px 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; letter-spacing: 2px;
+    text-transform: uppercase; border-radius: 6px;
+    transition: all 0.3s; margin-right: 14px; margin-top: 14px;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--bg); font-weight: 500;
+    box-shadow: 0 0 20px var(--gold-glow);
+  }
+  .btn-primary:hover {
+    background: var(--gold-bright); color: var(--bg);
+    box-shadow: 0 0 32px var(--gold-glow);
+  }
+  .btn-ghost {
+    border: 1px solid var(--gold-dim); color: var(--gold);
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold); color: var(--gold-bright);
+    box-shadow: 0 0 16px var(--copper-glow);
+  }
+
+  .content p { margin-bottom: 18px; }
+  .content strong { color: var(--gold-bright); }
+
+  /* Footer */
+  footer {
+    padding: 44px 0; border-top: 1px solid var(--card-border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-sub); opacity: 0.5;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 38px; letter-spacing: 4px; }
+    h2 { font-size: 28px; }
+    .subtitle { font-size: 24px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">Project Sparks</a>
+    <div class="nav-links">
+      <a href="/sparks-router">Router</a>
+      <a href="/claudepilot">ClaudePilot</a>
+      <a href="/about">About</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <div class="section-label">Memory for Agents</div>
+    <h1>Mnemo Cortex</h1>
+    <p class="subtitle">Deep recall for Claude Code and OpenClaw.</p>
+    <div class="content">
+      <p><strong>Every AI agent has amnesia. Mnemo Cortex fixes that with two engines.</strong></p>
+      <p>The <strong>Semantic Vector Engine</strong> (architected by Opie) tracks live conversation state and finds fuzzy memories by meaning.</p>
+      <p>The <strong>Exact-Match Engine</strong> (architected by AL) uses SQLite FTS5 for precise keyword recovery. Instant retrieval of things like "What is the Shopify API key?".</p>
+    </div>
+    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
+    <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/FINDING-MNEMO.md" class="btn btn-ghost" target="_blank">Read "Finding Mnemo"</a>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Claude Code Integration</div>
+    <h2>Your Claude Code forgets everything between sessions. Fix it in 60 seconds.</h2>
+    <div class="content">
+      <p>Two hook scripts give Claude Code <strong>persistent memory that survives across sessions</strong>. Every session starts with context from your previous work. Every session ends by archiving what happened. Total recall.</p>
+    </div>
+
+    <div class="arch">
+      <pre><span class="hl">Session 1</span>                    <span class="dim">Mnemo Cortex</span>                    <span class="hl">Session 2</span>
+    |                              |                              |
+    |-- writeback: "did X, Y, Z" ->|  <span class="hl">memory stored</span>              |
+    |                              |                              |
+    |                              |-- startup: context loaded --> |
+    |                              |              <span class="hl">CC knows history</span> |</pre>
+    </div>
+
+    <div class="grid" style="margin-top: 32px;">
+      <div class="card">
+        <div class="name">Local</div>
+        <div class="desc">Ollama on your machine. Completely free. Needs a GPU.</div>
+      </div>
+      <div class="card">
+        <div class="name">Cloud</div>
+        <div class="desc">OpenAI API. One key, ~$0.10/month. Dead simple.</div>
+      </div>
+      <div class="card">
+        <div class="name">Custom</div>
+        <div class="desc">Bring your own endpoint. Any provider, any model.</div>
+      </div>
+    </div>
+
+    <div class="arch" style="margin-top: 24px;">
+      <pre><span class="hl">$</span> <span class="dim">cd mnemo-cortex/integrations/claude-code && bash install.sh</span></pre>
+    </div>
+
+    <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank">Install Guide</a>
+    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-ghost" target="_blank">Full Repo</a>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Five endpoints. Total recall.</h2>
+    <p>Mnemo Cortex sits alongside your agent as a memory sidecar. It captures every conversation, builds semantic indexes, and validates responses against what it remembers.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="name">/context</div>
+        <div class="desc">Search memory before responding. Returns ranked chunks from the L1/L2/L3 cache hierarchy.</div>
+      </div>
+      <div class="card">
+        <div class="name">/preflight</div>
+        <div class="desc">Validate before sending. Cross-references drafts against memory. PASS, ENRICH, WARN, or BLOCK.</div>
+      </div>
+      <div class="card">
+        <div class="name">/ingest</div>
+        <div class="desc">The Live Wire. Captures every exchange as it happens. Under 5ms. Crash-safe.</div>
+      </div>
+      <div class="card">
+        <div class="name">/writeback</div>
+        <div class="desc">Archive sessions with summaries and key facts. Auto-indexed for future semantic search.</div>
+      </div>
+      <div class="card">
+        <div class="name">/sessions</div>
+        <div class="desc">List and inspect sessions across hot, warm, and cold tiers. Full transcripts on demand.</div>
+      </div>
+    </div>
+
+    <div class="arch">
+      <pre><span class="dim">Your Agent</span>                    <span class="hl">Mnemo Cortex</span>
+    |                              |
+    |-- POST /context ------------->|  <span class="dim">"What do you remember?"</span>
+    |<-- memory chunks -------------|  <span class="hl">HOT > L1 > L2 > L3</span>
+    |                              |
+    |-- POST /preflight ----------->|  <span class="dim">"Check my draft"</span>
+    |<-- PASS / ENRICH / WARN ------|  <span class="hl">"Wait. Take this with you."</span>
+    |                              |
+<span class="hl">Session Watcher</span> <span class="dim">(automatic)</span>       |
+    |-- POST /ingest -------------->|  <span class="dim">Every exchange, live</span>
+    |   <span class="hl">&lt;5ms, crash-safe</span>           |  <span class="hl">Written to disk instantly</span></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">The Origin Story</div>
+    <h2>The $100 Brain That Cured AI Amnesia</h2>
+    <div class="content">
+      <p>For two years, <strong>Guy Hutchins</strong> — a 73-year-old maker in Half Moon Bay, California — acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
+      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight memory coprocessor that actually worked. Four endpoints. Local Ollama models. No cloud dependency.</p>
+    </div>
+    <div class="quote">
+      <p>"I started with ChatGPT 3.5 and the first thing that mattered was memory. Two years of 'how do I make AI remember.' Now we're shipping the answer."</p>
+      <cite>— Guy Hutchins, creator of Project Sparks</cite>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Latest Release</div>
+    <h2>"Don't Fear the /new!"</h2>
+    <div class="content">
+      <p>Proven on live agents — Rocky with months of recall, plus Claude Code with cross-agent memory. The latest release features <strong>SQLite + FTS5</strong>, a <strong>context frontier with active compaction</strong> (80% compression, perfect recall), and <strong>DAG-based summary lineage</strong> so every summary traces back to its source.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="name">SQLite + FTS5</div>
+        <div class="desc">All memory in a single database with full-text search. Fast, portable, zero dependencies.</div>
+      </div>
+      <div class="card">
+        <div class="name">Active Compaction</div>
+        <div class="desc">Rolling frontier. Older messages get summarized automatically — 80% compression, perfect recall.</div>
+      </div>
+      <div class="card">
+        <div class="name">Summary Lineage</div>
+        <div class="desc">Every summary tracks which messages built it via a DAG. Expand any summary back to verbatim source.</div>
+      </div>
+      <div class="card">
+        <div class="name">Sidecar Design</div>
+        <div class="desc">Observes session files from outside — never patches the agent. If Mnemo crashes, the agent keeps working.</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>"3,000+ messages ingested, 429 summaries, recall to Day One. Rocky: six weeks. Alice: one week. Two machines."</p>
+      <cite>— Live stats, March 2026</cite>
+    </div>
+
+    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Built Different</div>
+    <h2>What makes Mnemo Cortex special</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="name">Live Wire</div>
+        <div class="desc">Session watcher captures every exchange automatically. If the plug gets pulled, nothing is lost.</div>
+      </div>
+      <div class="card">
+        <div class="name">Circuit Breaker</div>
+        <div class="desc">Provider fallback chains with automatic failover. If Ollama dies, it hot-swaps to your API backup.</div>
+      </div>
+      <div class="card">
+        <div class="name">Persona Modes</div>
+        <div class="desc">Strict mode for business. Creative mode for brainstorming. Or build your own.</div>
+      </div>
+      <div class="card">
+        <div class="name">Multi-Tenant</div>
+        <div class="desc">Each agent gets isolated memory. Filesystem-level isolation, not just namespaces.</div>
+      </div>
+      <div class="card">
+        <div class="name">Any Provider</div>
+        <div class="desc">Ollama (free/local), OpenAI, Anthropic, Google Gemini, OpenRouter, HuggingFace. Mix and match.</div>
+      </div>
+      <div class="card">
+        <div class="name">Any Framework</div>
+        <div class="desc">Claude Code and OpenClaw integrations included. Or just use HTTP — five endpoints, any agent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container" style="text-align: center;">
+    <h2>Support the project</h2>
+    <p style="color: var(--text-sub); margin-bottom: 28px;">Mnemo Cortex is free and open source. If it's useful to you, help keep it going.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost" style="border-color: var(--gold-dim); color: var(--gold);">GitHub Sponsors</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost" style="border-color: var(--gold-dim); color: var(--gold);">PayPal Donate</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; Half Moon Bay, CA
+  </div>
+</footer>
+
+</body>
+</html>
