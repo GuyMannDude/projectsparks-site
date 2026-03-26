@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Memory for AI Agents</title>
-<meta name="description" content="Mnemo Cortex gives AI agents persistent memory. Four endpoints. Total recall. Open source.">
+<meta name="description" content="Mnemo Cortex gives AI agents persistent memory. Claude Code, Claude Desktop, and OpenClaw. Total recall. Open source.">
 <meta property="og:title" content="Mnemo Cortex — Memory for AI Agents">
 <meta property="og:description" content="Persistent memory for AI agents. Four endpoints, total recall, 80% compression. Open source from Project Sparks.">
 <meta property="og:image" content="https://projectsparks.ai/og-image.png">
@@ -179,7 +179,7 @@
     h1 { font-size: 38px; letter-spacing: 4px; }
     h2 { font-size: 28px; }
     .subtitle { font-size: 24px; }
-    .grid { grid-template-columns: 1fr; }
+    .grid, .grid[style] { grid-template-columns: 1fr !important; }
   }
 </style>
 </head>
@@ -199,15 +199,37 @@
 <section>
   <div class="container">
     <div class="section-label">Memory for Agents</div>
-    <h1>Mnemo Cortex</h1>
-    <p class="subtitle">Deep recall for Claude Code and OpenClaw.</p>
-    <div class="content">
-      <p><strong>Every AI agent has amnesia. Mnemo Cortex fixes that with two engines.</strong></p>
-      <p>The <strong>Semantic Vector Engine</strong> (architected by Opie) tracks live conversation state and finds fuzzy memories by meaning.</p>
-      <p>The <strong>Exact-Match Engine</strong> (architected by AL) uses SQLite FTS5 for precise keyword recovery. Instant retrieval of things like "What is the Shopify API key?".</p>
+    <h1 style="text-align: center;">Mnemo Cortex</h1>
+    <p class="subtitle" style="text-align: center;">Deep recall for Claude Code, Claude Desktop, and OpenClaw.</p>
+    <p style="text-align: center; margin-bottom: 44px;"><strong>Every AI agent has amnesia.</strong> Mnemo Cortex fixes that. Pick your path.</p>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top: 0;">
+      <div class="card" style="text-align: center; padding: 36px 28px;">
+        <div class="icon">⌘</div>
+        <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Code</div>
+        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Fluid memory with deep recall.<br>60-second install. Two hook scripts.</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">startup hook · writeback hook · zero config</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install for Claude Code</a>
+      </div>
+      <div class="card" style="text-align: center; padding: 36px 28px;">
+        <div class="icon">🖥</div>
+        <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Desktop</div>
+        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Opus 4.6 with fluid detailed memories.<br>MCP bridge. Three tools.</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">mnemo_recall · mnemo_search · mnemo_save</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-desktop" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install MCP Bridge</a>
+      </div>
+      <div class="card" style="text-align: center; padding: 36px 28px;">
+        <div class="icon">🦞</div>
+        <div class="name" style="font-size: 18px; margin-bottom: 14px;">OpenClaw</div>
+        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Your ClawdBot with fluid deep memory.<br>Semantic search. Cross-agent memory.</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">session watcher · context refresher · multi-agent</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank" style="margin-right: 0;">Get the Full Repo</a>
+      </div>
     </div>
-    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
-    <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/FINDING-MNEMO.md" class="btn btn-ghost" target="_blank">Read "Finding Mnemo"</a>
+
+    <div style="text-align: center; margin-top: 28px;">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/FINDING-MNEMO.md" class="btn btn-ghost" target="_blank">Read "Finding Mnemo"</a>
+    </div>
   </div>
 </section>
 
@@ -372,7 +394,7 @@
       </div>
       <div class="card">
         <div class="name">Any Framework</div>
-        <div class="desc">Claude Code and OpenClaw integrations included. Or just use HTTP — five endpoints, any agent.</div>
+        <div class="desc">Claude Code, Claude Desktop, and OpenClaw integrations included. Or just use HTTP — five endpoints, any agent.</div>
       </div>
     </div>
   </div>
