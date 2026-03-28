@@ -17,6 +17,11 @@
         "source": "/claudepilot-openclaw",
         "destination": "/claudepilot",
         "type": 301
+      },
+      {
+        "source": "/sparks-router",
+        "destination": "/rockys-router",
+        "type": 301
       }
     ],
     "headers": [
