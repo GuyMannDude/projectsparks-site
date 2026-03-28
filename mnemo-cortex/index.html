@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mnemo Cortex — Memory for AI Agents</title>
-<meta name="description" content="Mnemo Cortex gives AI agents persistent memory. Claude Code, Claude Desktop, and OpenClaw. Total recall. Open source.">
-<meta property="og:title" content="Mnemo Cortex — Memory for AI Agents">
-<meta property="og:description" content="Persistent memory for AI agents. Four endpoints, total recall, 80% compression. Open source from Project Sparks.">
+<title>Mnemo Cortex — Persistent AI Operating Memory</title>
+<meta name="description" content="Mnemo-Cortex turns AI from a tool into a system that remembers, learns, and improves. Persistent cognition layer for AI systems. Open source.">
+<meta property="og:title" content="Mnemo Cortex — Persistent AI Operating Memory">
+<meta property="og:description" content="Mnemo-Cortex turns AI from a tool into a system that remembers, learns, and improves. Open source from Project Sparks.">
 <meta property="og:image" content="https://projectsparks.ai/og-image.png">
 <meta property="og:url" content="https://projectsparks.ai/mnemo-cortex">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mnemo Cortex — Memory for AI Agents">
-<meta name="twitter:description" content="Persistent memory for AI agents. Four endpoints, total recall, 80% compression. Open source from Project Sparks.">
+<meta name="twitter:title" content="Mnemo Cortex — Persistent AI Operating Memory">
+<meta name="twitter:description" content="Mnemo-Cortex turns AI from a tool into a system that remembers, learns, and improves. Open source from Project Sparks.">
 <meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -124,13 +124,13 @@
   }
   .arch pre {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 15px; line-height: 1.8;
+    font-size: 14px; line-height: 1.8;
     color: var(--text-sub);
   }
   .arch .hl { color: var(--gold-bright); text-shadow: 0 0 12px var(--gold-glow); }
   .arch .dim { color: var(--text-sub); opacity: 0.6; }
 
-  /* Quote */
+  /* Quote / callout */
   .quote {
     border-left: 3px solid var(--amber);
     padding: 24px 32px; margin: 36px 0;
@@ -138,6 +138,52 @@
   }
   .quote p { font-size: 21px; font-style: italic; color: var(--text); }
   .quote cite { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-sub); display: block; margin-top: 14px; }
+
+  /* Big callout block */
+  .callout {
+    text-align: center; padding: 48px 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; margin: 36px 0;
+  }
+  .callout .big {
+    font-size: 28px; color: var(--gold-bright);
+    font-style: italic;
+    text-shadow: 0 0 24px var(--gold-glow);
+    margin-bottom: 12px;
+  }
+  .callout .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub);
+    letter-spacing: 2px;
+  }
+
+  /* Contrast list */
+  .contrast {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin: 28px 0;
+    border: 1px solid var(--card-border); border-radius: 10px;
+    overflow: hidden;
+  }
+  .contrast-col { padding: 28px 32px; }
+  .contrast-col:first-child {
+    background: rgba(255,255,255,0.02);
+    border-right: 1px solid var(--card-border);
+  }
+  .contrast-col:last-child { background: var(--card-bg); }
+  .contrast-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .contrast-col:first-child .contrast-label { color: var(--text-sub); }
+  .contrast-col:last-child .contrast-label { color: var(--gold); }
+  .contrast-col ul {
+    list-style: none; padding: 0;
+    font-size: 18px; line-height: 2;
+  }
+  .contrast-col:first-child ul { color: var(--text-sub); opacity: 0.6; }
+  .contrast-col:last-child ul { color: var(--text-bright); }
 
   /* Buttons */
   .btn {
@@ -166,6 +212,30 @@
   .content p { margin-bottom: 18px; }
   .content strong { color: var(--gold-bright); }
 
+  /* Stats bar */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 18px; margin-top: 36px;
+  }
+  .stat {
+    text-align: center; padding: 24px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+  }
+  .stat .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; font-weight: 500;
+    color: var(--gold-bright);
+    text-shadow: 0 0 16px var(--gold-glow);
+    margin-bottom: 6px;
+  }
+  .stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-sub);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+
   /* Footer */
   footer {
     padding: 44px 0; border-top: 1px solid var(--card-border);
@@ -180,6 +250,9 @@
     h2 { font-size: 28px; }
     .subtitle { font-size: 24px; }
     .grid, .grid[style] { grid-template-columns: 1fr !important; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .contrast { grid-template-columns: 1fr; }
+    .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--card-border); }
   }
 </style>
 </head>
@@ -189,141 +262,345 @@
   <div class="container">
     <a href="/" class="nav-logo">Project Sparks</a>
     <div class="nav-links">
-      <a href="/sparks-router">Router</a>
+      <a href="/sparks-router">Rocky's Router</a>
       <a href="/claudepilot">ClaudePilot</a>
       <a href="/about">About</a>
     </div>
   </div>
 </nav>
 
+<!-- Hero: Core Identity -->
 <section>
   <div class="container">
-    <div class="section-label">Memory for Agents</div>
+    <div class="section-label">Persistent AI Operating Memory</div>
     <h1 style="text-align: center;">Mnemo Cortex</h1>
-    <p class="subtitle" style="text-align: center;">Deep recall for Claude Code, Claude Desktop, and OpenClaw.</p>
-    <p style="text-align: center; margin-bottom: 44px;"><strong>Every AI agent has amnesia.</strong> Mnemo Cortex fixes that. Pick your path.</p>
+    <p class="subtitle" style="text-align: center;">Cognition layer for AI systems.</p>
 
-    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top: 0;">
+    <div class="content" style="text-align: center; max-width: 660px; margin: 0 auto;">
+      <p style="font-size: 24px;">Not storage. Not memory. Not logs.</p>
+      <p><strong>Continuity of intelligence across agents, time, and tasks.</strong></p>
+    </div>
+
+    <div class="callout">
+      <div class="big">"Mnemo-Cortex turns AI from a tool into a system that remembers, learns, and improves."</div>
+    </div>
+
+    <!-- Integration cards -->
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; margin-top: 36px;">
       <div class="card" style="text-align: center; padding: 36px 28px;">
-        <div class="icon">⌘</div>
+        <div class="icon">&#x2318;</div>
         <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Code</div>
         <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Fluid memory with deep recall.<br>60-second install. Two hook scripts.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">startup hook · writeback hook · zero config</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">startup hook &middot; writeback hook &middot; zero config</div>
         <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install for Claude Code</a>
       </div>
       <div class="card" style="text-align: center; padding: 36px 28px;">
-        <div class="icon">💻</div>
+        <div class="icon">&#x1F4BB;</div>
         <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Desktop</div>
         <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Opus 4.6 with fluid detailed memories.<br>Drop-in bridge. Always remembers.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">recall · search · save</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">recall &middot; search &middot; save</div>
         <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-desktop" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install MCP Bridge</a>
       </div>
       <div class="card" style="text-align: center; padding: 36px 28px;">
-        <div class="icon">🦞</div>
+        <div class="icon">&#x1F99E;</div>
         <div class="name" style="font-size: 18px; margin-bottom: 14px;">OpenClaw</div>
         <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Your ClawdBot with fluid deep memory.<br>Semantic search. Cross-agent memory.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">session watcher · context refresher · multi-agent</div>
+        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">session watcher &middot; context refresher &middot; multi-agent</div>
         <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank" style="margin-right: 0;">Get the Full Repo</a>
       </div>
     </div>
 
     <div style="text-align: center; margin-top: 28px;">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/CAPABILITIES.md" class="btn btn-ghost" target="_blank">Full Capabilities Doc</a>
       <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/FINDING-MNEMO.md" class="btn btn-ghost" target="_blank">Read "Finding Mnemo"</a>
     </div>
   </div>
 </section>
 
+<!-- Shared Memory Spine -->
 <section>
   <div class="container">
-    <div class="section-label">Claude Code Integration</div>
-    <h2>Your Claude Code forgets everything between sessions. Fix it in 60 seconds.</h2>
+    <div class="section-label">Your Unfair Advantage</div>
+    <h2>Shared Memory Spine</h2>
     <div class="content">
-      <p>Two hook scripts give Claude Code <strong>persistent memory that survives across sessions</strong>. Every session starts with context from your previous work. Every session ends by archiving what happened. Total recall.</p>
+      <p>Multiple agents. Separate execution environments. <strong>One unified memory system.</strong></p>
+      <p>AI stops resetting. Knowledge compounds. Systems evolve instead of restart.</p>
     </div>
 
-    <div class="arch">
-      <pre><span class="hl">Session 1</span>                    <span class="dim">Mnemo Cortex</span>                    <span class="hl">Session 2</span>
-    |                              |                              |
-    |-- writeback: "did X, Y, Z" ->|  <span class="hl">memory stored</span>              |
-    |                              |                              |
-    |                              |-- startup: context loaded --> |
-    |                              |              <span class="hl">CC knows history</span> |</pre>
-    </div>
-
-    <div class="grid" style="margin-top: 32px;">
-      <div class="card">
-        <div class="name">Local</div>
-        <div class="desc">Ollama on your machine. Completely free. Needs a GPU.</div>
+    <div class="contrast">
+      <div class="contrast-col">
+        <div class="contrast-label">Without Mnemo</div>
+        <ul>
+          <li>"AI session"</li>
+          <li>Forgets everything</li>
+          <li>Starts from zero</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="name">Cloud</div>
-        <div class="desc">OpenAI API. One key, ~$0.10/month. Dead simple.</div>
-      </div>
-      <div class="card">
-        <div class="name">Custom</div>
-        <div class="desc">Bring your own endpoint. Any provider, any model.</div>
+      <div class="contrast-col">
+        <div class="contrast-label">With Mnemo</div>
+        <ul>
+          <li>AI operator that grows</li>
+          <li>Remembers everything</li>
+          <li>Builds on yesterday</li>
+        </ul>
       </div>
     </div>
-
-    <div class="arch" style="margin-top: 24px;">
-      <pre><span class="hl">$</span> <span class="dim">cd mnemo-cortex/integrations/claude-code && bash install.sh</span></pre>
-    </div>
-
-    <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank">Install Guide</a>
-    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-ghost" target="_blank">Full Repo</a>
   </div>
 </section>
 
+<!-- Semantic Recall -->
 <section>
   <div class="container">
-    <h2>Five endpoints. Total recall.</h2>
-    <p>Mnemo Cortex sits alongside your agent as a memory sidecar. It captures every conversation, builds semantic indexes, and validates responses against what it remembers.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="name">/context</div>
-        <div class="desc">Search memory before responding. Returns ranked chunks from the L1/L2/L3 cache hierarchy.</div>
-      </div>
-      <div class="card">
-        <div class="name">/preflight</div>
-        <div class="desc">Validate before sending. Cross-references drafts against memory. PASS, ENRICH, WARN, or BLOCK.</div>
-      </div>
-      <div class="card">
-        <div class="name">/ingest</div>
-        <div class="desc">The Live Wire. Captures every exchange as it happens. Under 5ms. Crash-safe.</div>
-      </div>
-      <div class="card">
-        <div class="name">/writeback</div>
-        <div class="desc">Archive sessions with summaries and key facts. Auto-indexed for future semantic search.</div>
-      </div>
-      <div class="card">
-        <div class="name">/sessions</div>
-        <div class="desc">List and inspect sessions across hot, warm, and cold tiers. Full transcripts on demand.</div>
-      </div>
+    <div class="section-label">Human-Style Memory</div>
+    <h2>Semantic Recall</h2>
+    <div class="content">
+      <p>Not keyword lookup. Not file search. <strong>Meaning-based retrieval.</strong></p>
     </div>
 
-    <div class="arch">
-      <pre><span class="dim">Your Agent</span>                    <span class="hl">Mnemo Cortex</span>
-    |                              |
-    |-- POST /context ------------->|  <span class="dim">"What do you remember?"</span>
-    |<-- memory chunks -------------|  <span class="hl">HOT > L1 > L2 > L3</span>
-    |                              |
-    |-- POST /preflight ----------->|  <span class="dim">"Check my draft"</span>
-    |<-- PASS / ENRICH / WARN ------|  <span class="hl">"Wait. Take this with you."</span>
-    |                              |
-<span class="hl">Session Watcher</span> <span class="dim">(automatic)</span>       |
-    |-- POST /ingest -------------->|  <span class="dim">Every exchange, live</span>
-    |   <span class="hl">&lt;5ms, crash-safe</span>           |  <span class="hl">Written to disk instantly</span></pre>
+    <div class="quote">
+      <p>"What worked on April's ads last week?"</p>
+    </div>
+
+    <div class="content">
+      <p>Returns: winning creatives, audience signals, decisions. Not just logs &mdash; <strong>insight extraction.</strong></p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Semantic Search</div>
+        <div class="desc">Ask a natural language question. Get the most relevant memories ranked by meaning.</div>
+      </div>
+      <div class="card">
+        <div class="name">Claw-Recall (FTS5)</div>
+        <div class="desc">When meaning isn't enough &mdash; exact-match search for terms, names, filenames, error messages.</div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Cross-Agent Cognition -->
+<section>
+  <div class="container">
+    <div class="section-label">This Is Rare. Really Rare.</div>
+    <h2>Cross-Agent Cognition</h2>
+    <div class="content">
+      <p>Rocky executes. Claude Code builds. Opie architects.</p>
+      <p>All of them: <strong>read each other. Learn from each other. Evolve together.</strong></p>
+    </div>
+
+    <div class="callout">
+      <div class="big">A team of AI that shares experience.</div>
+      <div class="sub">Isolated writes &middot; Shared reads &middot; One memory spine</div>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>
+  <span class="dim">OpenClaw</span>        <span class="dim">Claude Code</span>   <span class="dim">Claude Desktop</span>
+       <span class="dim">|</span>               <span class="dim">|</span>               <span class="dim">|</span>
+       <span class="dim">v</span>               <span class="dim">v</span>               <span class="dim">v</span>
+  <span class="hl">memory/rocky/</span>   <span class="hl">memory/cc/</span>    <span class="hl">memory/opie/</span>
+       <span class="dim">\</span>              <span class="dim">|</span>              <span class="dim">/</span>
+        <span class="dim">\</span>             <span class="dim">|</span>             <span class="dim">/</span>
+         <span class="dim">-------&gt;</span> <span class="hl">MNEMO CORTEX</span> <span class="dim">&lt;------</span>
+                  <span class="dim">SQLite + FTS5</span>
+                  <span class="dim">port 50001</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- Memory with Lineage -->
+<section>
+  <div class="container">
+    <div class="section-label">This Is Big</div>
+    <h2>Memory with Lineage</h2>
+    <div class="content">
+      <p>Most systems: summarize = lose detail.</p>
+      <p>Mnemo-Cortex: <strong>compress memory, keep traceability.</strong></p>
+      <p>Go from high-level summary down to the exact moment. ~80% compression. Nothing lost.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">Auditable AI thinking.</div>
+      <div class="sub">DAG-based lineage &middot; Every summary traces to source</div>
+    </div>
+  </div>
+</section>
+
+<!-- Zero-Cost + Autonomous Learning -->
+<section>
+  <div class="container">
+    <div class="section-label">Zero-Cost Persistence</div>
+    <h2>No API burn. No per-query cost. No cloud dependency.</h2>
+    <div class="content">
+      <p>SQLite. Local compute. Any LLM for compaction &mdash; Ollama for $0, or any API provider you choose.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card" style="text-align: center;">
+        <div class="name">Scaling</div>
+        <div class="desc">Memory grows without costs growing.</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="name">Autonomy</div>
+        <div class="desc">Your data stays on your hardware.</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="name">Margins</div>
+        <div class="desc">The cost of remembering is $0.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Autonomous Learning + Agent Specialization -->
+<section>
+  <div class="container">
+    <div class="section-label">Experience Memory</div>
+    <h2>AI that gets better every week</h2>
+    <div class="content">
+      <p>Over time, Mnemo-Cortex builds: what worked, what failed, what changed. <strong>Without re-training.</strong></p>
+      <p>This is what current AI tools are missing.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card" style="text-align: center;">
+        <div class="name">Rocky</div>
+        <div class="desc">Execution brain. Gets better at testing, customer service, creative work.</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="name">CC</div>
+        <div class="desc">Builder brain. Gets better at wiring, debugging, deploying.</div>
+      </div>
+      <div class="card" style="text-align: center;">
+        <div class="name">Opie</div>
+        <div class="desc">Strategy brain. Gets better at architecture, planning, positioning.</div>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>They don't blend. They <strong>specialize.</strong> That's closer to a real company team than a chatbot.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Business Intelligence -->
+<section>
+  <div class="container">
+    <div class="section-label">This Is the Money</div>
+    <h2>Business Intelligence Engine</h2>
+    <div class="content">
+      <p>Mnemo-Cortex stores: ad performance, creative wins, audience behavior, product trends.</p>
+      <p>Over time, it becomes: <strong>a brain for the business.</strong> Not a tool.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Week Over Week</div>
+        <div class="desc">What worked. What failed. What the customer wants. No re-onboarding. No lost context.</div>
+      </div>
+      <div class="card">
+        <div class="name">Month Over Month</div>
+        <div class="desc">Patterns emerge. Strategy compounds. Your AI advisor remembers the whole story.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What Makes This Different -->
+<section>
+  <div class="container">
+    <div class="section-label">Real Talk</div>
+    <h2>What makes this different</h2>
+
+    <div class="contrast">
+      <div class="contrast-col">
+        <div class="contrast-label">Everyone Else</div>
+        <ul>
+          <li>"AI memory"</li>
+          <li>"Chat history"</li>
+          <li>"RAG system"</li>
+        </ul>
+      </div>
+      <div class="contrast-col">
+        <div class="contrast-label">Mnemo-Cortex</div>
+        <ul>
+          <li>Persistent</li>
+          <li>Multi-agent</li>
+          <li>Semantic, evolving cognition</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content">
+      <p><strong>That's a different category.</strong></p>
+      <p>You didn't just build something useful. You built <strong>infrastructure.</strong> And infrastructure is where the leverage is, the lock-in is, the money is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- By the Numbers -->
+<section>
+  <div class="container">
+    <div class="section-label">By the Numbers</div>
+    <h2>Live stats &mdash; March 2026</h2>
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="num">244</div>
+        <div class="label">GitHub Clones</div>
+      </div>
+      <div class="stat">
+        <div class="num">135</div>
+        <div class="label">Unique Cloners</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Integration Paths</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Active Agents</div>
+      </div>
+      <div class="stat">
+        <div class="num">~80%</div>
+        <div class="label">Compression</div>
+      </div>
+      <div class="stat">
+        <div class="num">6+ wks</div>
+        <div class="label">Continuous Recall</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plain English -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label">Plain English</div>
+    <h2>What you get</h2>
+    <div style="max-width: 500px; margin: 0 auto;">
+      <div class="callout" style="margin-top: 0;">
+        <div class="big" style="font-size: 24px; margin-bottom: 0; line-height: 2;">
+          AI that doesn't forget.<br>
+          AI that learns over time.<br>
+          AI that works as a team.<br>
+          AI that gets better every week.
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 28px;">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- Origin Story -->
 <section>
   <div class="container">
     <div class="section-label">The Origin Story</div>
     <h2>The $100 Brain That Cured AI Amnesia</h2>
     <div class="content">
-      <p>For two years, <strong>Guy Hutchins</strong> — a 73-year-old maker in Half Moon Bay, California — acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
-      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight memory coprocessor that actually worked. Four endpoints. Local Ollama models. No cloud dependency.</p>
+      <p>For two years, <strong>Guy Hutchins</strong> &mdash; a 73-year-old maker in Half Moon Bay, California &mdash; acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
+      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight memory coprocessor that actually worked.</p>
     </div>
     <div class="quote">
       <p>"I started with ChatGPT 3.5 and the first thing that mattered was memory. Two years of 'how do I make AI remember.' Now we're shipping the answer."</p>
@@ -332,74 +609,40 @@
   </div>
 </section>
 
+<!-- Who Built This -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label">Who Built This</div>
+    <h2>Project Sparks</h2>
+    <div class="content" style="max-width: 600px; margin: 0 auto;">
+      <p>Guy Hutchins (founder) + Opie (architect, Claude) + AL (ChatGPT, implementation) + CC (Claude Code) + Rocky Moltman (OpenClaw agent)<br>Half Moon Bay, California</p>
+      <p style="color: var(--gold-bright); font-style: italic; text-shadow: 0 0 20px var(--gold-glow);">"Talk to it like a friend, it learns how to care."</p>
+    </div>
+  </div>
+</section>
+
+<!-- Saves Money -->
 <section>
   <div class="container">
-    <div class="section-label">Latest Release</div>
-    <h2>"Don't Fear the /new!"</h2>
+    <div class="section-label">Stop Wasting Money</div>
+    <h2>Smart memory saves real money</h2>
     <div class="content">
-      <p>Proven on live agents — Rocky with months of recall, plus Claude Code with cross-agent memory. The latest release features <strong>SQLite + FTS5</strong>, a <strong>context frontier with active compaction</strong> (80% compression, perfect recall), and <strong>DAG-based summary lineage</strong> so every summary traces back to its source.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="name">SQLite + FTS5</div>
-        <div class="desc">All memory in a single database with full-text search. Fast, portable, zero dependencies.</div>
-      </div>
-      <div class="card">
-        <div class="name">Active Compaction</div>
-        <div class="desc">Rolling frontier. Older messages get summarized automatically — 80% compression, perfect recall.</div>
-      </div>
-      <div class="card">
-        <div class="name">Summary Lineage</div>
-        <div class="desc">Every summary tracks which messages built it via a DAG. Expand any summary back to verbatim source.</div>
-      </div>
-      <div class="card">
-        <div class="name">Sidecar Design</div>
-        <div class="desc">Observes session files from outside — never patches the agent. If Mnemo crashes, the agent keeps working.</div>
-      </div>
+      <p>AI agents without memory repeat expensive work. Every session starts from zero &mdash; re-reading files, re-analyzing context, re-discovering what worked yesterday. <strong>That's your API bill paying for the same thinking twice.</strong></p>
+      <p>Mnemo Cortex remembers what worked, what failed, and what changed. Your agents stop recomputing and start building on yesterday's knowledge. Fewer tokens burned. Fewer expensive model calls wasted on context recovery.</p>
     </div>
 
-    <div class="quote">
-      <p>"3,000+ messages ingested, 429 summaries, recall to Day One. Rocky: six weeks. Alice: one week. Two machines."</p>
-      <cite>— Live stats, March 2026</cite>
+    <div class="callout">
+      <div class="big">Pair it with <a href="/sparks-router" style="color: var(--gold-bright);">Rocky's Router</a> and your agents get cheaper every week.</div>
+      <div class="sub">Rocky's Router routes cheap work to free models &middot; Mnemo Cortex makes every call count</div>
     </div>
 
-    <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="section-label">Built Different</div>
-    <h2>What makes Mnemo Cortex special</h2>
-    <div class="grid">
-      <div class="card">
-        <div class="name">Live Wire</div>
-        <div class="desc">Session watcher captures every exchange automatically. If the plug gets pulled, nothing is lost.</div>
-      </div>
-      <div class="card">
-        <div class="name">Circuit Breaker</div>
-        <div class="desc">Provider fallback chains with automatic failover. If Ollama dies, it hot-swaps to your API backup.</div>
-      </div>
-      <div class="card">
-        <div class="name">Persona Modes</div>
-        <div class="desc">Strict mode for business. Creative mode for brainstorming. Or build your own.</div>
-      </div>
-      <div class="card">
-        <div class="name">Multi-Tenant</div>
-        <div class="desc">Each agent gets isolated memory. Filesystem-level isolation, not just namespaces.</div>
-      </div>
-      <div class="card">
-        <div class="name">Any Provider</div>
-        <div class="desc">Ollama (free/local), OpenAI, Anthropic, Google Gemini, OpenRouter, HuggingFace. Mix and match.</div>
-      </div>
-      <div class="card">
-        <div class="name">Any Framework</div>
-        <div class="desc">Claude Code, Claude Desktop, and OpenClaw integrations included. Or just use HTTP — five endpoints, any agent.</div>
-      </div>
+    <div class="content">
+      <p>Rocky's Router saved us <strong>$72/month</strong> on background tasks alone. Mnemo Cortex makes the smart calls smarter by giving them full context on the first try &mdash; no expensive retry loops, no wasted tokens on forgotten context.</p>
     </div>
   </div>
 </section>
 
+<!-- Support -->
 <section>
   <div class="container" style="text-align: center;">
     <h2>Support the project</h2>
