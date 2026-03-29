@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rocky's Router — Stop Burning API Credits</title>
-<meta name="description" content="Rocky's Router is a three-tier model router for AI agents. Free models for routine work, smart models only when needed. Saves money on every API call.">
+<meta name="description" content="Rocky's Router is a two-tier model router for AI agents. Free by default, Smart when you talk. Saves money on every API call.">
 <meta property="og:title" content="Rocky's Router — Stop Burning API Credits">
-<meta property="og:description" content="Three-tier model router for AI agents. Free models for routine work, smart models only when needed. PIN-secured Direct API for vendor keys.">
+<meta property="og:description" content="Two-tier model router for AI agents. Free by default, Smart when you talk. OpenRouter, OpenAI, Anthropic, Google.">
 <meta property="og:image" content="https://projectsparks.ai/rockys-router/rocky.png">
 <meta property="og:url" content="https://projectsparks.ai/rockys-router">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rocky's Router — Stop Burning API Credits">
-<meta name="twitter:description" content="Three-tier model router for AI agents. Free models for routine work, smart models only when needed.">
+<meta name="twitter:description" content="Two-tier model router for AI agents. Free by default, Smart when you talk.">
 <meta name="twitter:image" content="https://projectsparks.ai/rockys-router/rocky.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -239,9 +239,9 @@
       <div>
         <div class="section-label">Stop Burning API Credits</div>
         <h1>Rocky's Router</h1>
-        <p class="subtitle">Free models for routine work. Smart models only when needed.</p>
+        <p class="subtitle">Free by default. Smart when you talk.</p>
         <div class="content">
-          <p>Your AI agents are wasting money. Heartbeats, background tasks, memory compaction, health checks &mdash; all defaulting to your most expensive model. <strong>Rocky's Router fixes that.</strong></p>
+          <p>Your AI agents are wasting money. Heartbeats, pings, background tasks &mdash; all hitting your expensive model. <strong>Rocky's Router sends the cheap stuff to free models and only fires your smart model when a human is actually talking.</strong></p>
         </div>
         <a href="https://github.com/GuyMannDude/rockys-router" class="btn btn-primary" target="_blank">Get it on GitHub</a>
         <a href="https://github.com/sponsors/GuyMannDude" class="btn btn-ghost" target="_blank">Sponsor</a>
@@ -280,24 +280,19 @@
 <!-- Three Tiers -->
 <section>
   <div class="container">
-    <div class="section-label">Three Tiers</div>
-    <h2>Route every request to the right model</h2>
+    <div class="section-label">Two Tiers</div>
+    <h2>One rule. Two states. Done.</h2>
 
-    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
       <div class="card" style="text-align: center; padding: 36px 28px;">
         <div class="icon" style="font-size: 40px; color: var(--green);">$0</div>
-        <div class="name">Free Tier</div>
-        <div class="desc">Round-robin pool of up to 5 free models. Heartbeats, background tasks, health checks, cron jobs. The work that shouldn't cost anything.</div>
+        <div class="name">Free</div>
+        <div class="desc">One free model handles heartbeats, pings, background tasks, cron jobs, health checks. The work that shouldn't cost anything.</div>
       </div>
       <div class="card" style="text-align: center; padding: 36px 28px;">
-        <div class="icon" style="font-size: 40px; color: var(--amber);">$$</div>
-        <div class="name">Utility Tier</div>
-        <div class="desc">Mid-range models for standard operations. Good enough for most tasks. A fraction of the cost of premium.</div>
-      </div>
-      <div class="card" style="text-align: center; padding: 36px 28px;">
-        <div class="icon" style="font-size: 40px; color: var(--gold-bright);">$$$</div>
-        <div class="name">Smart Tier</div>
-        <div class="desc">Premium models for complex reasoning. Only fires when the task actually demands it. This is where the money should go.</div>
+        <div class="icon" style="font-size: 40px; color: var(--gold-bright);">Smart</div>
+        <div class="name">Smart</div>
+        <div class="desc">Your paid model fires when a human is actually talking. DeepSeek, Claude, GPT, Gemini &mdash; your choice, any provider.</div>
       </div>
     </div>
   </div>
@@ -306,34 +301,34 @@
 <!-- Direct API -->
 <section>
   <div class="container">
-    <div class="section-label">Direct API</div>
-    <h2>Bypass OpenRouter entirely</h2>
+    <div class="section-label">Multiple Providers</div>
+    <h2>OpenRouter, or go direct</h2>
     <div class="content">
-      <p>Paste your own vendor API key &mdash; Google, OpenAI, Anthropic, whoever. Rocky's Router talks directly to the vendor. <strong>No middleman markup. No routing fees.</strong></p>
-      <p>PIN-secured so your keys stay safe. Keys persist across sessions. Switch vendors with one click.</p>
+      <p>OpenRouter is required for the free tier. But for your smart model, you can go direct &mdash; <strong>OpenAI, Anthropic, or Google.</strong> Your key, their API, no middleman.</p>
+      <p>Keys are stored locally with strict file permissions. Never in the repo. Never in a config file anyone can read.</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr;">
       <div class="card">
-        <div class="name">PIN Security</div>
-        <div class="desc">Set a 4+ character PIN. Every key operation requires it. No one touches your vendor keys without the PIN.</div>
+        <div class="name">Secure Storage</div>
+        <div class="desc">API keys stored in ~/.guysrouter/ with 600 permissions. Outside the project directory. Never committed to git.</div>
       </div>
       <div class="card">
-        <div class="name">Key Persistence</div>
-        <div class="desc">Save keys once, use forever. Switch between vendors without re-entering. Rocky remembers your keys so you don't have to.</div>
+        <div class="name">Full Streaming</div>
+        <div class="desc">SSE passthrough for all providers. Works with OpenClaw, Claude Code, or any OpenAI-compatible client. No response buffering.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Submarine Console -->
+<!-- Clean UI -->
 <section>
   <div class="container">
-    <div class="section-label">Submarine Console</div>
-    <h2>Built for operators, not dashboards</h2>
+    <div class="section-label">Simple UI</div>
+    <h2>Pick your models. Drop your key. Done.</h2>
     <div class="content">
-      <p>Dark UI. Sonar pings. Digital readouts. Wake event tracking. <strong>You're running a fleet, not reading a spreadsheet.</strong></p>
-      <p>Real-time status for every tier. Model switching with immediate sync to your agent config. The console tells you what's happening and lets you change it in one click.</p>
+      <p>Clean dark dashboard at localhost:50070. Live stats showing free vs smart hits. <strong>Two dropdowns, one key field, one save button.</strong> No complexity. No three-tier confusion. No submarine console.</p>
+      <p>Runs as a systemd service. Starts on boot. Forgets nothing.</p>
     </div>
   </div>
 </section>
