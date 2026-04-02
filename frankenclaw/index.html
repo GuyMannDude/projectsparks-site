@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrankenClaw — FrankenTools for OpenClaw Agents</title>
+<meta name="description" content="FrankenClaw is an MCP tool server that gives AI agents hands — search, vision, browser automation, scraping, and NotebookLM. Open source from Project Sparks.">
+<meta property="og:title" content="FrankenClaw — FrankenTools for OpenClaw Agents">
+<meta property="og:description" content="Create your own FrankenClaw Agent using FrankenTools! Search, vision, browser, scraping, NotebookLM. Open source.">
+<meta property="og:image" content="https://projectsparks.ai/frankenclaw/frankenclaw-hero.png">
+<meta property="og:url" content="https://projectsparks.ai/frankenclaw">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FrankenClaw — FrankenTools for OpenClaw Agents">
+<meta name="twitter:description" content="Create your own FrankenClaw Agent using FrankenTools! Open source from Project Sparks.">
+<meta name="twitter:image" content="https://projectsparks.ai/frankenclaw/frankenclaw-hero.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #08080f;
+    --gold: #e8b830;
+    --gold-bright: #ffd54f;
+    --gold-glow: rgba(232, 184, 48, 0.5);
+    --gold-dim: rgba(232, 184, 48, 0.25);
+    --amber: #f09030;
+    --copper: #d47030;
+    --copper-glow: rgba(212, 112, 48, 0.3);
+    --green: #22c55e;
+    --green-glow: rgba(34, 197, 94, 0.3);
+    --accent: #4f46e5;
+    --accent-glow: rgba(79, 70, 229, 0.3);
+    --text: #ededf4;
+    --text-bright: #ffffff;
+    --text-sub: #a0a0b4;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(232, 184, 48, 0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-bright); }
+
+  nav {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+
+  section { padding: 88px 0; }
+  section + section { border-top: 1px solid var(--card-border); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 18px;
+    text-shadow: 0 0 20px var(--copper-glow);
+  }
+  h1 {
+    font-weight: 300; font-size: 52px;
+    letter-spacing: 6px; color: var(--text-bright);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  h2 {
+    font-weight: 400; font-size: 36px;
+    color: var(--text-bright); margin-bottom: 22px;
+  }
+  .subtitle {
+    font-size: 28px; color: var(--gold-bright);
+    font-style: italic; margin-bottom: 44px;
+    text-shadow: 0 0 30px var(--gold-glow);
+  }
+
+  .hero-image {
+    display: block;
+    max-width: 420px;
+    width: 100%;
+    margin: 0 auto 44px;
+    border-radius: 12px;
+    border: 2px solid var(--card-border);
+    box-shadow: 0 0 40px var(--copper-glow), 0 0 80px rgba(212, 112, 48, 0.15), 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px; margin-top: 36px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 28px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 24px var(--copper-glow);
+  }
+  .card .icon { font-size: 28px; margin-bottom: 10px; }
+  .card .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--gold); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
+
+  .architecture {
+    display: flex;
+    gap: 36px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .arch-item {
+    text-align: center;
+    flex: 1;
+    min-width: 160px;
+    max-width: 200px;
+  }
+  .arch-item .arch-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .arch-item .arch-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--text-bright);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .arch-item .arch-desc {
+    font-size: 17px;
+    color: var(--text-sub);
+    line-height: 1.5;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    padding: 2px 8px;
+  }
+  pre {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 24px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 24px 0;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .cta {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+  .cta:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    box-shadow: 0 0 20px var(--gold-dim);
+  }
+  .cta.primary {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+  .cta.primary:hover {
+    background: var(--gold-bright);
+    color: var(--bg);
+  }
+
+  footer {
+    padding: 44px 0;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-sub); opacity: 0.5;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 32px; letter-spacing: 3px; }
+    h2 { font-size: 28px; }
+    .subtitle { font-size: 22px; }
+    .hero-image { max-width: 280px; }
+    .architecture { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">Project Sparks</a>
+    <div class="nav-links">
+      <a href="/rockys-switch">Rocky's Switch</a>
+      <a href="/mnemo-cortex">Mnemo Cortex</a>
+      <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <div class="section-label">MCP Tool Server</div>
+    <h1>FrankenClaw</h1>
+    <div class="subtitle">Create your own FrankenClaw Agent using FrankenTools!</div>
+
+    <img src="/frankenclaw/frankenclaw-hero.png" alt="FrankenClaw" class="hero-image">
+
+    <p>FrankenClaw is a standalone MCP tool server that gives <a href="https://github.com/openclaw" target="_blank">OpenClaw</a> agents real capabilities &mdash; web search, computer vision, browser automation, page scraping, and Google NotebookLM integration. Drop a new Python file in the <code>tools/</code> directory, restart, and your agent has a new superpower.</p>
+
+    <div class="cta-row" style="justify-content: center;">
+      <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank" class="cta primary">View on GitHub</a>
+      <a href="#install" class="cta">Install</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">9 FrankenTools</div>
+    <h2>Hands your agent can actually use.</h2>
+    <p style="color: var(--text-sub);">Each tool is a single Python file. Auto-discovered on startup. No registration, no config.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">&#x1F50D;</div>
+        <div class="name">search_web</div>
+        <div class="desc">Web search via SearXNG. Private, fast, no API key needed.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F441;</div>
+        <div class="name">vision_analyze</div>
+        <div class="desc">Read any image on disk. Sends to a vision model via OpenRouter.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F310;</div>
+        <div class="name">browser_task</div>
+        <div class="desc">Full browser automation. Click, fill, navigate, screenshot &mdash; in a visible window.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F4C4;</div>
+        <div class="name">web_scrape</div>
+        <div class="desc">Clean page scraping via Firecrawl. Strips ads and nav, returns markdown.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F399;</div>
+        <div class="name">notebooklm_manage</div>
+        <div class="desc">Create, list, rename, and delete Google NotebookLM notebooks.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F4CE;</div>
+        <div class="name">notebooklm_source</div>
+        <div class="desc">Add URLs, text, or files as sources. List and manage notebook content.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x26A1;</div>
+        <div class="name">notebooklm_generate</div>
+        <div class="desc">Generate audio podcasts, videos, infographics, slide decks, and more.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F4E5;</div>
+        <div class="name">notebooklm_download</div>
+        <div class="desc">Download generated artifacts &mdash; MP3, MP4, PNG, PDF, CSV.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F4AC;</div>
+        <div class="name">notebooklm_ask</div>
+        <div class="desc">Ask questions grounded in your notebook sources. AI-powered answers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Architecture</div>
+    <h2>Pure function. No opinions.</h2>
+    <p style="color: var(--text-sub);">FrankenClaw does one thing: execute tool calls and return results. Everything else belongs to the agent.</p>
+
+    <div class="architecture">
+      <div class="arch-item">
+        <div class="arch-label">No Memory</div>
+        <div class="arch-desc">The agent has Mnemo Cortex for that.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-label">No Models</div>
+        <div class="arch-desc">Rocky's Switch handles model selection.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-label">No Context</div>
+        <div class="arch-desc">OpenClaw manages conversations.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-label">Auto-Discovery</div>
+        <div class="arch-desc">Drop a .py file in tools/. It just works.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Three commands.</h2>
+
+<pre>git clone https://github.com/GuyMannDude/frankenclaw.git
+cd frankenclaw
+pip install -r requirements.txt</pre>
+
+    <p>Register with OpenClaw:</p>
+
+<pre>openclaw mcp set frankenclaw "python3 /path/to/frankenclaw/server.py"
+openclaw gateway restart</pre>
+
+    <p style="color: var(--text-sub);">API keys come from <a href="/rockys-switch">Rocky's Switch</a> (<code>~/.rockys-switch/keys.json</code>). Tool settings live at <code>~/.frankenclaw/config.json</code>, auto-created on first run.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Project Sparks</div>
+    <h2>Part of the family.</h2>
+    <p style="color: var(--text-sub); margin-bottom: 24px;">Open-source AI infrastructure, built in Half Moon Bay.</p>
+
+    <div class="grid">
+      <a href="/sparc" class="card" style="text-decoration:none;">
+        <div class="name">SPARC</div>
+        <div class="desc">The thesis. AI designs for AI.</div>
+      </a>
+      <a href="https://github.com/GuyMannDude/sparks-brain" target="_blank" class="card" style="text-decoration:none;">
+        <div class="name">Sparks Brain</div>
+        <div class="desc">Persistent memory for Claude Code.</div>
+      </a>
+      <a href="/mnemo-cortex" class="card" style="text-decoration:none;">
+        <div class="name">Mnemo Cortex</div>
+        <div class="desc">Long-term memory for agents.</div>
+      </a>
+      <a href="/rockys-switch" class="card" style="text-decoration:none;">
+        <div class="name">Rocky's Switch</div>
+        <div class="desc">Manual model switcher for OpenClaw.</div>
+      </a>
+      <a href="/frankenclaw" class="card" style="text-decoration:none; border-color: var(--green);">
+        <div class="name" style="color: var(--green);">FrankenClaw</div>
+        <div class="desc">FrankenTools for agents. You are here.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; <a href="/" style="color: inherit;">projectsparks.ai</a>
+  </div>
+</footer>
+
+</body>
+</html>
