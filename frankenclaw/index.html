@@ -245,11 +245,12 @@
   <div class="container">
     <div class="section-label">MCP Tool Server</div>
     <h1>FrankenClaw</h1>
-    <div class="subtitle">Create your own FrankenClaw Agent using FrankenTools!</div>
+    <div class="subtitle">Give your AI agent real tools &mdash; without losing control of cost or models.</div>
+    <p style="color: var(--text-sub); text-align: center; font-size: 24px; font-style: italic; margin-bottom: 36px;">Create your own FrankenClaw Agent using FrankenTools!</p>
 
     <img src="/frankenclaw/frankenclaw-hero.png" alt="FrankenClaw" class="hero-image">
 
-    <p>FrankenClaw is a standalone MCP tool server that gives <a href="https://github.com/openclaw" target="_blank">OpenClaw</a> agents real capabilities &mdash; web search, computer vision, browser automation, page scraping, and Google NotebookLM integration. Drop a new Python file in the <code>tools/</code> directory, restart, and your agent has a new superpower.</p>
+    <p>FrankenClaw is a controlled execution layer for AI agents. It serves FrankenTools over standard MCP &mdash; search, vision, browser automation, web scraping, Shopify, and content generation &mdash; so any agent can use them. You pick the models. You control the keys. The tools just execute.</p>
 
     <div class="cta-row" style="justify-content: center;">
       <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank" class="cta primary">View on GitHub</a>
@@ -260,7 +261,33 @@
 
 <section>
   <div class="container">
-    <div class="section-label">9 FrankenTools</div>
+    <div class="section-label">Security</div>
+    <h2>Your machine. Your keys. Your rules.</h2>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+      <div class="card">
+        <div class="name">Runs Locally</div>
+        <div class="desc">Executes on your machine, not in the cloud.</div>
+      </div>
+      <div class="card">
+        <div class="name">No Key Duplication</div>
+        <div class="desc">API keys live in one place, read at runtime.</div>
+      </div>
+      <div class="card">
+        <div class="name">You Control Providers</div>
+        <div class="desc">Pick which models handle which jobs.</div>
+      </div>
+      <div class="card">
+        <div class="name">No Hidden Costs</div>
+        <div class="desc">Route cheap to grunt work, smart to decisions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">12 FrankenTools</div>
     <h2>Hands your agent can actually use.</h2>
     <p style="color: var(--text-sub);">Each tool is a single Python file. Auto-discovered on startup. No registration, no config.</p>
 
@@ -284,6 +311,21 @@
         <div class="icon">&#x1F4C4;</div>
         <div class="name">web_scrape</div>
         <div class="desc">Clean page scraping via Firecrawl. Strips ads and nav, returns markdown.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F6D2;</div>
+        <div class="name">shopify_products</div>
+        <div class="desc">List, create, update, delete Shopify products. Full catalog access.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F4E6;</div>
+        <div class="name">shopify_inventory</div>
+        <div class="desc">Manage inventory levels and locations across warehouses.</div>
+      </div>
+      <div class="card">
+        <div class="icon">&#x1F3F7;</div>
+        <div class="name">shopify_collections</div>
+        <div class="desc">Browse custom and smart product collections.</div>
       </div>
       <div class="card">
         <div class="icon">&#x1F399;</div>
