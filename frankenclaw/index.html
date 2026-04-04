@@ -234,6 +234,7 @@
   <div class="container">
     <a href="/" class="nav-logo">Project Sparks</a>
     <div class="nav-links">
+      <a href="/stack">The Stack</a>
       <a href="/rockys-switch">Rocky's Switch</a>
       <a href="/mnemo-cortex">Mnemo Cortex</a>
       <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank">GitHub</a>
@@ -251,6 +252,11 @@
     <img src="/frankenclaw/frankenclaw-hero.png" alt="FrankenClaw" class="hero-image">
 
     <p>FrankenClaw is a controlled execution layer for AI agents. It serves FrankenTools over standard MCP &mdash; search, vision, browser automation, web scraping, Shopify, and content generation &mdash; so any agent can use them. You pick the models. You control the keys. The tools just execute.</p>
+
+    <div style="border: 2px solid #d4a017; border-radius: 8px; padding: 16px 24px; margin: 24px auto; max-width: 700px; background: rgba(212, 160, 23, 0.08); text-align: center;">
+      <strong style="color: #d4a017;">&#9888; Important:</strong>
+      <span style="color: #ccc;"> This project is not affiliated with any cryptocurrency, token, or investment scheme. FrankenClaw is an open-source MCP toolbox for AI agents, built by Project Sparks. If anyone offers you a &ldquo;FrankenClaw token&rdquo; &mdash; it&rsquo;s a scam.</span>
+    </div>
 
     <div class="cta-row" style="justify-content: center;">
       <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank" class="cta primary">View on GitHub</a>
@@ -398,6 +404,10 @@ pip install -r requirements.txt</pre>
 openclaw gateway restart</pre>
 
     <p style="color: var(--text-sub);">API keys come from <a href="/rockys-switch">Rocky's Switch</a> (<code>~/.rockys-switch/keys.json</code>). Tool settings live at <code>~/.frankenclaw/config.json</code>, auto-created on first run.</p>
+
+    <p style="color: var(--text-sub); margin-top: 28px;">Or install the full stack with one command:</p>
+<pre>curl -fsSL https://projectsparks.ai/install.sh | bash</pre>
+    <p style="color: var(--text-sub);">The <a href="/stack">Sparks Stack installer</a> sets up FrankenClaw + Rocky's Switch + Mnemo Cortex and wires them together.</p>
   </div>
 </section>
 
