@@ -11,13 +11,14 @@ An AI infrastructure and creative technology operation run by a non-developer, u
 - **Hosting:** Firebase Hosting
 - **Frontend:** Static HTML/CSS/JS
 - **Analytics:** GA4
-- **Pages:** Landing (constellation layout), Rocky's Router, Mnemo Cortex, FrankenClaw, Privacy, ToS
+- **Pages:** Landing (constellation layout), Rocky's Switch, Mnemo Cortex, FrankenClaw, Privacy, ToS
 
 ## Related Repos
 
 - [mnemo-cortex](https://github.com/GuyMannDude/mnemo-cortex) — Semantic memory for AI agents
 - [sparc-thesis](https://github.com/GuyMannDude/sparc-thesis) — The methodology behind all of this
-- [rockys-router](https://github.com/GuyMannDude/rockys-router) — Model routing dashboard
+- [rockys-switch](https://github.com/GuyMannDude/rockys-switch) — Manual model switcher for OpenClaw
+- [frankenclaw](https://github.com/GuyMannDude/frankenclaw) — MCP toolbox for AI agents
 - [cronalarm](https://github.com/GuyMannDude/cronalarm) — Cron monitoring with Discord/SMS alerts
 - [sparks-brain](https://github.com/GuyMannDude/sparks-brain) — Persistent memory for Claude Code
 
