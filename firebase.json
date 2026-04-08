@@ -20,7 +20,12 @@
       },
       {
         "source": "/sparks-router",
-        "destination": "/rockys-router",
+        "destination": "/rockys-switch",
+        "type": 301
+      },
+      {
+        "source": "/rockys-router",
+        "destination": "/rockys-switch",
         "type": 301
       }
     ],

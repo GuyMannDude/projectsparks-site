@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Project Sparks Stack — Brains, Tools, and Cost Control for AI Agents</title>
+<meta name="description" content="Give your OpenClaw agent brains and tools. FrankenClaw + Mnemo Cortex. All MCP, all open source, all local. One-command install.">
+<meta property="og:title" content="The Project Sparks Stack — AI Agent Infrastructure">
+<meta property="og:description" content="Give your OpenClaw agent brains and tools. FrankenClaw + Mnemo Cortex. All MCP, all open source, all local.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/stack">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Project Sparks Stack — AI Agent Infrastructure">
+<meta name="twitter:description" content="Give your OpenClaw agent brains, tools, and cost control. All MCP, all open source, all local.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #08080f;
+    --gold: #e8b830;
+    --gold-bright: #ffd54f;
+    --gold-glow: rgba(232, 184, 48, 0.5);
+    --gold-dim: rgba(232, 184, 48, 0.25);
+    --amber: #f09030;
+    --copper: #d47030;
+    --copper-glow: rgba(212, 112, 48, 0.3);
+    --accent: #4f46e5;
+    --accent-glow: rgba(79, 70, 229, 0.3);
+    --green: #22c55e;
+    --green-glow: rgba(34, 197, 94, 0.3);
+    --text: #ededf4;
+    --text-bright: #ffffff;
+    --text-sub: #a0a0b4;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(232, 184, 48, 0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-bright); }
+
+  nav {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+
+  section { padding: 88px 0; }
+  section + section { border-top: 1px solid var(--card-border); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 18px;
+    text-shadow: 0 0 20px var(--copper-glow);
+  }
+  h1 {
+    font-weight: 300; font-size: 52px;
+    letter-spacing: 6px; color: var(--text-bright);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  h2 {
+    font-weight: 400; font-size: 36px;
+    color: var(--text-bright); margin-bottom: 22px;
+  }
+  .subtitle {
+    font-size: 28px; color: var(--gold-bright);
+    font-style: italic; margin-bottom: 44px;
+    text-shadow: 0 0 30px var(--gold-glow);
+  }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px; margin-top: 36px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 28px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 24px var(--copper-glow);
+  }
+  .card .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--gold); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
+  .card .tagline {
+    font-size: 22px; color: var(--text);
+    font-style: italic; margin-bottom: 14px;
+  }
+
+  /* Flow diagram */
+  .flow-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 48px 0;
+    flex-wrap: wrap;
+  }
+  .flow-node {
+    text-align: center;
+    padding: 28px 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    min-width: 200px;
+    flex: 1;
+    max-width: 240px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .flow-node:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 24px var(--copper-glow);
+  }
+  .flow-node .flow-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .flow-node .flow-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--gold); letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .flow-node .flow-role {
+    font-size: 17px; color: var(--text-sub);
+    line-height: 1.5;
+  }
+  .flow-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    color: var(--gold);
+    opacity: 0.4;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* Product cards (larger) */
+  .product-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 44px;
+  }
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 36px 28px;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 30px var(--copper-glow);
+    transform: translateY(-4px);
+    color: var(--text);
+  }
+  .product-card .product-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .product-card .product-tagline {
+    font-size: 22px; color: var(--text);
+    font-style: italic; margin-bottom: 14px;
+    flex: 1;
+  }
+  .product-card .product-desc {
+    font-size: 17px; color: var(--text-sub);
+    line-height: 1.5;
+  }
+  .product-card .product-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 18px;
+  }
+
+  /* Color accents per product */
+  .product-card.switch .product-name { color: var(--accent); }
+  .product-card.switch:hover { border-color: rgba(79, 70, 229, 0.4); box-shadow: 0 0 30px var(--accent-glow); }
+  .product-card.franken .product-name { color: var(--copper); }
+  .product-card.franken:hover { border-color: rgba(212, 112, 48, 0.4); box-shadow: 0 0 30px var(--copper-glow); }
+  .product-card.mnemo .product-name { color: var(--gold); }
+  .product-card.mnemo:hover { border-color: rgba(232, 184, 48, 0.4); box-shadow: 0 0 30px var(--gold-glow); }
+
+  /* Install section */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    padding: 2px 8px;
+  }
+  pre {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 24px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 24px 0;
+  }
+
+  .install-box {
+    background: var(--card-bg);
+    border: 2px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 44px 36px;
+    text-align: center;
+    margin: 36px 0;
+  }
+  .install-box pre {
+    display: inline-block;
+    text-align: left;
+    margin: 18px 0 0;
+    font-size: 15px;
+    border-color: var(--gold-dim);
+  }
+  .install-box .install-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .cta {
+    display: inline-block;
+    padding: 14px 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    border-radius: 6px;
+    transition: all 0.3s;
+  }
+  .cta:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    box-shadow: 0 0 20px var(--gold-dim);
+  }
+  .cta.primary {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+  .cta.primary:hover {
+    background: var(--gold-bright);
+    color: var(--bg);
+  }
+
+  /* Callout */
+  .callout {
+    text-align: center; padding: 48px 32px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px; margin: 36px 0;
+  }
+  .callout .big {
+    font-size: 28px; color: var(--gold-bright);
+    font-style: italic;
+    text-shadow: 0 0 24px var(--gold-glow);
+    margin-bottom: 12px;
+  }
+  .callout .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub);
+    letter-spacing: 2px;
+  }
+
+  /* Individual install links */
+  .individual-installs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 28px;
+  }
+  .individual-installs a {
+    display: block;
+    text-align: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .individual-installs a:hover {
+    border-color: rgba(232, 184, 48, 0.3);
+    box-shadow: 0 0 20px var(--copper-glow);
+  }
+  .individual-installs .ind-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .individual-installs .ind-desc {
+    font-size: 16px; color: var(--text-sub);
+  }
+
+  footer {
+    padding: 44px 0;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-sub); opacity: 0.5;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 32px; letter-spacing: 3px; }
+    h2 { font-size: 28px; }
+    .subtitle { font-size: 22px; }
+    .flow-diagram { flex-direction: column; gap: 0; }
+    .flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .flow-node { max-width: 100%; min-width: 0; }
+    .product-cards { grid-template-columns: 1fr; }
+    .individual-installs { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">Project Sparks</a>
+    <div class="nav-links">
+      <a href="/frankenclaw">FrankenClaw</a>
+      <a href="/mnemo-cortex">Mnemo</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label">The Full Stack</div>
+    <h1>The Project Sparks Stack</h1>
+    <div class="subtitle">Give your OpenClaw agent brains, tools, and cost control.</div>
+
+    <p style="max-width: 640px; margin: 0 auto; color: var(--text-sub); font-size: 22px;">
+      Two open-source products. All MCP. All local. All wired together.<br>
+      Install in five minutes. No cloud accounts. No subscriptions.
+    </p>
+
+    <!-- Flow diagram -->
+    <div class="flow-diagram">
+      <div class="flow-node">
+        <div class="flow-label">FrankenClaw</div>
+        <div class="flow-role">Gives the agent tools.<br>Search, vision, browser.</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-node">
+        <div class="flow-label">Mnemo Cortex</div>
+        <div class="flow-role">Gives the agent memory.<br>Remembers everything.</div>
+      </div>
+    </div>
+
+    <div class="cta-row" style="justify-content: center;">
+      <a href="#install" class="cta primary">Install the Full Stack</a>
+      <a href="https://github.com/GuyMannDude" target="_blank" class="cta">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- The Three Products -->
+<section>
+  <div class="container">
+    <div class="section-label">Three Products. One System.</div>
+    <h2>Each one is useful alone. Together, they're infrastructure.</h2>
+
+    <div class="product-cards">
+      <a href="/frankenclaw" class="product-card franken">
+        <div class="product-name">FrankenClaw</div>
+        <div class="product-tagline">Real tools for AI agents.</div>
+        <div class="product-desc">MCP tool server with 12 FrankenTools: search, vision, browser automation, web scraping, Shopify, and NotebookLM. Drop a .py file in tools/ and it just works.</div>
+        <div class="product-link">Learn more &rarr;</div>
+      </a>
+
+      <a href="/mnemo-cortex" class="product-card mnemo">
+        <div class="product-name">Mnemo Cortex</div>
+        <div class="product-tagline">Your agent remembers everything.</div>
+        <div class="product-desc">Persistent operating memory with semantic recall, cross-agent cognition, and memory lineage. SQLite + FTS5. Zero API cost. Local compute.</div>
+        <div class="product-link">Learn more &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- How They Connect -->
+<section>
+  <div class="container">
+    <div class="section-label">How It Works</div>
+    <h2>Your agent asks. The stack delivers.</h2>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Agent wants to act</div>
+        <div class="desc">FrankenClaw serves the tool over MCP. Search the web, read an image, automate a browser, scrape a page &mdash; no extra config.</div>
+      </div>
+      <div class="card">
+        <div class="name">Agent wants to remember</div>
+        <div class="desc">Mnemo Cortex stores it with semantic indexing. Next session, next agent, next week &mdash; the memory is there.</div>
+      </div>
+      <div class="card">
+        <div class="name">You want to save money</div>
+        <div class="desc">Mnemo stops agents from re-doing yesterday's thinking. FrankenClaw uses your keys, not theirs. All local compute, zero cloud costs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Install -->
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Install the Full Stack</h2>
+    <p style="color: var(--text-sub);">One command. Interactive menu. Works on Ubuntu and Mac. Five minutes or less.</p>
+
+    <div class="install-box">
+      <div class="install-label">One Command</div>
+      <pre>curl -fsSL https://projectsparks.ai/install.sh | bash</pre>
+    </div>
+
+    <p style="color: var(--text-sub); text-align: center;">The installer clones each repo, installs dependencies, walks you through API key setup, and wires everything together. If OpenClaw is detected, it offers to point your agent at the stack automatically.</p>
+
+    <div class="callout">
+      <div class="big">If it's not easy, it's broken.</div>
+      <div class="sub">Safe to run again if something failed &middot; Idempotent by design</div>
+    </div>
+
+    <h2 style="font-size: 28px; margin-top: 44px;">Or install individually</h2>
+    <p style="color: var(--text-sub);">Each product works on its own. Pick what you need.</p>
+
+    <div class="individual-installs">
+      <a href="/frankenclaw#install">
+        <div class="ind-name">FrankenClaw</div>
+        <div class="ind-desc">pip install &middot; 30 seconds</div>
+      </a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">
+        <div class="ind-name">Mnemo Cortex</div>
+        <div class="ind-desc">pip install &middot; 60 seconds</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- See It In Action -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label">Live Demo</div>
+    <h2>See it in action</h2>
+    <p style="color: var(--text-sub); max-width: 560px; margin: 0 auto 28px;">
+      Rocky runs the full stack right now. He uses FrankenClaw for tools and Mnemo Cortex for memory. Talk to him.
+    </p>
+
+    <a href="/chat" class="cta primary" style="font-size: 16px; padding: 18px 44px;">Talk to Rocky</a>
+
+    <p style="color: var(--text-sub); font-size: 16px; margin-top: 18px; opacity: 0.5;">Chat Portal &mdash; coming soon</p>
+  </div>
+</section>
+
+<!-- Support -->
+<section>
+  <div class="container" style="text-align: center;">
+    <h2>Support the project</h2>
+    <p style="color: var(--text-sub); margin-bottom: 28px;">The entire stack is free and open source. Built in Half Moon Bay by one guy and his AI team.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="cta">GitHub Sponsors</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="cta">PayPal Donate</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; <a href="/" style="color: inherit;">projectsparks.ai</a>
+  </div>
+</footer>
+
+<script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
+<script src="/rocky-widget.js"></script>
+</body>
+</html>
