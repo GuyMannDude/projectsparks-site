@@ -264,7 +264,7 @@
     <div class="nav-links">
       <a href="/stack">The Stack</a>
       <a href="/frankenclaw">FrankenClaw</a>
-      <a href="/rockys-switch">Rocky's Switch</a>
+      <a href="/mnemo-cortex">Mnemo Cortex</a>
     </div>
   </div>
 </nav>
@@ -589,6 +589,75 @@
     </div>
     <div style="margin-top: 28px;">
       <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank">Get it on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- Active Memory Comparison -->
+<section id="vs-active-memory">
+  <div class="container">
+    <div class="section-label">Clarification</div>
+    <h2>Mnemo Cortex vs OpenClaw Active Memory</h2>
+    <h3 style="color: var(--gold-bright); font-style: italic; font-size: 24px; margin-bottom: 28px;">They're Not the Same Thing.</h3>
+
+    <div class="content">
+      <p>OpenClaw 2026.4.10 shipped a native <strong>Active Memory</strong> plugin. Some people have asked whether it replaces Mnemo Cortex. Short answer: no &mdash; they solve different problems.</p>
+      <p>Here's the difference, based on testing both on our Sparky sandbox agent.</p>
+    </div>
+
+    <div style="overflow-x: auto; margin: 36px 0;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 18px;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--card-border);">
+            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub);"></th>
+            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub);">Active Memory (native)</th>
+            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);">Mnemo Cortex (MCP)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--card-border);">
+            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Scope</td>
+            <td style="padding: 14px 18px; color: var(--text-sub);">Single agent</td>
+            <td style="padding: 14px 18px; color: var(--text-bright);">Cross-agent (multi-agent bus)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--card-border);">
+            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Store</td>
+            <td style="padding: 14px 18px; color: var(--text-sub);">Local workspace files + FTS</td>
+            <td style="padding: 14px 18px; color: var(--text-bright);">Centralized SQLite + embeddings</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--card-border);">
+            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Persistence</td>
+            <td style="padding: 14px 18px; color: var(--text-sub);">Per-agent, per-workspace</td>
+            <td style="padding: 14px 18px; color: var(--text-bright);">Survives resets, sessions, machine moves</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--card-border);">
+            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Cross-session</td>
+            <td style="padding: 14px 18px; color: var(--text-sub);">Within one agent's workspace</td>
+            <td style="padding: 14px 18px; color: var(--text-bright);">Any agent, any machine</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Integration</td>
+            <td style="padding: 14px 18px; color: var(--text-sub);">Independent store</td>
+            <td style="padding: 14px 18px; color: var(--text-bright);">Independent store</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-label" style="margin-top: 44px;">When to use which</div>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 18px;">
+      <div class="card">
+        <div class="name">Active Memory</div>
+        <div class="desc">Intra-session, same-agent, fast local recall. Your agent's personal scratchpad. Great for recent context within a single workspace.</div>
+      </div>
+      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
+        <div class="name">Mnemo Cortex</div>
+        <div class="desc">Cross-agent memory bus. When Agent A needs to know what Agent B learned. When memory must survive session resets, machine moves, or agent restarts.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 36px;">
+      <div class="big" style="font-size: 22px;">We run both. Active Memory handles per-agent recent context. Mnemo handles everything that crosses agents or needs durable archival. They stack; they don't compete.</div>
     </div>
   </div>
 </section>
