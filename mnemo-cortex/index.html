@@ -408,6 +408,117 @@
   </div>
 </section>
 
+<!-- Dreams Across Agents -->
+<section id="dreaming">
+  <div class="container">
+    <div class="section-label">Category of One</div>
+    <h2>Dreams Across Agents</h2>
+    <div class="content">
+      <p>Every night at 3 AM, Mnemo reads every agent's memories from the day. An LLM synthesizes them into a single brief: what was built, what was decided, what's blocked, what each agent should know about the others' work.</p>
+      <p>Every agent wakes up caught up. <strong>No manual relay. No "hey, tell Rocky what CC did." It just happens.</strong></p>
+    </div>
+
+    <div class="callout">
+      <div class="big">Mem0, Zep, and Letta store memory per agent.<br>Mnemo synthesizes across all of them overnight.</div>
+      <div class="sub">That's a different category.</div>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="dim">3:15 AM &mdash; THE VAULT</span>
+
+  <span class="hl">mnemo-dream.py</span>
+    <span class="dim">1.</span> Harvest all agent memories since last dream
+    <span class="dim">2.</span> Send to LLM for cross-agent synthesis
+    <span class="dim">3.</span> Write dream brief back to Mnemo
+
+  <span class="dim">Next morning, each agent boots:</span>
+
+  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>          <span class="hl">Alice</span>
+  <span class="dim">reads dream</span>     <span class="dim">reads dream</span>   <span class="dim">reads dream</span>   <span class="dim">reads dream</span>
+  <span class="dim">knows what</span>      <span class="dim">knows what</span>    <span class="dim">knows what</span>    <span class="dim">knows what</span>
+  <span class="dim">everyone did</span>    <span class="dim">everyone did</span>  <span class="dim">everyone did</span>  <span class="dim">everyone did</span></pre>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>Cost: one cheap LLM call per night. The dream brief is searchable like any other memory &mdash; agents can recall dreams from weeks ago. <strong>Cross-agent awareness that compounds over time.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- Works with Mem0 -->
+<section id="mem0-bridge">
+  <div class="container">
+    <div class="section-label">"And" Not "Instead Of"</div>
+    <h2>Works with Mem0</h2>
+    <div class="content">
+      <p>Already invested in Mem0? Good. <strong>Keep it.</strong></p>
+      <p>Mnemo runs as a fast local working-memory layer in front of your existing Mem0 deployment. When Mnemo has what you need, you get sub-100ms local recall. When Mnemo's results are thin, it automatically falls back to Mem0 for depth.</p>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="hl">Agent asks a question</span>
+       <span class="dim">|</span>
+       <span class="dim">v</span>
+  <span class="hl">Mnemo Cortex</span> <span class="dim">(local, fast, &lt;100ms)</span>
+       <span class="dim">|</span>
+       <span class="dim">|&mdash;&mdash; Rich results? &rarr;</span> <span class="hl">Return immediately</span>
+       <span class="dim">|</span>
+       <span class="dim">|&mdash;&mdash; Thin results? &rarr;</span> <span class="hl">Auto-fallback to Mem0</span>
+       <span class="dim">|</span>                    <span class="dim">(cloud, deep, long-term)</span>
+       <span class="dim">v</span>
+  <span class="hl">Combined response</span> <span class="dim">&mdash; fast + deep</span></pre>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>Writes sync both ways. Mnemo archives locally, Mem0 stores in the cloud. <strong>Two stores, one seamless recall path.</strong> You don't choose between fast-local and deep-cloud &mdash; you get both.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Without Bridge</div>
+        <div class="desc">Pick one: fast local OR deep cloud. Sacrifice speed or depth. Re-architect if you switch.</div>
+      </div>
+      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
+        <div class="name">With Bridge</div>
+        <div class="desc">Mnemo for speed, Mem0 for depth. Automatic. No code changes. Existing Mem0 data stays accessible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Deploy Your Way -->
+<section id="topology">
+  <div class="container">
+    <div class="section-label">Your Architecture, Your Rules</div>
+    <h2>Deploy Your Way</h2>
+    <div class="content">
+      <p>Mem0 makes you choose: one shared store for everything. Mnemo lets you architect for your actual privacy and separation needs.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card">
+        <div class="icon" style="font-size: 28px;">&#x1F310;</div>
+        <div class="name">Shared</div>
+        <div class="desc">One Mnemo instance for all agents. Cross-agent search and dreaming. Full team awareness. Best for internal teams where every agent should see everything.</div>
+      </div>
+      <div class="card">
+        <div class="icon" style="font-size: 28px;">&#x1F512;</div>
+        <div class="name">Isolated</div>
+        <div class="desc">Separate Mnemo per agent or per customer. Zero bleed between tenants. Perfect for customer-facing bots where visitor A must never see visitor B's history.</div>
+      </div>
+      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
+        <div class="icon" style="font-size: 28px;">&#x1F527;</div>
+        <div class="name">Hybrid</div>
+        <div class="desc">Shared Mnemo for internal agents + isolated instances for customer-facing bots. Cross-agent dreaming for the team, strict privacy for customers. This is what we run.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 28px;">
+      <div class="big" style="font-size: 22px;">Privacy isn't a setting. It's a topology decision. Mnemo gives you the architecture to make it.</div>
+    </div>
+  </div>
+</section>
+
 <!-- Memory with Lineage -->
 <section>
   <div class="container">
@@ -731,5 +842,6 @@
 
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
+<script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>
 </body>
 </html>
