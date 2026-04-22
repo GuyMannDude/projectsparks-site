@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Persistent AI Operating Memory</title>
-<meta name="description" content="Mnemo-Cortex turns AI from a tool into a system that remembers, learns, and improves. Persistent cognition layer for AI systems. Open source.">
+<meta name="description" content="Mnemo-Cortex v2.4 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Sparks Bus for agent-to-agent. Passport for user preferences. Open source.">
 <meta property="og:title" content="Mnemo Cortex — Persistent AI Operating Memory">
-<meta property="og:description" content="Memory that dreams. Deep recall for Claude Code, Claude Desktop, and OpenClaw. Open source, $0 to run.">
+<meta property="og:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, portable user passport. Open source, $0 to run.">
 <meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mnemo Cortex — Persistent AI Operating Memory">
-<meta name="twitter:description" content="Memory that dreams. Deep recall for Claude Code, Claude Desktop, and OpenClaw. Open source, $0 to run.">
+<meta name="twitter:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, portable user passport. Open source, $0 to run.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -471,6 +471,159 @@
 
     <div class="content" style="margin-top: 28px;">
       <p>Cost: one cheap LLM call per night. The dream brief is searchable like any other memory &mdash; agents can recall dreams from weeks ago. <strong>Cross-agent awareness that compounds over time.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- WikAI -->
+<section id="wikai">
+  <div class="container">
+    <div class="section-label">Compile, Don't Rederive</div>
+    <h2>WikAI &mdash; The Compiled Knowledge Base</h2>
+    <div class="content">
+      <p>Mnemo holds the facts. <strong>WikAI is the study guide compiled from those facts</strong> &mdash; 3,000+ markdown pages organized into projects, entities, concepts, and sources. Three MCP tools: <code>wiki_search</code>, <code>wiki_read</code>, <code>wiki_index</code>.</p>
+      <p>The wiki is regenerated every night by <code>mnemo-wiki-compile.py</code>. The compiler clusters recent memories by topic, then asks an LLM to rewrite each affected page integrating the new information &mdash; without bloating it. <strong>Cross-references are validated against the live page set</strong>, so no hallucinated wikilinks. Every page carries a provenance footer listing the Mnemo session IDs that fed it, so any claim is auditable.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">The wiki is never edited directly.<br>Mnemo is the source of truth.</div>
+      <div class="sub">If a page is wrong, fix the source data and recompile. WikAI is always regenerable.</div>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="dim">3:30 AM &mdash; THE VAULT (15 min after Dreaming)</span>
+
+  <span class="hl">mnemo-wiki-compile.py</span>
+    <span class="dim">1.</span> Harvest recent memories from Mnemo + AgentB writebacks
+    <span class="dim">2.</span> Cluster by topic in Python (no LLM routing)
+    <span class="dim">3.</span> Per-topic: gemini-2.5-flash rewrites the page
+    <span class="dim">4.</span> Validate cross-refs against the live page set
+    <span class="dim">5.</span> Write with .md.prev rollback, regenerate INDEX.md
+
+  <span class="dim">Per-page failures isolated:</span> ⚠️ to <span class="hl">#alerts</span>, run continues</pre>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>Inspired by <a href="https://gist.github.com/karpathy" target="_blank">Andrej Karpathy's LLM Wiki pattern</a> and <a href="https://youtu.be/dxq7WtWxi44" target="_blank">Nate B Jones's analysis</a> of write-time vs query-time memory. <strong>Mnemo is the librarian. WikAI is the study guide.</strong> Neither Mem0, Zep, nor Letta offer this.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Sparks Bus -->
+<section id="sparks-bus">
+  <div class="container">
+    <div class="section-label">Agent-to-Agent</div>
+    <h2>Sparks Bus &mdash; Delivery-Confirmed Messaging</h2>
+    <div class="content">
+      <p>A multi-agent message bus with full delivery confirmation. Lives inside Mnemo Cortex (<code>sparks_bus/</code>) AND ships as a standalone repo at <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">github.com/GuyMannDude/sparks-bus</a>.</p>
+      <p><strong>Doctrine:</strong> Discord is the doorbell. Mnemo is the mailbox. The tracking ID is the receipt.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">📬 DELIVERED &nbsp; → &nbsp; ✅ PICKED UP &nbsp; → &nbsp; 🔄 LOOP CLOSED</div>
+      <div class="sub">Every message's lifecycle visible in #dispatch. ⚠️ DELIVERY FAILED in #alerts (one-shot, no retry storms).</div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p><strong>Two install modes auto-detected at startup:</strong></p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Full Mode</div>
+        <div class="desc">Mnemo reachable. Payload saved to Mnemo by tracking ID. Discord notifications carry just the receipt. The full doctrine.</div>
+      </div>
+      <div class="card">
+        <div class="name">Standalone Mode</div>
+        <div class="desc">No Mnemo. Payload travels in the Discord notification itself. Same delivery → notify → pickup → reply lifecycle, no semantic recall.</div>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p><strong>A2A compatible.</strong> Agent Cards live in <code>sparks_bus/agent-cards/</code>, formatted to <a href="https://github.com/google/A2A" target="_blank">Google's A2A spec</a>. Each bus message maps to an A2A Task. <strong>Sparks Bus does for agent-to-agent what MCP does for agent-to-tool.</strong></p>
+      <p>Includes a self-contained <code>SETUP-PROMPT.md</code> any AI agent can read to bootstrap the entire bus on a fresh deployment &mdash; Karpathy's "idea file as publishing format" pattern.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Passport -->
+<section id="passport">
+  <div class="container">
+    <div class="section-label">Adapt to the User</div>
+    <h2>Passport &mdash; Portable Working-Style Preferences</h2>
+    <div class="content">
+      <p>A preference layer that captures how a user works &mdash; tone, density, formality, workflow choices &mdash; so agents can adapt to <em>them</em> instead of forcing the user to adapt.</p>
+      <p>Observations become candidates. Candidates get reviewed. <strong>Only stable claims promote into the user's profile.</strong> Nothing auto-lands.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">The user owns the artifact, not the platform.</div>
+      <div class="sub">When you switch from Claude to ChatGPT to a new tool, your working-style preferences travel with you.</div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>Five MCP tools: <code>passport_observe_behavior</code>, <code>passport_list_pending_observations</code>, <code>passport_promote_observation</code>, <code>passport_forget_or_override</code>, <code>passport_get_user_context</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- The Memory Architecture -->
+<section id="architecture">
+  <div class="container">
+    <div class="section-label">The Big Picture</div>
+    <h2>Three Layers, One Source of Truth</h2>
+    <div class="content">
+      <p>Mnemo Cortex is no longer a memory store. It's a <strong>memory architecture</strong>.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="card">
+        <div class="name">Mnemo Cortex</div>
+        <div class="desc"><strong>Source of truth.</strong> Raw facts, sessions, key events. Multi-agent, query-time. <em>The librarian's filing cabinet.</em></div>
+      </div>
+      <div class="card">
+        <div class="name">WikAI</div>
+        <div class="desc"><strong>Compiled view.</strong> Auto-generated from Mnemo. Cross-referenced, browsable. Write-time. <em>The study guide.</em></div>
+      </div>
+      <div class="card">
+        <div class="name">Brain Files</div>
+        <div class="desc"><strong>Live working memory.</strong> Current state, identity, active context per agent. Ephemeral. <em>The sticky notes on your desk.</em></div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 32px;">
+      <div class="big">When they disagree, Mnemo wins.</div>
+      <div class="sub">WikAI is always regenerable from Mnemo. Brain files are ephemeral.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Inspirations -->
+<section id="inspirations">
+  <div class="container">
+    <div class="section-label">The Clapton Method</div>
+    <h2>We did not invent this</h2>
+    <div class="content">
+      <p>We adopted the best ideas in the air, credited them openly, and built on top.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Andrej Karpathy</div>
+        <div class="desc"><a href="https://gist.github.com/karpathy" target="_blank">LLM Wiki pattern</a> (April 2026, 41,000+ bookmarks). Inspired WikAI's compile-don't-rederive design and the "idea file as publishing format" pattern in <code>SETUP-PROMPT.md</code>.</div>
+      </div>
+      <div class="card">
+        <div class="name">Nate B Jones</div>
+        <div class="desc"><a href="https://github.com/NateBJones-Projects/OB1" target="_blank">OpenBrain</a> + <a href="https://youtu.be/dxq7WtWxi44" target="_blank">"Your AI Does the Hard Work Then Deletes It"</a>. Inspired our three-layer architecture: structured store + compiled wiki + ephemeral brain files. <a href="https://natesnewsletter.substack.com/" target="_blank">Substack</a>.</div>
+      </div>
+      <div class="card">
+        <div class="name">Google A2A Protocol</div>
+        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">A2A spec</a>. Sparks Bus speaks A2A's data shapes today; transport is the v2 roadmap.</div>
+      </div>
+      <div class="card">
+        <div class="name">Mem0</div>
+        <div class="desc"><a href="https://mem0.ai" target="_blank">mem0.ai</a>. The Mem0 Bridge is "and Mem0, not instead of Mem0."</div>
+      </div>
     </div>
   </div>
 </section>
