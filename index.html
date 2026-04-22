@@ -106,7 +106,7 @@
   .constellation {
     position: relative;
     width: 750px;
-    height: 460px;
+    height: 540px;
     animation: fadeIn 1.8s ease-out;
   }
 
@@ -135,7 +135,8 @@
 
   .node:hover { transform: scale(1.1); }
   .node.sparc:hover { transform: translateX(-50%) scale(1.1); }
-  .node.mnemo:hover { transform: translateX(-50%) scale(1.1); }
+  .node.stack:hover { transform: translateX(-50%) scale(1.1); }
+  .node.claudepilot:hover { transform: translateX(-50%) scale(1.1); }
 
   .node .dot {
     width: 8px; height: 8px;
@@ -186,15 +187,16 @@
 
   .node:hover .sublabel { color: var(--text); }
 
-  /* Positions */
+  /* Positions — 3-tier constellation */
   .node.sparc     { top: 0;    left: 50%;  transform: translateX(-50%); }
-  .node.brain     { top: 150px; left: 6%; }
-  .node.router    { top: 150px; right: 6%; left: auto; }
-  .node.stack     { top: 215px; left: 50%; transform: translateX(-50%); }
-  .node.frankenclaw { top: 330px; left: 4%; }
-  .node.mnemo     { top: 330px; left: 50%; transform: translateX(-50%); }
-  .node.claudepilot { top: 330px; right: 4%; left: auto; }
-  .node.about     { top: 430px; left: 50%; transform: translateX(-50%); }
+  .node.brain     { top: 160px; left: 4%; }
+  .node.stack     { top: 160px; left: 50%; transform: translateX(-50%); }
+  .node.mnemo     { top: 160px; right: 4%; left: auto; }
+  .node.frankenclaw { top: 340px; left: 4%; }
+  .node.claudepilot { top: 340px; left: 50%; transform: translateX(-50%); }
+  .node.about     { top: 340px; right: 4%; left: auto; }
+  .node.sparksbus { top: 480px; left: 50%; transform: translateX(-50%); }
+  .node.sparksbus:hover { transform: translateX(-50%) scale(1.1); }
 
   /* SPARC flagship */
   .node.sparc .dot {
@@ -256,9 +258,7 @@
 
   .node.sparc     { animation: fadeIn 1.0s ease-out 0.3s both; }
   .node.brain     { animation: fadeIn 1.0s ease-out 0.6s both; }
-  .node.router    { animation: fadeIn 1.0s ease-out 0.8s both; }
-  .node.stack     { animation: fadeIn 1.0s ease-out 1.0s both; }
-  .node.stack:hover { transform: translateX(-50%) scale(1.1); }
+  .node.stack     { animation: fadeIn 1.0s ease-out 0.8s both; }
   .node.stack .dot {
     width: 12px; height: 12px;
     background: var(--gold-bright);
@@ -266,27 +266,25 @@
   }
   .node.stack .label { color: var(--gold); }
   .node.stack:hover .label { color: var(--gold-bright); }
+  .node.mnemo     { animation: fadeIn 1.0s ease-out 1.0s both; }
   .node.frankenclaw { animation: fadeIn 1.0s ease-out 1.2s both; }
   .node.frankenclaw:hover { transform: scale(1.1); }
-  .node.mnemo     { animation: fadeIn 1.0s ease-out 1.25s both; }
-  .node.mnemo:hover { transform: translateX(-50%) scale(1.1); }
   .node.claudepilot { animation: fadeIn 1.0s ease-out 1.3s both; }
-  .node.claudepilot:hover { transform: scale(1.1); }
   .node.about     { animation: fadeIn 1.0s ease-out 1.4s both; }
-  .node.about:hover { transform: translateX(-50%) scale(1.1); }
+  .node.sparksbus { animation: fadeIn 1.0s ease-out 1.5s both; }
 
   @media (max-width: 768px) {
     .title-cluster h1 { font-size: 32px; letter-spacing: 10px; }
     .title-cluster .tagline { font-size: 11px; }
-    .constellation { width: 340px; height: 600px; }
+    .constellation { width: 340px; height: 540px; }
     .node.sparc     { top: 0; left: 50%; }
-    .node.brain     { top: 100px; left: 2%; }
-    .node.router    { top: 100px; right: 2%; left: auto; }
-    .node.stack     { top: 210px; left: 50%; }
-    .node.frankenclaw { top: 320px; left: 4%; }
-    .node.mnemo     { top: 320px; left: 50%; }
-    .node.claudepilot { top: 320px; right: 4%; left: auto; }
-    .node.about     { top: 440px; left: 50%; }
+    .node.brain     { top: 110px; left: 2%; }
+    .node.stack     { top: 110px; left: 50%; }
+    .node.mnemo     { top: 110px; right: 2%; left: auto; }
+    .node.frankenclaw { top: 260px; left: 2%; }
+    .node.claudepilot { top: 260px; left: 50%; }
+    .node.about     { top: 260px; right: 2%; left: auto; }
+    .node.sparksbus { top: 410px; left: 50%; }
     .node .label { font-size: 11px; letter-spacing: 2px; }
     .node .sublabel { font-size: 12px; }
     .watermark { font-size: 160px; }
@@ -306,31 +304,25 @@
   </div>
 
   <div class="constellation">
-    <svg class="lines" viewBox="0 0 750 460" preserveAspectRatio="xMidYMid meet">
-      <!-- SPARC to row 2 -->
-      <line x1="375" y1="35" x2="80" y2="160" />
-      <line x1="375" y1="35" x2="660" y2="160" />
-      <!-- SPARC to Stack -->
-      <line x1="375" y1="35" x2="375" y2="225" />
-      <!-- Row 2 to Stack -->
-      <line x1="80" y1="170" x2="375" y2="225" />
-      <line x1="660" y1="170" x2="375" y2="225" />
-      <!-- Row 2 horizontal -->
-      <line x1="100" y1="160" x2="640" y2="160" />
-      <!-- Stack to row 4 -->
-      <line x1="375" y1="240" x2="80" y2="340" />
-      <line x1="375" y1="240" x2="375" y2="340" />
-      <line x1="375" y1="240" x2="660" y2="340" />
-      <!-- Row 2 to row 4 (outer lines) -->
-      <line x1="80" y1="170" x2="80" y2="340" />
-      <line x1="660" y1="170" x2="660" y2="340" />
-      <!-- Row 4 horizontal -->
-      <line x1="100" y1="340" x2="355" y2="340" />
-      <line x1="395" y1="340" x2="640" y2="340" />
-      <!-- Row 4 to About -->
-      <line x1="80" y1="350" x2="375" y2="440" />
-      <line x1="375" y1="350" x2="375" y2="430" />
-      <line x1="660" y1="350" x2="375" y2="440" />
+    <svg class="lines" viewBox="0 0 750 540" preserveAspectRatio="xMidYMid meet">
+      <!-- SPARC to middle row -->
+      <line x1="375" y1="35" x2="80" y2="170" />
+      <line x1="375" y1="35" x2="375" y2="170" />
+      <line x1="375" y1="35" x2="660" y2="170" />
+      <!-- Middle row horizontal -->
+      <line x1="100" y1="170" x2="640" y2="170" />
+      <!-- Middle row to bottom row -->
+      <line x1="80" y1="180" x2="80" y2="350" />
+      <line x1="375" y1="180" x2="375" y2="350" />
+      <line x1="660" y1="180" x2="660" y2="350" />
+      <line x1="80" y1="180" x2="375" y2="350" />
+      <line x1="660" y1="180" x2="375" y2="350" />
+      <!-- Bottom row horizontal -->
+      <line x1="100" y1="350" x2="640" y2="350" />
+      <!-- Bottom row down to Sparks Bus -->
+      <line x1="80" y1="360" x2="375" y2="490" />
+      <line x1="375" y1="360" x2="375" y2="490" />
+      <line x1="660" y1="360" x2="375" y2="490" />
     </svg>
 
     <a href="/sparc" class="node sparc">
@@ -339,7 +331,7 @@
       <div class="sublabel">The Thesis</div>
     </a>
 
-    <a href="https://github.com/GuyMannDude/sparks-brain" target="_blank" class="node brain">
+    <a href="/sparks-brain" class="node brain">
       <div class="dot"></div>
       <div class="label">Sparks Brain</div>
       <div class="sublabel">Memory for Claude Code</div>
@@ -351,16 +343,16 @@
       <div class="sublabel">Full Agent Infrastructure</div>
     </a>
 
-    <a href="/frankenclaw" class="node frankenclaw">
-      <div class="dot"></div>
-      <div class="label">FrankenClaw</div>
-      <div class="sublabel">FrankenTools for Agents</div>
-    </a>
-
     <a href="/mnemo-cortex" class="node mnemo">
       <div class="dot"></div>
       <div class="label">Mnemo Cortex</div>
       <div class="sublabel">Memory for Agents</div>
+    </a>
+
+    <a href="/frankenclaw" class="node frankenclaw">
+      <div class="dot"></div>
+      <div class="label">FrankenClaw</div>
+      <div class="sublabel">FrankenTools for Agents</div>
     </a>
 
     <a href="/claudepilot" class="node claudepilot blue">
@@ -373,6 +365,12 @@
       <div class="dot"></div>
       <div class="label">About</div>
       <div class="sublabel">The Team</div>
+    </a>
+
+    <a href="/sparks-bus" class="node sparksbus blue">
+      <div class="dot"></div>
+      <div class="label">Sparks Bus</div>
+      <div class="sublabel">Agent-to-Agent Messaging</div>
     </a>
   </div>
 
@@ -456,5 +454,6 @@ draw();
 
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
+<script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>
 </body>
 </html>

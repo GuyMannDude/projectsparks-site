@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparks Bus — Agent-to-Agent Messaging with Delivery Confirmation</title>
+<meta name="description" content="A delivery-confirmed multi-agent message bus. Discord = doorbell, Mnemo = mailbox, tracking ID = receipt. A2A-compatible. Open source.">
+<meta property="og:title" content="Sparks Bus — Delivery-Confirmed Agent Messaging">
+<meta property="og:description" content="Stop asking 'did you get that?' Sparks Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta property="og:image" content="https://projectsparks.ai/sparks-bus/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Sparks Bus — agent-to-agent messaging">
+<meta property="og:url" content="https://projectsparks.ai/sparks-bus">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sparks Bus — Delivery-Confirmed Agent Messaging">
+<meta name="twitter:description" content="Stop asking 'did you get that?' Sparks Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta name="twitter:image" content="https://projectsparks.ai/sparks-bus/social-preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #08080f;
+    --gold: #e8b830;
+    --gold-bright: #ffd54f;
+    --gold-glow: rgba(232, 184, 48, 0.5);
+    --gold-dim: rgba(232, 184, 48, 0.25);
+    --blue: #4a90e2;
+    --blue-bright: #6ab0ff;
+    --blue-glow: rgba(74, 144, 226, 0.5);
+    --blue-dim: rgba(74, 144, 226, 0.2);
+    --text: #ededf4;
+    --text-bright: #ffffff;
+    --text-sub: #a0a0b4;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(74, 144, 226, 0.18);
+    --card-border-strong: rgba(74, 144, 226, 0.35);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--blue-bright); text-decoration: none; }
+  a:hover { color: var(--blue); }
+
+  /* Brand: Mem0 (digit zero, not letter o). Cormorant Garamond renders 0 indistinguishable
+     from o, so wrap brand mentions in this class to switch to JetBrains Mono inline. */
+  .mem0 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Nav */
+  nav {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue-bright);
+  }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-sub);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--text-bright); }
+
+  section { padding: 80px 0; border-bottom: 1px solid var(--card-border); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight: 300; letter-spacing: -1px;
+    color: var(--text-bright);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 400; letter-spacing: -0.5px;
+    color: var(--text-bright);
+    margin-bottom: 28px;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 24px; color: var(--text-sub);
+    font-style: italic;
+    margin-bottom: 36px;
+  }
+
+  .content p { margin-bottom: 20px; }
+  .content code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(74, 144, 226, 0.1);
+    border: 1px solid var(--card-border);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--blue-bright);
+  }
+
+  .callout {
+    border: 1px solid var(--card-border-strong);
+    border-radius: 12px;
+    padding: 36px;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.06) 0%, rgba(74, 144, 226, 0.02) 100%);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.08);
+    margin: 40px 0;
+    text-align: center;
+  }
+  .callout .big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--text-bright);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .callout .sub {
+    color: var(--text-sub);
+    font-style: italic;
+    font-size: 17px;
+  }
+
+  .arch {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    overflow-x: auto;
+  }
+  .arch pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text);
+    white-space: pre;
+  }
+  .arch .dim { color: var(--text-sub); }
+  .arch .hl { color: var(--blue-bright); }
+
+  .grid { display: grid; gap: 20px; }
+  .card {
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 28px;
+    background: var(--card-bg);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .card:hover {
+    border-color: var(--card-border-strong);
+    transform: translateY(-2px);
+  }
+  .card .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 500;
+    color: var(--blue-bright); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: var(--bg);
+    border: 1px solid var(--blue);
+  }
+  .btn-primary:hover { background: var(--blue-bright); color: var(--bg); }
+  .btn-ghost {
+    border: 1px solid var(--blue-dim);
+    color: var(--blue-bright);
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue-bright); }
+
+  /* Lifecycle bar */
+  .lifecycle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 32px 0;
+  }
+  .lifecycle .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 140px;
+  }
+  .lifecycle .step .emoji { font-size: 40px; line-height: 1; margin-bottom: 10px; }
+  .lifecycle .step .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 4px;
+  }
+  .lifecycle .step .desc { color: var(--text-sub); font-size: 15px; }
+  .lifecycle .arrow { color: var(--blue-dim); font-size: 28px; font-family: 'JetBrains Mono', monospace; }
+
+  .hero-logo {
+    display: block;
+    margin: 0 auto 28px;
+    max-width: 200px;
+    filter: drop-shadow(0 0 30px rgba(74, 144, 226, 0.35));
+  }
+
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-sub);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 42px; }
+    h2 { font-size: 30px; }
+    .subtitle { font-size: 20px; }
+    section { padding: 50px 0; }
+    .lifecycle .arrow { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">⚡ Sparks Bus</a>
+    <div class="nav-links">
+      <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">GitHub</a>
+      <a href="/mnemo-cortex">Mnemo Cortex</a>
+      <a href="/">Project Sparks</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section>
+  <div class="container" style="text-align: center;">
+    <img src="logo.png" alt="Sparks Bus logo — blue spark between two nodes" class="hero-logo">
+    <div class="section-label">Project Sparks</div>
+    <h1>Sparks Bus</h1>
+    <p class="subtitle">Agent-to-agent messaging with delivery confirmation.</p>
+
+    <div class="content" style="max-width: 700px; margin: 0 auto;">
+      <p>Multi-agent systems break down silently. Agent A sends a task to Agent B. Did Agent B get it? Did it process it? Did it reply? You end up asking, copy-pasting, manually relaying status. <strong>Sparks Bus closes that loop.</strong></p>
+    </div>
+
+    <div style="margin-top: 36px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank" class="btn btn-primary">View on GitHub</a>
+      <a href="#install" class="btn btn-ghost">Install Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- Doctrine -->
+<section>
+  <div class="container">
+    <div class="section-label">The Doctrine</div>
+    <h2>Discord is the doorbell. Mnemo is the mailbox. The tracking ID is the receipt.</h2>
+    <div class="content">
+      <p>Discord never carries the payload. <strong>Mnemo carries the package.</strong> Discord tells the receiving agent where to look and gives the sender confirmation that the package was picked up.</p>
+      <p>You stop asking agents "did you get that?" — you watch <code>#dispatch</code> and see every package move.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Lifecycle -->
+<section>
+  <div class="container">
+    <div class="section-label">Full Lifecycle, Visible</div>
+    <h2>Every message produces a visible chain in Discord</h2>
+
+    <div class="lifecycle">
+      <div class="step">
+        <div class="emoji">📬</div>
+        <div class="label">Delivered</div>
+        <div class="desc">Bus saved the payload, posted the receipt</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="emoji">✅</div>
+        <div class="label">Picked Up</div>
+        <div class="desc">Recipient agent has read the message</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="emoji">🔄</div>
+        <div class="label">Loop Closed</div>
+        <div class="desc">Recipient replied; sender's task is done</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="big">Failure is a one-shot ⚠️ in <code style="color: var(--blue-bright);">#alerts</code>.<br>No retry storms. No silent drops.</div>
+      <div class="sub">Delivery failure stamps the message <code style="color: var(--blue-bright);">delivery_failed_at</code> and excludes it from retries until the operator clears it.</div>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="dim">In #dispatch:</span>
+
+  📬 [Bus] CC → Rocky
+     Subject: research-art-styles-2026
+     Tracking: <span class="hl">bus-42-20260422T070000</span>
+     Status: DELIVERED — awaiting pickup
+
+  ✅ [Bus] Rocky picked up message from CC
+     Tracking: <span class="hl">bus-42-20260422T070000</span>
+     Status: PICKED UP
+
+  🔄 [Bus] Rocky replied to CC
+     Tracking: <span class="hl">bus-reply-43-20260422T071500</span>
+     Original: <span class="hl">bus-42-20260422T070000</span>
+     Status: LOOP CLOSED ✅</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Two Install Modes -->
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Two install modes, auto-detected at startup</h2>
+    <div class="content">
+      <p>The watcher probes Mnemo at startup and picks the right mode. <strong>One codebase, two install paths.</strong></p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 32px;">
+      <div class="card">
+        <div class="name">Full Mode</div>
+        <div class="desc"><strong>With Mnemo Cortex.</strong> Each message's payload is saved to Mnemo by tracking ID. Discord notifications carry just the receipt. Semantic recall, cross-agent memory, the full doctrine.</div>
+      </div>
+      <div class="card">
+        <div class="name">Standalone Mode</div>
+        <div class="desc"><strong>Without Mnemo.</strong> Payload travels in the Discord notification body itself. Same delivery → notify → pickup → reply lifecycle. No semantic recall, but you can drop in Mnemo later without changing any agent code.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <div class="big">Standalone is the on-ramp.</div>
+      <div class="sub">Start standalone. Add <a href="/mnemo-cortex">Mnemo Cortex</a> when you want semantic recall. Zero migration cost — the watcher just notices Mnemo is reachable on next restart.</div>
+    </div>
+
+    <div class="arch" style="margin-top: 40px;">
+      <pre>  <span class="dim">$</span> git clone https://github.com/GuyMannDude/sparks-bus.git
+  <span class="dim">$</span> cd sparks-bus
+  <span class="dim">$</span> pip install -r requirements.txt
+  <span class="dim">$</span> echo "$DISCORD_BOT_TOKEN" &gt; ~/.sparks/discord-token
+  <span class="dim">$</span> cp config.example.json config.json   <span class="dim"># edit agents/channels</span>
+  <span class="dim">$</span> python3 sparks-bus-watcher.py
+
+  <span class="hl">Mode: STANDALONE (Discord only — payload in notifications)</span>
+  <span class="hl">Polling every 30s</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- A2A -->
+<section>
+  <div class="container">
+    <div class="section-label">A2A Compatible</div>
+    <h2>Sparks Bus does for agent-to-agent what MCP does for agent-to-tool.</h2>
+    <div class="content">
+      <p>Every agent in a Sparks Bus deployment has an <a href="https://github.com/google/A2A" target="_blank">A2A Agent Card</a> in <code>agent-cards/</code> describing identity, capabilities, and delivery method. Each bus message maps cleanly to an A2A Task:</p>
+    </div>
+
+    <div class="arch">
+      <pre>  Sparks Bus       →  A2A Task
+  <span class="dim">─────────────────────────────────────────</span>
+  <span class="hl">tracking_id</span>      →  task.id
+  <span class="hl">subject</span>          →  task.name
+  <span class="hl">body</span>             →  task.input
+  <span class="hl">lifecycle</span>        →  task.state
+                       (CREATED/DELIVERED→submitted,
+                        PICKED UP→working,
+                        REPLIED→completed,
+                        DELIVERY FAILED→failed)
+  <span class="hl">reply_to</span>         →  task.metadata.reply_to
+  <span class="hl">Mnemo session_id</span> →  task.artifact</pre>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>HTTPS / JSON-RPC transport is the v2 roadmap. Data shape compatibility is in now — when transport ships, external A2A clients can submit tasks to your Sparks agents without any data-model changes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP-PROMPT -->
+<section>
+  <div class="container">
+    <div class="section-label">Idea File as Publishing Format</div>
+    <h2>Bootstrap a deployment by pasting one prompt into your AI agent</h2>
+    <div class="content">
+      <p>The repo includes <a href="https://github.com/GuyMannDude/sparks-bus/blob/main/SETUP-PROMPT.md" target="_blank"><code>SETUP-PROMPT.md</code></a> — a self-contained prompt any AI agent can read to build the entire bus on a fresh machine. Architecture, schema, lifecycle, A2A mapping, and step-by-step build instructions, all in one paste.</p>
+      <p>Karpathy's <em>"idea file as publishing format"</em> pattern. Don't ship a tool — ship a description an AI can build from.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 36px;">
+      <a href="https://github.com/GuyMannDude/sparks-bus/blob/main/SETUP-PROMPT.md" target="_blank" class="btn btn-primary">Read SETUP-PROMPT.md</a>
+    </div>
+  </div>
+</section>
+
+<!-- Integration note -->
+<section>
+  <div class="container">
+    <div class="section-label">Two Repos, One Codebase</div>
+    <h2>Standalone here, integrated in Mnemo Cortex</h2>
+    <div class="content">
+      <p>Sparks Bus also ships as a module inside <a href="/mnemo-cortex">Mnemo Cortex</a> for integrated deployments. Same code, two install paths:</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
+      <div class="card">
+        <div class="name">Standalone Repo</div>
+        <div class="desc"><a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">github.com/GuyMannDude/sparks-bus</a> — community-facing. Default install runs in standalone mode.</div>
+      </div>
+      <div class="card">
+        <div class="name">Integrated Module</div>
+        <div class="desc"><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/sparks_bus" target="_blank">mnemo-cortex/sparks_bus/</a> — full mode by default, alongside the rest of the Mnemo stack.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Credits -->
+<section>
+  <div class="container">
+    <div class="section-label">Credits</div>
+    <h2>Inspired by community feedback + open standards</h2>
+    <div class="content">
+      <p><strong>Built by</strong> Guy Hutchins + the Sparks team (Opie, CC, Rocky, BW, Cliff). Half Moon Bay, California.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
+      <div class="card">
+        <div class="name">OpenClaw Builders</div>
+        <div class="desc">Community feedback from people running multi-agent fleets and asking the same question we asked: "did the other agent actually get this?" Sparks Bus is the answer that fits in our stack.</div>
+      </div>
+      <div class="card">
+        <div class="name">Google A2A Protocol</div>
+        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">github.com/google/A2A</a> — agent-to-agent standard. Sparks Bus speaks A2A's data shapes today; transport is v2 roadmap.</div>
+      </div>
+      <div class="card">
+        <div class="name">Karpathy's "Idea File as Publishing Format"</div>
+        <div class="desc">The pattern of shipping an idea description an AI can build from, not a tool. <code>SETUP-PROMPT.md</code> is our take on it.</div>
+      </div>
+      <div class="card">
+        <div class="name"><span class="mem0">Mem0</span></div>
+        <div class="desc"><a href="https://mem0.ai" target="_blank"><span class="mem0">mem0</span>.ai</a> — and <span class="mem0">Mem0</span>, not instead of <span class="mem0">Mem0</span>. Standalone mode means anyone can adopt the bus without buying into our memory stack.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © 2026 Project Sparks · Guy Hutchins · MIT
+  </div>
+</footer>
+
+</body>
+</html>
