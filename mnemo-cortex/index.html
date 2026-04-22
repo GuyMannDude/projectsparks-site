@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Persistent AI Operating Memory</title>
-<meta name="description" content="Mnemo-Cortex v2.4 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Sparks Bus for agent-to-agent. Passport for user preferences. Open source.">
+<meta name="description" content="Mnemo-Cortex v2.4 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Sparks Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Open source.">
 <meta property="og:title" content="Mnemo Cortex — Persistent AI Operating Memory">
-<meta property="og:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, portable user passport. Open source, $0 to run.">
+<meta property="og:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
 <meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mnemo Cortex — Persistent AI Operating Memory">
-<meta name="twitter:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, portable user passport. Open source, $0 to run.">
+<meta name="twitter:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -555,23 +555,24 @@
   </div>
 </section>
 
-<!-- Passport -->
+<!-- Developer's Passport -->
+<!-- TODO: rename to "Passport" when the hosted / browser-AI release for normal users ships. The possessive is intentional for the dev-targeted release. -->
 <section id="passport">
   <div class="container">
-    <div class="section-label">Adapt to the User</div>
-    <h2>Passport &mdash; Portable Working-Style Preferences</h2>
+    <div class="section-label">Adapt to the User &mdash; Dev Release</div>
+    <h2>Developer's Passport &mdash; Safe Behavioral-Claim Ingestion</h2>
     <div class="content">
-      <p>A preference layer that captures how a user works &mdash; tone, density, formality, workflow choices &mdash; so agents can adapt to <em>them</em> instead of forcing the user to adapt.</p>
+      <p>A reference-grade safety layer for developers building agent systems. Captures how a user works &mdash; tone, density, formality, workflow choices &mdash; so agents can adapt to <em>them</em> instead of forcing the user to adapt.</p>
       <p>Observations become candidates. Candidates get reviewed. <strong>Only stable claims promote into the user's profile.</strong> Nothing auto-lands.</p>
     </div>
 
     <div class="callout">
-      <div class="big">The user owns the artifact, not the platform.</div>
-      <div class="sub">When you switch from Claude to ChatGPT to a new tool, your working-style preferences travel with you.</div>
+      <div class="big">The user is always the gate.</div>
+      <div class="sub">5 MCP tools, a review queue, 32 content detectors, 4 provenance buckets, git-tracked audit. Current eval: 53.0% accuracy / 0.458 macro-F1 against a 200-entry labeled corpus. Beta.</div>
     </div>
 
     <div class="content" style="margin-top: 28px;">
-      <p>Five MCP tools: <code>passport_observe_behavior</code>, <code>passport_list_pending_observations</code>, <code>passport_promote_observation</code>, <code>passport_forget_or_override</code>, <code>passport_get_user_context</code>.</p>
+      <p>Five MCP tools: <code>passport_get_user_context</code>, <code>passport_observe_behavior</code>, <code>passport_list_pending_observations</code>, <code>passport_promote_observation</code>, <code>passport_forget_or_override</code>. Reference integration via stdio MCP. The hosted HTTP wrapper for browser-based AIs (claude.ai custom connectors, etc.) is a future release &mdash; today's release is for developers who wire MCP subprocesses into their own agent stacks.</p>
     </div>
   </div>
 </section>
