@@ -118,6 +118,15 @@
   }
   .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
 
+  /* Brand: Mem0 (digit zero, not letter o). Cormorant Garamond renders 0 indistinguishable
+     from o, so wrap brand mentions in this class to switch to JetBrains Mono inline. */
+  .mem0 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88em;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
   /* Arch diagram */
   .arch {
     background: var(--card-bg);
@@ -449,7 +458,7 @@
     </div>
 
     <div class="callout">
-      <div class="big">Mem0, Zep, and Letta store memory per agent.<br>Mnemo synthesizes across all of them overnight.</div>
+      <div class="big"><span class="mem0">Mem0</span>, Zep, and Letta store memory per agent.<br>Mnemo synthesizes across all of them overnight.</div>
       <div class="sub">That's a different category.</div>
     </div>
 
@@ -504,7 +513,7 @@
     </div>
 
     <div class="content" style="margin-top: 28px;">
-      <p>Inspired by <a href="https://gist.github.com/karpathy" target="_blank">Andrej Karpathy's LLM Wiki pattern</a> and <a href="https://youtu.be/dxq7WtWxi44" target="_blank">Nate B Jones's analysis</a> of write-time vs query-time memory. <strong>Mnemo is the librarian. WikAI is the study guide.</strong> Neither Mem0, Zep, nor Letta offer this.</p>
+      <p>Inspired by <a href="https://gist.github.com/karpathy" target="_blank">Andrej Karpathy's LLM Wiki pattern</a> and <a href="https://youtu.be/dxq7WtWxi44" target="_blank">Nate B Jones's analysis</a> of write-time vs query-time memory. <strong>Mnemo is the librarian. WikAI is the study guide.</strong> Neither <span class="mem0">Mem0</span>, Zep, nor Letta offer this.</p>
     </div>
   </div>
 </section>
@@ -622,7 +631,7 @@
       </div>
       <div class="card">
         <div class="name">Mem0</div>
-        <div class="desc"><a href="https://mem0.ai" target="_blank">mem0.ai</a>. The Mem0 Bridge is "and Mem0, not instead of Mem0."</div>
+        <div class="desc"><a href="https://mem0.ai" target="_blank"><span class="mem0">mem0</span>.ai</a>. The <span class="mem0">Mem0</span> Bridge is "and <span class="mem0">Mem0</span>, not instead of <span class="mem0">Mem0</span>."</div>
       </div>
     </div>
   </div>
@@ -632,10 +641,10 @@
 <section id="mem0-bridge">
   <div class="container">
     <div class="section-label">"And" Not "Instead Of"</div>
-    <h2>Works with Mem0</h2>
+    <h2>Works with <span class="mem0">Mem0</span></h2>
     <div class="content">
-      <p>Already invested in Mem0? Good. <strong>Keep it.</strong></p>
-      <p>Mnemo runs as a fast local working-memory layer in front of your existing Mem0 deployment. When Mnemo has what you need, you get sub-100ms local recall. When Mnemo's results are thin, it automatically falls back to Mem0 for depth.</p>
+      <p>Already invested in <span class="mem0">Mem0</span>? Good. <strong>Keep it.</strong></p>
+      <p>Mnemo runs as a fast local working-memory layer in front of your existing <span class="mem0">Mem0</span> deployment. When Mnemo has what you need, you get sub-100ms local recall. When Mnemo's results are thin, it automatically falls back to <span class="mem0">Mem0</span> for depth.</p>
     </div>
 
     <div class="arch">
@@ -653,7 +662,7 @@
     </div>
 
     <div class="content" style="margin-top: 28px;">
-      <p>Writes sync both ways. Mnemo archives locally, Mem0 stores in the cloud. <strong>Two stores, one seamless recall path.</strong> You don't choose between fast-local and deep-cloud &mdash; you get both.</p>
+      <p>Writes sync both ways. Mnemo archives locally, <span class="mem0">Mem0</span> stores in the cloud. <strong>Two stores, one seamless recall path.</strong> You don't choose between fast-local and deep-cloud &mdash; you get both.</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr;">
@@ -663,7 +672,7 @@
       </div>
       <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
         <div class="name">With Bridge</div>
-        <div class="desc">Mnemo for speed, Mem0 for depth. Automatic. No code changes. Existing Mem0 data stays accessible.</div>
+        <div class="desc">Mnemo for speed, <span class="mem0">Mem0</span> for depth. Automatic. No code changes. Existing <span class="mem0">Mem0</span> data stays accessible.</div>
       </div>
     </div>
   </div>
@@ -675,7 +684,7 @@
     <div class="section-label">Your Architecture, Your Rules</div>
     <h2>Deploy Your Way</h2>
     <div class="content">
-      <p>Mem0 makes you choose: one shared store for everything. Mnemo lets you architect for your actual privacy and separation needs.</p>
+      <p><span class="mem0">Mem0</span> makes you choose: one shared store for everything. Mnemo lets you architect for your actual privacy and separation needs.</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
