@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>April's Barbie Collection | Project Sparks</title>
-<meta name="description" content="Curated collector Barbie dolls — vintage, designer, and limited editions. Most NRFB (Never Removed From Box).">
-<meta property="og:title" content="April's Barbie Collection | Project Sparks">
-<meta property="og:description" content="Curated collector Barbie dolls — vintage, designer, and limited editions.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://projectsparks.ai/bdpage">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Franklin:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<meta content="Curated collector Barbie dolls — vintage, designer, and limited editions. Most NRFB (Never Removed From Box)." name="description"/>
+<meta content="April's Barbie Collection | Project Sparks" property="og:title"/>
+<meta content="Curated collector Barbie dolls — vintage, designer, and limited editions." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://projectsparks.ai/bdpage" property="og:url"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Libre+Franklin:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
   --rose: #d4467a;
@@ -487,679 +488,612 @@ body {
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--light-gray); border-radius: 3px; }
+
+/* ── UPC copy button + new packaging badges (2026-04-24) ── */
+.card-upc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  margin: 8px 0 6px 0;
+  background: var(--blush);
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: all;
+}
+.card-upc:hover { background: var(--rose-glow); border-color: var(--rose); }
+.card-upc.copied { background: var(--gold-soft); border-color: var(--gold); }
+.card-upc .upc-label {
+  font-weight: 600; opacity: 0.6;
+  font-size: 0.65rem; letter-spacing: 0.04em;
+}
+.card-upc .upc-value { font-weight: 500; }
+.card-upc .upc-copy-icon { opacity: 0.5; }
+.card-upc:hover .upc-copy-icon { opacity: 1; }
+
+.badge-mattel {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%) !important;
+  color: var(--charcoal) !important;
+}
+.badge-boxonly {
+  background: var(--warm-gray) !important;
+  color: var(--cream) !important;
+  font-style: italic;
+}
+.badge-other {
+  background: var(--light-gray) !important;
+  color: var(--charcoal) !important;
+}
 </style>
 </head>
 <body>
-
 <!-- ════════════ HERO ════════════ -->
 <div class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">Collector's Showroom</div>
-    <h1>April's <em>Barbie</em> Collection</h1>
-    <p class="hero-sub">Curated vintage, designer, and limited edition Barbie dolls. Most never removed from box. Half Moon Bay, California.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">97+</div>
-        <div class="hero-stat-label">Dolls</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">1992–2021</div>
-        <div class="hero-stat-label">Spanning</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">NRFB</div>
-        <div class="hero-stat-label">Mostly Unopened</div>
-      </div>
-    </div>
-  </div>
+<div class="hero-inner">
+<div class="hero-badge">Collector's Showroom</div>
+<h1>April's <em>Barbie</em> Collection</h1>
+<p class="hero-sub">Curated vintage, designer, and limited edition Barbie dolls. Most never removed from box. Half Moon Bay, California.</p>
+<div class="hero-stats">
+<div class="hero-stat">
+<div class="hero-stat-num">97+</div>
+<div class="hero-stat-label">Dolls</div>
 </div>
-
+<div class="hero-stat">
+<div class="hero-stat-num">1992–2021</div>
+<div class="hero-stat-label">Spanning</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">NRFB</div>
+<div class="hero-stat-label">Mostly Unopened</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ════════════ CATEGORY NAV ════════════ -->
 <nav class="cat-nav">
-  <div class="cat-nav-inner">
-    <a href="#designer" class="active">Designer &amp; High Value</a>
-    <a href="#bobmackie">Bob Mackie</a>
-    <a href="#seasons">Enchanted Seasons</a>
-    <a href="#eras">Great Eras</a>
-    <a href="#oz">Wizard of Oz</a>
-    <a href="#cocacola">Coca-Cola</a>
-    <a href="#holiday">Holiday &amp; Seasonal</a>
-    <a href="#movie">Movie &amp; Character</a>
-    <a href="#fashion">Fashion Model Collection</a>
-    <a href="#anniversary">Anniversary</a>
-    <a href="#misc">More Treasures</a>
-  </div>
+<div class="cat-nav-inner">
+<a class="active" href="#designer">Designer &amp; High Value</a>
+<a href="#bobmackie">Bob Mackie</a>
+<a href="#seasons">Enchanted Seasons</a>
+<a href="#eras">Great Eras</a>
+<a href="#oz">Wizard of Oz</a>
+<a href="#cocacola">Coca-Cola</a>
+<a href="#holiday">Holiday &amp; Seasonal</a>
+<a href="#movie">Movie &amp; Character</a>
+<a href="#fashion">Fashion Model Collection</a>
+<a href="#anniversary">Anniversary</a>
+<a href="#misc">More Treasures</a>
+</div>
 </nav>
-
 <!-- ════════════════════════════════════════ -->
 <!-- DESIGNER & HIGH VALUE                   -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="designer">
-  <div class="section-header">
-    <div class="section-label">Premier Collection</div>
-    <div class="section-title">Designer &amp; High Value</div>
-    <div class="section-desc">Limited editions and designer collaborations — the crown jewels of the collection.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/B3457_versace-barbie.jpg" alt="Versace Barbie Gold Label Limited Edition" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-        <span class="badge-highvalue">★ Top Value</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Versace Barbie Gold Label Limited Edition</div>
-        <div class="card-meta">
-          <span class="card-tag">2004</span>
-          <span class="card-tag">Blonde</span>
-          <span class="card-tag">#B3457</span>
-        </div>
-        <div class="card-price">$300 – $500</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/16013_christian-dior-barbie-50th-anniversary.jpg" alt="Christian Dior 50th Anniversary" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-        <span class="badge-highvalue">★ Top Value</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Christian Dior 50th Anniversary</div>
-        <div class="card-meta">
-          <span class="card-tag">1997</span>
-          <span class="card-tag">Brown</span>
-          <span class="card-tag">#16013</span>
-        </div>
-        <div class="card-price">$175 – $300</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/14452_donna-karan-new-york-bloomingdales-brown.jpg" alt="Donna Karan Brunette — Bloomingdale's Exclusive" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Donna Karan Brunette — Bloomingdale's Exclusive</div>
-        <div class="card-meta">
-          <span class="card-tag">1995</span>
-          <span class="card-tag">Brown</span>
-          <span class="card-tag">#14452</span>
-        </div>
-        <div class="card-price">$40 – $75</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/J0937_dooney-bourke-pink-label-collector-edition-brown.webp" alt="Dooney &amp;amp; Bourke Pink Label Collector Edition" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Dooney &amp; Bourke Pink Label Collector Edition</div>
-        <div class="card-meta">
-          <span class="card-tag">2006</span>
-          <span class="card-tag">Brown</span>
-          <span class="card-tag">#J0937</span>
-        </div>
-        <div class="card-price">$50 – $90</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/17603_anne-klein-limited-edition-brown.webp" alt="Anne Klein Limited Edition" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Anne Klein Limited Edition</div>
-        <div class="card-meta">
-          <span class="card-tag">1997</span>
-          <span class="card-tag">Brown</span>
-          <span class="card-tag">#17603</span>
-        </div>
-        <div class="card-price">$30 – $60</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/75528_portrait-in-taffeta-couture-collection-blonde.jpg" alt="Portrait in Taffeta — The Couture Collection" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Portrait in Taffeta — The Couture Collection</div>
-        <div class="card-meta">
-          <span class="card-tag">1996</span>
-          <span class="card-tag">Blonde</span>
-          <span class="card-tag">#75528</span>
-        </div>
-        <div class="card-price">$30 – $55</div>
-      </div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Premier Collection</div>
+<div class="section-title">Designer &amp; High Value</div>
+<div class="section-desc">Limited editions and designer collaborations — the crown jewels of the collection.</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img">
+<img alt="Versace Barbie Gold Label Limited Edition" loading="lazy" src="/bdpage/images/B3457_versace-barbie.jpg"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+<span class="badge-highvalue">★ Top Value</span>
+</div>
+<div class="card-body">
+<div class="card-name">Versace Barbie Gold Label Limited Edition</div>
+<div class="card-meta">
+<span class="card-tag">2004</span>
+<span class="card-tag">Blonde</span>
+<span class="card-tag">#B3457</span>
+</div>
+<button class="card-upc" data-upc="27084030143" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">27084030143</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$300 – $500</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Christian Dior 50th Anniversary" loading="lazy" src="/bdpage/images/16013_christian-dior-barbie-50th-anniversary.jpg"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+<span class="badge-highvalue">★ Top Value</span>
+</div>
+<div class="card-body">
+<div class="card-name">Christian Dior 50th Anniversary</div>
+<div class="card-meta">
+<span class="card-tag">1997</span>
+<span class="card-tag">Brown</span>
+<span class="card-tag">#16013</span>
+</div>
+<button class="card-upc" data-upc="74299160134" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299160134</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$175 – $300</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Donna Karan Brunette — Bloomingdale's Exclusive" loading="lazy" src="/bdpage/images/14452_donna-karan-new-york-bloomingdales-brown.jpg"/>
+<span class="card-badge badge-nrfb">NRFB</span>
+</div>
+<div class="card-body">
+<div class="card-name">Donna Karan Brunette — Bloomingdale's Exclusive</div>
+<div class="card-meta">
+<span class="card-tag">1995</span>
+<span class="card-tag">Brown</span>
+<span class="card-tag">#14452</span>
+</div>
+<button class="card-upc" data-upc="74299144523" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299144523</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$40 – $75</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Dooney &amp;amp; Bourke Pink Label Collector Edition" loading="lazy" src="/bdpage/images/J0937_dooney-bourke-pink-label-collector-edition-brown.webp"/>
+<span class="card-badge badge-nrfb">NRFB</span>
+</div>
+<div class="card-body">
+<div class="card-name">Dooney &amp; Bourke Pink Label Collector Edition</div>
+<div class="card-meta">
+<span class="card-tag">2006</span>
+<span class="card-tag">Brown</span>
+<span class="card-tag">#J0937</span>
+</div>
+<button class="card-upc" data-upc="2708429321" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">2708429321</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$50 – $90</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Anne Klein Limited Edition" loading="lazy" src="/bdpage/images/17603_anne-klein-limited-edition-brown.webp"/>
+<span class="card-badge badge-nrfb">NRFB</span>
+</div>
+<div class="card-body">
+<div class="card-name">Anne Klein Limited Edition</div>
+<div class="card-meta">
+<span class="card-tag">1997</span>
+<span class="card-tag">Brown</span>
+<span class="card-tag">#17603</span>
+</div>
+<div class="card-price">$30 – $60</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Portrait in Taffeta — The Couture Collection" loading="lazy" src="/bdpage/images/75528_portrait-in-taffeta-couture-collection-blonde.jpg"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+</div>
+<div class="card-body">
+<div class="card-name">Portrait in Taffeta — The Couture Collection</div>
+<div class="card-meta">
+<span class="card-tag">1996</span>
+<span class="card-tag">Blonde</span>
+<span class="card-tag">#75528</span>
+</div>
+<button class="card-upc" data-upc="74299155284" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299155284</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$30 – $55</div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- BOB MACKIE                              -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="bobmackie">
-  <div class="section-header">
-    <div class="section-label">Bob Mackie Series</div>
-    <div class="section-title">Fantasy Goddess Collection</div>
-    <div class="section-desc">Bob Mackie's legendary designer series — among the most collectible Barbies ever made.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/14056_goddess-of-the-sun.jpg" alt="Goddess of the Sun Bob Mackie Barbie" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-        <span class="badge-highvalue">★ Top Value</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Goddess of the Sun</div>
-        <div class="card-meta">
-          <span class="card-tag">Blonde</span>
-          <span class="card-tag">#14056</span>
-        </div>
-        <div class="card-price">$80 – $140</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/25859_fantasy-goddess-of-the-americas-bob-mackie.jpg" alt="Fantasy Goddess of the Americas" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-        <span class="badge-highvalue">★ Top Value</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Fantasy Goddess of the Americas</div>
-        <div class="card-meta">
-          <span class="card-tag">2000</span>
-          <span class="card-tag">Black Hair</span>
-          <span class="card-tag">#25859</span>
-        </div>
-        <div class="card-price">$150 – $300</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/20648_fantasy-goddess-of-asia-bob-mackie.jpg" alt="Fantasy Goddess of Asia" loading="lazy">
-        <span class="card-badge badge-nrfb">NRFB</span>
-        <span class="badge-highvalue">★ Top Value</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Fantasy Goddess of Asia</div>
-        <div class="card-meta">
-          <span class="card-tag">1998</span>
-          <span class="card-tag">Black Hair</span>
-          <span class="card-tag">#20648</span>
-        </div>
-        <div class="card-price">$100 – $160</div>
-      </div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Bob Mackie Series</div>
+<div class="section-title">Fantasy Goddess Collection</div>
+<div class="section-desc">Bob Mackie's legendary designer series — among the most collectible Barbies ever made.</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img">
+<img alt="Goddess of the Sun Bob Mackie Barbie" loading="lazy" src="/bdpage/images/14056_goddess-of-the-sun.jpg"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+<span class="badge-highvalue">★ Top Value</span>
+</div>
+<div class="card-body">
+<div class="card-name">Goddess of the Sun</div>
+<div class="card-meta">
+<span class="card-tag">Blonde</span>
+<span class="card-tag">#14056</span>
+</div>
+<button class="card-upc" data-upc="74299140563" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299140563</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$80 – $140</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Fantasy Goddess of the Americas" loading="lazy" src="/bdpage/images/25859_fantasy-goddess-of-the-americas-bob-mackie.jpg"/>
+<span class="card-badge badge-nrfb">NRFB</span>
+<span class="badge-highvalue">★ Top Value</span>
+</div>
+<div class="card-body">
+<div class="card-name">Fantasy Goddess of the Americas</div>
+<div class="card-meta">
+<span class="card-tag">2000</span>
+<span class="card-tag">Black Hair</span>
+<span class="card-tag">#25859</span>
+</div>
+<button class="card-upc" data-upc="74299258596" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299258596</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$150 – $300</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Fantasy Goddess of Asia" loading="lazy" src="/bdpage/images/20648_fantasy-goddess-of-asia-bob-mackie.jpg"/>
+<span class="card-badge badge-nrfb">NRFB</span>
+<span class="badge-highvalue">★ Top Value</span>
+</div>
+<div class="card-body">
+<div class="card-name">Fantasy Goddess of Asia</div>
+<div class="card-meta">
+<span class="card-tag">1998</span>
+<span class="card-tag">Black Hair</span>
+<span class="card-tag">#20648</span>
+</div>
+<button class="card-upc" data-upc="74299206481" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299206481</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$100 – $160</div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- ENCHANTED SEASONS                       -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="seasons">
-  <div class="section-header">
-    <div class="section-label">Complete Set</div>
-    <div class="section-title">Enchanted Seasons Collection</div>
-    <div class="section-desc">All four seasons — a complete set commands a premium with collectors.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/11875_snow-princess-enchanted-seasons-collection.jpg" alt="Snow Princess (Winter)" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Snow Princess (Winter)</div>
-        <div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#11875</span></div>
-        <div class="card-price tbd">Priced as set</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/12989_spring-bouquet-enchanted-seasons-collection-blonde.webp" alt="Spring Bouquet" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Spring Bouquet</div>
-        <div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#12989</span></div>
-        <div class="card-price tbd">Priced as set</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/15683_summer-splendor-enchanted-seasons-collection-brown.webp" alt="Summer Splendor" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Summer Splendor</div>
-        <div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#15683</span></div>
-        <div class="card-price tbd">Priced as set</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img">
-        <img src="/bdpage/images/15204_autumn-glory-enchanted-seasons-collection-auburn.webp" alt="Autumn Glory" loading="lazy">
-        <span class="card-badge badge-nrfb">Mattel Box</span>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Autumn Glory</div>
-        <div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Auburn</span><span class="card-tag">#15204</span></div>
-        <div class="card-price tbd">Priced as set</div>
-      </div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Complete Set</div>
+<div class="section-title">Enchanted Seasons Collection</div>
+<div class="section-desc">All four seasons — a complete set commands a premium with collectors.</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img">
+<img alt="Snow Princess (Winter)" loading="lazy" src="/bdpage/images/11875_snow-princess-enchanted-seasons-collection.jpg"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+</div>
+<div class="card-body">
+<div class="card-name">Snow Princess (Winter)</div>
+<div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#11875</span></div>
+<button class="card-upc" data-upc="74299118753" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299118753</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Priced as set</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Spring Bouquet" loading="lazy" src="/bdpage/images/12989_spring-bouquet-enchanted-seasons-collection-blonde.webp"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+</div>
+<div class="card-body">
+<div class="card-name">Spring Bouquet</div>
+<div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#12989</span></div>
+<button class="card-upc" data-upc="74299129896" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299129896</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Priced as set</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Summer Splendor" loading="lazy" src="/bdpage/images/15683_summer-splendor-enchanted-seasons-collection-brown.webp"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+</div>
+<div class="card-body">
+<div class="card-name">Summer Splendor</div>
+<div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#15683</span></div>
+<button class="card-upc" data-upc="74299156830" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299156830</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Priced as set</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img">
+<img alt="Autumn Glory" loading="lazy" src="/bdpage/images/15204_autumn-glory-enchanted-seasons-collection-auburn.webp"/>
+<span class="card-badge badge-mattel">Mattel Box</span>
+</div>
+<div class="card-body">
+<div class="card-name">Autumn Glory</div>
+<div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Auburn</span><span class="card-tag">#15204</span></div>
+<button class="card-upc" data-upc="74299152047" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299152047</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Priced as set</div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- GREAT ERAS                              -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="eras">
-  <div class="section-header">
-    <div class="section-label">Historical Series</div>
-    <div class="section-title">The Great Eras Collection</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/14900_victorian-lady-great-eras-collection-brown.webp" alt="Victorian Lady" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body">
-        <div class="card-name">Victorian Lady</div>
-        <div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Brown</span><span class="card-tag">#14900</span></div>
-        <div class="card-price tbd">Price coming soon</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/16708_chinese-empress-great-eras-collection-black.webp" alt="Chinese Empress (Volume 10)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body">
-        <div class="card-name">Chinese Empress (Volume 10)</div>
-        <div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Black Hair</span><span class="card-tag">#16708</span></div>
-        <div class="card-price tbd">Price coming soon</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/15005_grecian-goddess-great-eras-collection-blonde.webp" alt="Grecian Goddess" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body">
-        <div class="card-name">Grecian Goddess</div>
-        <div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15005</span></div>
-        <div class="card-price tbd">Price coming soon</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/27677_peace-and-love-70s-great-fashions-blonde.webp" alt="Peace &amp;amp; Love 70s — Great 20th Century Fashion" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body">
-        <div class="card-name">Peace &amp; Love 70s — Great 20th Century Fashion</div>
-        <div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Blonde</span><span class="card-tag">#27677</span></div>
-        <div class="card-price tbd">Price coming soon</div>
-      </div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Historical Series</div>
+<div class="section-title">The Great Eras Collection</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><img alt="Victorian Lady" loading="lazy" src="/bdpage/images/14900_victorian-lady-great-eras-collection-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body">
+<div class="card-name">Victorian Lady</div>
+<div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Brown</span><span class="card-tag">#14900</span></div>
+<button class="card-upc" data-upc="74299149009" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299149009</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Chinese Empress (Volume 10)" loading="lazy" src="/bdpage/images/16708_chinese-empress-great-eras-collection-black.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body">
+<div class="card-name">Chinese Empress (Volume 10)</div>
+<div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Black Hair</span><span class="card-tag">#16708</span></div>
+<button class="card-upc" data-upc="74299167089" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299167089</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Grecian Goddess" loading="lazy" src="/bdpage/images/15005_grecian-goddess-great-eras-collection-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body">
+<div class="card-name">Grecian Goddess</div>
+<div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15005</span></div>
+<button class="card-upc" data-upc="74299150050" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299150050</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div>
+</div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Peace &amp;amp; Love 70s — Great 20th Century Fashion" loading="lazy" src="/bdpage/images/27677_peace-and-love-70s-great-fashions-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body">
+<div class="card-name">Peace &amp; Love 70s — Great 20th Century Fashion</div>
+<div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Blonde</span><span class="card-tag">#27677</span></div>
+<div class="card-price tbd">Price coming soon</div>
+</div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- WIZARD OF OZ                            -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="oz">
-  <div class="section-header">
-    <div class="section-label">Complete Character Set</div>
-    <div class="section-title">The Wizard of Oz</div>
-    <div class="section-desc">All five main characters plus Tommy as Lollipop Munchkin — complete sets are rare finds.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Dorothy</div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Glinda the Good Witch</div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Tin Man</div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Cowardly Lion</div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Scarecrow</div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Tommy as Lollipop Munchkin</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Blonde</span></div><div class="card-price tbd">Priced as set</div></div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Complete Character Set</div>
+<div class="section-title">The Wizard of Oz</div>
+<div class="section-desc">All five main characters plus Tommy as Lollipop Munchkin — complete sets are rare finds.</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Dorothy</div><div class="card-price tbd">Priced as set</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Glinda the Good Witch</div><div class="card-price tbd">Priced as set</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Tin Man</div><div class="card-price tbd">Priced as set</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Cowardly Lion</div><div class="card-price tbd">Priced as set</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Scarecrow</div><div class="card-price tbd">Priced as set</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Tommy as Lollipop Munchkin</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Blonde</span></div><div class="card-price tbd">Priced as set</div></div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- COCA-COLA                               -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="cocacola">
-  <div class="section-header">
-    <div class="section-label">Brand Series</div>
-    <div class="section-title">Coca-Cola Collection</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/22831_coca-cola-waitress-blonde.webp" alt="Coca-Cola Waitress" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Coca-Cola Waitress</div><div class="card-meta"><span class="card-tag">1998</span><span class="card-tag">Blonde</span><span class="card-tag">#22831</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/24637_coca-cola-diner-brown.jpg" alt="Coca-Cola Diner" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Coca-Cola Diner</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Brown</span><span class="card-tag">#24637</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Coca-Cola Brown</div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div>
-      <div class="card-body"><div class="card-name">Coca-Cola Blonde</div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Brand Series</div>
+<div class="section-title">Coca-Cola Collection</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><img alt="Coca-Cola Waitress" loading="lazy" src="/bdpage/images/22831_coca-cola-waitress-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Coca-Cola Waitress</div><div class="card-meta"><span class="card-tag">1998</span><span class="card-tag">Blonde</span><span class="card-tag">#22831</span></div><button class="card-upc" data-upc="74299228315" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299228315</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Coca-Cola Diner" loading="lazy" src="/bdpage/images/24637_coca-cola-diner-brown.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Coca-Cola Diner</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Brown</span><span class="card-tag">#24637</span></div><button class="card-upc" data-upc="74299246371" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299246371</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Coca-Cola Brown</div><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div>
+<div class="card-body"><div class="card-name">Coca-Cola Blonde</div><div class="card-price tbd">Price coming soon</div></div>
+</div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- HOLIDAY & SEASONAL                      -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="holiday">
-  <div class="section-header">
-    <div class="section-label">Festive Editions</div>
-    <div class="section-title">Holiday &amp; Seasonal</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/14311_holiday-jewel-blonde.webp" alt="Holiday Jewel" loading="lazy"><span class="card-badge badge-nrfb">Mattel Box</span></div>
-      <div class="card-body"><div class="card-name">Holiday Jewel</div><div class="card-meta"><span class="card-tag">Blonde</span><span class="card-tag">#14311</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/13598_peppermint-princess.jpg" alt="Peppermint Princess Barbie"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Peppermint Princess</div><div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#13598</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/15826_jewel-princess-winter-princess-collection-blonde.webp" alt="Jewel Princess — Winter Princess Collection" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Jewel Princess — Winter Princess Collection</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Blonde</span><span class="card-tag">#15826</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/16522_winter-fantasy-blonde.webp" alt="Winter Fantasy (Blonde)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Winter Fantasy (Blonde)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Qty: 2</span><span class="card-tag">#16522</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/15530_winter-fantasy-brown.webp" alt="Winter Fantasy (Brown)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Winter Fantasy (Brown)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Qty: 4</span><span class="card-tag">#15530</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Happy Holidays</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Holiday Season</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Festive Season</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Halloween Enchantress</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Santa's Helper</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Winter Evening (Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Winter Evening (Blonde)</div><div class="card-price tbd">Price coming soon</div></div></div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Festive Editions</div>
+<div class="section-title">Holiday &amp; Seasonal</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><img alt="Holiday Jewel" loading="lazy" src="/bdpage/images/14311_holiday-jewel-blonde.webp"/><span class="card-badge badge-mattel">Mattel Box</span></div>
+<div class="card-body"><div class="card-name">Holiday Jewel</div><div class="card-meta"><span class="card-tag">Blonde</span><span class="card-tag">#14311</span></div><button class="card-upc" data-upc="74299143113" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299143113</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Peppermint Princess Barbie" src="/bdpage/images/13598_peppermint-princess.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Peppermint Princess</div><div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#13598</span></div><button class="card-upc" data-upc="74299135989" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299135989</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Jewel Princess — Winter Princess Collection" loading="lazy" src="/bdpage/images/15826_jewel-princess-winter-princess-collection-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Jewel Princess — Winter Princess Collection</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Blonde</span><span class="card-tag">#15826</span></div><button class="card-upc" data-upc="74299158261" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299158261</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Winter Fantasy (Blonde)" loading="lazy" src="/bdpage/images/16522_winter-fantasy-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Winter Fantasy (Blonde)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Qty: 2</span><span class="card-tag">#16522</span></div><button class="card-upc" data-upc="74299165221" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299165221</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Winter Fantasy (Brown)" loading="lazy" src="/bdpage/images/15530_winter-fantasy-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Winter Fantasy (Brown)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Qty: 4</span><span class="card-tag">#15530</span></div><button class="card-upc" data-upc="74299166221" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299166221</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Happy Holidays</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Holiday Season</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Festive Season</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Halloween Enchantress</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Santa's Helper</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Winter Evening (Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Winter Evening (Blonde)</div><div class="card-price tbd">Price coming soon</div></div></div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- MOVIE & CHARACTER                       -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="movie">
-  <div class="section-header">
-    <div class="section-label">Screen &amp; Stage</div>
-    <div class="section-title">Movie &amp; Character Dolls</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/B2776_swan-lake-barbie-as-odette.jpg" alt="Swan Lake — Barbie as Odette" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Swan Lake — Barbie as Odette</div><div class="card-meta"><span class="card-tag">2003</span><span class="card-tag">Blonde</span><span class="card-tag">#B2776</span></div><div class="card-price">$100 – $240</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/15497_eliza-doolittle-my-fair-lady-hollywood-legends-brown.webp" alt="Eliza Doolittle — My Fair Lady (Hollywood Legends)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Eliza Doolittle — My Fair Lady (Hollywood Legends)</div><div class="card-meta"><span class="card-tag">Brown</span><span class="card-tag">#15497</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/13016_barbie-as-rapunzel-childrens-collector-series-blonde.webp" alt="Rapunzel — Children's Collector Series" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Rapunzel — Children's Collector Series</div><div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#13016</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/19015_disney-mulan-black.jpg" alt="Disney's Mulan" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Disney's Mulan</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">Black Hair</span><span class="card-tag">#19015</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Cher</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Little Bo Peep</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Rapunzel (white box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Screen &amp; Stage</div>
+<div class="section-title">Movie &amp; Character Dolls</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><img alt="Swan Lake — Barbie as Odette" loading="lazy" src="/bdpage/images/B2776_swan-lake-barbie-as-odette.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Swan Lake — Barbie as Odette</div><div class="card-meta"><span class="card-tag">2003</span><span class="card-tag">Blonde</span><span class="card-tag">#B2776</span></div><div class="card-price">$100 – $240</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Eliza Doolittle — My Fair Lady (Hollywood Legends)" loading="lazy" src="/bdpage/images/15497_eliza-doolittle-my-fair-lady-hollywood-legends-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Eliza Doolittle — My Fair Lady (Hollywood Legends)</div><div class="card-meta"><span class="card-tag">Brown</span><span class="card-tag">#15497</span></div><button class="card-upc" data-upc="74299154973" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299154973</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Rapunzel — Children's Collector Series" loading="lazy" src="/bdpage/images/13016_barbie-as-rapunzel-childrens-collector-series-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Rapunzel — Children's Collector Series</div><div class="card-meta"><span class="card-tag">1994</span><span class="card-tag">Blonde</span><span class="card-tag">#13016</span></div><button class="card-upc" data-upc="74299130168" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299130168</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Disney's Mulan" loading="lazy" src="/bdpage/images/19015_disney-mulan-black.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Disney's Mulan</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">Black Hair</span><span class="card-tag">#19015</span></div><button class="card-upc" data-upc="74299190155" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299190155</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Cher</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Little Bo Peep</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-other">White Box</span></div><div class="card-body"><div class="card-name">Rapunzel (white box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- FASHION MODEL COLLECTION                -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="fashion">
-  <div class="section-header">
-    <div class="section-label">Silkstone &amp; BFMC</div>
-    <div class="section-title">Fashion Model Collection</div>
-    <div class="section-desc">The legendary Barbie Fashion Model Collection — Silkstone bodies, couture fashion, serious collector value.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-opened">Opened</span><span class="badge-highvalue">★ #1 Value</span></div>
-      <div class="card-body"><div class="card-name">BFMC Vanity Accessory Set</div><div class="card-meta"><span class="card-tag">Blonde</span></div><div class="card-price">$425 – $700</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/26933_garden-party-fashion-set-barbie-silkstone-gold-label.jpg" alt="Garden Party Fashion Set — Gold Label" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span><span class="badge-highvalue">★ Top Value</span></div>
-      <div class="card-body"><div class="card-name">Garden Party Fashion Set — Gold Label</div><div class="card-meta"><span class="card-tag">#26933</span></div><div class="card-price">$140 – $220</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">Mattel Box</span><span class="badge-highvalue">★ Top Value</span></div>
-      <div class="card-body"><div class="card-name">Silkstone Lingerie #3</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Black Hair</span><span class="card-tag">#29651</span></div><div class="card-price">$165 – $290</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/26932_lunch-at-the-club-barbie-fashion-model-collection.jpg" alt="Lunch at The Club" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">Lunch at The Club</div><div class="card-meta"><span class="card-tag">#26932</span></div><div class="card-price">$95 – $150</div></div>
-    </div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Barbie Fashion Model (unidentified)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Silkstone &amp; BFMC</div>
+<div class="section-title">Fashion Model Collection</div>
+<div class="section-desc">The legendary Barbie Fashion Model Collection — Silkstone bodies, couture fashion, serious collector value.</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-opened">Opened</span><span class="badge-highvalue">★ #1 Value</span></div>
+<div class="card-body"><div class="card-name">BFMC Vanity Accessory Set</div><div class="card-meta"><span class="card-tag">Blonde</span></div><div class="card-price">$425 – $700</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Garden Party Fashion Set — Gold Label" loading="lazy" src="/bdpage/images/26933_garden-party-fashion-set-barbie-silkstone-gold-label.jpg"/><span class="card-badge badge-nrfb">NRFB</span><span class="badge-highvalue">★ Top Value</span></div>
+<div class="card-body"><div class="card-name">Garden Party Fashion Set — Gold Label</div><div class="card-meta"><span class="card-tag">#26933</span></div><button class="card-upc" data-upc="74299269332" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299269332</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$140 – $220</div></div>
+</div>
+<div class="card">
+<div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">Mattel Box</span><span class="badge-highvalue">★ Top Value</span></div>
+<div class="card-body"><div class="card-name">Silkstone Lingerie #3</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Black Hair</span><span class="card-tag">#29651</span></div><div class="card-price">$165 – $290</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="Lunch at The Club" loading="lazy" src="/bdpage/images/26932_lunch-at-the-club-barbie-fashion-model-collection.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">Lunch at The Club</div><div class="card-meta"><span class="card-tag">#26932</span></div><div class="card-price">$95 – $150</div></div>
+</div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Barbie Fashion Model (unidentified)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- ANNIVERSARY                             -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="anniversary">
-  <div class="section-header">
-    <div class="section-label">Milestone Editions</div>
-    <div class="section-title">Anniversary &amp; Commemorative</div>
-  </div>
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/14479_50th-golden-anniversary-porcelain-doll-1945-blonde.webp" alt="50th Golden Anniversary Porcelain Doll" loading="lazy"><span class="card-badge badge-nrfb">Mattel Box</span></div>
-      <div class="card-body"><div class="card-name">50th Golden Anniversary Porcelain Doll</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#14479</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/11782_35th-anniversary-1959-reproduction-brunette.webp" alt="35th Anniversary 1959 Reproduction" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">35th Anniversary 1959 Reproduction</div><div class="card-meta"><span class="card-tag">1993</span><span class="card-tag">Brown</span><span class="card-tag">#11782</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">40th Anniversary</div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card">
-      <div class="card-img"><img src="/bdpage/images/FXD88_60th-anniversary-blonde.webp" alt="60th Anniversary" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div>
-      <div class="card-body"><div class="card-name">60th Anniversary</div><div class="card-meta"><span class="card-tag">2018</span><span class="card-tag">Blonde</span><span class="card-tag">#FXD88</span></div><div class="card-price tbd">Price coming soon</div></div>
-    </div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Millennium Princess</div><div class="card-price">$12 – $25</div></div></div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">Milestone Editions</div>
+<div class="section-title">Anniversary &amp; Commemorative</div>
 </div>
-
-<div class="divider"><hr></div>
-
+<div class="grid">
+<div class="card">
+<div class="card-img"><img alt="50th Golden Anniversary Porcelain Doll" loading="lazy" src="/bdpage/images/14479_50th-golden-anniversary-porcelain-doll-1945-blonde.webp"/><span class="card-badge badge-mattel">Mattel Box</span></div>
+<div class="card-body"><div class="card-name">50th Golden Anniversary Porcelain Doll</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#14479</span></div><button class="card-upc" data-upc="74299144790" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299144790</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card">
+<div class="card-img"><img alt="35th Anniversary 1959 Reproduction" loading="lazy" src="/bdpage/images/11782_35th-anniversary-1959-reproduction-brunette.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">35th Anniversary 1959 Reproduction</div><div class="card-meta"><span class="card-tag">1993</span><span class="card-tag">Brown</span><span class="card-tag">#11782</span></div><button class="card-upc" data-upc="74299117824" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299117824</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">40th Anniversary</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card">
+<div class="card-img"><img alt="60th Anniversary" loading="lazy" src="/bdpage/images/FXD88_60th-anniversary-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div>
+<div class="card-body"><div class="card-name">60th Anniversary</div><div class="card-meta"><span class="card-tag">2018</span><span class="card-tag">Blonde</span><span class="card-tag">#FXD88</span></div><div class="card-price tbd">Price coming soon</div></div>
+</div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Millennium Princess</div><div class="card-price">$12 – $25</div></div></div>
+</div>
+</div>
+<div class="divider"><hr/></div>
 <!-- ════════════════════════════════════════ -->
 <!-- MORE TREASURES                          -->
 <!-- ════════════════════════════════════════ -->
 <div class="section" id="misc">
-  <div class="section-header">
-    <div class="section-label">And More</div>
-    <div class="section-title">More Treasures</div>
-    <div class="section-desc">Reproductions, exclusives, storybook sets, and everything else in the collection.</div>
-  </div>
-  <div class="grid">
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/14992_enchanted-evening-1960-reproduction-blonde.webp" alt="Enchanted Evening 1960 Reproduction (Blonde)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Enchanted Evening 1960 Reproduction (Blonde)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#14992</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/15407_enchanted-evening-1960-reproduction-brown.webp" alt="Enchanted Evening 1960 Reproduction (Brown)" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Enchanted Evening 1960 Reproduction (Brown)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#15407</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/28378_suburban-shopper-1959-reproduction-brown.jpg" alt="Suburban Shopper 1959 Reproduction" loading="lazy"><span class="card-badge badge-nrfb">Mattel Box</span></div><div class="card-body"><div class="card-name">Suburban Shopper 1959 Reproduction</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Brown</span><span class="card-tag">#28378</span></div><div class="card-price">$90 – $150</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/15571_winter-velvet-barbie-avon-exclusive-blonde.jpg" alt="Winter Velvet — Avon Exclusive" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Winter Velvet — Avon Exclusive</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15571</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/1521_benefit-ball-classique-collection-brown.jpg" alt="Benefit Ball — The Classique Collection" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Benefit Ball — The Classique Collection</div><div class="card-meta"><span class="card-tag">1992</span><span class="card-tag">Brown</span><span class="card-tag">#1521</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">Mattel Box</span></div><div class="card-body"><div class="card-name">City Shopper — Nicole Miller / Macy's Limited</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#12689</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/17690_mrs-p-f-e-albee-avon-exclusive-brown.webp" alt="Mrs. P.F.E. Albee — Avon Exclusive" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Mrs. P.F.E. Albee — Avon Exclusive</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">Brown</span><span class="card-tag">#17690</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/14024_happy-new-year-japanese-doll-brown.webp" alt="Happy New Year — Japanese Exclusive" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Happy New Year — Japanese Exclusive</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Brown</span><span class="card-tag">#14024</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/15140_radiant-rose-society-style-collection-brown.jpg" alt="Radiant Rose — Society Style Collection" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Radiant Rose — Society Style Collection</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#15140</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/GTJ79_eleanor-roosevelt-inspiring-women.webp" alt="Eleanor Roosevelt — Inspiring Women" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Eleanor Roosevelt — Inspiring Women</div><div class="card-meta"><span class="card-tag">2021</span><span class="card-tag">#GTJ79</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/15123_olympic-gymnast-atlanta-blonde.webp" alt="Olympic Gymnast — Atlanta" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Olympic Gymnast — Atlanta</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15123</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/25871_bowling-champ-collector-edition-blonde.webp" alt="Bowling Champ" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Bowling Champ</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Blonde</span><span class="card-tag">#25871</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/27289_sees-candies-a-happy-habit-blonde.jpg" alt="See's Candies — A Happy Habit" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">See's Candies — A Happy Habit</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Qty: 2</span><span class="card-tag">#27289</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/13914_teacher-blonde-doll-set-with-2-students.webp" alt="Teacher Set — Blonde with 2 Students" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Teacher Set — Blonde with 2 Students</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#13914</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/16210_teacher-brunette-doll-set-with-2-students.webp" alt="Teacher Set — Brunette with 2 Students" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Teacher Set — Brunette with 2 Students</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#16210</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <!-- Storybook sets -->
-    <div class="card"><div class="card-img"><img src="/bdpage/images/28535_kelly-tommy-as-hansel-and-gretel-storybook-favorites.webp" alt="Kelly &amp;amp; Tommy as Hansel &amp;amp; Gretel" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Kelly &amp; Tommy as Hansel &amp; Gretel</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">#28535</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/29605_goldilocks-three-bears-kelly-storybook-favorites-blonde.webp" alt="Goldilocks and the Three Bears — Kelly Doll" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Goldilocks and the Three Bears — Kelly Doll</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">#29605</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/24639_raggedy-ann-andy-tommy-kelly.webp" alt="Raggedy Ann &amp;amp; Andy — Tommy &amp;amp; Kelly" loading="lazy"><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Raggedy Ann &amp; Andy — Tommy &amp; Kelly</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">#24639</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <!-- Little Debbie -->
-    <div class="card"><div class="card-img"><img src="/bdpage/images/50372_little-debbie-snacks-special-edition-brown.webp" alt="Little Debbie Snacks Special Edition" loading="lazy"><span class="card-badge badge-nrfb">Mattel Box</span></div><div class="card-body"><div class="card-name">Little Debbie Snacks Special Edition</div><div class="card-meta"><span class="card-tag">2001</span><span class="card-tag">#50372</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/17740_little-debbie-figurine-set.webp" alt="Little Debbie Figurine Set" loading="lazy"></div><div class="card-body"><div class="card-name">Little Debbie Figurine Set</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">#17740</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><img src="/bdpage/images/16352_little-debbie-series-iii-collector-edition.webp" alt="Little Debbie Series III — Collector's Edition" loading="lazy"><span class="card-badge badge-opened">Opened</span></div><div class="card-body"><div class="card-name">Little Debbie Series III — Collector's Edition</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">#16352</span></div><div class="card-price tbd">Price coming soon</div></div></div>
-
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Little Debbie (Large, Series 3)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-
-    <!-- Remaining undetailed items -->
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Dark Tone)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Blonde)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Blossom</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Japanese Barbie</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">My First Barbie Princess</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">School Spirit</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Skating Star</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Happy Birthday (Medium Tone, Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Quinceañera</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Silver Royale</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Promenade in the Park</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Autumn in Paris</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Sydney 2000 (Olympics)</div><div class="card-price tbd">Price coming soon</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Angel of Joy (brown box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Unknown Barbie (brown box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Unlabeled (white box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Unlabeled Box</div><div class="card-price tbd">Needs photo ID</div></div></div>
-    <div class="card"><div class="card-img"><div class="card-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Mint Memories (empty box only)</div><div class="card-price tbd">Box only</div></div></div>
-
-  </div>
+<div class="section-header">
+<div class="section-label">And More</div>
+<div class="section-title">More Treasures</div>
+<div class="section-desc">Reproductions, exclusives, storybook sets, and everything else in the collection.</div>
 </div>
-
+<div class="grid">
+<div class="card"><div class="card-img"><img alt="Enchanted Evening 1960 Reproduction (Blonde)" loading="lazy" src="/bdpage/images/14992_enchanted-evening-1960-reproduction-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Enchanted Evening 1960 Reproduction (Blonde)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#14992</span></div><button class="card-upc" data-upc="74299149924" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299149924</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Enchanted Evening 1960 Reproduction (Brown)" loading="lazy" src="/bdpage/images/15407_enchanted-evening-1960-reproduction-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Enchanted Evening 1960 Reproduction (Brown)</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#15407</span></div><button class="card-upc" data-upc="74299154072" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299154072</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Suburban Shopper 1959 Reproduction" loading="lazy" src="/bdpage/images/28378_suburban-shopper-1959-reproduction-brown.jpg"/><span class="card-badge badge-mattel">Mattel Box</span></div><div class="card-body"><div class="card-name">Suburban Shopper 1959 Reproduction</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">Brown</span><span class="card-tag">#28378</span></div><button class="card-upc" data-upc="74299283789" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299283789</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price">$90 – $150</div></div></div>
+<div class="card"><div class="card-img"><img alt="Winter Velvet — Avon Exclusive" loading="lazy" src="/bdpage/images/15571_winter-velvet-barbie-avon-exclusive-blonde.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Winter Velvet — Avon Exclusive</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15571</span></div><button class="card-upc" data-upc="74299155710" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299155710</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Benefit Ball — The Classique Collection" loading="lazy" src="/bdpage/images/1521_benefit-ball-classique-collection-brown.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Benefit Ball — The Classique Collection</div><div class="card-meta"><span class="card-tag">1992</span><span class="card-tag">Brown</span><span class="card-tag">#1521</span></div><button class="card-upc" data-upc="74299015212" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299015212</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-nrfb">Mattel Box</span></div><div class="card-body"><div class="card-name">City Shopper — Nicole Miller / Macy's Limited</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#12689</span></div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Mrs. P.F.E. Albee — Avon Exclusive" loading="lazy" src="/bdpage/images/17690_mrs-p-f-e-albee-avon-exclusive-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Mrs. P.F.E. Albee — Avon Exclusive</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">Brown</span><span class="card-tag">#17690</span></div><button class="card-upc" data-upc="74299176906" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299176906</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Happy New Year — Japanese Exclusive" loading="lazy" src="/bdpage/images/14024_happy-new-year-japanese-doll-brown.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Happy New Year — Japanese Exclusive</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Brown</span><span class="card-tag">#14024</span></div><button class="card-upc" data-upc="74299140242" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299140242</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Radiant Rose — Society Style Collection" loading="lazy" src="/bdpage/images/15140_radiant-rose-society-style-collection-brown.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Radiant Rose — Society Style Collection</div><div class="card-meta"><span class="card-tag">1996</span><span class="card-tag">Brown</span><span class="card-tag">#15140</span></div><button class="card-upc" data-upc="74299151408" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299151408</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Eleanor Roosevelt — Inspiring Women" loading="lazy" src="/bdpage/images/GTJ79_eleanor-roosevelt-inspiring-women.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Eleanor Roosevelt — Inspiring Women</div><div class="card-meta"><span class="card-tag">2021</span><span class="card-tag">#GTJ79</span></div><button class="card-upc" data-upc="87961915921" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">87961915921</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Olympic Gymnast — Atlanta" loading="lazy" src="/bdpage/images/15123_olympic-gymnast-atlanta-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Olympic Gymnast — Atlanta</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">Blonde</span><span class="card-tag">#15123</span></div><button class="card-upc" data-upc="74299151231" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299151231</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Bowling Champ" loading="lazy" src="/bdpage/images/25871_bowling-champ-collector-edition-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Bowling Champ</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Blonde</span><span class="card-tag">#25871</span></div><button class="card-upc" data-upc="74299258718" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299258718</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="See's Candies — A Happy Habit" loading="lazy" src="/bdpage/images/27289_sees-candies-a-happy-habit-blonde.jpg"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">See's Candies — A Happy Habit</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">Qty: 2</span><span class="card-tag">#27289</span></div><button class="card-upc" data-upc="74299272899" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299272899</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Teacher Set — Blonde with 2 Students" loading="lazy" src="/bdpage/images/13914_teacher-blonde-doll-set-with-2-students.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Teacher Set — Blonde with 2 Students</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#13914</span></div><button class="card-upc" data-upc="74299139147" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299139147</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Teacher Set — Brunette with 2 Students" loading="lazy" src="/bdpage/images/16210_teacher-brunette-doll-set-with-2-students.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Teacher Set — Brunette with 2 Students</div><div class="card-meta"><span class="card-tag">1995</span><span class="card-tag">#16210</span></div><button class="card-upc" data-upc="74299162107" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299162107</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<!-- Storybook sets -->
+<div class="card"><div class="card-img"><img alt="Kelly &amp;amp; Tommy as Hansel &amp;amp; Gretel" loading="lazy" src="/bdpage/images/28535_kelly-tommy-as-hansel-and-gretel-storybook-favorites.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Kelly &amp; Tommy as Hansel &amp; Gretel</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">#28535</span></div><button class="card-upc" data-upc="74299285356" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299285356</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Goldilocks and the Three Bears — Kelly Doll" loading="lazy" src="/bdpage/images/29605_goldilocks-three-bears-kelly-storybook-favorites-blonde.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Goldilocks and the Three Bears — Kelly Doll</div><div class="card-meta"><span class="card-tag">2000</span><span class="card-tag">#29605</span></div><button class="card-upc" data-upc="74299296055" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299296055</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Raggedy Ann &amp;amp; Andy — Tommy &amp;amp; Kelly" loading="lazy" src="/bdpage/images/24639_raggedy-ann-andy-tommy-kelly.webp"/><span class="card-badge badge-nrfb">NRFB</span></div><div class="card-body"><div class="card-name">Raggedy Ann &amp; Andy — Tommy &amp; Kelly</div><div class="card-meta"><span class="card-tag">1999</span><span class="card-tag">#24639</span></div><button class="card-upc" data-upc="74299246395" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299246395</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<!-- Little Debbie -->
+<div class="card"><div class="card-img"><img alt="Little Debbie Snacks Special Edition" loading="lazy" src="/bdpage/images/50372_little-debbie-snacks-special-edition-brown.webp"/><span class="card-badge badge-mattel">Mattel Box</span></div><div class="card-body"><div class="card-name">Little Debbie Snacks Special Edition</div><div class="card-meta"><span class="card-tag">2001</span><span class="card-tag">#50372</span></div><button class="card-upc" data-upc="74299503726" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">74299503726</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Little Debbie Figurine Set" loading="lazy" src="/bdpage/images/17740_little-debbie-figurine-set.webp"/></div><div class="card-body"><div class="card-name">Little Debbie Figurine Set</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">#17740</span></div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><img alt="Little Debbie Series III — Collector's Edition" loading="lazy" src="/bdpage/images/16352_little-debbie-series-iii-collector-edition.webp"/><span class="card-badge badge-opened">Opened</span></div><div class="card-body"><div class="card-name">Little Debbie Series III — Collector's Edition</div><div class="card-meta"><span class="card-tag">1997</span><span class="card-tag">#16352</span></div><button class="card-upc" data-upc="NO UPC" title="Click to copy UPC"><span class="upc-label">UPC</span><span class="upc-value">NO UPC</span><svg class="upc-copy-icon" fill="none" height="12" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="12"><rect height="9" rx="1.5" width="9" x="4" y="4"></rect><path d="M10.5 4V2.5A1 1 0 0 0 9.5 1.5h-6A1 1 0 0 0 2.5 2.5v6A1 1 0 0 0 3.5 9.5H5"></path></svg></button><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Little Debbie (Large, Series 3)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<!-- Remaining undetailed items -->
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Dark Tone)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Blonde)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Petals (Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Spring Blossom</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Japanese Barbie</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">My First Barbie Princess</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">School Spirit</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Skating Star</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Happy Birthday (Medium Tone, Brown)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Quinceañera</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Silver Royale</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Promenade in the Park</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Autumn in Paris</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div></div><div class="card-body"><div class="card-name">Sydney 2000 (Olympics)</div><div class="card-price tbd">Price coming soon</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-other">Brown Box</span></div><div class="card-body"><div class="card-name">Angel of Joy (brown box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-other">Brown Box</span></div><div class="card-body"><div class="card-name">Unknown Barbie (brown box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-other">White Box</span></div><div class="card-body"><div class="card-name">Unlabeled (white box)</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-boxonly">Box Only</span></div><div class="card-body"><div class="card-name">Unlabeled Box</div><div class="card-price tbd">Needs photo ID</div></div></div>
+<div class="card"><div class="card-img"><div class="card-placeholder"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="m21 15-5-5L5 21"></path></svg><span>Photo Coming Soon</span></div><span class="card-badge badge-boxonly">Box Only</span></div><div class="card-body"><div class="card-name">Mint Memories (empty box only)</div><div class="card-price tbd">Box only</div></div></div>
+</div>
+</div>
 <!-- ════════════ CTA ════════════ -->
 <div class="cta-section">
-  <h2>Interested in a piece?</h2>
-  <p>This collection is based in Half Moon Bay, California. Reach out for pricing, photos, or to arrange a viewing. Local pickup available.</p>
-  <a href="mailto:guy@projectsparks.ai" class="cta-btn">Contact Us</a>
+<h2>Interested in a piece?</h2>
+<p>This collection is based in Half Moon Bay, California. Reach out for pricing, photos, or to arrange a viewing. Local pickup available.</p>
+<a class="cta-btn" href="mailto:guy@projectsparks.ai">Contact Us</a>
 </div>
-
 <!-- ════════════ FOOTER ════════════ -->
 <div class="footer">
-  <div class="footer-logo">Project Sparks ⚡</div>
-  <div class="footer-sub">projectsparks.ai · Half Moon Bay, CA</div>
+<div class="footer-logo">Project Sparks ⚡</div>
+<div class="footer-sub">projectsparks.ai · Half Moon Bay, CA</div>
 </div>
-
 <!-- ── Smooth scroll for nav ── -->
 <script>
 document.querySelectorAll('.cat-nav a').forEach(a => {
@@ -1192,8 +1126,30 @@ document.querySelectorAll('.grid').forEach(grid => {
   });
 });
 </script>
-
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
-</body>
+<script async="" data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" src="http://artforge.tailce7587.ts.net:50180/count.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.card-upc').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var upc = btn.getAttribute('data-upc');
+      if (!upc) return;
+      (navigator.clipboard ? navigator.clipboard.writeText(upc) : Promise.reject())
+        .then(function(){
+          btn.classList.add('copied');
+          setTimeout(function(){ btn.classList.remove('copied'); }, 1200);
+        })
+        .catch(function(){
+          var range = document.createRange();
+          range.selectNodeContents(btn.querySelector('.upc-value'));
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        });
+    });
+  });
+})();
+</script></body>
 </html>
