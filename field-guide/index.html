@@ -390,6 +390,10 @@ agent-browser install --with-deps</pre>
       <li><strong>Optional Mem0 bridge.</strong> When local recall is thin, Mnemo falls through to Mem0 for long-term semantic depth. "And Mem0," not "instead of Mem0."</li>
     </ul>
 
+    <h3>Two layers, one bridge</h3>
+    <p>Mnemo Cortex handles <em>automatic</em> conversation memory &mdash; what agents said, decided, and learned during sessions. <strong>mnemo-plan</strong> handles the <em>manual</em> half: a folder of markdown files in Git that you write and curate (project specs, active task lists, decision logs, architecture notes). Any LLM that can call the Mnemo MCP tools can read and edit them at session start, before the first message lands.</p>
+    <p>The same MCP bridge auto-detects both. Cortex tools always register; mnemo-plan tools light up only if you've set <code>BRAIN_DIR</code> on disk. <a href="https://github.com/GuyMannDude/mnemo-plan" target="_blank">Template repo on GitHub</a>.</p>
+
     <p>Detailed install, hosts, and setup matrix: <a href="/mnemo-cortex">projectsparks.ai/mnemo-cortex</a>. Source: <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">github.com/GuyMannDude/mnemo-cortex</a>.</p>
   </div>
 </section>

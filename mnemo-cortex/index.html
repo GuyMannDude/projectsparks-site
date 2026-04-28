@@ -624,6 +624,32 @@
   </div>
 </section>
 
+<!-- mnemo-plan -->
+<section id="mnemo-plan">
+  <div class="container">
+    <div class="section-label">The Manual Companion</div>
+    <h2>mnemo-plan &mdash; Project Pad for Your Agents</h2>
+    <div class="content">
+      <p>Mnemo Cortex captures conversation memory <em>automatically</em> &mdash; what agents said, what happened, what was decided. <strong>mnemo-plan</strong> is the opposite: the stuff <em>you</em> write and curate. Project specs. Active task lists. Decision logs. Architecture docs. Anything an agent needs to know <strong>before</strong> a conversation starts.</p>
+      <p>It's a folder of markdown files in Git. Any LLM that can call the Mnemo MCP tools <code>read_brain_file</code> / <code>write_brain_file</code> / <code>list_brain_files</code> can read and edit them. Not Claude-specific.</p>
+    </div>
+
+    <div class="callout">
+      <div class="big">You write it. They read it.</div>
+      <div class="sub">No new MCP tools. No daemon. No schema. Markdown in Git. Point your bridge's <code>BRAIN_DIR</code> at it and your agents have project context the moment they start a session.</div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>The starter template ships with <code>project.md</code>, <code>active.md</code>, <code>stack.md</code>, <code>decisions.md</code>, plus optional <code>people.md</code> and <code>incidents.md</code>. Each file has comments explaining what goes there. Fork it, fill it in, restart your agent.</p>
+      <p style="margin-top: 14px;"><strong>The split:</strong> Mnemo Cortex = automatic conversation memory. mnemo-plan = manual project pad. Both ride the same MCP bridge; they auto-enable based on whether <code>BRAIN_DIR</code> is set on disk.</p>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="https://github.com/GuyMannDude/mnemo-plan" class="btn btn-primary" target="_blank">Template repo on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
 <!-- The Memory Architecture -->
 <section id="architecture">
   <div class="container">
