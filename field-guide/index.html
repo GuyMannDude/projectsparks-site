@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Guide — MCP Tools & Local LLMs · Project Sparks</title>
+<meta name="description" content="What actually works when you wire MCP tool servers into local LLMs. Real test results from a production multi-agent stack: host compatibility, model tool-calling, browser automation, web search, and more. Updated 2026-04-27.">
+<meta property="og:title" content="Field Guide — MCP Tools & Local LLMs">
+<meta property="og:description" content="What actually works when you wire MCP tool servers into local LLMs. Real test results from production. Host compatibility · model tool calling · browser automation · web search.">
+<meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:url" content="https://projectsparks.ai/field-guide">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Field Guide — MCP Tools & Local LLMs">
+<meta name="twitter:description" content="What actually works when you wire MCP tool servers into local LLMs. Real test results from production.">
+<meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #08080f;
+    --gold: #e8b830;
+    --gold-bright: #ffd54f;
+    --gold-glow: rgba(232, 184, 48, 0.5);
+    --gold-dim: rgba(232, 184, 48, 0.25);
+    --amber: #f09030;
+    --copper: #d47030;
+    --copper-glow: rgba(212, 112, 48, 0.3);
+    --text: #ededf4;
+    --text-bright: #ffffff;
+    --text-sub: #a0a0b4;
+    --pass: #6acf6a;
+    --fail: #d05050;
+    --warn: #d4b04a;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(232, 184, 48, 0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 940px; margin: 0 auto; padding: 0 32px; }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold-bright); }
+
+  nav {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px; font-weight: 500;
+    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
+  }
+  .nav-links a:hover { color: var(--gold-bright); }
+
+  section { padding: 72px 0; }
+  section + section { border-top: 1px solid var(--card-border); }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 18px;
+    text-shadow: 0 0 20px var(--copper-glow);
+  }
+  h1 {
+    font-weight: 300; font-size: 56px;
+    letter-spacing: 6px; color: var(--text-bright);
+    text-transform: uppercase; margin-bottom: 18px;
+  }
+  h2 {
+    font-weight: 400; font-size: 34px;
+    color: var(--text-bright); margin-bottom: 22px;
+  }
+  h3 {
+    font-weight: 500; font-size: 22px;
+    color: var(--gold-bright); margin: 36px 0 14px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .subtitle {
+    font-size: 26px; color: var(--gold-bright);
+    font-style: italic; margin-bottom: 32px;
+    text-shadow: 0 0 30px var(--gold-glow);
+  }
+  p { margin-bottom: 18px; color: var(--text); }
+  p.sub { color: var(--text-sub); }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(255,255,255,0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--gold-bright);
+  }
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    color: var(--text);
+    margin: 18px 0;
+  }
+
+  /* Compatibility tables */
+  table.compat {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 17px;
+  }
+  table.compat th {
+    text-align: left;
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+    border-bottom: 1px solid var(--card-border);
+  }
+  table.compat td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(232,184,48,0.06);
+    color: var(--text);
+    vertical-align: top;
+  }
+  table.compat td.name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-pass { background: rgba(106,207,106,0.12); color: var(--pass); border: 1px solid rgba(106,207,106,0.3); }
+  .badge-fail { background: rgba(208,80,80,0.12); color: var(--fail); border: 1px solid rgba(208,80,80,0.3); }
+  .badge-warn { background: rgba(212,176,74,0.14); color: var(--warn); border: 1px solid rgba(212,176,74,0.35); }
+  .badge-untested { background: rgba(160,160,180,0.08); color: var(--text-sub); border: 1px solid rgba(160,160,180,0.2); }
+
+  .callout {
+    border: 1px solid var(--gold-dim);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(232,184,48,0.06) 0%, rgba(212,112,48,0.03) 100%);
+    padding: 22px 28px;
+    margin: 22px 0;
+  }
+  .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+
+  ul { margin: 0 0 18px 22px; }
+  li { margin-bottom: 8px; color: var(--text); }
+
+  .footer-cta {
+    text-align: center; padding: 60px 32px;
+    border-top: 1px solid var(--card-border);
+    color: var(--text-sub); font-size: 17px;
+  }
+  .footer-cta a { margin: 0 12px; }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 36px; letter-spacing: 3px; }
+    h2 { font-size: 26px; }
+    .subtitle { font-size: 21px; }
+    table.compat { font-size: 15px; }
+    table.compat th, table.compat td { padding: 10px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo">Project Sparks</a>
+    <div class="nav-links">
+      <a href="/stack">The Stack</a>
+      <a href="/mnemo-cortex">Mnemo Cortex</a>
+      <a href="/frankenclaw">FrankenClaw</a>
+      <a href="/field-guide">Field Guide</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section>
+  <div class="container">
+    <div class="section-label">Field Notes from Production</div>
+    <h1>Field Guide</h1>
+    <p class="subtitle">What actually works when you wire MCP tools into local LLMs.</p>
+
+    <p>We run a multi-agent production stack &mdash; <a href="/mnemo-cortex">Mnemo Cortex</a> for memory, FrankenClaw-style MCP servers for tools, agents on Claude Desktop, Claude Code, OpenClaw, and Ollama hosts. Every line below is something we've actually run on our own machines and verified the result of. No marketing benchmarks. No "works on the author's laptop" tutorials.</p>
+
+    <p class="sub">Updated 2026-04-27. We add to this when we test something new. If a host or model is missing, we haven't run it yet &mdash; we won't fake the row.</p>
+  </div>
+</section>
+
+<!-- 1. MCP Host Compatibility -->
+<section>
+  <div class="container">
+    <div class="section-label">01 · Host Compatibility</div>
+    <h2>MCP hosts we've tested</h2>
+
+    <p>"PASS" means we sent a real <code>mnemo_save</code> through the host, then verified the row landed in our memory store. "FAKE" means the model narrated a convincing answer but never actually called the tool &mdash; the most expensive failure mode in this whole space.</p>
+
+    <table class="compat">
+      <thead>
+        <tr><th style="width: 24%;">Host</th><th style="width: 18%;">Status</th><th>Setup notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">Claude Desktop</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Native MCP. Drag-and-drop <code>.mcpb</code> bundle is the gold standard for non-developers. <a href="/mnemo-cortex">Our bundle</a> is submitted to Anthropic's Connectors Directory.</td>
+        </tr>
+        <tr>
+          <td class="name">LM Studio</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Native MCP since v0.3.17. Edit <code>%USERPROFILE%\.lmstudio\mcp.json</code>, restart, done. With Qwen3-8B it just works &mdash; tools fire when the model decides they're useful, no prefix or toggle.</td>
+        </tr>
+        <tr>
+          <td class="name">AnythingLLM</td>
+          <td><span class="badge badge-pass">PASS</span> <span class="badge badge-warn">w/ Automatic mode</span></td>
+          <td>Two steps: drop config in <code>anythingllm_mcp_servers.json</code>, then flip the workspace to <strong>Automatic</strong> chat mode (Settings &rarr; Chat Settings). Without that flip, every tool call requires <code>@agent</code> prefix &mdash; users don't type it, memory never fires. Per-workspace setting, off by default.</td>
+        </tr>
+        <tr>
+          <td class="name">Ollama + MCPHost</td>
+          <td><span class="badge badge-pass">PASS</span> <span class="badge badge-warn">console only on Windows</span></td>
+          <td>Ollama has no native MCP yet (<a href="https://github.com/ollama/ollama/issues/7865" target="_blank">issue #7865</a>). MCPHost bridges. Works fine in a real terminal on macOS / Linux. On Windows, <code>mcphost.exe</code> output buffers until exit when spawned over SSH &mdash; run it from a real PowerShell / cmd window or it appears to hang.</td>
+        </tr>
+        <tr>
+          <td class="name">OpenClaw</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>What our production agent (Rocky) runs on. MCP via stdio servers in <code>openclaw.json</code>'s <code>mcp.servers</code> block. Multi-server orchestration is solid; gateway respawns servers cleanly across upgrades.</td>
+        </tr>
+        <tr>
+          <td class="name">Open WebUI</td>
+          <td><span class="badge badge-untested">UNTESTED</span></td>
+          <td>Documented native MCP support. We have setup snippets in <a href="https://github.com/GuyMannDude/mnemo-cortex#use-with-any-local-llm" target="_blank">our Mnemo README</a>; haven't run end-to-end ourselves yet.</td>
+        </tr>
+        <tr>
+          <td class="name">llama.cpp</td>
+          <td><span class="badge badge-untested">UNTESTED</span></td>
+          <td><code>llama-server &mdash;mcp-config</code> is documented; we haven't run a load test.</td>
+        </tr>
+        <tr>
+          <td class="name">LobeChat / Jan</td>
+          <td><span class="badge badge-untested">UNTESTED</span></td>
+          <td>Both have MCP plugin / extension support. README has config blocks for them, but we haven't sat down and tested.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-label">Verification trick</div>
+      <p style="margin: 0;">Don't trust the model's text response. Have it save a unique marker phrase (<code>MNEMO-PROBE-LOBSTER-7777-2026-04-27</code>), then query your Mnemo server directly for that exact string. If it's there, the save was real. If not, the model faked it. Our verifier script does this in one line: <code>~/scripts/mnemo-verify-save.sh "&lt;marker&gt;"</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Model tool calling -->
+<section>
+  <div class="container">
+    <div class="section-label">02 · Model Tool Calling</div>
+    <h2>Which local models actually call MCP tools</h2>
+
+    <p>Same bridge, same Mnemo server, same host (we used AnythingLLM in Automatic mode for the comparison). The only variable was the underlying model. The difference between PASS and FAKE here is "memory works" versus "memory looks like it works and doesn't."</p>
+
+    <table class="compat">
+      <thead>
+        <tr><th style="width: 32%;">Model</th><th style="width: 18%;">Tool calls real?</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name">qwen3:8b</td>
+          <td><span class="badge badge-pass">YES</span></td>
+          <td>Real <code>mnemo_save</code> call with structured args. Saved row visible in artforge with full content. Our default recommendation for any local-LLM tool-calling setup right now.</td>
+        </tr>
+        <tr>
+          <td class="name">llama3.1:8b</td>
+          <td><span class="badge badge-fail">NO &mdash; fakes</span></td>
+          <td>Narrates "saved with id <code>e4d3c9f3d1a2b8cd</code>" but the tool was never invoked. The memory ID is hallucinated. Recall in a new session returns nothing matching. <strong>This is the failure mode that costs you trust without telling you it's failing.</strong></td>
+        </tr>
+        <tr>
+          <td class="name">qwen2.5-coder:32b · qwen2.5:32b · qwen2.5vl:7b</td>
+          <td><span class="badge badge-untested">UNTESTED for tools</span></td>
+          <td>Live on our machines for other tasks. Haven't validated tool-calling round-trips on these specific quants yet.</td>
+        </tr>
+        <tr>
+          <td class="name">gpt-oss:20b</td>
+          <td><span class="badge badge-untested">UNTESTED</span></td>
+          <td>OpenAI's open-weight 20B. On disk on IGOR-2; haven't run the verifier against it.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Why fake saves happen</h3>
+    <p>Smaller and older instruction-tuned models often "perform" tool use in their text output rather than emitting a real function-call structure. The host parser sees only prose and never invokes the tool. The user sees a confident "saved!" message and walks away thinking memory works. It doesn't. In a recall later, the model either makes up a result or admits it can't find anything &mdash; either way, you've lost the data you thought you saved.</p>
+    <p>The fix is the model, not the host. Pick a model with explicit native tool-calling support and verify with a marker phrase the first time you use it. If the marker's not in your memory store after the save, throw the model out.</p>
+  </div>
+</section>
+
+<!-- 3. Browser automation -->
+<section>
+  <div class="container">
+    <div class="section-label">03 · Browser Automation</div>
+    <h2>What we tried and what we ship</h2>
+
+    <h3>agent-browser (Vercel Labs) &mdash; what we ship now</h3>
+    <p>Rust CLI, sub-200ms latency, ~14k GitHub stars. Six granular actions cover every browser task we've thrown at it: <code>open</code>, <code>snapshot</code>, <code>click</code>, <code>fill</code>, <code>screenshot</code>, <code>eval</code>. The model picks the action directly &mdash; no keyword detector in the middle to misclassify a request. Ships native binaries for Linux x64 and macOS.</p>
+<pre>npm install -g agent-browser
+agent-browser install --with-deps</pre>
+    <p class="sub">Repo: <a href="https://github.com/vercel-labs/agent-browser" target="_blank">vercel-labs/agent-browser</a>. We integrated it into our MCP tool server; the migration replaced ~300 lines of CDP/websocket plumbing with subprocess calls.</p>
+
+    <h3>Midscene.js &mdash; vision-driven, integrated for Rocky 2026-04-25</h3>
+    <p>Open-source (MIT), ~12k stars, ships its own MCP server. Pure-vision approach &mdash; screenshots only, no DOM required for actions. Model-agnostic; works with Qwen3-VL, Gemini, UI-TARS, others. We wired it into Rocky's <code>openclaw.json</code> as a second MCP server (<code>midscene-web</code> via <code>npx -y @midscene/web-bridge-mcp</code>) with <code>gemini-3-flash-preview</code> as the vision model. Different shape than agent-browser &mdash; better for tasks where the DOM is hostile (heavy SPAs, anti-bot sites that block CDP).</p>
+    <p class="sub">Repo: <a href="https://github.com/web-infra-dev/midscene" target="_blank">web-infra-dev/midscene</a>.</p>
+
+    <h3>Lightpanda &mdash; where we started, why we left</h3>
+    <p>CDP-based headless browser, fast on the wire, but our experience over months: timeouts under load, fragile session reattach, stalls on real-world pages. Worked for example.com smoke tests; broke under client-site complexity. We kept the binary on disk &mdash; agent-browser supports it via <code>--engine lightpanda</code> &mdash; but Chrome for Testing is the default now.</p>
+
+    <h3>Browserbase &mdash; evaluated, didn't fit</h3>
+    <p>Cloud-hosted automation service. Well-built. Doesn't match self-hosted/local-first requirements; we cared about every browser session running on hardware we control.</p>
+
+    <h3>What does <em>not</em> work, regardless of browser engine</h3>
+    <p>Reddit. Hacker News (anti-bot is lighter but still trips up). Anything hiding behind Cloudflare Turnstile or hCaptcha. We pulled <code>browser_agent</code> from our research-agent's tool list after multiple <code>MidStreamFallbackError</code> crashes traced back to oversized DOM blobs returned from Reddit anti-bot pages. If your task involves scraping any of these, the answer is "use the public API, the RSS feed, or a different source," not a fancier browser.</p>
+  </div>
+</section>
+
+<!-- 4. Web search & scrape -->
+<section>
+  <div class="container">
+    <div class="section-label">04 · Web Search &amp; Scrape</div>
+    <h2>Search, scrape, and the ROI question</h2>
+
+    <h3>Tavily &mdash; search</h3>
+    <p>What our search tool calls. Free tier is generous, MCP-friendly response shape, ranks results by source quality rather than just keyword density. Better defaults for agent use than vanilla Google or DuckDuckGo scraping.</p>
+
+    <h3>Firecrawl &mdash; scraping</h3>
+    <p>Installed on our IGOR machine for both Claude Code and Claude Desktop via their MCP entry. Cleaner page extraction than rolling our own parser; respects robots.txt; handles JS-rendered pages. Free tier covers most of our research workflow.</p>
+
+    <h3>The honest take</h3>
+    <p>If your agent is asking "what's the news on X" or "summarize this article" &mdash; one Tavily call plus one Firecrawl call is the right shape. If you're trying to scrape a site that doesn't want to be scraped, no amount of tooling makes that a sustainable workflow. Find an API, an RSS feed, a partner relationship, or pick a different source.</p>
+  </div>
+</section>
+
+<!-- 5. Memory -->
+<section>
+  <div class="container">
+    <div class="section-label">05 · Memory Architecture</div>
+    <h2>Memory that survives the session</h2>
+
+    <p>This is our day job &mdash; <a href="/mnemo-cortex">Mnemo Cortex</a> is the persistent memory layer behind every Sparks agent. Three properties matter for anyone wiring memory into an MCP setup:</p>
+
+    <ul>
+      <li><strong>Local-first.</strong> SQLite + local embedding model (Ollama <code>nomic-embed-text</code> by default). $0 to run. Your memory data never leaves your machine unless you tell it to.</li>
+      <li><strong>Cross-agent by design.</strong> Multiple agents (Claude Desktop, Claude Code, Ollama hosts, OpenClaw bots) share one memory spine if you want them to &mdash; or stay isolated per-agent if you don't. We default to "separate" for new installs.</li>
+      <li><strong>Optional Mem0 bridge.</strong> When local recall is thin, Mnemo falls through to Mem0 for long-term semantic depth. "And Mem0," not "instead of Mem0."</li>
+    </ul>
+
+    <p>Detailed install, hosts, and setup matrix: <a href="/mnemo-cortex">projectsparks.ai/mnemo-cortex</a>. Source: <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">github.com/GuyMannDude/mnemo-cortex</a>.</p>
+  </div>
+</section>
+
+<!-- 6. The stack -->
+<section>
+  <div class="container">
+    <div class="section-label">06 · Our Stack</div>
+    <h2>Why our test results come from real production</h2>
+
+    <p>This isn't a benchmark suite. It's the evidence trail of running a multi-agent setup that actually does work for us every day:</p>
+
+    <ul>
+      <li><strong>Opie</strong> &mdash; Claude Desktop. Architect / strategy / spec writer.</li>
+      <li><strong>CC (Claude Code)</strong> &mdash; on-machine builder. The one wiring code, debugging configs, running migrations.</li>
+      <li><strong>Rocky</strong> &mdash; OpenClaw production agent. Customer-facing tasks, scheduled jobs, the bot we'd let near a real workload.</li>
+      <li><strong>Peter Widget</strong> &mdash; customer-facing chat on projectsparks.ai. Lighter agent, scoped tools.</li>
+    </ul>
+
+    <p>Running on:</p>
+    <ul>
+      <li><strong>IGOR</strong> &mdash; primary Linux laptop. Ubuntu 24.04, where Opie / CC / Rocky live.</li>
+      <li><strong>THE VAULT</strong> &mdash; Threadripper 3970X workstation, 128 GB RAM, dual RTX 3060. Hosts the Mnemo Cortex server, embeddings, dream synthesis.</li>
+      <li><strong>IGOR-2</strong> &mdash; Windows 11 machine. ComfyUI workstation, also our cross-platform test bench (LM Studio + AnythingLLM + Ollama all live here).</li>
+    </ul>
+
+    <p class="sub">When we say "we tested AnythingLLM with qwen3:8b on Windows" &mdash; that's IGOR-2, in front of a real keyboard, with a real chat session and a real save row landing in artforge. Not a synthetic benchmark; not someone else's reproduction.</p>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<div class="footer-cta">
+  <a href="/mnemo-cortex">Mnemo Cortex</a> ·
+  <a href="/frankenclaw">FrankenClaw</a> ·
+  <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">GitHub</a> ·
+  <a href="/">Project Sparks home</a>
+  <p style="margin-top: 22px; font-size: 14px;">© 2026 Project Sparks · Field results from a working multi-agent stack · Updated as we test more.</p>
+</div>
+
+</body>
+</html>
