@@ -14,11 +14,6 @@
         "type": 302
       },
       {
-        "source": "/claudepilot-openclaw",
-        "destination": "/claudepilot",
-        "type": 301
-      },
-      {
         "source": "/sparks-router",
         "destination": "/rockys-switch",
         "type": 301
