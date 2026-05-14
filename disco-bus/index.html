@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Disco-Bus — Agent-to-Agent Messaging with Delivery Confirmation</title>
-<meta name="description" content="A delivery-confirmed multi-agent message bus. Discord = doorbell, Mnemo = mailbox, tracking ID = receipt. A2A-compatible. Open source.">
+<meta name="description" content="A push-based multi-agent message bus with delivery confirmation. Discord = doorbell, the bus is the mailbox, tracking ID = receipt. A2A-compatible. Open source.">
 <meta property="og:title" content="Disco-Bus — Delivery-Confirmed Agent Messaging">
-<meta property="og:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta property="og:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Local SQLite, no external dependencies, A2A-compatible.">
 <meta property="og:image" content="https://projectsparks.ai/disco-bus/social-preview.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Disco-Bus — Delivery-Confirmed Agent Messaging">
-<meta name="twitter:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta name="twitter:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Local SQLite, no external dependencies, A2A-compatible.">
 <meta name="twitter:image" content="https://projectsparks.ai/disco-bus/social-preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -292,10 +292,10 @@
 <section>
   <div class="container">
     <div class="section-label">The Doctrine</div>
-    <h2>Discord is the doorbell. Mnemo is the mailbox. The tracking ID is the receipt.</h2>
+    <h2>Discord is the doorbell. The bus is the mailbox. The tracking ID is the receipt.</h2>
     <div class="content">
-      <p>Discord never carries the payload. <strong>Mnemo carries the package.</strong> Discord tells the receiving agent where to look and gives the sender confirmation that the package was picked up.</p>
-      <p>You stop asking agents "did you get that?" — you watch <code>#dispatch</code> and see every package move.</p>
+      <p>An agent calls <code>ping()</code> with a recipient, subject, and payload. The bus stores it, assigns a tracking ID, and flips the state from <code>SENT</code> to <code>DELIVERED</code>. The receiving agent reads it with <code>ping_read()</code> when they spin up. Replies thread back with <code>reply_to</code>.</p>
+      <p>No human courier needed for the message itself — just a tap on the shoulder. "Hey CC, check bus #199." The payload, the state, the threading — the bus handles all of it. You watch <code>#dispatch</code> and see every envelope move.</p>
     </div>
   </div>
 </section>
@@ -355,25 +355,9 @@
 <section id="install">
   <div class="container">
     <div class="section-label">Install</div>
-    <h2>Two install modes, auto-detected at startup</h2>
+    <h2>One install path. No external dependencies.</h2>
     <div class="content">
-      <p>The watcher probes Mnemo at startup and picks the right mode. <strong>One codebase, two install paths.</strong></p>
-    </div>
-
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 32px;">
-      <div class="card">
-        <div class="name">Full Mode</div>
-        <div class="desc"><strong>With Mnemo Cortex.</strong> Each message's payload is saved to Mnemo by tracking ID. Discord notifications carry just the receipt. Semantic recall, cross-agent memory, the full doctrine.</div>
-      </div>
-      <div class="card">
-        <div class="name">Standalone Mode</div>
-        <div class="desc"><strong>Without Mnemo.</strong> Payload travels in the Discord notification body itself. Same delivery → notify → pickup → reply lifecycle. No semantic recall, but you can drop in Mnemo later without changing any agent code.</div>
-      </div>
-    </div>
-
-    <div class="callout" style="margin-top: 40px;">
-      <div class="big">Standalone is the on-ramp.</div>
-      <div class="sub">Start standalone. Add <a href="/mnemo-cortex">Mnemo Cortex</a> when you want semantic recall. Zero migration cost — the watcher just notices Mnemo is reachable on next restart.</div>
+      <p>Local SQLite for state, HTTP for delivery, optional Discord mirroring for human visibility. Memory is its own concern — if you want semantic recall over message payloads, that's <a href="/mnemo-cortex">Mnemo Cortex</a>'s job. The bus doesn't route through it.</p>
     </div>
 
     <div class="arch" style="margin-top: 40px;">
@@ -415,8 +399,7 @@
                         PICKED UP→working,
                         REPLIED→completed,
                         DELIVERY FAILED→failed)
-  <span class="hl">reply_to</span>         →  task.metadata.reply_to
-  <span class="hl">Mnemo session_id</span> →  task.artifact</pre>
+  <span class="hl">reply_to</span>         →  task.metadata.reply_to</pre>
     </div>
 
     <div class="content" style="margin-top: 28px;">
@@ -437,28 +420,6 @@
 
     <div style="text-align: center; margin-top: 36px;">
       <a href="https://github.com/GuyMannDude/disco-bus/blob/main/SETUP-PROMPT.md" target="_blank" class="btn btn-primary">Read SETUP-PROMPT.md</a>
-    </div>
-  </div>
-</section>
-
-<!-- Integration note -->
-<section>
-  <div class="container">
-    <div class="section-label">Two Repos, One Codebase</div>
-    <h2>Standalone here, integrated in Mnemo Cortex</h2>
-    <div class="content">
-      <p>Disco-Bus also ships as a module inside <a href="/mnemo-cortex">Mnemo Cortex</a> for integrated deployments. Same code, two install paths:</p>
-    </div>
-
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
-      <div class="card">
-        <div class="name">Standalone Repo</div>
-        <div class="desc"><a href="https://github.com/GuyMannDude/disco-bus" target="_blank">github.com/GuyMannDude/disco-bus</a> — community-facing. Default install runs in standalone mode.</div>
-      </div>
-      <div class="card">
-        <div class="name">Integrated Module</div>
-        <div class="desc"><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/sparks_bus" target="_blank">mnemo-cortex/sparks_bus/</a> — full mode by default, alongside the rest of the Mnemo stack.</div>
-      </div>
     </div>
   </div>
 </section>
