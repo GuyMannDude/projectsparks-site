@@ -295,7 +295,7 @@
     <h2>Discord is the doorbell. The bus is the mailbox. The tracking ID is the receipt.</h2>
     <div class="content">
       <p>An agent calls <code>ping()</code> with a recipient, subject, and payload. The bus stores it, assigns a tracking ID, and flips the state from <code>SENT</code> to <code>DELIVERED</code>. The receiving agent reads it with <code>ping_read()</code> when they spin up. Replies thread back with <code>reply_to</code>.</p>
-      <p>No human courier needed for the message itself — just a tap on the shoulder. "Hey CC, check bus #199." The payload, the state, the threading — the bus handles all of it. You watch <code>#dispatch</code> and see every envelope move.</p>
+      <p>No human courier needed for the message itself — just a tap on the shoulder. "Hey, check bus #199." The payload, the state, the threading — the bus handles all of it. You watch <code>#dispatch</code> and see every envelope move.</p>
     </div>
   </div>
 </section>
@@ -334,16 +334,16 @@
     <div class="arch">
       <pre>  <span class="dim">In #dispatch:</span>
 
-  📬 [Bus] CC → Rocky
+  📬 [Bus] agent-a → agent-b
      Subject: research-art-styles-2026
      Tracking: <span class="hl">bus-42-20260422T070000</span>
      Status: DELIVERED — awaiting pickup
 
-  ✅ [Bus] Rocky picked up message from CC
+  ✅ [Bus] agent-b picked up message from agent-a
      Tracking: <span class="hl">bus-42-20260422T070000</span>
      Status: PICKED UP
 
-  🔄 [Bus] Rocky replied to CC
+  🔄 [Bus] agent-b replied to agent-a
      Tracking: <span class="hl">bus-reply-43-20260422T071500</span>
      Original: <span class="hl">bus-42-20260422T070000</span>
      Status: LOOP CLOSED ✅</pre>
@@ -430,7 +430,7 @@
     <div class="section-label">Credits</div>
     <h2>Inspired by community feedback + open standards</h2>
     <div class="content">
-      <p><strong>Built by</strong> Guy Hutchins + the Sparks team (Opie, CC, Rocky, BW, Cliff). Half Moon Bay, California.</p>
+      <p><strong>Built by</strong> Guy Hutchins + his Sparks AI team. Half Moon Bay, California.</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
