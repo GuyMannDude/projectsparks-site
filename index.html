@@ -186,15 +186,15 @@
 
   .node:hover .sublabel { color: var(--text); }
 
-  /* Positions — 3-tier constellation */
+  /* Positions — 4-tier constellation (balanced pyramid) */
   .node.sparc     { top: 0;    left: 50%;  transform: translateX(-50%); }
+  .node.frankenclaw { top: 160px; left: 4%; }
   .node.stack     { top: 160px; left: 50%; transform: translateX(-50%); }
   .node.mnemo     { top: 160px; right: 4%; left: auto; }
-  .node.frankenclaw { top: 340px; left: 4%; }
+  .node.fieldguide { top: 340px; left: 4%; }
   .node.about     { top: 340px; right: 4%; left: auto; }
   .node.sparksbus { top: 480px; left: 50%; transform: translateX(-50%); }
   .node.sparksbus:hover { transform: translateX(-50%) scale(1.1); }
-  .node.fieldguide { top: 480px; left: 4%; }
 
   /* SPARC flagship */
   .node.sparc .dot {
@@ -274,9 +274,10 @@
     .title-cluster .tagline { font-size: 11px; }
     .constellation { width: 340px; height: 540px; }
     .node.sparc     { top: 0; left: 50%; }
+    .node.frankenclaw { top: 110px; left: 2%; }
     .node.stack     { top: 110px; left: 50%; }
     .node.mnemo     { top: 110px; right: 2%; left: auto; }
-    .node.frankenclaw { top: 260px; left: 2%; }
+    .node.fieldguide { top: 260px; left: 2%; }
     .node.about     { top: 260px; right: 2%; left: auto; }
     .node.sparksbus { top: 410px; left: 50%; }
     .node .label { font-size: 11px; letter-spacing: 2px; }
@@ -299,20 +300,21 @@
 
   <div class="constellation">
     <svg class="lines" viewBox="0 0 750 540" preserveAspectRatio="xMidYMid meet">
-      <!-- SPARC to middle row -->
+      <!-- SPARC down to row 2 (FrankenClaw, Stack, Mnemo) -->
+      <line x1="375" y1="35" x2="95"  y2="170" />
       <line x1="375" y1="35" x2="375" y2="170" />
       <line x1="375" y1="35" x2="660" y2="170" />
-      <!-- Middle row horizontal (stack ↔ mnemo) -->
-      <line x1="395" y1="170" x2="640" y2="170" />
-      <!-- Middle row to bottom row -->
-      <line x1="375" y1="180" x2="375" y2="350" />
+      <!-- Row 2 horizontal (FrankenClaw ↔ Stack ↔ Mnemo) -->
+      <line x1="115" y1="170" x2="640" y2="170" />
+      <!-- Row 2 down to row 3 (Field Guide + About) -->
+      <line x1="95"  y1="180" x2="95"  y2="350" />
       <line x1="660" y1="180" x2="660" y2="350" />
-      <line x1="660" y1="180" x2="375" y2="350" />
-      <!-- Bottom row horizontal -->
-      <line x1="100" y1="350" x2="640" y2="350" />
-      <!-- Bottom row down to Sparks Bus -->
-      <line x1="80" y1="360" x2="375" y2="490" />
-      <line x1="375" y1="360" x2="375" y2="490" />
+      <line x1="375" y1="180" x2="95"  y2="350" />
+      <line x1="375" y1="180" x2="660" y2="350" />
+      <!-- Row 3 horizontal (Field Guide ↔ About) -->
+      <line x1="115" y1="350" x2="640" y2="350" />
+      <!-- Row 3 down to Sparks Bus -->
+      <line x1="95"  y1="360" x2="375" y2="490" />
       <line x1="660" y1="360" x2="375" y2="490" />
     </svg>
 
@@ -365,7 +367,6 @@
   </div>
 
   <div class="bottom-whisper">
-    <div class="principle">Not touched by human minds.</div>
     <div class="copy">© 2026 Project Sparks · Guy Hutchins</div>
   </div>
 </div>
