@@ -9,7 +9,6 @@ Project Sparks builds the components needed to run AI agents that work — agent
 - [Mnemo Cortex](https://github.com/GuyMannDude/mnemo-cortex): Persistent semantic memory for AI agents. Local SQLite + FTS5 working memory with optional Mem0 cloud-deep fallback. v3 provenance + decay so the agent's own inference can no longer be stored as a confirmed fact. Cross-agent dreaming synthesizes every connected agent's memories nightly. → [robot.info](https://github.com/GuyMannDude/mnemo-cortex/blob/master/robot.info) · [robot.install](https://github.com/GuyMannDude/mnemo-cortex/blob/master/robot.install) · [llms.txt](https://github.com/GuyMannDude/mnemo-cortex/blob/master/llms.txt)
 - [FrankenClaw](https://github.com/GuyMannDude/frankenclaw): MCP tool server giving agents hands — 15 tools across search, vision, browser, web scrape, Shopify, NotebookLM, Google Drive. Drop a Python file in `tools/` to add a tool. Stdio MCP transport works with any MCP-capable host. → [robot.info](https://github.com/GuyMannDude/frankenclaw/blob/master/robot.info) · [robot.install](https://github.com/GuyMannDude/frankenclaw/blob/master/robot.install) · [llms.txt](https://github.com/GuyMannDude/frankenclaw/blob/master/llms.txt)
 - [Disco-Bus](https://github.com/GuyMannDude/disco-bus): Push-based agent-to-agent message mesh. Per-agent HTTP listeners receive instant pushes from a SQLite-backed dispatcher; optional Discord mirror for human observability. Sub-second delivery, no polling, ~1000 LOC. → [robot.info](https://github.com/GuyMannDude/disco-bus/blob/main/robot.info) · [robot.install](https://github.com/GuyMannDude/disco-bus/blob/main/robot.install) · [llms.txt](https://github.com/GuyMannDude/disco-bus/blob/main/llms.txt)
-- [Sparks Bus](https://github.com/GuyMannDude/sparks-bus): Poll-based message bus with delivery confirmation. Discord is the doorbell, Mnemo is the mailbox, the tracking ID is the receipt. Two install modes: FULL (with Mnemo) and STANDALONE (Discord-only). Predecessor to Disco-Bus; use Disco-Bus for new deployments. → [robot.info](https://github.com/GuyMannDude/sparks-bus/blob/main/robot.info) · [robot.install](https://github.com/GuyMannDude/sparks-bus/blob/main/robot.install) · [llms.txt](https://github.com/GuyMannDude/sparks-bus/blob/main/llms.txt)
 - [CronAlarm](https://github.com/GuyMannDude/cronalarm): The cron wrapper that screams when things break. Multi-channel alerts (Discord webhook, SMS, Telegram) on failure or timeout. Daily summary at 11 PM. Pure bash — no daemon, no server, no language runtime beyond stock Linux. → [robot.info](https://github.com/GuyMannDude/cronalarm/blob/master/robot.info) · [robot.install](https://github.com/GuyMannDude/cronalarm/blob/master/robot.install) · [llms.txt](https://github.com/GuyMannDude/cronalarm/blob/master/llms.txt)
 
 ## Conventions
@@ -23,7 +22,7 @@ The pieces compose:
 
 - **Agent needs memory** → Mnemo Cortex
 - **Agent needs tools** → FrankenClaw
-- **Multiple agents need to talk** → Disco-Bus (push) or Sparks Bus (poll, with Discord lifecycle)
+- **Multiple agents need to talk** → Disco-Bus (push-based, Discord mirror optional)
 - **Anything runs on cron and you can't afford silent failures** → CronAlarm
 
 You can adopt any single piece; they don't lock each other in. Local-first by design — everything works on a laptop with no cloud dependency.

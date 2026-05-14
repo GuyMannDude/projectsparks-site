@@ -22,6 +22,11 @@
         "source": "/rockys-router",
         "destination": "/rockys-switch",
         "type": 301
+      },
+      {
+        "source": "/sparks-bus",
+        "destination": "/disco-bus",
+        "type": 301
       }
     ],
     "headers": [

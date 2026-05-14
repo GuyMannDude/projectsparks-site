@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sparks Bus — Agent-to-Agent Messaging with Delivery Confirmation</title>
+<title>Disco-Bus — Agent-to-Agent Messaging with Delivery Confirmation</title>
 <meta name="description" content="A delivery-confirmed multi-agent message bus. Discord = doorbell, Mnemo = mailbox, tracking ID = receipt. A2A-compatible. Open source.">
-<meta property="og:title" content="Sparks Bus — Delivery-Confirmed Agent Messaging">
-<meta property="og:description" content="Stop asking 'did you get that?' Sparks Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
-<meta property="og:image" content="https://projectsparks.ai/sparks-bus/social-preview.png">
+<meta property="og:title" content="Disco-Bus — Delivery-Confirmed Agent Messaging">
+<meta property="og:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta property="og:image" content="https://projectsparks.ai/disco-bus/social-preview.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
-<meta property="og:image:alt" content="Sparks Bus — agent-to-agent messaging">
-<meta property="og:url" content="https://projectsparks.ai/sparks-bus">
+<meta property="og:image:alt" content="Disco-Bus — agent-to-agent messaging">
+<meta property="og:url" content="https://projectsparks.ai/disco-bus">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sparks Bus — Delivery-Confirmed Agent Messaging">
-<meta name="twitter:description" content="Stop asking 'did you get that?' Sparks Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
-<meta name="twitter:image" content="https://projectsparks.ai/sparks-bus/social-preview.png">
+<meta name="twitter:title" content="Disco-Bus — Delivery-Confirmed Agent Messaging">
+<meta name="twitter:description" content="Stop asking 'did you get that?' Disco-Bus shows you the full delivery → pickup → reply lifecycle in Discord. Two install modes (with or without Mnemo). A2A-compatible.">
+<meta name="twitter:image" content="https://projectsparks.ai/disco-bus/social-preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -260,9 +260,9 @@
 
 <nav>
   <div class="container">
-    <a href="/" class="nav-logo">⚡ Sparks Bus</a>
+    <a href="/" class="nav-logo">⚡ Disco-Bus</a>
     <div class="nav-links">
-      <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">GitHub</a>
+      <a href="https://github.com/GuyMannDude/disco-bus" target="_blank">GitHub</a>
       <a href="/mnemo-cortex">Mnemo Cortex</a>
       <a href="/">Project Sparks</a>
     </div>
@@ -272,17 +272,17 @@
 <!-- Hero -->
 <section>
   <div class="container" style="text-align: center;">
-    <img src="logo.png" alt="Sparks Bus logo — blue spark between two nodes" class="hero-logo">
+    <img src="logo.png" alt="Disco-Bus logo — blue spark between two nodes" class="hero-logo">
     <div class="section-label">Project Sparks</div>
-    <h1>Sparks Bus</h1>
+    <h1>Disco-Bus</h1>
     <p class="subtitle">Agent-to-agent messaging with delivery confirmation.</p>
 
     <div class="content" style="max-width: 700px; margin: 0 auto;">
-      <p>Multi-agent systems break down silently. Agent A sends a task to Agent B. Did Agent B get it? Did it process it? Did it reply? You end up asking, copy-pasting, manually relaying status. <strong>Sparks Bus closes that loop.</strong></p>
+      <p>Multi-agent systems break down silently. Agent A sends a task to Agent B. Did Agent B get it? Did it process it? Did it reply? You end up asking, copy-pasting, manually relaying status. <strong>Disco-Bus closes that loop.</strong></p>
     </div>
 
     <div style="margin-top: 36px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank" class="btn btn-primary">View on GitHub</a>
+      <a href="https://github.com/GuyMannDude/disco-bus" target="_blank" class="btn btn-primary">View on GitHub</a>
       <a href="#install" class="btn btn-ghost">Install Guide</a>
     </div>
   </div>
@@ -377,12 +377,12 @@
     </div>
 
     <div class="arch" style="margin-top: 40px;">
-      <pre>  <span class="dim">$</span> git clone https://github.com/GuyMannDude/sparks-bus.git
-  <span class="dim">$</span> cd sparks-bus
+      <pre>  <span class="dim">$</span> git clone https://github.com/GuyMannDude/disco-bus.git
+  <span class="dim">$</span> cd disco-bus
   <span class="dim">$</span> pip install -r requirements.txt
   <span class="dim">$</span> echo "$DISCORD_BOT_TOKEN" &gt; ~/.sparks/discord-token
   <span class="dim">$</span> cp config.example.json config.json   <span class="dim"># edit agents/channels</span>
-  <span class="dim">$</span> python3 sparks-bus-watcher.py
+  <span class="dim">$</span> python3 disco-bus-watcher.py
 
   <span class="hl">Mode: STANDALONE (Discord only — payload in notifications)</span>
   <span class="hl">Polling every 30s</span></pre>
@@ -399,13 +399,13 @@
 <section>
   <div class="container">
     <div class="section-label">A2A Compatible</div>
-    <h2>Sparks Bus does for agent-to-agent what MCP does for agent-to-tool.</h2>
+    <h2>Disco-Bus does for agent-to-agent what MCP does for agent-to-tool.</h2>
     <div class="content">
-      <p>Every agent in a Sparks Bus deployment has an <a href="https://github.com/google/A2A" target="_blank">A2A Agent Card</a> in <code>agent-cards/</code> describing identity, capabilities, and delivery method. Each bus message maps cleanly to an A2A Task:</p>
+      <p>Every agent in a Disco-Bus deployment has an <a href="https://github.com/google/A2A" target="_blank">A2A Agent Card</a> in <code>agent-cards/</code> describing identity, capabilities, and delivery method. Each bus message maps cleanly to an A2A Task:</p>
     </div>
 
     <div class="arch">
-      <pre>  Sparks Bus       →  A2A Task
+      <pre>  Disco-Bus       →  A2A Task
   <span class="dim">─────────────────────────────────────────</span>
   <span class="hl">tracking_id</span>      →  task.id
   <span class="hl">subject</span>          →  task.name
@@ -431,12 +431,12 @@
     <div class="section-label">Idea File as Publishing Format</div>
     <h2>Bootstrap a deployment by pasting one prompt into your AI agent</h2>
     <div class="content">
-      <p>The repo includes <a href="https://github.com/GuyMannDude/sparks-bus/blob/main/SETUP-PROMPT.md" target="_blank"><code>SETUP-PROMPT.md</code></a> — a self-contained prompt any AI agent can read to build the entire bus on a fresh machine. Architecture, schema, lifecycle, A2A mapping, and step-by-step build instructions, all in one paste.</p>
+      <p>The repo includes <a href="https://github.com/GuyMannDude/disco-bus/blob/main/SETUP-PROMPT.md" target="_blank"><code>SETUP-PROMPT.md</code></a> — a self-contained prompt any AI agent can read to build the entire bus on a fresh machine. Architecture, schema, lifecycle, A2A mapping, and step-by-step build instructions, all in one paste.</p>
       <p>Karpathy's <em>"idea file as publishing format"</em> pattern. Don't ship a tool — ship a description an AI can build from.</p>
     </div>
 
     <div style="text-align: center; margin-top: 36px;">
-      <a href="https://github.com/GuyMannDude/sparks-bus/blob/main/SETUP-PROMPT.md" target="_blank" class="btn btn-primary">Read SETUP-PROMPT.md</a>
+      <a href="https://github.com/GuyMannDude/disco-bus/blob/main/SETUP-PROMPT.md" target="_blank" class="btn btn-primary">Read SETUP-PROMPT.md</a>
     </div>
   </div>
 </section>
@@ -447,13 +447,13 @@
     <div class="section-label">Two Repos, One Codebase</div>
     <h2>Standalone here, integrated in Mnemo Cortex</h2>
     <div class="content">
-      <p>Sparks Bus also ships as a module inside <a href="/mnemo-cortex">Mnemo Cortex</a> for integrated deployments. Same code, two install paths:</p>
+      <p>Disco-Bus also ships as a module inside <a href="/mnemo-cortex">Mnemo Cortex</a> for integrated deployments. Same code, two install paths:</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
       <div class="card">
         <div class="name">Standalone Repo</div>
-        <div class="desc"><a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">github.com/GuyMannDude/sparks-bus</a> — community-facing. Default install runs in standalone mode.</div>
+        <div class="desc"><a href="https://github.com/GuyMannDude/disco-bus" target="_blank">github.com/GuyMannDude/disco-bus</a> — community-facing. Default install runs in standalone mode.</div>
       </div>
       <div class="card">
         <div class="name">Integrated Module</div>
@@ -475,11 +475,11 @@
     <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: 28px;">
       <div class="card">
         <div class="name">OpenClaw Builders</div>
-        <div class="desc">Community feedback from people running multi-agent fleets and asking the same question we asked: "did the other agent actually get this?" Sparks Bus is the answer that fits in our stack.</div>
+        <div class="desc">Community feedback from people running multi-agent fleets and asking the same question we asked: "did the other agent actually get this?" Disco-Bus is the answer that fits in our stack.</div>
       </div>
       <div class="card">
         <div class="name">Google A2A Protocol</div>
-        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">github.com/google/A2A</a> — agent-to-agent standard. Sparks Bus speaks A2A's data shapes today; transport is v2 roadmap.</div>
+        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">github.com/google/A2A</a> — agent-to-agent standard. Disco-Bus speaks A2A's data shapes today; transport is v2 roadmap.</div>
       </div>
       <div class="card">
         <div class="name">Karpathy's "Idea File as Publishing Format"</div>
