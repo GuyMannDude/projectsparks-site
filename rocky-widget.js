@@ -15,19 +15,43 @@
     return id;
   }
 
+  // --- Memory toggle (persisted to localStorage across sessions) ---
+  // Default: OFF. Visitor opts INTO memory, not out of it.
+  const MEMORY_KEY = "rocky_widget_memory_on";
+  function loadMemoryOn() {
+    try { return localStorage.getItem(MEMORY_KEY) === "1"; } catch { return false; }
+  }
+  function saveMemoryOn(on) {
+    try { localStorage.setItem(MEMORY_KEY, on ? "1" : "0"); } catch {}
+  }
+
   // --- State (persisted to sessionStorage for page navigation) ---
+  // Bump STATE_VERSION whenever the state shape changes so old sessions
+  // get a clean slate instead of crashing on stale fields.
   const STATE_KEY = "rocky_widget_state";
+  const STATE_VERSION = 2;
   function loadState() {
+    const fresh = { v: STATE_VERSION, messages: [], phase: "idle", open: false };
     try {
       const s = sessionStorage.getItem(STATE_KEY);
-      return s ? JSON.parse(s) : { messages: [], phase: "idle", open: false, name: null, location: null };
-    } catch { return { messages: [], phase: "idle", open: false, name: null, location: null }; }
+      if (!s) return fresh;
+      const parsed = JSON.parse(s);
+      // Migrate old state: any v<2 used phases like "ask_name"/"ask_location"
+      // and stored stale name/location fields. Throw it away.
+      if (parsed.v !== STATE_VERSION) return fresh;
+      if (parsed.phase === "ask_name" || parsed.phase === "ask_location") return fresh;
+      return parsed;
+    } catch { return fresh; }
   }
   function saveState(state) {
-    try { sessionStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch {}
+    try {
+      state.v = STATE_VERSION;
+      sessionStorage.setItem(STATE_KEY, JSON.stringify(state));
+    } catch {}
   }
 
   let state = loadState();
+  let memoryOn = loadMemoryOn();
   const visitorId = getVisitorId();
 
   // --- Styles ---
@@ -118,7 +142,8 @@
     .rw-send:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .rw-footer {
-      display: flex; justify-content: center; padding: 6px 16px 10px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 16px 10px;
       background: #101020;
     }
     .rw-wipe {
@@ -127,6 +152,23 @@
       transition: color 0.2s;
     }
     .rw-wipe:hover { color: #e85040; }
+
+    /* Memory toggle — segmented control, live Mnemo demo */
+    .rw-memory-toggle {
+      display: inline-flex; gap: 0; padding: 2px;
+      background: #1a1a2e; border: 1px solid rgba(212,168,42,0.2);
+      border-radius: 10px; font-size: 10px; font-family: inherit;
+    }
+    .rw-memory-toggle button {
+      background: transparent; border: none; color: #9090a0;
+      padding: 4px 10px; border-radius: 8px; cursor: pointer;
+      font-size: 10px; font-family: inherit;
+      transition: background 0.2s, color 0.2s;
+    }
+    .rw-memory-toggle button:hover { color: #e8e8f0; }
+    .rw-memory-toggle button.active {
+      background: #d4a82a; color: #0c0c18; font-weight: 600;
+    }
 
     @media (max-width: 480px) {
       #rocky-widget-window {
@@ -162,7 +204,11 @@
       <button class="rw-send">Send</button>
     </div>
     <div class="rw-footer">
-      <button class="rw-wipe" title="Clear my data">Clear my data</button>
+      <div class="rw-memory-toggle" role="group" aria-label="Memory mode">
+        <button class="rw-mem-off" data-mode="off" title="Stateless — Peter forgets after you close the chat">Quick answers</button>
+        <button class="rw-mem-on"  data-mode="on"  title="Conversation is saved to Mnemo Cortex so Peter remembers next visit">Mnemo Cortex</button>
+      </div>
+      <button class="rw-wipe" title="Clear my saved data">Clear data</button>
     </div>
   `;
 
@@ -206,17 +252,22 @@
   }
 
   // --- API calls ---
-  async function sendChat(userMsg) {
+  async function sendChat() {
     const apiMessages = state.messages.map((m) => ({
       role: m.role === "visitor" ? "user" : "assistant",
       content: m.content,
     }));
 
+    // Only pass visitor_id when memory toggle is ON — that's what enables
+    // server-side Mnemo recall and per-visitor save.
+    const payload = { messages: apiMessages };
+    if (memoryOn) payload.visitor_id = visitorId;
+
     try {
       const res = await fetch(API_BASE + "/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: apiMessages, visitor_id: visitorId }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
@@ -226,12 +277,14 @@
     }
   }
 
-  async function saveVisitor(firstName, location) {
+  async function saveConversation() {
+    if (!memoryOn) return;
+    const recentMsgs = state.messages.slice(-6).map((m) => `${m.role}: ${m.content}`).join("\n");
     try {
       await fetch(API_BASE + "/api/save-visitor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ visitor_id: visitorId, first_name: firstName, location }),
+        body: JSON.stringify({ visitor_id: visitorId, conversation_snippet: recentMsgs }),
       });
     } catch {}
   }
@@ -245,49 +298,50 @@
   }
 
 
-  // --- Onboarding flow ---
+  // --- Open flow ---
+  // No identity gate. Visitor asks anything, Peter answers anything.
+  // If memory toggle is ON and Mnemo has prior context, warm welcome-back.
   let startingConversation = false;
   async function startConversation() {
     if (state.messages.length > 0 || startingConversation) return;
     startingConversation = true;
+    state.phase = "chat";
+    saveState(state);
 
-    const memory = await checkReturning();
-    // Only treat as returning if Mnemo has widget-specific data (contains "first name:")
-    if (memory && memory.toLowerCase().includes("first name:")) {
-      // Returning visitor — confirmed widget-originated data
-      state.phase = "chat";
-      saveState(state);
-      showTyping();
-      try {
-        const res = await fetch(API_BASE + "/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: [{ role: "user", content: "(Returning visitor opened the chat. Greet them warmly using what you remember. One sentence only.)" }],
-            visitor_id: visitorId,
-          }),
-        });
-        hideTyping();
-        if (res.ok) {
-          const data = await res.json();
-          // Only Peter's greeting goes into state — the synthetic prompt does NOT
-          addMessage("assistant", data.reply);
+    if (memoryOn) {
+      const memory = await checkReturning();
+      if (memory) {
+        showTyping();
+        try {
+          const res = await fetch(API_BASE + "/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              messages: [{ role: "user", content: "(Returning visitor opened the chat. Greet them warmly using what you remember. One short sentence.)" }],
+              visitor_id: visitorId,
+            }),
+          });
+          hideTyping();
+          if (res.ok) {
+            const data = await res.json();
+            addMessage("assistant", data.reply);
+            startingConversation = false;
+            return;
+          }
+        } catch {
+          hideTyping();
         }
-      } catch {
-        hideTyping();
-        addMessage("assistant", "Welcome back! What can I help you with today?");
       }
-    } else {
-      // New visitor — start onboarding
-      state.phase = "ask_name";
-      saveState(state);
-      addMessage("assistant", "Hey! I\u2019m Peter, your personal guide at Project Sparks. If you want me to remember our conversation for later, I\u2019ll need your first name and a location. Nothing sensitive please. \ud83e\udd9e");
     }
+
+    addMessage("assistant", "Hey! Ask me anything about Project Sparks.");
     startingConversation = false;
   }
 
   // --- Send handler ---
+  // No phases, no identity parsing. Visitor sends, Peter answers.
   let sending = false;
+  let visitorMsgCount = 0;
   async function handleSend() {
     const text = input.value.trim();
     if (!text || sending) return;
@@ -296,57 +350,16 @@
     input.value = "";
 
     addMessage("visitor", text);
+    visitorMsgCount += 1;
 
-    if (state.phase === "ask_name") {
-      // Parse name: extract first real name from freeform input
-      let parsed = text.replace(/^(i'm|im|i am|my name is|my name's|they call me|call me|it's|its|hey|hi|hello|yo|sup)\s+/i, "").trim();
-      parsed = parsed.split(/[\s,]+/)[0].replace(/[^a-zA-Z'-]/g, "");
-      parsed = parsed.charAt(0).toUpperCase() + parsed.slice(1).toLowerCase();
-      state.name = parsed || text;
-      state.phase = "ask_location";
-      saveState(state);
-      addMessage("assistant", `Nice to meet you, ${state.name}! Where are you from?`);
-      sending = false;
-      sendBtn.disabled = false;
-      input.focus();
-      return;
-    }
-
-    if (state.phase === "ask_location") {
-      state.location = text;
-      state.phase = "chat";
-      saveState(state);
-      saveVisitor(state.name, state.location);
-      addMessage("assistant", `${text} \u2014 cool! So what can I help you with? I know all about Project Sparks products: FrankenClaw, Mnemo Cortex, Rocky\u2019s Switch, and more.`);
-      sending = false;
-      sendBtn.disabled = false;
-      input.focus();
-      return;
-    }
-
-    // Normal chat
     showTyping();
-    const reply = await sendChat(text);
+    const reply = await sendChat();
     hideTyping();
     addMessage("assistant", reply);
 
-    // Save conversation to Mnemo periodically (every 3 visitor messages)
-    const visitorMsgCount = state.messages.filter((m) => m.role === "visitor").length;
+    // Periodic save — every 3 visitor messages — only if memory toggle is ON.
     if (visitorMsgCount % 3 === 0) {
-      const recentMsgs = state.messages.slice(-6).map((m) => `${m.role}: ${m.content}`).join("\n");
-      saveVisitor(state.name, state.location);
-      try {
-        await fetch(API_BASE + "/api/save-visitor", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            visitor_id: visitorId,
-            first_name: state.name,
-            location: state.location,
-            conversation_snippet: recentMsgs,
-          }),
-        });
-      } catch {}
+      saveConversation();
     }
 
     sending = false;
@@ -379,7 +392,7 @@
   // --- Wipe handler ---
   const wipeBtn = win.querySelector(".rw-wipe");
   wipeBtn.addEventListener("click", async () => {
-    if (!confirm("This will delete your chat history and any data Peter saved about you. Continue?")) return;
+    if (!confirm("This will delete any data Peter has saved about you on the server and clear this chat. Continue?")) return;
     try {
       await fetch(API_BASE + "/api/wipe-visitor", {
         method: "POST",
@@ -387,21 +400,36 @@
         body: JSON.stringify({ visitor_id: visitorId }),
       });
     } catch {}
-    // Clear local state
     state.messages = [];
     state.phase = "idle";
-    state.name = null;
-    state.location = null;
     state.open = true;
     startingConversation = false;
     saveState(state);
     renderMessages();
-    addMessage("assistant", "Your data has been cleared. Fresh start! What can I help you with?");
-    state.phase = "ask_name";
-    saveState(state);
+    addMessage("assistant", "Your data has been cleared. Fresh start — ask me anything.");
   });
 
+  // --- Memory toggle handler ---
+  const memOffBtn = win.querySelector(".rw-mem-off");
+  const memOnBtn = win.querySelector(".rw-mem-on");
+  function renderMemoryToggle() {
+    memOffBtn.classList.toggle("active", !memoryOn);
+    memOnBtn.classList.toggle("active", memoryOn);
+  }
+  function setMemory(on) {
+    if (on === memoryOn) return;
+    memoryOn = on;
+    saveMemoryOn(on);
+    renderMemoryToggle();
+    addMessage("assistant", on
+      ? "Memory is on — I'll save this chat to Mnemo Cortex so I remember you next visit."
+      : "Memory is off — this chat is stateless. Nothing's saved.");
+  }
+  memOffBtn.addEventListener("click", () => setMemory(false));
+  memOnBtn.addEventListener("click", () => setMemory(true));
+
   // --- Init ---
+  renderMemoryToggle();
   if (state.open) {
     win.classList.add("open");
   }
