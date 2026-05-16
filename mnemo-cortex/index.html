@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Persistent AI Operating Memory</title>
-<meta name="description" content="Mnemo-Cortex v2.6 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Sparks Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Open source.">
+<meta name="description" content="Mnemo-Cortex v2.6 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Disco-Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Open source.">
 <meta property="og:title" content="Mnemo Cortex — Persistent AI Operating Memory">
 <meta property="og:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
 <meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
@@ -517,7 +517,7 @@
     </div>
 
     <div class="arch">
-      <pre>  <span class="dim">3:15 AM &mdash; THE VAULT</span>
+      <pre>  <span class="dim">3:15 AM &mdash; artforge</span>
 
   <span class="hl">mnemo-dream.py</span>
     <span class="dim">1.</span> Harvest all agent memories since last dream
@@ -526,10 +526,10 @@
 
   <span class="dim">Next morning, each agent boots:</span>
 
-  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>          <span class="hl">Alice</span>
-  <span class="dim">reads dream</span>     <span class="dim">reads dream</span>   <span class="dim">reads dream</span>   <span class="dim">reads dream</span>
-  <span class="dim">knows what</span>      <span class="dim">knows what</span>    <span class="dim">knows what</span>    <span class="dim">knows what</span>
-  <span class="dim">everyone did</span>    <span class="dim">everyone did</span>  <span class="dim">everyone did</span>  <span class="dim">everyone did</span></pre>
+  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>
+  <span class="dim">reads dream</span>     <span class="dim">reads dream</span>   <span class="dim">reads dream</span>
+  <span class="dim">knows what</span>      <span class="dim">knows what</span>    <span class="dim">knows what</span>
+  <span class="dim">everyone did</span>    <span class="dim">everyone did</span>  <span class="dim">everyone did</span></pre>
     </div>
 
     <div class="content" style="margin-top: 28px;">
@@ -554,7 +554,7 @@
     </div>
 
     <div class="arch">
-      <pre>  <span class="dim">3:30 AM &mdash; THE VAULT (15 min after Dreaming)</span>
+      <pre>  <span class="dim">3:30 AM &mdash; artforge (15 min after Dreaming)</span>
 
   <span class="hl">mnemo-wiki-compile.py</span>
     <span class="dim">1.</span> Harvest recent memories from Mnemo + AgentB writebacks
@@ -572,39 +572,17 @@
   </div>
 </section>
 
-<!-- Sparks Bus -->
-<section id="sparks-bus">
+<!-- Disco-Bus cross-link -->
+<section id="disco-bus">
   <div class="container">
     <div class="section-label">Agent-to-Agent</div>
-    <h2>Sparks Bus &mdash; Delivery-Confirmed Messaging</h2>
+    <h2>Disco-Bus &mdash; Delivery-Confirmed Messaging</h2>
     <div class="content">
-      <p>A multi-agent message bus with full delivery confirmation. Lives inside Mnemo Cortex (<code>sparks_bus/</code>) AND ships as a standalone repo at <a href="https://github.com/GuyMannDude/sparks-bus" target="_blank">github.com/GuyMannDude/sparks-bus</a>.</p>
-      <p><strong>Doctrine:</strong> Discord is the doorbell. Mnemo is the mailbox. The tracking ID is the receipt.</p>
+      <p>Multi-agent message bus with full delivery confirmation. Originally lived inside Mnemo Cortex; <strong>now ships as its own product</strong>.</p>
     </div>
 
-    <div class="callout">
-      <div class="big">📬 DELIVERED &nbsp; → &nbsp; ✅ PICKED UP &nbsp; → &nbsp; 🔄 LOOP CLOSED</div>
-      <div class="sub">Every message's lifecycle visible in #dispatch. ⚠️ DELIVERY FAILED in #alerts (one-shot, no retry storms).</div>
-    </div>
-
-    <div class="content" style="margin-top: 28px;">
-      <p><strong>Two install modes auto-detected at startup:</strong></p>
-    </div>
-
-    <div class="grid" style="grid-template-columns: 1fr 1fr;">
-      <div class="card">
-        <div class="name">Full Mode</div>
-        <div class="desc">Mnemo reachable. Payload saved to Mnemo by tracking ID. Discord notifications carry just the receipt. The full doctrine.</div>
-      </div>
-      <div class="card">
-        <div class="name">Standalone Mode</div>
-        <div class="desc">No Mnemo. Payload travels in the Discord notification itself. Same delivery → notify → pickup → reply lifecycle, no semantic recall.</div>
-      </div>
-    </div>
-
-    <div class="content" style="margin-top: 28px;">
-      <p><strong>A2A compatible.</strong> Agent Cards live in <code>sparks_bus/agent-cards/</code>, formatted to <a href="https://github.com/google/A2A" target="_blank">Google's A2A spec</a>. Each bus message maps to an A2A Task. <strong>Sparks Bus does for agent-to-agent what MCP does for agent-to-tool.</strong></p>
-      <p>Includes a self-contained <code>SETUP-PROMPT.md</code> any AI agent can read to bootstrap the entire bus on a fresh deployment &mdash; Karpathy's "idea file as publishing format" pattern.</p>
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="/disco-bus" class="btn btn-primary">See Disco-Bus &rarr;</a>
     </div>
   </div>
 </section>
@@ -708,7 +686,7 @@
       </div>
       <div class="card">
         <div class="name">Google A2A Protocol</div>
-        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">A2A spec</a>. Sparks Bus speaks A2A's data shapes today; transport is the v2 roadmap.</div>
+        <div class="desc"><a href="https://github.com/google/A2A" target="_blank">A2A spec</a>. Disco-Bus speaks A2A's data shapes today; transport is the v2 roadmap.</div>
       </div>
       <div class="card">
         <div class="name">Mem0</div>
@@ -926,14 +904,14 @@
 <section>
   <div class="container">
     <div class="section-label">By the Numbers</div>
-    <h2>Live stats &mdash; March 2026</h2>
+    <h2>Live stats &mdash; last 14 days</h2>
     <div class="stats-bar">
       <div class="stat">
-        <div class="num">244</div>
+        <div class="num">322</div>
         <div class="label">GitHub Clones</div>
       </div>
       <div class="stat">
-        <div class="num">135</div>
+        <div class="num">159</div>
         <div class="label">Unique Cloners</div>
       </div>
       <div class="stat">
@@ -1068,7 +1046,7 @@
     <div class="section-label">Who Built This</div>
     <h2>Project Sparks</h2>
     <div class="content" style="max-width: 600px; margin: 0 auto;">
-      <p>Guy Hutchins (founder) + Opie (architect, Claude) + AL (ChatGPT, implementation) + CC (Claude Code) + Rocky Moltman (OpenClaw agent)<br>Half Moon Bay, California</p>
+      <p>Guy Hutchins (founder) + Opie (architect, Claude) + AL (ChatGPT, implementation) + CC (Claude Code) + Rocky Moltman (Hermes agent, ported from OpenClaw via Mnemo)<br>Half Moon Bay, California</p>
       <p style="color: var(--gold-bright); font-style: italic; text-shadow: 0 0 20px var(--gold-glow);">"Talk to it like a friend, it learns how to care."</p>
     </div>
   </div>
@@ -1085,12 +1063,12 @@
     </div>
 
     <div class="callout">
-      <div class="big">Pair it with <a href="/rockys-router" style="color: var(--gold-bright);">Rocky's Router</a> and your agents get cheaper every week.</div>
-      <div class="sub">Rocky's Router routes cheap work to free models &middot; Mnemo Cortex makes every call count</div>
+      <div class="big">Pair it with <a href="https://github.com/GuyMannDude/rockys-switch" target="_blank" style="color: var(--gold-bright);">Rocky's Switch</a> and your agents get cheaper every week.</div>
+      <div class="sub">Rocky's Switch routes cheap work to free models &middot; Mnemo Cortex makes every call count</div>
     </div>
 
     <div class="content">
-      <p>Rocky's Router saved us <strong>$72/month</strong> on background tasks alone. Mnemo Cortex makes the smart calls smarter by giving them full context on the first try &mdash; no expensive retry loops, no wasted tokens on forgotten context.</p>
+      <p>Rocky's Switch saved us <strong>$72/month</strong> on background tasks alone. Mnemo Cortex makes the smart calls smarter by giving them full context on the first try &mdash; no expensive retry loops, no wasted tokens on forgotten context.</p>
     </div>
   </div>
 </section>
