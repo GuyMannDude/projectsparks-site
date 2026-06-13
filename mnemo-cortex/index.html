@@ -17,262 +17,58 @@
 <meta name="twitter:title" content="Mnemo Cortex — Persistent AI Operating Memory">
 <meta name="twitter:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg: #08080f;
-    --gold: #e8b830;
-    --gold-bright: #ffd54f;
-    --gold-glow: rgba(232, 184, 48, 0.5);
-    --gold-dim: rgba(232, 184, 48, 0.25);
-    --amber: #f09030;
-    --copper: #d47030;
-    --copper-glow: rgba(212, 112, 48, 0.3);
-    --text: #ededf4;
-    --text-bright: #ffffff;
-    --text-sub: #a0a0b4;
-    --card-bg: rgba(255,255,255,0.04);
-    --card-border: rgba(232, 184, 48, 0.1);
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 21px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container { max-width: 900px; margin: 0 auto; padding: 0 32px; }
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { color: var(--gold-bright); }
-
-  /* Nav */
-  nav {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--card-border);
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg);
-  }
-  nav .container { display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px; font-weight: 500;
-    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
-  }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
-  }
-  .nav-links a:hover { color: var(--gold-bright); }
-
-  /* Sections */
-  section { padding: 88px 0; }
-  section + section { border-top: 1px solid var(--card-border); }
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: var(--amber); margin-bottom: 18px;
-    text-shadow: 0 0 20px var(--copper-glow);
-  }
-  h1 {
-    font-weight: 300; font-size: 60px;
-    letter-spacing: 8px; color: var(--text-bright);
-    text-transform: uppercase; margin-bottom: 18px;
-  }
-  h2 {
-    font-weight: 400; font-size: 38px;
-    color: var(--text-bright); margin-bottom: 22px;
-  }
-  .subtitle {
-    font-size: 32px; color: var(--gold-bright);
-    font-style: italic; margin-bottom: 44px;
-    text-shadow: 0 0 30px var(--gold-glow);
+  .integration-card { text-align: center; padding: 34px 26px; display: flex; flex-direction: column; }
+  .integration-card .icon { font-size: 30px; margin-bottom: 12px; }
+  .integration-card .desc { flex: 1; }
+  .integration-card .btn { margin-top: 20px; }
+  .integration-card .meta {
+    font-family: var(--mono);
+    font-size: 12.5px; color: var(--ink-faint);
+    margin-top: 10px;
   }
 
-  /* Cards grid */
-  .grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 22px; margin-top: 36px;
+  .host-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 12px;
+    margin: 24px 0 26px;
   }
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px; padding: 28px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .card:hover {
-    border-color: rgba(232, 184, 48, 0.3);
-    box-shadow: 0 0 24px var(--copper-glow);
-  }
-  .card .icon { font-size: 32px; margin-bottom: 14px; }
-  .card .name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 16px; font-weight: 500;
-    color: var(--gold); letter-spacing: 2px;
-    text-transform: uppercase; margin-bottom: 10px;
-  }
-  .card .desc { font-size: 18px; color: var(--text-sub); line-height: 1.6; }
-
-  /* Brand: Mem0 (digit zero, not letter o). Cormorant Garamond renders 0 indistinguishable
-     from o, so wrap brand mentions in this class to switch to JetBrains Mono inline. */
-  .mem0 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.88em;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-
-  /* Arch diagram */
-  .arch {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px; padding: 32px;
-    margin-top: 36px; overflow-x: auto;
-  }
-  .arch pre {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; line-height: 1.8;
-    color: var(--text-sub);
-  }
-  .arch .hl { color: var(--gold-bright); text-shadow: 0 0 12px var(--gold-glow); }
-  .arch .dim { color: var(--text-sub); opacity: 0.6; }
-
-  /* Quote / callout */
-  .quote {
-    border-left: 3px solid var(--amber);
-    padding: 24px 32px; margin: 36px 0;
-    background: var(--card-bg); border-radius: 0 10px 10px 0;
-  }
-  .quote p { font-size: 21px; font-style: italic; color: var(--text); }
-  .quote cite { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-sub); display: block; margin-top: 14px; }
-
-  /* Big callout block */
-  .callout {
-    text-align: center; padding: 48px 32px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px; margin: 36px 0;
-  }
-  .callout .big {
-    font-size: 28px; color: var(--gold-bright);
-    font-style: italic;
-    text-shadow: 0 0 24px var(--gold-glow);
-    margin-bottom: 12px;
-  }
-  .callout .sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; color: var(--text-sub);
-    letter-spacing: 2px;
-  }
-
-  /* Contrast list */
-  .contrast {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0; margin: 28px 0;
-    border: 1px solid var(--card-border); border-radius: 10px;
-    overflow: hidden;
-  }
-  .contrast-col { padding: 28px 32px; }
-  .contrast-col:first-child {
-    background: rgba(255,255,255,0.02);
-    border-right: 1px solid var(--card-border);
-  }
-  .contrast-col:last-child { background: var(--card-bg); }
-  .contrast-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .contrast-col:first-child .contrast-label { color: var(--text-sub); }
-  .contrast-col:last-child .contrast-label { color: var(--gold); }
-  .contrast-col ul {
-    list-style: none; padding: 0;
-    font-size: 18px; line-height: 2;
-  }
-  .contrast-col:first-child ul { color: var(--text-sub); opacity: 0.6; }
-  .contrast-col:last-child ul { color: var(--text-bright); }
-
-  /* Buttons */
-  .btn {
-    display: inline-block; padding: 16px 36px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px; letter-spacing: 2px;
-    text-transform: uppercase; border-radius: 6px;
-    transition: all 0.3s; margin-right: 14px; margin-top: 14px;
-  }
-  .btn-primary {
-    background: var(--gold); color: var(--bg); font-weight: 500;
-    box-shadow: 0 0 20px var(--gold-glow);
-  }
-  .btn-primary:hover {
-    background: var(--gold-bright); color: var(--bg);
-    box-shadow: 0 0 32px var(--gold-glow);
-  }
-  .btn-ghost {
-    border: 1px solid var(--gold-dim); color: var(--gold);
-  }
-  .btn-ghost:hover {
-    border-color: var(--gold); color: var(--gold-bright);
-    box-shadow: 0 0 16px var(--copper-glow);
-  }
-
-  .content p { margin-bottom: 18px; }
-  .content strong { color: var(--gold-bright); }
-
-  /* Stats bar */
-  .stats-bar {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 18px; margin-top: 36px;
-  }
-  .stat {
-    text-align: center; padding: 24px 16px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+  .host-chip {
+    border: 1px solid var(--line-strong);
     border-radius: 10px;
-  }
-  .stat .num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 28px; font-weight: 500;
-    color: var(--gold-bright);
-    text-shadow: 0 0 16px var(--gold-glow);
-    margin-bottom: 6px;
-  }
-  .stat .label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--text-sub);
-    letter-spacing: 2px; text-transform: uppercase;
-  }
-
-  /* Footer */
-  footer {
-    padding: 44px 0; border-top: 1px solid var(--card-border);
+    padding: 13px 8px;
     text-align: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; color: var(--text-sub); opacity: 0.5;
-    letter-spacing: 1px;
+    font-size: 14.5px;
+    font-weight: 600;
+    background: var(--panel);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(19,28,40,0.06);
+  }
+  .host-chip span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px; font-weight: 400;
+    color: var(--ink-faint);
+    margin-top: 3px;
   }
 
-  @media (max-width: 768px) {
-    h1 { font-size: 38px; letter-spacing: 4px; }
-    h2 { font-size: 28px; }
-    .subtitle { font-size: 24px; }
-    .grid, .grid[style] { grid-template-columns: 1fr !important; }
-    .stats-bar { grid-template-columns: 1fr 1fr; }
-    .contrast { grid-template-columns: 1fr; }
-    .contrast-col:first-child { border-right: none; border-bottom: 1px solid var(--card-border); }
-  }
+  td.mn-feature { font-weight: 700; color: var(--ink-soft); }
+  td.mn-win { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
 
-<nav>
+<nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">Project Sparks</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
+      Project Sparks
+    </a>
     <div class="nav-links">
       <a href="/stack">The Stack</a>
       <a href="/mnemo-cortex">Mnemo Cortex</a>
@@ -285,39 +81,20 @@
 <!-- Hero: Core Identity -->
 <section>
   <div class="container">
-    <div class="section-label">Persistent AI Operating Memory</div>
-    <h1 style="text-align: center;">Mnemo Cortex</h1>
+    <div class="section-label centered">Persistent AI Operating Memory</div>
+    <h1 class="chrome-text" style="text-align: center;">Mnemo Cortex</h1>
     <p class="subtitle" style="text-align: center;">Cognition layer for AI systems.</p>
 
-    <div style="text-align: center; margin: 36px auto 0; max-width: 640px;">
-      <a href="#dreaming" style="text-decoration: none; display: block;">
-        <div style="
-          border: 1px solid var(--gold);
-          border-radius: 12px;
-          padding: 28px 36px;
-          background: linear-gradient(135deg, rgba(232, 184, 48, 0.08) 0%, rgba(212, 112, 48, 0.04) 100%);
-          box-shadow: 0 0 40px rgba(232, 184, 48, 0.15), inset 0 0 40px rgba(232, 184, 48, 0.03);
-          transition: box-shadow 0.3s, border-color 0.3s;
-        " onmouseover="this.style.boxShadow='0 0 60px rgba(232,184,48,0.25), inset 0 0 40px rgba(232,184,48,0.05)'; this.style.borderColor='var(--gold-bright)'" onmouseout="this.style.boxShadow='0 0 40px rgba(232,184,48,0.15), inset 0 0 40px rgba(232,184,48,0.03)'; this.style.borderColor='var(--gold)'">
-          <div style="
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-            color: var(--amber); margin-bottom: 10px;
-          ">Now with</div>
-          <div style="
-            font-size: 32px; font-weight: 400; color: var(--gold-bright);
-            text-shadow: 0 0 24px var(--gold-glow);
-            margin-bottom: 8px;
-          ">Dreaming Mnemo</div>
-          <div style="
-            font-size: 18px; color: var(--text-sub); font-style: italic;
-          ">Dreaming Mnemo shares dreams across agents.</div>
-        </div>
-      </a>
-    </div>
+    <a href="#dreaming" style="display: block; max-width: 620px; margin: 36px auto 0;">
+      <div class="feature-panel" style="margin-top: 0; padding: 28px 36px;">
+        <div class="kicker">Now with</div>
+        <div class="headline">Dreaming Mnemo</div>
+        <p style="text-align: center; font-size: 17px; color: var(--ink-soft); margin: 0;">Dreaming Mnemo shares dreams across agents.</p>
+      </div>
+    </a>
 
-    <div class="content" style="text-align: center; max-width: 660px; margin: 36px auto 0;">
-      <p style="font-size: 24px;">Not storage. Not memory. Not logs.</p>
+    <div class="content" style="text-align: center; max-width: 640px; margin: 36px auto 0;">
+      <p style="font-size: 23px;">Not storage. Not memory. Not logs.</p>
       <p><strong>Continuity of intelligence across agents, time, and tasks.</strong></p>
     </div>
 
@@ -326,84 +103,65 @@
     </div>
 
     <!-- Integration cards -->
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 36px;">
-      <div class="card" style="text-align: center; padding: 36px 28px;">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="card integration-card">
         <div class="icon">&#x2318;</div>
-        <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Code</div>
-        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Fluid memory with deep recall.<br>60-second install. Two hook scripts.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">startup hook &middot; writeback hook &middot; zero config</div>
-        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install for Claude Code</a>
+        <div class="name">Claude Code</div>
+        <div class="desc">Fluid memory with deep recall.<br>60-second install. Two hook scripts.</div>
+        <div class="meta">startup hook &middot; writeback hook &middot; zero config</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" class="btn btn-primary" target="_blank">Install for Claude Code</a>
       </div>
-      <div class="card" style="text-align: center; padding: 36px 28px;">
+      <div class="card integration-card">
         <div class="icon">&#x1F4BB;</div>
-        <div class="name" style="font-size: 18px; margin-bottom: 14px;">Claude Desktop</div>
-        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Opus 4.6 with fluid detailed memories.<br>Drop-in bridge. Always remembers.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">recall &middot; search &middot; save</div>
-        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-desktop" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install MCP Bridge</a>
+        <div class="name">Claude Desktop</div>
+        <div class="desc">Opus 4.6 with fluid detailed memories.<br>Drop-in bridge. Always remembers.</div>
+        <div class="meta">recall &middot; search &middot; save</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-desktop" class="btn btn-primary" target="_blank">Install MCP Bridge</a>
       </div>
-      <div class="card" style="text-align: center; padding: 36px 28px;">
+      <div class="card integration-card">
         <div class="icon">&#x2624;</div>
-        <div class="name" style="font-size: 18px; margin-bottom: 14px;">Hermes Agent</div>
-        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Persistent memory for Nous Research's Hermes.<br>One-shot installer. 12 tools auto-discovered.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">stdio MCP &middot; 555ms cold start &middot; works with FrankenClaw</div>
-        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/hermes" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install for Hermes</a>
+        <div class="name">Hermes Agent</div>
+        <div class="desc">Persistent memory for Nous Research's Hermes.<br>One-shot installer. 12 tools auto-discovered.</div>
+        <div class="meta">stdio MCP &middot; 555ms cold start &middot; works with FrankenClaw</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/hermes" class="btn btn-primary" target="_blank">Install for Hermes</a>
       </div>
-      <div class="card" style="text-align: center; padding: 36px 28px;">
+      <div class="card integration-card">
         <div class="icon">&#x1F99E;</div>
-        <div class="name" style="font-size: 18px; margin-bottom: 14px;">OpenClaw MCP v2</div>
-        <div class="desc" style="font-size: 19px; margin-bottom: 8px;">Give your ClawdBot a brain.<br>Privacy-first &mdash; cross-agent sharing off by default.</div>
-        <div class="desc" style="font-size: 15px; color: var(--text-sub); opacity: 0.6; margin-bottom: 20px;">share switch &middot; session toggle &middot; per-agent privacy</div>
-        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/openclaw-mcp" class="btn btn-primary" target="_blank" style="margin-right: 0;">Install OpenClaw MCP</a>
+        <div class="name">OpenClaw MCP v2</div>
+        <div class="desc">Give your ClawdBot a brain.<br>Privacy-first &mdash; cross-agent sharing off by default.</div>
+        <div class="meta">share switch &middot; session toggle &middot; per-agent privacy</div>
+        <a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/openclaw-mcp" class="btn btn-primary" target="_blank">Install OpenClaw MCP</a>
       </div>
     </div>
 
-    <div style="text-align: center; margin-top: 28px;">
+    <div class="btn-row centered">
       <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/CAPABILITIES.md" class="btn btn-ghost" target="_blank">Full Capabilities Doc</a>
       <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/FINDING-MNEMO.md" class="btn btn-ghost" target="_blank">Read "Finding Mnemo"</a>
     </div>
 
     <!-- Local LLM panel -->
-    <div style="
-      margin: 56px auto 0;
-      max-width: 900px;
-      border: 1px solid var(--gold);
-      border-radius: 14px;
-      padding: 36px 40px;
-      background: linear-gradient(135deg, rgba(232, 184, 48, 0.06) 0%, rgba(212, 112, 48, 0.03) 100%);
-      box-shadow: 0 0 50px rgba(232, 184, 48, 0.12), inset 0 0 40px rgba(232, 184, 48, 0.02);
-    ">
-      <div style="
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
-        color: var(--amber); margin-bottom: 10px; text-align: center;
-      ">Also works with</div>
-      <div style="font-size: 32px; font-weight: 400; color: var(--gold-bright); text-shadow: 0 0 24px var(--gold-glow); text-align: center; margin-bottom: 12px;">
-        🦙 Any Local LLM
-      </div>
-      <p style="text-align: center; font-size: 19px; color: var(--text-sub); margin-bottom: 24px;">
+    <div class="feature-panel">
+      <div class="kicker">Also works with</div>
+      <div class="headline">🦙 Any Local LLM</div>
+      <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 8px;">
         Run any local model. Add Mnemo for memory. <strong>No cloud, no subscription, no API keys.</strong>
       </p>
-      <div style="
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px;
-        margin-bottom: 28px;
-      ">
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">LM Studio<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">native MCP</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">AnythingLLM<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">Automatic mode</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">Open WebUI<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">native MCP</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">llama.cpp<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">native MCP</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">Ollama<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">via MCPHost</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">LobeChat<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">MCP plugin</span></div>
-        <div style="border: 1px solid rgba(232,184,48,0.25); border-radius: 8px; padding: 14px; text-align: center; font-size: 15px;">Jan<br><span style="font-size: 11px; color: var(--text-sub); opacity: 0.7;">extensions</span></div>
+      <div class="host-chips">
+        <div class="host-chip">LM Studio<span>native MCP</span></div>
+        <div class="host-chip">AnythingLLM<span>Automatic mode</span></div>
+        <div class="host-chip">Open WebUI<span>native MCP</span></div>
+        <div class="host-chip">llama.cpp<span>native MCP</span></div>
+        <div class="host-chip">Ollama<span>via MCPHost</span></div>
+        <div class="host-chip">LobeChat<span>MCP plugin</span></div>
+        <div class="host-chip">Jan<span>extensions</span></div>
       </div>
-      <p style="text-align: center; font-size: 17px; color: var(--text); margin-bottom: 20px;">
-        9 tools out of the box &mdash; semantic memory + Developer's Passport. Auto-detects optional brain-lane and wiki dirs and adds up to 8 more tools when present. <span style="color: var(--text-sub); opacity: 0.85;">No flags. No switches. If the dir is on disk, the tool registers.</span>
+      <p style="text-align: center; font-size: 16.5px; margin-bottom: 16px;">
+        9 tools out of the box &mdash; semantic memory + Developer's Passport. Auto-detects optional brain-lane and wiki dirs and adds up to 8 more tools when present. <span style="color: var(--ink-faint);">No flags. No switches. If the dir is on disk, the tool registers.</span>
       </p>
-      <p style="text-align: center; font-size: 15px; color: var(--text-sub); opacity: 0.85; font-style: italic;">
-        Zapier charges <strong>$20&ndash;50/month</strong> for AI tool connections. Mnemo on your local LLM: $0/mo, fully private, runs on hardware you already own.
+      <p style="text-align: center; font-size: 14.5px; color: var(--ink-faint); font-style: italic;">
+        Zapier charges <strong style="color: var(--ink-soft);">$20&ndash;50/month</strong> for AI tool connections. Mnemo on your local LLM: $0/mo, fully private, runs on hardware you already own.
       </p>
-      <div style="text-align: center; margin-top: 24px;">
+      <div style="text-align: center; margin-top: 22px;">
         <a href="https://github.com/GuyMannDude/mnemo-cortex#-use-with-any-local-llm" class="btn btn-primary" target="_blank">Setup Guides &rarr;</a>
       </div>
     </div>
@@ -491,7 +249,7 @@
   <span class="dim">OpenClaw</span>        <span class="dim">Claude Code</span>   <span class="dim">Claude Desktop</span>
        <span class="dim">|</span>               <span class="dim">|</span>               <span class="dim">|</span>
        <span class="dim">v</span>               <span class="dim">v</span>               <span class="dim">v</span>
-  <span class="hl">memory/rocky/</span>   <span class="hl">memory/cc/</span>    <span class="hl">memory/opie/</span>
+  <span class="acc">memory/rocky/</span>   <span class="acc">memory/cc/</span>    <span class="acc">memory/opie/</span>
        <span class="dim">\</span>              <span class="dim">|</span>              <span class="dim">/</span>
         <span class="dim">\</span>             <span class="dim">|</span>             <span class="dim">/</span>
          <span class="dim">-------&gt;</span> <span class="hl">MNEMO CORTEX</span> <span class="dim">&lt;------</span>
@@ -527,7 +285,7 @@
   <span class="dim">Next morning, each agent boots:</span>
 
   <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>
-  <span class="dim">reads dream</span>     <span class="dim">reads dream</span>   <span class="dim">reads dream</span>
+  <span class="acc">reads dream</span>     <span class="acc">reads dream</span>   <span class="acc">reads dream</span>
   <span class="dim">knows what</span>      <span class="dim">knows what</span>    <span class="dim">knows what</span>
   <span class="dim">everyone did</span>    <span class="dim">everyone did</span>  <span class="dim">everyone did</span></pre>
     </div>
@@ -645,7 +403,7 @@
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
-      <div class="card">
+      <div class="card gilded">
         <div class="name">Mnemo Cortex</div>
         <div class="desc"><strong>Source of truth.</strong> Raw facts, sessions, key events. Multi-agent, query-time. <em>The librarian's filing cabinet.</em></div>
       </div>
@@ -712,9 +470,9 @@
        <span class="dim">v</span>
   <span class="hl">Mnemo Cortex</span> <span class="dim">(local, fast, &lt;100ms)</span>
        <span class="dim">|</span>
-       <span class="dim">|&mdash;&mdash; Rich results? &rarr;</span> <span class="hl">Return immediately</span>
+       <span class="dim">|&mdash;&mdash; Rich results? &rarr;</span> <span class="acc">Return immediately</span>
        <span class="dim">|</span>
-       <span class="dim">|&mdash;&mdash; Thin results? &rarr;</span> <span class="hl">Auto-fallback to Mem0</span>
+       <span class="dim">|&mdash;&mdash; Thin results? &rarr;</span> <span class="acc">Auto-fallback to Mem0</span>
        <span class="dim">|</span>                    <span class="dim">(cloud, deep, long-term)</span>
        <span class="dim">v</span>
   <span class="hl">Combined response</span> <span class="dim">&mdash; fast + deep</span></pre>
@@ -729,7 +487,7 @@
         <div class="name">Without Bridge</div>
         <div class="desc">Pick one: fast local OR deep cloud. Sacrifice speed or depth. Re-architect if you switch.</div>
       </div>
-      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
+      <div class="card gilded">
         <div class="name">With Bridge</div>
         <div class="desc">Mnemo for speed, <span class="mem0">Mem0</span> for depth. Automatic. No code changes. Existing <span class="mem0">Mem0</span> data stays accessible.</div>
       </div>
@@ -748,24 +506,24 @@
 
     <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
       <div class="card">
-        <div class="icon" style="font-size: 28px;">&#x1F310;</div>
+        <div class="icon">&#x1F310;</div>
         <div class="name">Shared</div>
         <div class="desc">One Mnemo instance for all agents. Cross-agent search and dreaming. Full team awareness. Best for internal teams where every agent should see everything.</div>
       </div>
       <div class="card">
-        <div class="icon" style="font-size: 28px;">&#x1F512;</div>
+        <div class="icon">&#x1F512;</div>
         <div class="name">Isolated</div>
         <div class="desc">Separate Mnemo per agent or per customer. Zero bleed between tenants. Perfect for customer-facing bots where visitor A must never see visitor B's history.</div>
       </div>
-      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
-        <div class="icon" style="font-size: 28px;">&#x1F527;</div>
+      <div class="card gilded">
+        <div class="icon">&#x1F527;</div>
         <div class="name">Hybrid</div>
         <div class="desc">Shared Mnemo for internal agents + isolated instances for customer-facing bots. Cross-agent dreaming for the team, strict privacy for customers. This is what we run.</div>
       </div>
     </div>
 
     <div class="callout" style="margin-top: 28px;">
-      <div class="big" style="font-size: 22px;">Privacy isn't a setting. It's a topology decision. Mnemo gives you the architecture to make it.</div>
+      <div class="big" style="font-size: 21px;">Privacy isn't a setting. It's a topology decision. Mnemo gives you the architecture to make it.</div>
     </div>
   </div>
 </section>
@@ -788,7 +546,7 @@
   </div>
 </section>
 
-<!-- Zero-Cost + Autonomous Learning -->
+<!-- Zero-Cost -->
 <section>
   <div class="container">
     <div class="section-label">Zero-Cost Persistence</div>
@@ -814,7 +572,7 @@
   </div>
 </section>
 
-<!-- Autonomous Learning + Agent Specialization -->
+<!-- Agent Specialization -->
 <section>
   <div class="container">
     <div class="section-label">Experience Memory</div>
@@ -937,11 +695,11 @@
 <!-- Plain English -->
 <section>
   <div class="container" style="text-align: center;">
-    <div class="section-label">Plain English</div>
+    <div class="section-label centered">Plain English</div>
     <h2>What you get</h2>
-    <div style="max-width: 500px; margin: 0 auto;">
+    <div style="max-width: 520px; margin: 0 auto;">
       <div class="callout" style="margin-top: 0;">
-        <div class="big" style="font-size: 24px; margin-bottom: 0; line-height: 2;">
+        <div class="big" style="margin-bottom: 0; line-height: 2;">
           AI that doesn't forget.<br>
           AI that learns over time.<br>
           AI that works as a team.<br>
@@ -960,7 +718,7 @@
   <div class="container">
     <div class="section-label">Clarification</div>
     <h2>Mnemo Cortex vs OpenClaw Active Memory</h2>
-    <h3 style="color: var(--gold-bright); font-style: italic; font-size: 24px; margin-bottom: 28px;">They're Not the Same Thing.</h3>
+    <h3 style="color: var(--gold-deep); font-size: 21px; margin: 0 0 28px;">They're Not the Same Thing.</h3>
 
     <div class="content">
       <p>OpenClaw 2026.4.10 shipped a native <strong>Active Memory</strong> plugin. Some people have asked whether it replaces Mnemo Cortex. Short answer: no &mdash; they solve different problems.</p>
@@ -968,39 +726,39 @@
     </div>
 
     <div style="overflow-x: auto; margin: 36px 0;">
-      <table style="width: 100%; border-collapse: collapse; font-size: 18px;">
+      <table class="compat">
         <thead>
-          <tr style="border-bottom: 2px solid var(--card-border);">
-            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub);"></th>
-            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-sub);">Active Memory (native)</th>
-            <th style="text-align: left; padding: 14px 18px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);">Mnemo Cortex (MCP)</th>
+          <tr>
+            <th></th>
+            <th>Active Memory (native)</th>
+            <th style="color: var(--gold-deep);">Mnemo Cortex (MCP)</th>
           </tr>
         </thead>
         <tbody>
-          <tr style="border-bottom: 1px solid var(--card-border);">
-            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Scope</td>
-            <td style="padding: 14px 18px; color: var(--text-sub);">Single agent</td>
-            <td style="padding: 14px 18px; color: var(--text-bright);">Cross-agent (multi-agent bus)</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--card-border);">
-            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Store</td>
-            <td style="padding: 14px 18px; color: var(--text-sub);">Local workspace files + FTS</td>
-            <td style="padding: 14px 18px; color: var(--text-bright);">Centralized SQLite + embeddings</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--card-border);">
-            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Persistence</td>
-            <td style="padding: 14px 18px; color: var(--text-sub);">Per-agent, per-workspace</td>
-            <td style="padding: 14px 18px; color: var(--text-bright);">Survives resets, sessions, machine moves</td>
-          </tr>
-          <tr style="border-bottom: 1px solid var(--card-border);">
-            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Cross-session</td>
-            <td style="padding: 14px 18px; color: var(--text-sub);">Within one agent's workspace</td>
-            <td style="padding: 14px 18px; color: var(--text-bright);">Any agent, any machine</td>
+          <tr>
+            <td class="mn-feature">Scope</td>
+            <td>Single agent</td>
+            <td class="mn-win">Cross-agent (multi-agent bus)</td>
           </tr>
           <tr>
-            <td style="padding: 14px 18px; color: var(--text-sub); font-weight: 600;">Integration</td>
-            <td style="padding: 14px 18px; color: var(--text-sub);">Independent store</td>
-            <td style="padding: 14px 18px; color: var(--text-bright);">Independent store</td>
+            <td class="mn-feature">Store</td>
+            <td>Local workspace files + FTS</td>
+            <td class="mn-win">Centralized SQLite + embeddings</td>
+          </tr>
+          <tr>
+            <td class="mn-feature">Persistence</td>
+            <td>Per-agent, per-workspace</td>
+            <td class="mn-win">Survives resets, sessions, machine moves</td>
+          </tr>
+          <tr>
+            <td class="mn-feature">Cross-session</td>
+            <td>Within one agent's workspace</td>
+            <td class="mn-win">Any agent, any machine</td>
+          </tr>
+          <tr>
+            <td class="mn-feature">Integration</td>
+            <td>Independent store</td>
+            <td class="mn-win">Independent store</td>
           </tr>
         </tbody>
       </table>
@@ -1012,14 +770,14 @@
         <div class="name">Active Memory</div>
         <div class="desc">Intra-session, same-agent, fast local recall. Your agent's personal scratchpad. Great for recent context within a single workspace.</div>
       </div>
-      <div class="card" style="border-color: rgba(232, 184, 48, 0.3);">
+      <div class="card gilded">
         <div class="name">Mnemo Cortex</div>
         <div class="desc">Cross-agent memory bus. When Agent A needs to know what Agent B learned. When memory must survive session resets, machine moves, or agent restarts.</div>
       </div>
     </div>
 
     <div class="callout" style="margin-top: 36px;">
-      <div class="big" style="font-size: 22px;">We run both. Active Memory handles per-agent recent context. Mnemo handles everything that crosses agents or needs durable archival. They stack; they don't compete.</div>
+      <div class="big" style="font-size: 20px;">We run both. Active Memory handles per-agent recent context. Mnemo handles everything that crosses agents or needs durable archival. They stack; they don't compete.</div>
     </div>
   </div>
 </section>
@@ -1043,11 +801,11 @@
 <!-- Who Built This -->
 <section>
   <div class="container" style="text-align: center;">
-    <div class="section-label">Who Built This</div>
+    <div class="section-label centered">Who Built This</div>
     <h2>Project Sparks</h2>
-    <div class="content" style="max-width: 600px; margin: 0 auto;">
+    <div class="content" style="max-width: 620px; margin: 0 auto;">
       <p>Guy Hutchins (founder) + Opie (architect, Claude) + AL (ChatGPT, implementation) + CC (Claude Code) + Rocky Moltman (Hermes agent, ported from OpenClaw via Mnemo)<br>Half Moon Bay, California</p>
-      <p style="color: var(--gold-bright); font-style: italic; text-shadow: 0 0 20px var(--gold-glow);">"Talk to it like a friend, it learns how to care."</p>
+      <p style="color: var(--gold-deep); font-style: italic; font-weight: 600;">"Talk to it like a friend, it learns how to care."</p>
     </div>
   </div>
 </section>
@@ -1063,7 +821,7 @@
     </div>
 
     <div class="callout">
-      <div class="big">Pair it with <a href="https://github.com/GuyMannDude/rockys-switch" target="_blank" style="color: var(--gold-bright);">Rocky's Switch</a> and your agents get cheaper every week.</div>
+      <div class="big">Pair it with <a href="https://github.com/GuyMannDude/rockys-switch" target="_blank">Rocky's Switch</a> and your agents get cheaper every week.</div>
       <div class="sub">Rocky's Switch routes cheap work to free models &middot; Mnemo Cortex makes every call count</div>
     </div>
 
@@ -1077,20 +835,21 @@
 <section>
   <div class="container" style="text-align: center;">
     <h2>Support the project</h2>
-    <p style="color: var(--text-sub); margin-bottom: 28px;">Mnemo Cortex is free and open source. If it's useful to you, help keep it going.</p>
-    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost" style="border-color: var(--gold-dim); color: var(--gold);">GitHub Sponsors</a>
-      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost" style="border-color: var(--gold-dim); color: var(--gold);">PayPal Donate</a>
+    <p class="sub" style="margin-bottom: 26px;">Mnemo Cortex is free and open source. If it's useful to you, help keep it going.</p>
+    <div class="btn-row centered" style="margin-top: 0;">
+      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost">GitHub Sponsors</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost">PayPal Donate</a>
     </div>
   </div>
 </section>
 
-<footer>
+<footer class="sparks-footer">
   <div class="container">
     &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; Half Moon Bay, CA
   </div>
 </footer>
 
+<script src="/assets/sparks.js"></script>
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
 <script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>
