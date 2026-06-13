@@ -237,7 +237,7 @@ agent-browser install --with-deps</pre>
     <ul>
       <li><strong>Local-first.</strong> SQLite + local embedding model (Ollama <code>nomic-embed-text</code> by default). $0 to run. Your memory data never leaves your machine unless you tell it to.</li>
       <li><strong>Cross-agent by design.</strong> Multiple agents (Claude Desktop, Claude Code, Ollama hosts, OpenClaw bots) share one memory spine if you want them to &mdash; or stay isolated per-agent if you don't. We default to "separate" for new installs.</li>
-      <li><strong>Optional Mem0 bridge.</strong> When local recall is thin, Mnemo falls through to Mem0 for long-term semantic depth. "And Mem0," not "instead of Mem0."</li>
+      <li><strong>Standalone by design.</strong> No cloud memory service behind it &mdash; sqlite-vec embeddings, a Facts table for hard truths, and overnight Dreamer compaction keep recall sharp on hardware you own.</li>
     </ul>
 
     <h3>Two layers, one bridge</h3>
