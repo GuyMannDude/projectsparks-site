@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <linearGradient id="mk-chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".42" stop-color="#d4dde8"/>
+      <stop offset=".52" stop-color="#a9b9cb"/>
+      <stop offset=".62" stop-color="#e8eef5"/>
+      <stop offset="1" stop-color="#c3cfdd"/>
+    </linearGradient>
+    <linearGradient id="mk-visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c2a3a"/>
+      <stop offset="1" stop-color="#10202f"/>
+    </linearGradient>
+    <radialGradient id="mk-lens" cx=".5" cy=".45" r=".62">
+      <stop offset="0" stop-color="#9fd9ff"/>
+      <stop offset=".55" stop-color="#1f8fe8"/>
+      <stop offset="1" stop-color="#0a51a8"/>
+    </radialGradient>
+    <radialGradient id="mk-spark" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffe9a8"/>
+      <stop offset=".6" stop-color="#f0ae00"/>
+      <stop offset="1" stop-color="#d99c00"/>
+    </radialGradient>
+  </defs>
+
+  <!-- antenna -->
+  <rect x="22.9" y="5" width="2.2" height="8" rx="1.1" fill="#9fb0c2"/>
+  <!-- spark: 4-point star -->
+  <path d="M24 1.2 L25.6 5.4 L29.8 7 L25.6 8.6 L24 12.8 L22.4 8.6 L18.2 7 L22.4 5.4 Z" fill="url(#mk-spark)"/>
+
+  <!-- head -->
+  <rect x="7" y="13" width="34" height="28" rx="8.5" fill="url(#mk-chrome)" stroke="#8fa2b8" stroke-width="1.4"/>
+  <!-- inner edge highlight -->
+  <rect x="9" y="15" width="30" height="24" rx="6.5" fill="none" stroke="#ffffff" stroke-width="1" opacity=".75"/>
+
+  <!-- ears / side bolts -->
+  <rect x="3.4" y="22" width="4" height="10" rx="2" fill="#b9c6d6" stroke="#8fa2b8" stroke-width="1"/>
+  <rect x="40.6" y="22" width="4" height="10" rx="2" fill="#b9c6d6" stroke="#8fa2b8" stroke-width="1"/>
+
+  <!-- visor -->
+  <rect x="12" y="19.5" width="24" height="11.5" rx="5.5" fill="url(#mk-visor)" stroke="#2c3c4e" stroke-width="1"/>
+
+  <!-- lens eyes -->
+  <circle cx="19" cy="25.2" r="3.4" fill="url(#mk-lens)"/>
+  <circle cx="29" cy="25.2" r="3.4" fill="url(#mk-lens)"/>
+  <!-- glints -->
+  <circle cx="20" cy="24.1" r="1" fill="#ffffff" opacity=".95"/>
+  <circle cx="30" cy="24.1" r="1" fill="#ffffff" opacity=".95"/>
+
+  <!-- mouth grille -->
+  <g fill="#9fb0c2">
+    <rect x="17" y="34.4" width="3" height="2.4" rx="1"/>
+    <rect x="22.5" y="34.4" width="3" height="2.4" rx="1"/>
+    <rect x="28" y="34.4" width="3" height="2.4" rx="1"/>
+  </g>
+</svg>

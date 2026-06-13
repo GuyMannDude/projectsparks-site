@@ -13,431 +13,339 @@
 <meta name="twitter:title" content="Project Sparks — Open-Source AI Infrastructure">
 <meta name="twitter:description" content="Persistent memory, routing, and the SPARC thesis. AI agent tools built in Half Moon Bay. Everything is free.">
 <meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg: #08080f;
-    --gold: #d4a82a;
-    --gold-bright: #f0c848;
-    --gold-glow: rgba(212, 168, 42, 0.6);
-    --gold-dim: rgba(212, 168, 42, 0.2);
-    --blue: #4a90d0;
-    --blue-glow: rgba(74, 144, 208, 0.5);
-    --text: #e8e8f0;
-    --text-bright: #ffffff;
-    --text-sub: #9090a0;
-  }
-
-  html, body {
-    width: 100%; height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    overflow: hidden;
-  }
-
-  canvas#bg-canvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .landing {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .watermark {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 300px;
-    opacity: 0.03;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .title-cluster {
+  /* ── hero ── */
+  .hero {
+    padding: 72px 0 36px;
     text-align: center;
-    margin-bottom: 70px;
-    animation: fadeInDown 1.2s ease-out;
+    position: relative;
   }
-
-  .title-cluster h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    font-size: 64px;
-    letter-spacing: 20px;
-    color: var(--text-bright);
-    text-transform: uppercase;
+  .hero-bot { margin-bottom: 26px; filter: drop-shadow(0 10px 24px rgba(19,28,40,0.18)); }
+  .hero h1 {
+    font-size: clamp(34px, 6.4vw, 64px);
+    letter-spacing: clamp(4px, 1.2vw, 12px);
+    margin-bottom: 14px;
   }
-
-  .title-cluster .tagline {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 5px;
-    color: var(--gold);
-    text-transform: uppercase;
+  .hero .tagline {
+    font-family: var(--label);
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  .hero .location {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: var(--ink-faint);
     margin-top: 10px;
   }
+  .hero .intro {
+    max-width: 560px;
+    margin: 26px auto 0;
+    font-size: 19px;
+    color: var(--ink-soft);
+  }
 
-  .title-cluster .location {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 3px;
-    color: var(--text-sub);
+  /* ── the board ── */
+  .board { padding: 26px 0 80px; }
+
+  /* CPU — SPARC */
+  .cpu {
+    display: block;
+    width: min(330px, 86%);
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 26px 26px;
+    background:
+      radial-gradient(280px 130px at 50% 0%, rgba(232,162,0,0.14), transparent 70%),
+      var(--chrome-soft);
+    border: 1px solid #d9b75a;
+    border-radius: 18px;
+    box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 52px rgba(232,162,0,0.22);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: cpu-pulse 3.2s ease-in-out infinite;
+  }
+  .cpu:hover { transform: translateY(-3px); }
+  @keyframes cpu-pulse {
+    0%, 100% { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 40px rgba(232,162,0,0.18); }
+    50%      { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 64px rgba(232,162,0,0.34); }
+  }
+  /* CPU pins: top + bottom */
+  .cpu::before, .cpu::after {
+    content: '';
+    position: absolute; left: 28px; right: 28px; height: 7px;
+    background: repeating-linear-gradient(90deg, #aebccd 0 7px, transparent 7px 17px);
+    border-radius: 2px;
+  }
+  .cpu::before { top: -12px; }
+  .cpu::after  { bottom: -12px; }
+  .cpu .die {
+    width: 54px; height: 54px;
+    margin: 0 auto 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffd95e, #f0ae00 55%, #c98c00);
+    border: 1px solid #b07f00;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -2px 4px rgba(120,80,0,0.35), 0 4px 14px rgba(232,162,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cpu .die svg { display: block; }
+  .cpu .cpu-name {
+    font-family: var(--display);
+    font-size: 23px; letter-spacing: 5px;
+    color: var(--ink);
+  }
+  .cpu .cpu-sub {
+    font-family: var(--label);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-deep);
     margin-top: 8px;
   }
 
-  /* Constellation */
-  .constellation {
+  /* bus traces from CPU into the module grid */
+  .traces { display: block; width: 100%; max-width: 880px; margin: -2px auto -2px; }
+  .traces path { fill: none; stroke: var(--line-strong); stroke-width: 1.6; }
+  .traces circle.via { fill: #fff; stroke: var(--line-strong); stroke-width: 1.4; }
+  .traces circle.via.hot { stroke: var(--gold); }
+  .traces .signal { fill: var(--gold); }
+  .traces .signal.blue { fill: var(--azure); }
+
+  /* module chips */
+  .modules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .chip {
     position: relative;
-    width: 750px;
-    height: 540px;
-    animation: fadeIn 1.8s ease-out;
-  }
-
-  .constellation svg.lines {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .constellation svg.lines line {
-    stroke: var(--gold);
-    stroke-width: 0.8;
-    opacity: 0.2;
-  }
-
-  .node {
-    position: absolute;
+    display: block;
     text-align: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: transform 0.3s ease;
-    text-decoration: none;
+    padding: 30px 20px 26px;
+    background: var(--chrome-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--bevel);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    overflow: visible;
+    color: inherit;
   }
-
-  .node:hover { transform: scale(1.1); }
-  .node.sparc:hover { transform: translateX(-50%) scale(1.1); }
-  .node.stack:hover { transform: translateX(-50%) scale(1.1); }
-
-  .node .dot {
-    width: 8px; height: 8px;
+  .chip:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--bevel-hover), 0 0 30px var(--azure-glow);
+    border-color: var(--line-strong);
+    color: inherit;
+  }
+  .chip.gold-key:hover { box-shadow: var(--bevel-hover), 0 0 30px var(--gold-glow); }
+  /* side pins */
+  .chip::before, .chip::after {
+    content: '';
+    position: absolute; top: 24px; bottom: 24px; width: 7px;
+    background: repeating-linear-gradient(180deg, #aebccd 0 6px, transparent 6px 15px);
+    border-radius: 2px;
+  }
+  .chip::before { left: -12px; }
+  .chip::after { right: -12px; }
+  .chip .lens {
+    width: 13px; height: 13px;
+    margin: 0 auto 14px;
     border-radius: 50%;
-    background: var(--gold-bright);
-    margin: 0 auto 12px;
-    box-shadow: 0 0 14px var(--gold-glow), 0 0 35px var(--gold-dim);
-    transition: all 0.3s ease;
+    background: radial-gradient(circle at 36% 30%, #9fd9ff, #1f8fe8 55%, #0a51a8);
+    box-shadow: 0 0 12px var(--azure-glow), inset 0 1px 1px rgba(255,255,255,0.8);
+    position: relative;
   }
-
-  .node:hover .dot {
-    box-shadow: 0 0 24px var(--gold-glow), 0 0 60px var(--gold-dim);
-    transform: scale(1.8);
+  .chip .lens::after {
+    content: '';
+    position: absolute; top: 2px; left: 3px;
+    width: 3.5px; height: 3.5px; border-radius: 50%;
+    background: #fff;
   }
-
-  .node.blue .dot {
-    background: var(--blue);
-    box-shadow: 0 0 14px var(--blue-glow), 0 0 35px rgba(74,144,208,0.2);
+  .chip.gold-key .lens {
+    background: radial-gradient(circle at 36% 30%, #ffe9a8, #f0ae00 55%, #c98c00);
+    box-shadow: 0 0 12px var(--gold-glow), inset 0 1px 1px rgba(255,255,255,0.8);
   }
-
-  .node.blue:hover .dot {
-    box-shadow: 0 0 24px var(--blue-glow), 0 0 60px rgba(74,144,208,0.3);
+  .chip:hover .lens { transform: scale(1.25); transition: transform 0.3s; }
+  .chip .chip-name {
+    font-family: var(--label);
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ink);
   }
-
-  .node .label {
-    font-family: 'JetBrains Mono', monospace;
+  .chip .chip-sub {
     font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    color: var(--text);
-    text-transform: uppercase;
-    white-space: nowrap;
-    transition: color 0.3s ease;
+    color: var(--ink-soft);
+    margin-top: 6px;
   }
-
-  .node:hover .label { color: var(--text-bright); }
-
-  .node .sublabel {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--text-sub);
-    margin-top: 4px;
-    font-style: italic;
-    white-space: nowrap;
-    transition: color 0.3s ease;
-  }
-
-  .node:hover .sublabel { color: var(--text); }
-
-  /* Positions — 4-tier constellation (balanced pyramid) */
-  .node.sparc     { top: 0;    left: 50%;  transform: translateX(-50%); }
-  .node.frankenclaw { top: 160px; left: 4%; }
-  .node.stack     { top: 160px; left: 50%; transform: translateX(-50%); }
-  .node.mnemo     { top: 160px; right: 4%; left: auto; }
-  .node.fieldguide { top: 340px; left: 4%; }
-  .node.about     { top: 340px; right: 4%; left: auto; }
-  .node.sparksbus { top: 480px; left: 50%; transform: translateX(-50%); }
-  .node.sparksbus:hover { transform: translateX(-50%) scale(1.1); }
-
-  /* SPARC flagship */
-  .node.sparc .dot {
-    width: 14px; height: 14px;
-    background: var(--gold-bright);
-    box-shadow: 0 0 20px var(--gold-glow), 0 0 50px var(--gold-dim), 0 0 80px rgba(212,168,42,0.1);
-    animation: pulse 3s ease-in-out infinite;
-  }
-
-  .node.sparc .label {
-    font-size: 16px;
-    letter-spacing: 6px;
-    color: var(--gold);
-  }
-
-  .node.sparc:hover .label { color: var(--gold-bright); }
-
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 20px var(--gold-glow), 0 0 50px var(--gold-dim); }
-    50% { box-shadow: 0 0 30px var(--gold-glow), 0 0 70px var(--gold-dim), 0 0 100px rgba(212,168,42,0.12); }
-  }
-
-  .bottom-whisper {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    animation: fadeIn 2.5s ease-out;
-  }
-
-  .bottom-whisper .principle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-sub);
-    letter-spacing: 2px;
-  }
-
-  .bottom-whisper .copy {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-sub);
-    opacity: 0.4;
-    margin-top: 10px;
+  .chip .chip-id {
+    position: absolute; top: 9px; right: 13px;
+    font-family: var(--mono);
+    font-size: 9.5px;
     letter-spacing: 1px;
+    color: var(--ink-faint);
+    opacity: 0.75;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  /* staggered assembly on load */
+  .cpu, .chip { animation-fill-mode: both; }
+  .rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
+  .cpu.rise { animation: rise 0.7s cubic-bezier(0.2,0.7,0.3,1) 0.15s both, cpu-pulse 3.2s ease-in-out 1s infinite; }
+  .chip:nth-child(1) { animation-delay: 0.35s; }
+  .chip:nth-child(2) { animation-delay: 0.45s; }
+  .chip:nth-child(3) { animation-delay: 0.55s; }
+  .chip:nth-child(4) { animation-delay: 0.65s; }
+  .chip:nth-child(5) { animation-delay: 0.75s; }
+  .chip:nth-child(6) { animation-delay: 0.85s; }
 
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .support-row {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    margin: 56px auto 0;
   }
-
-  .node.sparc     { animation: fadeIn 1.0s ease-out 0.3s both; }
-  .node.stack     { animation: fadeIn 1.0s ease-out 0.8s both; }
-  .node.stack .dot {
-    width: 12px; height: 12px;
-    background: var(--gold-bright);
-    box-shadow: 0 0 18px var(--gold-glow), 0 0 45px var(--gold-dim);
-  }
-  .node.stack .label { color: var(--gold); }
-  .node.stack:hover .label { color: var(--gold-bright); }
-  .node.mnemo     { animation: fadeIn 1.0s ease-out 1.0s both; }
-  .node.frankenclaw { animation: fadeIn 1.0s ease-out 1.2s both; }
-  .node.frankenclaw:hover { transform: scale(1.1); }
-  .node.about     { animation: fadeIn 1.0s ease-out 1.4s both; }
-  .node.sparksbus { animation: fadeIn 1.0s ease-out 1.5s both; }
 
   @media (max-width: 768px) {
-    .title-cluster h1 { font-size: 32px; letter-spacing: 10px; }
-    .title-cluster .tagline { font-size: 11px; }
-    .constellation { width: 340px; height: 540px; }
-    .node.sparc     { top: 0; left: 50%; }
-    .node.frankenclaw { top: 110px; left: 2%; }
-    .node.stack     { top: 110px; left: 50%; }
-    .node.mnemo     { top: 110px; right: 2%; left: auto; }
-    .node.fieldguide { top: 260px; left: 2%; }
-    .node.about     { top: 260px; right: 2%; left: auto; }
-    .node.sparksbus { top: 410px; left: 50%; }
-    .node .label { font-size: 11px; letter-spacing: 2px; }
-    .node .sublabel { font-size: 12px; }
-    .watermark { font-size: 160px; }
+    .hero { padding: 48px 0 24px; }
+    .traces { display: none; }
+    .modules { grid-template-columns: 1fr; gap: 26px; margin-top: 30px; }
+    .chip::before, .chip::after { display: none; }
+  }
+  @media (min-width: 769px) and (max-width: 920px) {
+    .modules { gap: 16px; }
   }
 </style>
 </head>
 <body>
 
-<canvas id="bg-canvas"></canvas>
-<div class="watermark">🦞</div>
-
-<div class="landing">
-  <div class="title-cluster">
-    <h1>Project Sparks</h1>
-    <div class="tagline">AI Infrastructure · Open Source</div>
-    <div class="location">Half Moon Bay, California</div>
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
+      Project Sparks
+    </a>
+    <div class="nav-links">
+      <a href="/stack">The Stack</a>
+      <a href="/mnemo-cortex">Mnemo</a>
+      <a href="/frankenclaw">FrankenClaw</a>
+      <a href="/disco-bus">Disco-Bus</a>
+      <a href="/field-guide">Field Guide</a>
+      <a href="/about">About</a>
+    </div>
   </div>
+</nav>
 
-  <div class="constellation">
-    <svg class="lines" viewBox="0 0 750 540" preserveAspectRatio="xMidYMid meet">
-      <!-- SPARC down to row 2 (FrankenClaw, Stack, Mnemo) -->
-      <line x1="375" y1="35" x2="95"  y2="170" />
-      <line x1="375" y1="35" x2="375" y2="170" />
-      <line x1="375" y1="35" x2="660" y2="170" />
-      <!-- Row 2 horizontal (FrankenClaw ↔ Stack ↔ Mnemo) -->
-      <line x1="115" y1="170" x2="640" y2="170" />
-      <!-- Row 2 down to row 3 (Field Guide + About) -->
-      <line x1="95"  y1="180" x2="95"  y2="350" />
-      <line x1="660" y1="180" x2="660" y2="350" />
-      <line x1="375" y1="180" x2="95"  y2="350" />
-      <line x1="375" y1="180" x2="660" y2="350" />
-      <!-- Row 3 horizontal (Field Guide ↔ About) -->
-      <line x1="115" y1="350" x2="640" y2="350" />
-      <!-- Row 3 down to Disco-Bus -->
-      <line x1="95"  y1="360" x2="375" y2="490" />
-      <line x1="660" y1="360" x2="375" y2="490" />
-    </svg>
-
-    <a href="/sparc" class="node sparc">
-      <div class="dot"></div>
-      <div class="label">SPARC</div>
-      <div class="sublabel">The Thesis</div>
-    </a>
-
-    <a href="/stack" class="node stack">
-      <div class="dot"></div>
-      <div class="label">The Stack</div>
-      <div class="sublabel">Full Agent Infrastructure</div>
-    </a>
-
-    <a href="/mnemo-cortex" class="node mnemo">
-      <div class="dot"></div>
-      <div class="label">Mnemo Cortex</div>
-      <div class="sublabel">Memory for Agents</div>
-    </a>
-
-    <a href="/frankenclaw" class="node frankenclaw">
-      <div class="dot"></div>
-      <div class="label">FrankenClaw</div>
-      <div class="sublabel">FrankenTools for Agents</div>
-    </a>
-
-    <a href="/about" class="node about blue">
-      <div class="dot"></div>
-      <div class="label">About</div>
-      <div class="sublabel">The Team</div>
-    </a>
-
-    <a href="/disco-bus" class="node sparksbus blue">
-      <div class="dot"></div>
-      <div class="label">Disco-Bus</div>
-      <div class="sublabel">Agent-to-Agent Messaging</div>
-    </a>
-
-    <a href="/field-guide" class="node fieldguide blue">
-      <div class="dot"></div>
-      <div class="label">Field Guide</div>
-      <div class="sublabel">MCP &amp; Local LLMs</div>
-    </a>
-  </div>
-
-  <div style="position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); display: flex; gap: 16px; animation: fadeIn 2.5s ease-out;">
-    <a href="https://github.com/sponsors/GuyMannDude" target="_blank" style="display: inline-block; padding: 10px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--gold-dim); color: var(--gold); border-radius: 6px; text-decoration: none; transition: all 0.3s;">GitHub Sponsors</a>
-    <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" style="display: inline-block; padding: 10px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--gold-dim); color: var(--gold); border-radius: 6px; text-decoration: none; transition: all 0.3s;">PayPal Donate</a>
-  </div>
-
-  <div class="bottom-whisper">
-    <div class="copy">© 2026 Project Sparks · Guy Hutchins</div>
+<div class="hero">
+  <div class="container">
+    <img src="/assets/sparks-mark.svg" alt="Project Sparks robot mark" width="92" height="92" class="hero-bot rise">
+    <h1 class="chrome-text rise" style="animation-delay: 0.05s;">Project Sparks</h1>
+    <div class="tagline rise" style="animation-delay: 0.12s;">AI Infrastructure &middot; Open Source</div>
+    <div class="location rise" style="animation-delay: 0.18s;">Half Moon Bay, California</div>
+    <p class="intro rise" style="animation-delay: 0.24s;">Memory, tools, and messaging for AI agents — every part open source, every part running in production. Pick a module.</p>
   </div>
 </div>
 
-<script>
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-const COUNT = 80;
+<div class="board">
+  <div class="container">
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+    <a href="/sparc" class="cpu rise">
+      <div class="die">
+        <svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 4 L28 19 L43 24 L28 29 L24 44 L20 29 L5 24 L20 19 Z" fill="#fff8e0" stroke="#a87400" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="cpu-name">SPARC</div>
+      <div class="cpu-sub">The Thesis &middot; AI Designs for AI</div>
+    </a>
 
-function init() {
-  resize();
-  particles = [];
-  for (let i = 0; i < COUNT; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      r: Math.random() * 2 + 0.5,
-      a: Math.random() * 0.35 + 0.08
-    });
-  }
-}
+    <svg class="traces" viewBox="0 0 880 120" aria-hidden="true">
+      <!-- center drop from CPU -->
+      <path d="M440 0 V34"/>
+      <!-- bus splits to three column drop points (147, 440, 733) -->
+      <path d="M440 34 H147 V96"/>
+      <path d="M440 34 V96"/>
+      <path d="M440 34 H733 V96"/>
+      <!-- stubs to outer columns' neighbors -->
+      <path d="M147 60 H80 V96"/>
+      <path d="M733 60 H800 V96"/>
+      <!-- vias -->
+      <circle class="via hot" cx="440" cy="34" r="4"/>
+      <circle class="via" cx="147" cy="34" r="3.4"/>
+      <circle class="via" cx="733" cy="34" r="3.4"/>
+      <circle class="via" cx="147" cy="60" r="3"/>
+      <circle class="via" cx="733" cy="60" r="3"/>
+      <!-- signals travelling the bus -->
+      <circle class="signal" r="3">
+        <animateMotion dur="3.6s" repeatCount="indefinite" path="M440 0 V34 H147 V96"/>
+      </circle>
+      <circle class="signal blue" r="3">
+        <animateMotion dur="3.6s" begin="1.2s" repeatCount="indefinite" path="M440 0 V34 H733 V96"/>
+      </circle>
+      <circle class="signal blue" r="3">
+        <animateMotion dur="2.8s" begin="0.6s" repeatCount="indefinite" path="M440 0 V34 V96"/>
+      </circle>
+    </svg>
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    <div class="modules">
+      <a href="/frankenclaw" class="chip gold-key rise">
+        <span class="chip-id">PS-01</span>
+        <div class="lens"></div>
+        <div class="chip-name">FrankenClaw</div>
+        <div class="chip-sub">FrankenTools for Agents</div>
+      </a>
+      <a href="/stack" class="chip gold-key rise">
+        <span class="chip-id">PS-02</span>
+        <div class="lens"></div>
+        <div class="chip-name">The Stack</div>
+        <div class="chip-sub">Full Agent Infrastructure</div>
+      </a>
+      <a href="/mnemo-cortex" class="chip gold-key rise">
+        <span class="chip-id">PS-03</span>
+        <div class="lens"></div>
+        <div class="chip-name">Mnemo Cortex</div>
+        <div class="chip-sub">Memory for Agents</div>
+      </a>
+      <a href="/field-guide" class="chip rise">
+        <span class="chip-id">PS-04</span>
+        <div class="lens"></div>
+        <div class="chip-name">Field Guide</div>
+        <div class="chip-sub">MCP &amp; Local LLMs</div>
+      </a>
+      <a href="/disco-bus" class="chip rise">
+        <span class="chip-id">PS-05</span>
+        <div class="lens"></div>
+        <div class="chip-name">Disco-Bus</div>
+        <div class="chip-sub">Agent-to-Agent Messaging</div>
+      </a>
+      <a href="/about" class="chip rise">
+        <span class="chip-id">PS-06</span>
+        <div class="lens"></div>
+        <div class="chip-name">About</div>
+        <div class="chip-sub">The Team</div>
+      </a>
+    </div>
 
-  for (const p of particles) {
-    p.x += p.vx;
-    p.y += p.vy;
-    if (p.x < 0) p.x = canvas.width;
-    if (p.x > canvas.width) p.x = 0;
-    if (p.y < 0) p.y = canvas.height;
-    if (p.y > canvas.height) p.y = 0;
+    <div class="support-row">
+      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost">GitHub Sponsors</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost">PayPal Donate</a>
+    </div>
+  </div>
+</div>
 
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(212, 168, 42, ${p.a})`;
-    ctx.fill();
-  }
+<footer class="sparks-footer">
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins
+  </div>
+</footer>
 
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < 180) {
-        ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = `rgba(212, 168, 42, ${0.08 * (1 - d / 180)})`;
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
-      }
-    }
-  }
-
-  requestAnimationFrame(draw);
-}
-
-window.addEventListener('resize', resize);
-init();
-draw();
-</script>
-
+<script src="/assets/sparks.js"></script>
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
 <script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>

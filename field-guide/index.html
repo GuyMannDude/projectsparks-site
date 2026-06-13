@@ -16,195 +16,45 @@
 <meta name="twitter:title" content="Field Guide — MCP Tools & Local LLMs">
 <meta name="twitter:description" content="What actually works when you wire MCP tool servers into local LLMs. Real test results from production.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg: #08080f;
-    --gold: #e8b830;
-    --gold-bright: #ffd54f;
-    --gold-glow: rgba(232, 184, 48, 0.5);
-    --gold-dim: rgba(232, 184, 48, 0.25);
-    --amber: #f09030;
-    --copper: #d47030;
-    --copper-glow: rgba(212, 112, 48, 0.3);
-    --text: #ededf4;
-    --text-bright: #ffffff;
-    --text-sub: #a0a0b4;
-    --pass: #6acf6a;
-    --fail: #d05050;
-    --warn: #d4b04a;
-    --card-bg: rgba(255,255,255,0.04);
-    --card-border: rgba(232, 184, 48, 0.1);
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 21px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container { max-width: 940px; margin: 0 auto; padding: 0 32px; }
-  a { color: var(--gold); text-decoration: none; }
-  a:hover { color: var(--gold-bright); }
-
-  nav {
-    padding: 22px 0;
-    border-bottom: 1px solid var(--card-border);
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg);
-  }
-  nav .container { display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px; font-weight: 500;
-    color: var(--text-sub); letter-spacing: 2px; text-transform: uppercase;
-  }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; color: var(--text-sub); letter-spacing: 1px;
-  }
-  .nav-links a:hover { color: var(--gold-bright); }
-
-  section { padding: 72px 0; }
-  section + section { border-top: 1px solid var(--card-border); }
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: var(--amber); margin-bottom: 18px;
-    text-shadow: 0 0 20px var(--copper-glow);
-  }
-  h1 {
-    font-weight: 300; font-size: 56px;
-    letter-spacing: 6px; color: var(--text-bright);
-    text-transform: uppercase; margin-bottom: 18px;
-  }
-  h2 {
-    font-weight: 400; font-size: 34px;
-    color: var(--text-bright); margin-bottom: 22px;
-  }
-  h3 {
-    font-weight: 500; font-size: 22px;
-    color: var(--gold-bright); margin: 36px 0 14px;
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .subtitle {
-    font-size: 26px; color: var(--gold-bright);
-    font-style: italic; margin-bottom: 32px;
-    text-shadow: 0 0 30px var(--gold-glow);
-  }
-  p { margin-bottom: 18px; color: var(--text); }
-  p.sub { color: var(--text-sub); }
-  code {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85em;
-    background: rgba(255,255,255,0.05);
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: var(--gold-bright);
-  }
-  pre {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    overflow-x: auto;
-    color: var(--text);
-    margin: 18px 0;
-  }
-
-  /* Compatibility tables */
-  table.compat {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 18px;
-    font-size: 17px;
-  }
-  table.compat th {
-    text-align: left;
-    padding: 12px 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--amber);
-    border-bottom: 1px solid var(--card-border);
-  }
-  table.compat td {
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(232,184,48,0.06);
-    color: var(--text);
-    vertical-align: top;
-  }
-  table.compat td.name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
-    color: var(--gold);
-    white-space: nowrap;
-  }
-  .badge {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 999px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .badge-pass { background: rgba(106,207,106,0.12); color: var(--pass); border: 1px solid rgba(106,207,106,0.3); }
-  .badge-fail { background: rgba(208,80,80,0.12); color: var(--fail); border: 1px solid rgba(208,80,80,0.3); }
-  .badge-warn { background: rgba(212,176,74,0.14); color: var(--warn); border: 1px solid rgba(212,176,74,0.35); }
-  .badge-untested { background: rgba(160,160,180,0.08); color: var(--text-sub); border: 1px solid rgba(160,160,180,0.2); }
-
-  .callout {
-    border: 1px solid var(--gold-dim);
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(232,184,48,0.06) 0%, rgba(212,112,48,0.03) 100%);
+  .verify-callout {
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--panel);
+    box-shadow: var(--bevel);
     padding: 22px 28px;
-    margin: 22px 0;
+    margin: 26px 0;
   }
-  .callout-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--amber);
+  .verify-callout .callout-label {
+    font-family: var(--label);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-deep);
     margin-bottom: 8px;
   }
-
-  ul { margin: 0 0 18px 22px; }
-  li { margin-bottom: 8px; color: var(--text); }
-
   .footer-cta {
-    text-align: center; padding: 60px 32px;
-    border-top: 1px solid var(--card-border);
-    color: var(--text-sub); font-size: 17px;
+    text-align: center;
+    padding: 56px 32px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-faint);
+    font-size: 16px;
   }
   .footer-cta a { margin: 0 12px; }
-
-  @media (max-width: 768px) {
-    h1 { font-size: 36px; letter-spacing: 3px; }
-    h2 { font-size: 26px; }
-    .subtitle { font-size: 21px; }
-    table.compat { font-size: 15px; }
-    table.compat th, table.compat td { padding: 10px 8px; }
-  }
 </style>
 </head>
 <body>
 
-<nav>
+<nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">Project Sparks</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
+      Project Sparks
+    </a>
     <div class="nav-links">
       <a href="/stack">The Stack</a>
       <a href="/mnemo-cortex">Mnemo Cortex</a>
@@ -218,8 +68,8 @@
 <section>
   <div class="container">
     <div class="section-label">Field Notes from Production</div>
-    <h1>Field Guide</h1>
-    <p class="subtitle">What actually works when you wire MCP tools into local LLMs.</p>
+    <h1 class="chrome-text">Field Guide</h1>
+    <p class="subtitle">What actually works when you wire <span class="gilt">MCP tools into local LLMs.</span></p>
 
     <p>We run a multi-agent production stack &mdash; <a href="/mnemo-cortex">Mnemo Cortex</a> for memory, FrankenClaw-style MCP servers for tools, agents on Claude Desktop, Claude Code, OpenClaw, and Ollama hosts. Every line below is something we've actually run on our own machines and verified the result of. No marketing benchmarks. No "works on the author's laptop" tutorials.</p>
 
@@ -283,7 +133,7 @@
       </tbody>
     </table>
 
-    <div class="callout">
+    <div class="verify-callout">
       <div class="callout-label">Verification trick</div>
       <p style="margin: 0;">Don't trust the model's text response. Have it save a unique marker phrase (<code>MNEMO-PROBE-LOBSTER-7777-2026-04-27</code>), then query your Mnemo server directly for that exact string. If it's there, the save was real. If not, the model faked it. Our verifier script does this in one line: <code>~/scripts/mnemo-verify-save.sh "&lt;marker&gt;"</code>.</p>
     </div>
@@ -387,7 +237,7 @@ agent-browser install --with-deps</pre>
     <ul>
       <li><strong>Local-first.</strong> SQLite + local embedding model (Ollama <code>nomic-embed-text</code> by default). $0 to run. Your memory data never leaves your machine unless you tell it to.</li>
       <li><strong>Cross-agent by design.</strong> Multiple agents (Claude Desktop, Claude Code, Ollama hosts, OpenClaw bots) share one memory spine if you want them to &mdash; or stay isolated per-agent if you don't. We default to "separate" for new installs.</li>
-      <li><strong>Optional Mem0 bridge.</strong> When local recall is thin, Mnemo falls through to Mem0 for long-term semantic depth. "And Mem0," not "instead of Mem0."</li>
+      <li><strong>Standalone by design.</strong> No cloud memory service behind it &mdash; sqlite-vec embeddings, a Facts table for hard truths, and overnight Dreamer compaction keep recall sharp on hardware you own.</li>
     </ul>
 
     <h3>Two layers, one bridge</h3>
@@ -433,5 +283,6 @@ agent-browser install --with-deps</pre>
   <p style="margin-top: 22px; font-size: 14px;">© 2026 Project Sparks · Field results from a working multi-agent stack · Updated as we test more.</p>
 </div>
 
+<script src="/assets/sparks.js"></script>
 </body>
 </html>

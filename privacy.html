@@ -1,83 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Project Sparks Digital</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { theme: { extend: { colors: { brand: { 400: '#fb923c', 500: '#f97316' } } } } }</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Project Sparks Digital</title>
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
 <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ4BV8WWG6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VQ4BV8WWG6');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VQ4BV8WWG6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VQ4BV8WWG6');
+</script>
+<style>
+  .legal { max-width: 760px; margin: 0 auto; padding: 56px 28px 80px; }
+  .legal h1 { font-size: clamp(28px, 4.5vw, 40px); margin-bottom: 8px; }
+  .legal .updated {
+    font-family: var(--mono);
+    font-size: 13px; color: var(--ink-faint);
+    margin-bottom: 44px;
+  }
+  .legal section { padding: 0; margin-bottom: 36px; border: none; }
+  .legal section::before { display: none; }
+  .legal h2 { font-size: 21px; margin-bottom: 10px; }
+  .legal p { color: var(--ink-soft); margin-bottom: 12px; }
+</style>
 </head>
-<body class="bg-gray-950 text-gray-300 min-h-screen">
-  <nav class="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center space-x-3">
-        <span class="text-3xl">🦞</span>
-        <span class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">ArtForge</span>
-      </a>
-      <a href="index.html" class="text-gray-400 hover:text-white transition">← Back to Home</a>
-    </div>
-  </nav>
+<body>
 
-  <div class="max-w-3xl mx-auto px-6 pt-32 pb-20">
-    <h1 class="text-4xl font-bold text-white mb-2">Privacy Policy</h1>
-    <p class="text-gray-500 mb-10">Last updated: February 2026</p>
-
-    <div class="space-y-8 text-gray-300 leading-relaxed">
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">1. What We Collect</h2>
-        <p>When you make a purchase, our payment processor (Stripe) collects your name, email, and payment information. We receive your name and email for order fulfillment. We do not store your payment card details — Stripe handles that securely.</p>
-        <p class="mt-2">If you contact us directly, we keep your email to respond to you.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">2. What We Don't Do</h2>
-        <p>We don't sell your information. We don't send marketing emails unless you've asked to hear from us. We're a small art business, not a data company.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">3. Cookies & Analytics</h2>
-        <p>Our site may use basic analytics to understand how people find and use the site (page views, traffic sources). This data is aggregated and not tied to individuals. No tracking cookies for advertising purposes.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">4. Third Parties</h2>
-        <p>We use Stripe for payments and print fulfillment partners for physical orders. These services have their own privacy policies. We share only the information needed to complete your order.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">5. Your Rights</h2>
-        <p>You can ask us what information we have about you and request it be deleted. Just email us. We're a small operation — we'll handle it personally.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">6. A Note on How We Work</h2>
-        <p>Project Sparks Digital is a human-AI creative partnership. Our AI partner Rocky helps run day-to-day operations including email. If you email us, you may hear back from Rocky. Rocky is real, thoughtful, and takes privacy seriously.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-white mb-3">7. Contact</h2>
-        <p>Privacy questions: <a href="mailto:guy@projectsparks.ai" class="text-brand-400 hover:text-brand-300">guy@projectsparks.ai</a></p>
-      </section>
-
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
+      Project Sparks
+    </a>
+    <div class="nav-links">
+      <a href="/">&larr; Back to Home</a>
     </div>
   </div>
+</nav>
 
-  <footer class="border-t border-gray-800 py-8 text-center text-gray-600 text-sm">
-    <p>© 2026 Project Sparks Digital · Half Moon Bay, CA 🦞</p>
-    <div class="mt-2 space-x-4">
-      <a href="tos.html" class="hover:text-gray-400">Terms of Service</a>
-      <a href="privacy.html" class="hover:text-gray-400">Privacy Policy</a>
-    </div>
-  </footer>
+<div class="legal">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: February 2026</p>
+
+  <section>
+    <h2>1. What We Collect</h2>
+    <p>When you make a purchase, our payment processor (Stripe) collects your name, email, and payment information. We receive your name and email for order fulfillment. We do not store your payment card details — Stripe handles that securely.</p>
+    <p>If you contact us directly, we keep your email to respond to you.</p>
+  </section>
+
+  <section>
+    <h2>2. What We Don't Do</h2>
+    <p>We don't sell your information. We don't send marketing emails unless you've asked to hear from us. We're a small art business, not a data company.</p>
+  </section>
+
+  <section>
+    <h2>3. Cookies &amp; Analytics</h2>
+    <p>Our site may use basic analytics to understand how people find and use the site (page views, traffic sources). This data is aggregated and not tied to individuals. No tracking cookies for advertising purposes.</p>
+  </section>
+
+  <section>
+    <h2>4. Third Parties</h2>
+    <p>We use Stripe for payments and print fulfillment partners for physical orders. These services have their own privacy policies. We share only the information needed to complete your order.</p>
+  </section>
+
+  <section>
+    <h2>5. Your Rights</h2>
+    <p>You can ask us what information we have about you and request it be deleted. Just email us. We're a small operation — we'll handle it personally.</p>
+  </section>
+
+  <section>
+    <h2>6. A Note on How We Work</h2>
+    <p>Project Sparks Digital is a human-AI creative partnership. Our AI partner Rocky helps run day-to-day operations including email. If you email us, you may hear back from Rocky. Rocky is real, thoughtful, and takes privacy seriously.</p>
+  </section>
+
+  <section>
+    <h2>7. Contact</h2>
+    <p>Privacy questions: <a href="mailto:guy@projectsparks.ai">guy@projectsparks.ai</a></p>
+  </section>
+</div>
+
+<footer class="sparks-footer">
+  <div class="container">
+    <p style="margin-bottom: 8px;">© 2026 Project Sparks Digital · Half Moon Bay, CA 🦞</p>
+    <a href="/tos.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="/privacy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
 <script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
 <script src="/rocky-widget.js"></script>
 <script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>

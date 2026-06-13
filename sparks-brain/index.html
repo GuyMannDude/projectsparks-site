@@ -10,53 +10,48 @@
 <meta property="og:title" content="Sparks Brain → mnemo-plan">
 <meta property="og:description" content="Sparks Brain has been renamed mnemo-plan and is now part of Mnemo Cortex.">
 <meta property="og:url" content="https://projectsparks.ai/mnemo-cortex">
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #08080f;
-    color: #ededf4;
-    font-family: 'Cormorant Garamond', Georgia, serif;
+  .redirect-page {
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     text-align: center; padding: 32px;
   }
-  .container { max-width: 600px; }
-  h1 {
-    font-weight: 300; font-size: 48px;
-    letter-spacing: 6px; color: #ffffff;
-    text-transform: uppercase; margin-bottom: 24px;
+  .redirect-card {
+    max-width: 640px;
+    padding: 52px 44px;
+    background: var(--chrome-soft);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--bevel);
   }
-  .label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px; letter-spacing: 4px;
-    text-transform: uppercase; color: #f09030;
-    margin-bottom: 14px;
+  .redirect-card .label {
+    font-family: var(--label);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 16px;
   }
-  p { font-size: 21px; line-height: 1.6; margin-bottom: 22px; color: #a0a0b4; }
-  p strong { color: #ffd54f; font-weight: 600; }
-  a {
-    color: #e8b830; text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px; letter-spacing: 2px;
-    text-transform: uppercase;
-    border: 1px solid rgba(232,184,48,0.3);
-    padding: 12px 24px; border-radius: 8px;
-    display: inline-block; margin-top: 18px;
-    transition: all 0.3s;
-  }
-  a:hover { color: #ffd54f; border-color: rgba(232,184,48,0.6); box-shadow: 0 0 24px rgba(212,112,48,0.3); }
+  .redirect-card h1 { font-size: clamp(24px, 4vw, 36px); letter-spacing: 1px; }
+  .redirect-card p { font-size: 19px; color: var(--ink-soft); margin-bottom: 20px; }
+  .redirect-card p strong { color: var(--ink); }
 </style>
 </head>
 <body>
-  <div class="container">
-    <div class="label">Renamed · 2026-04-28</div>
-    <h1>Sparks Brain → mnemo-plan</h1>
-    <p>Sparks Brain is now <strong>mnemo-plan</strong> &mdash; a feature inside Mnemo Cortex, not a separate product.</p>
-    <p>Same idea: a folder of markdown files in Git that any LLM agent can read at session start. New name reflects that it's the manual companion to Mnemo Cortex's automatic conversation memory.</p>
-    <a href="/mnemo-cortex#mnemo-plan">Continue to Mnemo Cortex →</a>
+  <div class="redirect-page">
+    <div class="redirect-card">
+      <div class="label">Renamed &middot; 2026-04-28</div>
+      <h1>Sparks Brain &rarr; mnemo-plan</h1>
+      <p>Sparks Brain is now <strong>mnemo-plan</strong> &mdash; a feature inside Mnemo Cortex, not a separate product.</p>
+      <p>Same idea: a folder of markdown files in Git that any LLM agent can read at session start. New name reflects that it's the manual companion to Mnemo Cortex's automatic conversation memory.</p>
+      <a href="/mnemo-cortex#mnemo-plan" class="btn btn-primary" style="margin-top: 8px;">Continue to Mnemo Cortex &rarr;</a>
+    </div>
   </div>
+  <script src="/assets/sparks.js"></script>
   <script>
     setTimeout(() => { window.location.href = "/mnemo-cortex#mnemo-plan"; }, 3000);
   </script>
