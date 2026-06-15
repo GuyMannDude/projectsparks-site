@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FrankenClaw — FrankenTools for OpenClaw Agents</title>
-<meta name="description" content="FrankenClaw is an MCP tool server that gives AI agents hands — search, vision, browser automation, scraping, and NotebookLM. Open source from Project Sparks.">
-<meta property="og:title" content="FrankenClaw — FrankenTools for OpenClaw Agents">
-<meta property="og:description" content="Create your own FrankenClaw Agent using FrankenTools! Search, vision, browser, scraping, NotebookLM. Open source.">
+<title>FrankenClaw — An MCP Tool Chassis</title>
+<meta name="description" content="FrankenClaw is an MCP tool chassis — build and run your own agent tools in five minutes. Drop a Python file in tools/, flip it on, done. Open source from Project Sparks.">
+<meta property="og:title" content="FrankenClaw — An MCP Tool Chassis">
+<meta property="og:description" content="Build your own MCP agent tools in five minutes. Drop a Python file in tools/, flip it on, done. Open source from Project Sparks.">
 <meta property="og:image" content="https://projectsparks.ai/frankenclaw/frankenclaw-hero.png">
 <meta property="og:url" content="https://projectsparks.ai/frankenclaw">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FrankenClaw — FrankenTools for OpenClaw Agents">
-<meta name="twitter:description" content="Create your own FrankenClaw Agent using FrankenTools! Open source from Project Sparks.">
+<meta name="twitter:title" content="FrankenClaw — An MCP Tool Chassis">
+<meta name="twitter:description" content="Build your own MCP agent tools in five minutes. Open source from Project Sparks.">
 <meta name="twitter:image" content="https://projectsparks.ai/frankenclaw/frankenclaw-hero.png">
 <link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,6 +65,7 @@
     background: radial-gradient(circle at 36% 30%, #ffffff, #b9c6d6 55%, #8fa2b8);
     box-shadow: inset 0 -1px 1px rgba(19,28,40,0.3), 0 1px 0 #fff;
   }
+  .card .badge { margin-top: 12px; }
 
   @media (max-width: 768px) {
     .hero-image { max-width: 280px; }
@@ -92,18 +93,18 @@
 
 <section>
   <div class="container">
-    <div class="section-label centered">MCP Tool Server</div>
+    <div class="section-label centered">MCP Tool Chassis</div>
     <h1 class="chrome-text" style="text-align: center;">FrankenClaw</h1>
-    <div class="subtitle" style="text-align: center;">Give your AI agent real tools &mdash; <span class="gilt">without losing control of cost or models.</span></div>
-    <p style="color: var(--ink-soft); text-align: center; font-size: 21px; font-style: italic; margin-bottom: 36px;">Create your own FrankenClaw Agent using FrankenTools!</p>
+    <div class="subtitle" style="text-align: center;">Build your own agent tools <span class="gilt">in five minutes.</span></div>
+    <p style="color: var(--ink-soft); text-align: center; font-size: 21px; font-style: italic; margin-bottom: 36px;">Drop a Python file in <code>tools/</code>, flip it on, done.</p>
 
     <img src="/frankenclaw/frankenclaw-hero.png" alt="FrankenClaw" class="hero-image">
 
-    <p style="max-width: 760px; margin: 0 auto 18px;">FrankenClaw is a controlled execution layer for AI agents. It serves FrankenTools over standard MCP &mdash; search, vision, browser automation, web scraping, Shopify, and content generation &mdash; so any agent can use them. You pick the models. You control the keys. The tools just execute.</p>
+    <p style="max-width: 760px; margin: 0 auto 18px;">FrankenClaw isn't a pile of pre-built tools — it's the <strong>chassis</strong>. Auto-discovery, config-based enable/disable, and a single shared keys file are the whole product. Write one async function with a docstring, add it to your config, and your agent has a new tool. No server edits, no registration. It ships with one example tool you copy. You pick the models. You control the keys.</p>
 
     <div class="scam-warning">
       <strong>&#9888; Important:</strong>
-      This project is not affiliated with any cryptocurrency, token, or investment scheme. FrankenClaw is an open-source MCP toolbox for AI agents, built by Project Sparks. If anyone offers you a &ldquo;FrankenClaw token&rdquo; &mdash; it&rsquo;s a scam.
+      This project is not affiliated with any cryptocurrency, token, or investment scheme. FrankenClaw is an open-source MCP tool chassis for AI agents, built by Project Sparks. If anyone offers you a &ldquo;FrankenClaw token&rdquo; &mdash; it&rsquo;s a scam.
     </div>
 
     <div class="btn-row centered">
@@ -115,98 +116,58 @@
 
 <section>
   <div class="container">
-    <div class="section-label">Security</div>
-    <h2>Your machine. Your keys. Your rules.</h2>
+    <div class="section-label">Build a tool in five minutes</div>
+    <h2>One function. One docstring. Done.</h2>
+    <p class="sub">A FrankenTool is a single async function. The docstring <em>is</em> the description the model reads — so write it for the model. Save the file, flip it on, restart.</p>
 
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-      <div class="card">
-        <div class="name">Runs Locally</div>
-        <div class="desc">Executes on your machine, not in the cloud.</div>
-      </div>
-      <div class="card">
-        <div class="name">No Key Duplication</div>
-        <div class="desc">API keys live in one place, read at runtime.</div>
-      </div>
-      <div class="card">
-        <div class="name">You Control Providers</div>
-        <div class="desc">Pick which models handle which jobs.</div>
-      </div>
-      <div class="card">
-        <div class="name">No Hidden Costs</div>
-        <div class="desc">Route cheap to grunt work, smart to decisions.</div>
-      </div>
-    </div>
+<pre># tools/weather.py
+import httpx
+
+async def get_weather(city: str) -> str:
+    """
+    Get the current weather for a city.
+
+    Args:
+        city: City name, e.g. "Half Moon Bay".
+
+    Returns:
+        JSON with temperature and conditions.
+    """
+    async with httpx.AsyncClient() as client:
+        r = await client.get(f"https://wttr.in/{city}?format=j1")
+        return r.text</pre>
+
+    <p>Turn it on in <code>~/.frankenclaw/config.json</code> &mdash; that&rsquo;s the entire workflow:</p>
+<pre>{ "enabled_tools": ["web_scrape", "get_weather"] }</pre>
   </div>
 </section>
 
 <section>
   <div class="container">
-    <div class="section-label">12 FrankenTools</div>
-    <h2>Hands your agent can actually use.</h2>
-    <p class="sub">Each tool is a single Python file. Auto-discovered on startup. No registration, no config.</p>
+    <div class="section-label">Why a chassis</div>
+    <h2>Off by default. Zero tokens until you say so.</h2>
+    <p class="sub">Every MCP tool definition costs your agent 500&ndash;1000 tokens on <em>every</em> call &mdash; used or not. A box of fifteen tools you mostly don&rsquo;t need is a tax on every turn.</p>
 
-    <div class="grid">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
       <div class="card">
-        <div class="icon">&#x1F50D;</div>
-        <div class="name">search_web</div>
-        <div class="desc">Web search via SearXNG. Private, fast, no API key needed.</div>
+        <div class="name">Off by Default</div>
+        <div class="desc">A tool you haven&rsquo;t enabled is discovered but never registered. Zero tokens in <code>tools/list</code>.</div>
       </div>
       <div class="card">
-        <div class="icon">&#x1F441;</div>
-        <div class="name">vision_analyze</div>
-        <div class="desc">Read any image on disk. Sends to a vision model via OpenRouter.</div>
+        <div class="name">Auto-Discovery</div>
+        <div class="desc">Drop a <code>.py</code> file in <code>tools/</code>. It appears as a candidate on next start. No registration.</div>
       </div>
       <div class="card">
-        <div class="icon">&#x1F310;</div>
-        <div class="name">browser_task</div>
-        <div class="desc">Full browser automation. Click, fill, navigate, screenshot &mdash; in a visible window.</div>
+        <div class="name">One Keys File</div>
+        <div class="desc">API keys live in one place, read at runtime. A tool grabs its key with <code>get_key()</code>.</div>
       </div>
       <div class="card">
-        <div class="icon">&#x1F4C4;</div>
-        <div class="name">web_scrape</div>
-        <div class="desc">Clean page scraping via Firecrawl. Strips ads and nav, returns markdown.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F6D2;</div>
-        <div class="name">shopify_products</div>
-        <div class="desc">List, create, update, delete Shopify products. Full catalog access.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F4E6;</div>
-        <div class="name">shopify_inventory</div>
-        <div class="desc">Manage inventory levels and locations across warehouses.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F3F7;</div>
-        <div class="name">shopify_collections</div>
-        <div class="desc">Browse custom and smart product collections.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F399;</div>
-        <div class="name">notebooklm_manage</div>
-        <div class="desc">Create, list, rename, and delete Google NotebookLM notebooks.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F4CE;</div>
-        <div class="name">notebooklm_source</div>
-        <div class="desc">Add URLs, text, or files as sources. List and manage notebook content.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x26A1;</div>
-        <div class="name">notebooklm_generate</div>
-        <div class="desc">Generate audio podcasts, videos, infographics, slide decks, and more.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F4E5;</div>
-        <div class="name">notebooklm_download</div>
-        <div class="desc">Download generated artifacts &mdash; MP3, MP4, PNG, PDF, CSV.</div>
-      </div>
-      <div class="card">
-        <div class="icon">&#x1F4AC;</div>
-        <div class="name">notebooklm_ask</div>
-        <div class="desc">Ask questions grounded in your notebook sources. AI-powered answers.</div>
+        <div class="name">Graceful Skip</div>
+        <div class="desc">A tool that fails to load is logged and skipped &mdash; the rest of the server still comes up.</div>
       </div>
     </div>
+
+    <p class="sub" style="margin-top: 28px;">FrankenClaw ships with <strong>one</strong> example tool &mdash; <code>web_scrape</code> (clean-markdown page scraping via Firecrawl) &mdash; as the template you copy. The former 15-tool bundle (search, vision, browser, Shopify, NotebookLM, Google Drive) is preserved on the <a href="https://github.com/GuyMannDude/frankenclaw/tree/archive/v0.3-bundled-tools" target="_blank"><code>archive/v0.3-bundled-tools</code></a> branch &mdash; nothing deleted. Drop any of those files into <code>tools/</code> and enable them to get them back.</p>
   </div>
 </section>
 
@@ -219,19 +180,40 @@
     <div class="architecture">
       <div class="arch-item">
         <div class="arch-label">No Memory</div>
-        <div class="arch-desc">The agent has Mnemo Cortex for that.</div>
+        <div class="arch-desc">Your agent has <a href="/mnemo-cortex">Mnemo Cortex</a> for that.</div>
       </div>
       <div class="arch-item">
         <div class="arch-label">No Models</div>
-        <div class="arch-desc">Rocky's Switch handles model selection.</div>
+        <div class="arch-desc">Your agent picks the models. Use any endpoint.</div>
       </div>
       <div class="arch-item">
         <div class="arch-label">No Context</div>
-        <div class="arch-desc">OpenClaw manages conversations.</div>
+        <div class="arch-desc">Your agent framework manages the conversation.</div>
       </div>
       <div class="arch-item">
-        <div class="arch-label">Auto-Discovery</div>
-        <div class="arch-desc">Drop a .py file in tools/. It just works.</div>
+        <div class="arch-label">Just Tools</div>
+        <div class="arch-desc">Request in, result out. The agent IS the agent.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">MCP Tool Servers</div>
+    <h2>One chassis. Purpose-built servers on top.</h2>
+    <p class="sub">FrankenClaw is the open-source foundation. We also build focused MCP servers for specific jobs &mdash; same standard transport, same off-by-default discipline.</p>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <div class="card gilded">
+        <div class="name">FrankenClaw</div>
+        <div class="desc">The open-source chassis. Build and run your own MCP tools. MIT-licensed, host-agnostic, available now.</div>
+        <span class="badge badge-pass">Available</span>
+      </div>
+      <div class="card">
+        <div class="name">Shopify MCP</div>
+        <div class="desc">A purpose-built MCP server for Shopify merchants &mdash; the first focused server in the family. In development.</div>
+        <span class="badge badge-untested">Coming Soon</span>
       </div>
     </div>
   </div>
@@ -240,35 +222,37 @@
 <section id="install">
   <div class="container">
     <div class="section-label">Install</div>
-    <h2>Three commands.</h2>
+    <h2>Clone, install, point your agent at it.</h2>
 
 <pre>git clone https://github.com/GuyMannDude/frankenclaw.git
 cd frankenclaw
 pip install -r requirements.txt</pre>
 
-    <p>Register with OpenClaw:</p>
+    <p>FrankenClaw speaks standard MCP over stdio. Connect it to any MCP host with one config block:</p>
 
-<pre>openclaw mcp set frankenclaw "python3 /path/to/frankenclaw/server.py"
-openclaw gateway restart</pre>
+<pre>{
+  "mcpServers": {
+    "frankenclaw": {
+      "command": "python3",
+      "args": ["/ABSOLUTE/PATH/TO/frankenclaw/server.py"]
+    }
+  }
+}</pre>
 
-    <p class="sub">API keys come from <a href="/rockys-switch">Rocky's Switch</a> (<code>~/.rockys-switch/keys.json</code>). Tool settings live at <code>~/.frankenclaw/config.json</code>, auto-created on first run.</p>
+    <p class="sub">On Claude Code it&rsquo;s one line: <code>claude mcp add frankenclaw -- python3 /path/to/frankenclaw/server.py</code>. A fresh clone ships with <code>web_scrape</code> enabled, so you have a working tool out of the box. Keys live at <code>~/.frankenclaw/keys.json</code>; tool settings (including <code>enabled_tools</code>) at <code>~/.frankenclaw/config.json</code>, auto-created on first run.</p>
 
-    <p class="sub" style="margin-top: 28px;">Or install the full stack with one command:</p>
-<pre>curl -fsSL https://projectsparks.ai/install.sh | bash</pre>
-    <p class="sub">The <a href="/stack">Sparks Stack installer</a> sets up FrankenClaw + Rocky's Switch + Mnemo Cortex and wires them together.</p>
-
-    <!-- Local LLM panel -->
+    <!-- Any MCP host panel -->
     <div class="feature-panel">
-      <div class="kicker">Also works with</div>
-      <div class="headline">🦙 Any Local LLM</div>
+      <div class="kicker">Works with</div>
+      <div class="headline">🦙 Any MCP Host</div>
       <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 18px;">
-        FrankenClaw speaks standard MCP. Wire it into Hermes Agent, LM Studio, Open WebUI, llama.cpp, Ollama, LobeChat, or Jan with one config block.
+        Claude Desktop, Claude Code, OpenClaw, Hermes Agent, LM Studio, AnythingLLM, Open WebUI, llama.cpp, Ollama, LobeChat, Jan &mdash; one config block each.
       </p>
       <p style="text-align: center; font-size: 14.5px; color: var(--ink-faint); font-style: italic; margin-bottom: 20px;">
-        Linux/macOS native. Windows users: run inside WSL2.
+        Linux/macOS native. On Windows, run inside WSL2 if a tool you add has system dependencies.
       </p>
       <div style="text-align: center;">
-        <a href="https://github.com/GuyMannDude/frankenclaw#with-any-local-llm" class="btn btn-primary" target="_blank">Setup Guides &rarr;</a>
+        <a href="https://github.com/GuyMannDude/frankenclaw#quick-start" class="btn btn-primary" target="_blank">Setup Guides &rarr;</a>
       </div>
     </div>
   </div>
@@ -293,13 +277,9 @@ openclaw gateway restart</pre>
         <div class="name">Mnemo Cortex</div>
         <div class="desc">Long-term memory for agents.</div>
       </a>
-      <a href="/rockys-switch" class="card">
-        <div class="name">Rocky's Switch</div>
-        <div class="desc">Manual model switcher for OpenClaw.</div>
-      </a>
       <a href="/frankenclaw" class="card gilded">
         <div class="name">FrankenClaw</div>
-        <div class="desc">FrankenTools for agents. You are here.</div>
+        <div class="desc">The MCP tool chassis. You are here.</div>
       </a>
     </div>
   </div>

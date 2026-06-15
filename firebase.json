@@ -14,16 +14,6 @@
         "type": 302
       },
       {
-        "source": "/sparks-router",
-        "destination": "/rockys-switch",
-        "type": 301
-      },
-      {
-        "source": "/rockys-router",
-        "destination": "/rockys-switch",
-        "type": 301
-      },
-      {
         "source": "/sparks-bus",
         "destination": "/disco-bus",
         "type": 301
