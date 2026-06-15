@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cortex Harness — A Forkable AI-Agent Framework</title>
+<meta name="description" content="Cortex Harness turns the Mnemo Cortex memory layer into a memory-backed agent for your business. Pick a vertical, edit one config file, build, and run. Open source from Project Sparks.">
+<meta property="og:title" content="Cortex Harness — A Forkable AI-Agent Framework">
+<meta property="og:description" content="Pick a vertical, edit one config file, build, and run a memory-backed agent. Built on Mnemo Cortex. Open source from Project Sparks.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/cortex-harness">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cortex Harness — A Forkable AI-Agent Framework">
+<meta name="twitter:description" content="Pick a vertical, edit one config file, build a memory-backed agent. Open source from Project Sparks.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .hero-diagram {
+    display: block;
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto 40px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .vertical-row { display: flex; align-items: baseline; gap: 12px; }
+  .vertical-row .vname {
+    font-family: var(--label);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+  .card .badge { margin-top: 12px; }
+  .pillar-icon {
+    font-size: 26px; margin-bottom: 8px; display: block;
+  }
+  @media (max-width: 768px) {
+    .hero-diagram { font-size: 9.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
+      Project Sparks
+    </a>
+    <div class="nav-links">
+      <a href="/stack">The Stack</a>
+      <a href="/mnemo-cortex">Mnemo Cortex</a>
+      <a href="/cortex-harness">Cortex Harness</a>
+      <a href="/frankenclaw">FrankenClaw</a>
+      <a href="https://github.com/GuyMannDude/cortex-harness" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <div class="section-label centered">AI-Agent Framework</div>
+    <h1 class="chrome-text" style="text-align: center;">Cortex Harness</h1>
+    <div class="subtitle" style="text-align: center;">Pick a vertical. Edit one file. <span class="gilt">Ship a memory-backed agent.</span></div>
+    <p style="color: var(--ink-soft); text-align: center; font-size: 21px; font-style: italic; margin-bottom: 36px;">Fork it, build it, run it &mdash; on your own machine.</p>
+
+<pre class="hero-diagram">  harness.config.yaml   &larr;  the one file you edit
+        &darr;
+   [ COMPILER ]  &larr;  pick a vertical + tool loader
+        &darr;
+   build/&lt;you&gt;/
+     brain/        rendered lanes (identity, rules, tools)
+     agentb.yaml   memory backend config (persona = rule-set)
+     mcp.json      MCP registration with your enabled tools
+     start.sh      launch the memory backend
+        &darr;
+   Mnemo Cortex  &mdash; persistent memory &middot; facts &middot; brain lanes</pre>
+
+    <p style="max-width: 760px; margin: 0 auto 18px;"><a href="/mnemo-cortex">Mnemo Cortex</a> gives an agent memory. <strong>Cortex Harness</strong> is the layer on top that turns that memory into a product you can ship for a specific business &mdash; without rewiring anything. Set your business name, pick a vertical, and <code>build</code>. You get an agent with persistent memory, a business-specific rule-set, and a tool-set scoped to what you turned on.</p>
+
+    <div class="btn-row centered">
+      <a href="https://github.com/GuyMannDude/cortex-harness" target="_blank" class="btn btn-primary">View on GitHub</a>
+      <a href="#install" class="btn btn-ghost">Install</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">The one file you edit</div>
+    <h2>Name it. Pick a vertical. Build.</h2>
+    <p class="sub">Everything else is derived. Blank fields fall back to the vertical&rsquo;s recommended defaults.</p>
+
+<pre>business:
+  name: "Acme Co."
+  vertical: small-business      # python -m harness list
+  agent_id: acme-assistant
+tools:
+  profile: standard             # minimal | standard | full
+  enable: []
+  disable: []
+rules:
+  persona: ""                   # blank = the vertical's recommended rule-set
+memory:
+  isolation: isolated           # isolated | shared | hybrid</pre>
+
+    <p>Then the build-and-run loop:</p>
+<pre>python -m harness list      # see the verticals
+python -m harness doctor    # check your environment
+python -m harness plan      # preview enabled vs. dropped tools (no writes)
+python -m harness build     # compile to build/&lt;you&gt;/
+python -m harness run       # build, then launch the memory backend</pre>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Verticals shipped</div>
+    <h2>Five businesses in the box. Adding your own is a folder.</h2>
+    <p class="sub">A vertical is just a folder: a rule-set, brain templates, and a recommended persona. Everything in <code>_base/</code> is inherited, so a new one only states what&rsquo;s different.</p>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="card">
+        <div class="name">Small Business</div>
+        <div class="desc">Customers, quotes, scheduling, follow-ups. Persona: <code>operator</code> &mdash; concise, fact-checked, approval-gated.</div>
+      </div>
+      <div class="card">
+        <div class="name">Ecommerce</div>
+        <div class="desc">Catalog, inventory, orders, support. Persona: <code>merchant</code> &mdash; SKUs, prices, and stock as hard facts.</div>
+      </div>
+      <div class="card">
+        <div class="name">Art Studio</div>
+        <div class="desc">Commissions, briefs, inventory of works &mdash; plus a creative muse. Persona: <code>studio</code> &mdash; speculative muse, exact business.</div>
+      </div>
+      <div class="card">
+        <div class="name">Writing Partner</div>
+        <div class="desc">Drafting with a story bible and continuity tracking. Persona: <code>editor</code> &mdash; generative, but ruthless on canon.</div>
+      </div>
+      <div class="card gilded">
+        <div class="name">Day-Trading Desk</div>
+        <div class="desc">A trading <strong>journal &amp; research desk</strong>. Persona: <code>risk_desk</code> &mdash; analysis only, enforces your own rules.</div>
+        <span class="badge badge-pass">Analysis only &middot; never executes</span>
+      </div>
+    </div>
+    <p class="sub" style="margin-top: 22px;">The day-trading desk <strong>never places orders, moves money, or gives financial advice</strong> &mdash; enforced in its rule-set and brain lanes, and structurally: there is no execution tool anywhere in the catalog. Its job is to hold the trader to their <em>own</em> written rules and keep an honest record.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">How it works</div>
+    <h2>Three things every business customizes &mdash; made first-class.</h2>
+    <p class="sub">Without the harness you wire these by hand for every business. With it, you edit one file and build.</p>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      <div class="card">
+        <span class="pillar-icon">&#129504;</span>
+        <div class="name">Brain templates</div>
+        <div class="desc">Identity, playbooks, and reference lanes &mdash; markdown with <code>{{placeholders}}</code> filled in from your config.</div>
+      </div>
+      <div class="card">
+        <span class="pillar-icon">&#128207;</span>
+        <div class="name">Rule sets</div>
+        <div class="desc">How cautious the agent is, what it may speculate on, what needs sign-off. Compiles into a Mnemo Cortex persona.</div>
+      </div>
+      <div class="card">
+        <span class="pillar-icon">&#128295;</span>
+        <div class="name">Tool loader</div>
+        <div class="desc">Pick a profile, then enable/disable. A tool whose prerequisite is missing is dropped &mdash; with a reason &mdash; not silently exposed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Built on Mnemo Cortex</div>
+    <h2>The harness compiles. Mnemo remembers.</h2>
+    <p class="sub">Cortex Harness isn&rsquo;t a memory engine &mdash; it&rsquo;s the framework that configures one. <a href="/mnemo-cortex">Mnemo Cortex</a> is a cloned dependency (kept out of the repo, not vendored); a build compiles its backend config and <code>harness run</code> launches it. Local SQLite by default, your data on your machine.</p>
+
+    <div class="btn-row centered">
+      <a href="/mnemo-cortex" class="btn btn-ghost">About Mnemo Cortex &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Fork, clone the memory layer, build.</h2>
+
+<pre>git clone https://github.com/GuyMannDude/cortex-harness.git
+cd cortex-harness
+git clone https://github.com/GuyMannDude/mnemo-cortex.git ./mnemo-cortex
+pip install -r requirements.txt        # PyYAML only
+
+python -m harness build                # compile your business
+python -m harness run                  # build + launch the backend</pre>
+
+    <p class="sub">Edit <code>harness.config.yaml</code> (business name + vertical), then build. Point your MCP host at the generated <code>build/&lt;you&gt;/mcp.json</code>. Requires Python 3.10+ and Node 18+ (for the Mnemo Cortex bridge a build points at).</p>
+
+    <div class="feature-panel">
+      <div class="kicker">Works with</div>
+      <div class="headline">&#129302; Any MCP Host</div>
+      <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 18px;">
+        Claude Desktop, Claude Code, OpenClaw, Hermes Agent, LM Studio, AnythingLLM, Open WebUI &mdash; point it at the generated <code>mcp.json</code>.
+      </p>
+      <div style="text-align: center;">
+        <a href="https://github.com/GuyMannDude/cortex-harness#quickstart" class="btn btn-primary" target="_blank">Quickstart &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-label">Project Sparks</div>
+    <h2>Part of the family.</h2>
+    <p class="sub" style="margin-bottom: 24px;">Open-source AI infrastructure, built in Half Moon Bay.</p>
+
+    <div class="grid">
+      <a href="/mnemo-cortex" class="card">
+        <div class="name">Mnemo Cortex</div>
+        <div class="desc">The memory layer this is built on.</div>
+      </a>
+      <a href="/frankenclaw" class="card">
+        <div class="name">FrankenClaw</div>
+        <div class="desc">The MCP tool chassis. Build your own tools.</div>
+      </a>
+      <a href="/disco-bus" class="card">
+        <div class="name">Disco-Bus</div>
+        <div class="desc">Agent-to-agent messaging mesh.</div>
+      </a>
+      <a href="/cortex-harness" class="card gilded">
+        <div class="name">Cortex Harness</div>
+        <div class="desc">The forkable agent framework. You are here.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="sparks-footer">
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; <a href="/">projectsparks.ai</a>
+  </div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
+<script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
+<script src="/rocky-widget.js"></script>
+<script data-goatcounter="http://artforge.tailce7587.ts.net:50180/count" async src="http://artforge.tailce7587.ts.net:50180/count.js"></script>
+</body>
+</html>
