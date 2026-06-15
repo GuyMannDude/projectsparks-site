@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Persistent AI Operating Memory</title>
-<meta name="description" content="Mnemo-Cortex v2.6 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Disco-Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Open source.">
+<meta name="description" content="Mnemo-Cortex v4.2.3 — Memory that dreams, compiles, and connects. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Disco-Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Open source.">
 <meta property="og:title" content="Mnemo Cortex — Persistent AI Operating Memory">
 <meta property="og:description" content="Memory that dreams, compiles, and connects. Deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
 <meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
@@ -225,6 +225,11 @@
         <div class="name">Claw-Recall (FTS5)</div>
         <div class="desc">When meaning isn't enough &mdash; exact-match search for terms, names, filenames, error messages.</div>
       </div>
+    </div>
+
+    <div class="callout" style="margin-top: 28px;">
+      <div class="big">The Thesaurus Loop <span style="font-size: 0.6em; opacity: 0.7;">&mdash; in development</span></div>
+      <div class="sub">Every recall commits to one phrasing. If a memory was filed under different words than you searched for, the match is weak or misses &mdash; <em>assumption misalignment</em> between how you ask and how it was stored. The Thesaurus Loop fans a query into several alternative phrasings and lets the best match win. The trick is <strong>escalation</strong>: it only fires when a search comes back empty or weak, so good searches stay exactly as fast as they are today and the expansion pass costs nothing until it's actually worth it.</div>
     </div>
   </div>
 </section>
@@ -487,7 +492,7 @@
     </div>
 
     <div class="callout" style="margin-top: 32px;">
-      <div class="big">90+ stars on GitHub and counting.</div>
+      <div class="big">135+ stars on GitHub and counting.</div>
       <div class="sub">Open source &middot; SQLite under the hood &middot; Your data never leaves your machine</div>
     </div>
   </div>
@@ -597,6 +602,41 @@
 
     <div class="content" style="margin-top: 28px;">
       <p>They don't blend. They <strong>specialize.</strong> That's closer to a real company team than a chatbot.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Built with Fable 5 -->
+<section id="fable">
+  <div class="container">
+    <div class="section-label">Built by a Frontier Model</div>
+    <h2>Upgraded by Claude Fable 5</h2>
+    <div class="content">
+      <p>During Claude Fable 5's brief availability, we pointed it at the memory layer it runs on and asked it to make it better. The result shipped as Mnemo's <strong>v4.1 "Fable pass."</strong></p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <div class="card">
+        <div class="name">Composite recall ranking</div>
+        <div class="desc">The fix that pulled real signal back to the top of every search &mdash; blending similarity, recency, category, and access instead of raw vector score alone.</div>
+      </div>
+      <div class="card">
+        <div class="name">The Analyst</div>
+        <div class="desc">Distills raw session logs into clean, high-signal Tier-1 notes &mdash; so recall surfaces decisions, not transcript noise.</div>
+      </div>
+      <div class="card">
+        <div class="name">Secret redaction at ingest</div>
+        <div class="desc">Every byte entering the store passes a redaction choke point first &mdash; API keys never reach a remote classifier.</div>
+      </div>
+      <div class="card">
+        <div class="name">Tier hygiene</div>
+        <div class="desc">Deleted memories stay deleted; the two-tier recall path stops stale rows resurrecting from cache.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 32px;">
+      <div class="big">A frontier model auditing the memory it thinks with.</div>
+      <div class="sub">Fable 5 reasoned and reviewed the whole codebase; an Opus model reviewed, hardened, and shipped each change &mdash; in a single window before Fable went dark.</div>
     </div>
   </div>
 </section>
