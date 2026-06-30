@@ -156,7 +156,7 @@
         <tr>
           <td class="name">qwen3:8b</td>
           <td><span class="badge badge-pass">YES</span></td>
-          <td>Real <code>mnemo_save</code> call with structured args. Saved row visible in artforge with full content. Our default recommendation for any local-LLM tool-calling setup right now.</td>
+          <td>Real <code>mnemo_save</code> call with structured args. Saved row visible in Mnemo (on IGOR-2) with full content. Our default recommendation for any local-LLM tool-calling setup right now.</td>
         </tr>
         <tr>
           <td class="name">llama3.1:8b</td>
@@ -257,20 +257,21 @@ agent-browser install --with-deps</pre>
     <p>This isn't a benchmark suite. It's the evidence trail of running a multi-agent setup that actually does work for us every day:</p>
 
     <ul>
-      <li><strong>Opie</strong> &mdash; Claude Desktop. Architect / strategy / spec writer.</li>
-      <li><strong>CC (Claude Code)</strong> &mdash; on-machine builder. The one wiring code, debugging configs, running migrations.</li>
-      <li><strong>Rocky</strong> &mdash; OpenClaw production agent. Customer-facing tasks, scheduled jobs, the bot we'd let near a real workload.</li>
+      <li><strong>Opie</strong> &mdash; Claude Desktop (Claude Opus 4.6). Architect / strategy / spec writer.</li>
+      <li><strong>CC (Claude Code)</strong> &mdash; Claude Opus 4.8. On-machine builder: wiring code, debugging configs, running migrations.</li>
+      <li><strong>Rocky</strong> &mdash; Hermes on IGOR (Gemini 2.5 Flash). Customer-facing tasks, scheduled jobs, the bot we'd let near a real workload.</li>
+      <li><strong>Dave</strong> &mdash; OpenClaw on IGOR-2 (Gemini 2.5 Flash). Our Windows test bench and new-plugin ambassador.</li>
+      <li><strong>Cody</strong> &mdash; OpenAI Codex CLI on IGOR-2. The coder on the Windows workstation.</li>
       <li><strong>Peter Widget</strong> &mdash; customer-facing chat on projectsparks.ai. Lighter agent, scoped tools.</li>
     </ul>
 
     <p>Running on:</p>
     <ul>
-      <li><strong>IGOR</strong> &mdash; primary Linux laptop. Ubuntu 24.04, where Opie / CC / Rocky live.</li>
-      <li><strong>THE VAULT</strong> &mdash; Threadripper 3970X workstation, 128 GB RAM, dual RTX 3060. Hosts the Mnemo Cortex server, embeddings, dream synthesis.</li>
-      <li><strong>IGOR-2</strong> &mdash; Windows 11 machine. ComfyUI workstation, also our cross-platform test bench (LM Studio + AnythingLLM + Ollama all live here).</li>
+      <li><strong>IGOR</strong> &mdash; primary Linux laptop. Ubuntu 24.04, RTX 3060 6 GB. Where Opie / CC / Rocky live.</li>
+      <li><strong>IGOR-2</strong> &mdash; Windows 11, RTX 4070 12 GB. Hosts the Mnemo Cortex server, embeddings, and dream synthesis; also our cross-platform test bench (LM Studio + AnythingLLM + Ollama) and home to Dave and Cody.</li>
     </ul>
 
-    <p class="sub">When we say "we tested AnythingLLM with qwen3:8b on Windows" &mdash; that's IGOR-2, in front of a real keyboard, with a real chat session and a real save row landing in artforge. Not a synthetic benchmark; not someone else's reproduction.</p>
+    <p class="sub">When we say "we tested AnythingLLM with qwen3:8b on Windows" &mdash; that's IGOR-2, in front of a real keyboard, with a real chat session and a real save row landing in the Mnemo store. Not a synthetic benchmark; not someone else's reproduction.</p>
   </div>
 </section>
 
