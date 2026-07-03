@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Project Sparks</title>
+<meta name="description" content="The Project Sparks product line: Mnemo Cortex (cognitive coprocessor with active memory), Disco-Bus (agent-to-agent messaging), FrankenClaw (MCP tool chassis), and Cortex Stick (coming soon). All open source.">
+<meta property="og:title" content="Products — Project Sparks">
+<meta property="og:description" content="Mnemo Cortex, Disco-Bus, FrankenClaw, Cortex Stick. Open-source AI agent infrastructure — memory, messaging, tools.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/products">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Products — Project Sparks">
+<meta name="twitter:description" content="Mnemo Cortex, Disco-Bus, FrankenClaw, Cortex Stick. Open-source AI agent infrastructure — memory, messaging, tools.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .product-card { display: flex; flex-direction: column; }
+  .product-card .desc { flex: 1; }
+  .product-card .btn-row { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
+      Mnemo Cortex
+    </a>
+    <div class="nav-links">
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <div class="section-label centered">The Product Line</div>
+    <h1 class="chrome-text" style="text-align: center;">Products</h1>
+    <p class="subtitle" style="text-align: center;">Open-source AI agent infrastructure. Adopt any single piece — they don't lock each other in.</p>
+
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 44px;">
+      <div class="card gilded product-card">
+        <div class="name">Mnemo Cortex</div>
+        <div class="desc">Cognitive coprocessor with active memory. Semantic recall, cross-agent dreaming, auto-compiled wiki, Developer's Passport. Runs natively on Linux, Windows, and macOS (beta).</div>
+        <div class="btn-row">
+          <a href="/" class="btn btn-primary">Product page</a>
+          <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+      <div class="card product-card">
+        <div class="name">Disco-Bus</div>
+        <div class="desc">Push-based agent-to-agent message mesh with full delivery confirmation. SQLite-backed dispatcher, per-agent HTTP listeners, optional Discord mirror. Sub-second delivery, ~1000 lines of code.</div>
+        <div class="btn-row">
+          <a href="/disco-bus" class="btn btn-primary">Product page</a>
+          <a href="https://github.com/GuyMannDude/disco-bus" target="_blank" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+      <div class="card product-card">
+        <div class="name">FrankenClaw</div>
+        <div class="desc">An MCP tool chassis — build your own agent tools in five minutes. Drop a Python file in <code>tools/</code>, flip it on, done. Tools are off by default: zero tokens until enabled.</div>
+        <div class="btn-row">
+          <a href="/frankenclaw" class="btn btn-primary">Product page</a>
+          <a href="https://github.com/GuyMannDude/frankenclaw" target="_blank" class="btn btn-ghost">GitHub</a>
+        </div>
+      </div>
+      <div class="card product-card">
+        <div class="name">Cortex Stick <span style="font-size: 0.7em; color: var(--gold-deep); font-style: italic;">— coming soon</span></div>
+        <div class="desc">Agent memory you can carry. Mnemo Cortex packaged to travel with you instead of living on one machine. Concept stage — details as they firm up.</div>
+        <div class="btn-row">
+          <a href="/cortex-stick" class="btn btn-ghost">Concept page</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content" style="text-align: center; margin-top: 44px;">
+      <p style="color: var(--ink-faint); font-size: 15px;">More from the lab: <a href="/cortex-harness">Cortex Harness</a> &middot; <a href="/stack">The Stack</a> &middot; <a href="/field-guide">Field Guide</a> &middot; <a href="https://github.com/GuyMannDude/cronalarm" target="_blank">CronAlarm</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="sparks-footer">
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins
+  </div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
+<script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
+<script src="/rocky-widget.js"></script>
+</body>
+</html>

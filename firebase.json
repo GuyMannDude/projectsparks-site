@@ -9,6 +9,11 @@
     ],
     "redirects": [
       {
+        "source": "/mnemo-cortex",
+        "destination": "/",
+        "type": 301
+      },
+      {
         "source": "/sparc",
         "destination": "https://github.com/GuyMannDude/sparc-thesis",
         "type": 302

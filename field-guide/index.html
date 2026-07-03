@@ -16,7 +16,9 @@
 <meta name="twitter:title" content="Field Guide — MCP Tools & Local LLMs">
 <meta name="twitter:description" content="What actually works when you wire MCP tool servers into local LLMs. Real test results from production.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
-<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -52,14 +54,14 @@
 <nav class="sparks-nav">
   <div class="container">
     <a href="/" class="nav-logo">
-      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
-      Project Sparks
+      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
+      Mnemo Cortex
     </a>
     <div class="nav-links">
-      <a href="/stack">The Stack</a>
-      <a href="/mnemo-cortex">Mnemo Cortex</a>
-      <a href="/frankenclaw">FrankenClaw</a>
-      <a href="/field-guide">Field Guide</a>
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
     </div>
   </div>
 </nav>
@@ -71,7 +73,7 @@
     <h1 class="chrome-text">Field Guide</h1>
     <p class="subtitle">What actually works when you wire <span class="gilt">MCP tools into local LLMs.</span></p>
 
-    <p>We run a multi-agent production stack &mdash; <a href="/mnemo-cortex">Mnemo Cortex</a> for memory, FrankenClaw-style MCP servers for tools, agents on Claude Desktop, Claude Code, OpenClaw, and Ollama hosts. Every line below is something we've actually run on our own machines and verified the result of. No marketing benchmarks. No "works on the author's laptop" tutorials.</p>
+    <p>We run a multi-agent production stack &mdash; <a href="/">Mnemo Cortex</a> for memory, FrankenClaw-style MCP servers for tools, agents on Claude Desktop, Claude Code, OpenClaw, and Ollama hosts. Every line below is something we've actually run on our own machines and verified the result of. No marketing benchmarks. No "works on the author's laptop" tutorials.</p>
 
     <p class="sub">Updated 2026-04-27. We add to this when we test something new. If a host or model is missing, we haven't run it yet &mdash; we won't fake the row.</p>
   </div>
@@ -93,7 +95,7 @@
         <tr>
           <td class="name">Claude Desktop</td>
           <td><span class="badge badge-pass">PASS</span></td>
-          <td>Native MCP. Drag-and-drop <code>.mcpb</code> bundle is the gold standard for non-developers. <a href="/mnemo-cortex">Our bundle</a> is submitted to Anthropic's Connectors Directory.</td>
+          <td>Native MCP. Drag-and-drop <code>.mcpb</code> bundle is the gold standard for non-developers. <a href="/">Our bundle</a> is submitted to Anthropic's Connectors Directory.</td>
         </tr>
         <tr>
           <td class="name">LM Studio</td>
@@ -232,7 +234,7 @@ agent-browser install --with-deps</pre>
     <div class="section-label">05 · Memory Architecture</div>
     <h2>Memory that survives the session</h2>
 
-    <p>This is our day job &mdash; <a href="/mnemo-cortex">Mnemo Cortex</a> is the persistent memory layer behind every Sparks agent. Three properties matter for anyone wiring memory into an MCP setup:</p>
+    <p>This is our day job &mdash; <a href="/">Mnemo Cortex</a> is the persistent memory layer behind every Sparks agent. Three properties matter for anyone wiring memory into an MCP setup:</p>
 
     <ul>
       <li><strong>Local-first.</strong> SQLite + local embedding model (Ollama <code>nomic-embed-text</code> by default). $0 to run. Your memory data never leaves your machine unless you tell it to.</li>
@@ -244,7 +246,7 @@ agent-browser install --with-deps</pre>
     <p>Mnemo Cortex handles <em>automatic</em> conversation memory &mdash; what agents said, decided, and learned during sessions. <strong>mnemo-plan</strong> handles the <em>manual</em> half: a folder of markdown files in Git that you write and curate (project specs, active task lists, decision logs, architecture notes). Any LLM that can call the Mnemo MCP tools can read and edit them at session start, before the first message lands.</p>
     <p>The same MCP bridge auto-detects both. Cortex tools always register; mnemo-plan tools light up only if you've set <code>BRAIN_DIR</code> on disk. <a href="https://github.com/GuyMannDude/mnemo-plan" target="_blank">Template repo on GitHub</a>.</p>
 
-    <p>Detailed install, hosts, and setup matrix: <a href="/mnemo-cortex">projectsparks.ai/mnemo-cortex</a>. Source: <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">github.com/GuyMannDude/mnemo-cortex</a>.</p>
+    <p>Detailed install, hosts, and setup matrix: <a href="/">projectsparks.ai</a>. Source: <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">github.com/GuyMannDude/mnemo-cortex</a>.</p>
   </div>
 </section>
 
@@ -277,7 +279,7 @@ agent-browser install --with-deps</pre>
 
 <!-- Footer CTA -->
 <div class="footer-cta">
-  <a href="/mnemo-cortex">Mnemo Cortex</a> ·
+  <a href="/">Mnemo Cortex</a> ·
   <a href="/frankenclaw">FrankenClaw</a> ·
   <a href="https://github.com/GuyMannDude/mnemo-cortex" target="_blank">GitHub</a> ·
   <a href="/">Project Sparks home</a>

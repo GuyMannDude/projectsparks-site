@@ -5,59 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Project Sparks</title>
 <meta property="og:title" content="About — Project Sparks">
-<meta property="og:description" content="AI infrastructure from Half Moon Bay, California. Founded by Guy Hutchins. Built with Opie, CC, Rocky, and AL.">
+<meta property="og:description" content="The team and story behind Mnemo Cortex. Open-source AI agent infrastructure built in Half Moon Bay by Guy Hutchins and a fleet of AI agents. Everything is free.">
 <meta property="og:image" content="https://projectsparks.ai/og-image.png">
 <meta property="og:url" content="https://projectsparks.ai/about">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About — Project Sparks">
-<meta name="twitter:description" content="AI infrastructure from Half Moon Bay, California. Founded by Guy Hutchins. Built with Opie, CC, Rocky, and AL.">
+<meta name="twitter:description" content="The team and story behind Mnemo Cortex. Open-source AI agent infrastructure built in Half Moon Bay by Guy Hutchins and a fleet of AI agents. Everything is free.">
 <meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
-<link rel="icon" type="image/svg+xml" href="/assets/sparks-mark.svg">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 <style>
-  .about-page {
-    min-height: calc(100vh - 140px);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 60px 20px;
+  /* ── hero ── */
+  .hero {
+    padding: 72px 0 36px;
     text-align: center;
-  }
-  .about-card {
-    max-width: 620px;
-    padding: 52px 44px 44px;
-    background: var(--chrome-soft);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    box-shadow: var(--bevel);
     position: relative;
   }
-  .about-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: var(--chrome-rail);
-    border-radius: 18px 18px 0 0;
+  .hero-bot { margin-bottom: 26px; filter: drop-shadow(0 10px 24px rgba(19,28,40,0.18)); }
+  .hero h1 {
+    font-size: clamp(34px, 6.4vw, 64px);
+    letter-spacing: clamp(4px, 1.2vw, 12px);
+    margin-bottom: 14px;
   }
-  .about-card p { font-size: 19px; color: var(--ink-soft); margin-bottom: 20px; }
-  .about-card p strong { color: var(--ink); }
-  .team-line {
+  .hero .tagline {
     font-family: var(--label);
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 2px; text-transform: uppercase;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 5px; text-transform: uppercase;
     color: var(--gold-deep);
-    margin-top: 28px;
   }
-  .back-link {
-    margin-top: 40px;
+  .hero .location {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    color: var(--ink-faint);
+    margin-top: 10px;
+  }
+  .hero .intro {
+    max-width: 560px;
+    margin: 26px auto 0;
+    font-size: 19px;
+    color: var(--ink-soft);
+  }
+
+  /* ── the board ── */
+  .board { padding: 26px 0 80px; }
+
+  /* CPU — SPARC */
+  .cpu {
+    display: block;
+    width: min(330px, 86%);
+    margin: 0 auto;
+    text-align: center;
+    padding: 30px 26px 26px;
+    background:
+      radial-gradient(280px 130px at 50% 0%, rgba(232,162,0,0.14), transparent 70%),
+      var(--chrome-soft);
+    border: 1px solid #d9b75a;
+    border-radius: 18px;
+    box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 52px rgba(232,162,0,0.22);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: cpu-pulse 3.2s ease-in-out infinite;
+  }
+  .cpu:hover { transform: translateY(-3px); }
+  @keyframes cpu-pulse {
+    0%, 100% { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 40px rgba(232,162,0,0.18); }
+    50%      { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 64px rgba(232,162,0,0.34); }
+  }
+  /* CPU pins: top + bottom */
+  .cpu::before, .cpu::after {
+    content: '';
+    position: absolute; left: 28px; right: 28px; height: 7px;
+    background: repeating-linear-gradient(90deg, #aebccd 0 7px, transparent 7px 17px);
+    border-radius: 2px;
+  }
+  .cpu::before { top: -12px; }
+  .cpu::after  { bottom: -12px; }
+  .cpu .die {
+    width: 54px; height: 54px;
+    margin: 0 auto 16px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffd95e, #f0ae00 55%, #c98c00);
+    border: 1px solid #b07f00;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -2px 4px rgba(120,80,0,0.35), 0 4px 14px rgba(232,162,0,0.4);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cpu .die svg { display: block; }
+  .cpu .cpu-name {
+    font-family: var(--display);
+    font-size: 23px; letter-spacing: 5px;
+    color: var(--ink);
+  }
+  .cpu .cpu-sub {
     font-family: var(--label);
     font-size: 12px; font-weight: 600;
     letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-top: 8px;
   }
-  .back-link a { color: var(--ink-faint); }
-  .back-link a:hover { color: var(--azure); }
+
+  /* bus traces from CPU into the module grid */
+  .traces { display: block; width: 100%; max-width: 880px; margin: -2px auto -2px; }
+  .traces path { fill: none; stroke: var(--line-strong); stroke-width: 1.6; }
+  .traces circle.via { fill: #fff; stroke: var(--line-strong); stroke-width: 1.4; }
+  .traces circle.via.hot { stroke: var(--gold); }
+  .traces .signal { fill: var(--gold); }
+  .traces .signal.blue { fill: var(--azure); }
+
+  /* module chips */
+  .modules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .chip {
+    position: relative;
+    display: block;
+    text-align: center;
+    padding: 30px 20px 26px;
+    background: var(--chrome-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--bevel);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    overflow: visible;
+    color: inherit;
+  }
+  .chip:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--bevel-hover), 0 0 30px var(--azure-glow);
+    border-color: var(--line-strong);
+    color: inherit;
+  }
+  .chip.gold-key:hover { box-shadow: var(--bevel-hover), 0 0 30px var(--gold-glow); }
+  /* side pins */
+  .chip::before, .chip::after {
+    content: '';
+    position: absolute; top: 24px; bottom: 24px; width: 7px;
+    background: repeating-linear-gradient(180deg, #aebccd 0 6px, transparent 6px 15px);
+    border-radius: 2px;
+  }
+  .chip::before { left: -12px; }
+  .chip::after { right: -12px; }
+  .chip .lens {
+    width: 13px; height: 13px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 36% 30%, #9fd9ff, #1f8fe8 55%, #0a51a8);
+    box-shadow: 0 0 12px var(--azure-glow), inset 0 1px 1px rgba(255,255,255,0.8);
+    position: relative;
+  }
+  .chip .lens::after {
+    content: '';
+    position: absolute; top: 2px; left: 3px;
+    width: 3.5px; height: 3.5px; border-radius: 50%;
+    background: #fff;
+  }
+  .chip.gold-key .lens {
+    background: radial-gradient(circle at 36% 30%, #ffe9a8, #f0ae00 55%, #c98c00);
+    box-shadow: 0 0 12px var(--gold-glow), inset 0 1px 1px rgba(255,255,255,0.8);
+  }
+  .chip:hover .lens { transform: scale(1.25); transition: transform 0.3s; }
+  .chip .chip-name {
+    font-family: var(--label);
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .chip .chip-sub {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .chip .chip-id {
+    position: absolute; top: 9px; right: 13px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    color: var(--ink-faint);
+    opacity: 0.75;
+  }
+
+  /* staggered assembly on load */
+  .cpu, .chip { animation-fill-mode: both; }
+  .rise { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cpu.rise { animation: rise 0.7s cubic-bezier(0.2,0.7,0.3,1) 0.15s both, cpu-pulse 3.2s ease-in-out 1s infinite; }
+  .chip:nth-child(1) { animation-delay: 0.35s; }
+  .chip:nth-child(2) { animation-delay: 0.45s; }
+  .chip:nth-child(3) { animation-delay: 0.55s; }
+  .chip:nth-child(4) { animation-delay: 0.65s; }
+  .chip:nth-child(5) { animation-delay: 0.75s; }
+  .chip:nth-child(6) { animation-delay: 0.85s; }
+
+  .support-row {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    margin: 56px auto 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: 48px 0 24px; }
+    .traces { display: none; }
+    .modules { grid-template-columns: 1fr; gap: 26px; margin-top: 30px; }
+    .chip::before, .chip::after { display: none; }
+  }
+  @media (min-width: 769px) and (max-width: 920px) {
+    .modules { gap: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -65,37 +230,151 @@
 <nav class="sparks-nav">
   <div class="container">
     <a href="/" class="nav-logo">
-      <img src="/assets/sparks-mark.svg" width="28" height="28" alt="">
-      Project Sparks
+      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
+      Mnemo Cortex
     </a>
     <div class="nav-links">
-      <a href="/stack">The Stack</a>
-      <a href="/mnemo-cortex">Mnemo</a>
-      <a href="/frankenclaw">FrankenClaw</a>
-      <a href="/field-guide">Field Guide</a>
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
     </div>
   </div>
 </nav>
 
-<div class="about-page">
-  <img src="/assets/sparks-mark.svg" alt="" width="76" height="76" style="margin-bottom: 28px; filter: drop-shadow(0 8px 20px rgba(19,28,40,0.18));">
-  <h1 class="chrome-text" style="margin-bottom: 36px;">About</h1>
-
-  <div class="about-card">
-    <p><strong>Project Sparks</strong> — AI infrastructure from Half Moon Bay, California.</p>
-    <p>Founded by Guy Hutchins.</p>
-    <p>Built with Opie, CC, Rocky, and AL.</p>
-    <p>Open source at <a href="https://github.com/GuyMannDude">github.com/GuyMannDude</a></p>
-    <div class="team-line">Built by humans and machines, together.</div>
+<div class="hero">
+  <div class="container">
+    <img src="/assets/sparks-mark.svg" alt="Project Sparks robot mark" width="92" height="92" class="hero-bot rise">
+    <h1 class="chrome-text rise" style="animation-delay: 0.05s;">Project Sparks</h1>
+    <div class="tagline rise" style="animation-delay: 0.12s;">AI Infrastructure &middot; Open Source</div>
+    <div class="location rise" style="animation-delay: 0.18s;">Half Moon Bay, California</div>
+    <p class="intro rise" style="animation-delay: 0.24s;">The constellation behind <a href="/">Mnemo Cortex</a> — memory, tools, and messaging for AI agents. Every part open source, every part running in production. Pick a module.</p>
   </div>
-
-  <div class="btn-row centered" style="margin-top: 38px;">
-    <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost">GitHub Sponsors</a>
-    <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost">PayPal Donate</a>
-  </div>
-
-  <div class="back-link"><a href="/">&larr; Home</a></div>
 </div>
+
+<div class="board">
+  <div class="container">
+
+    <a href="/sparc" class="cpu rise">
+      <div class="die">
+        <svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 4 L28 19 L43 24 L28 29 L24 44 L20 29 L5 24 L20 19 Z" fill="#fff8e0" stroke="#a87400" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="cpu-name">SPARC</div>
+      <div class="cpu-sub">The Thesis &middot; AI Designs for AI</div>
+    </a>
+
+    <svg class="traces" viewBox="0 0 880 120" aria-hidden="true">
+      <!-- center drop from CPU -->
+      <path d="M440 0 V34"/>
+      <!-- bus splits to three column drop points (147, 440, 733) -->
+      <path d="M440 34 H147 V96"/>
+      <path d="M440 34 V96"/>
+      <path d="M440 34 H733 V96"/>
+      <!-- stubs to outer columns' neighbors -->
+      <path d="M147 60 H80 V96"/>
+      <path d="M733 60 H800 V96"/>
+      <!-- vias -->
+      <circle class="via hot" cx="440" cy="34" r="4"/>
+      <circle class="via" cx="147" cy="34" r="3.4"/>
+      <circle class="via" cx="733" cy="34" r="3.4"/>
+      <circle class="via" cx="147" cy="60" r="3"/>
+      <circle class="via" cx="733" cy="60" r="3"/>
+      <!-- signals travelling the bus -->
+      <circle class="signal" r="3">
+        <animateMotion dur="3.6s" repeatCount="indefinite" path="M440 0 V34 H147 V96"/>
+      </circle>
+      <circle class="signal blue" r="3">
+        <animateMotion dur="3.6s" begin="1.2s" repeatCount="indefinite" path="M440 0 V34 H733 V96"/>
+      </circle>
+      <circle class="signal blue" r="3">
+        <animateMotion dur="2.8s" begin="0.6s" repeatCount="indefinite" path="M440 0 V34 V96"/>
+      </circle>
+    </svg>
+
+    <div class="modules">
+      <a href="/frankenclaw" class="chip gold-key rise">
+        <span class="chip-id">PS-01</span>
+        <div class="lens"></div>
+        <div class="chip-name">FrankenClaw</div>
+        <div class="chip-sub">MCP Tool Chassis</div>
+      </a>
+      <a href="/stack" class="chip gold-key rise">
+        <span class="chip-id">PS-02</span>
+        <div class="lens"></div>
+        <div class="chip-name">The Stack</div>
+        <div class="chip-sub">Full Agent Infrastructure</div>
+      </a>
+      <a href="/" class="chip gold-key rise">
+        <span class="chip-id">PS-03</span>
+        <div class="lens"></div>
+        <div class="chip-name">Mnemo Cortex</div>
+        <div class="chip-sub">Cognitive Coprocessor</div>
+      </a>
+      <a href="/field-guide" class="chip rise">
+        <span class="chip-id">PS-04</span>
+        <div class="lens"></div>
+        <div class="chip-name">Field Guide</div>
+        <div class="chip-sub">MCP &amp; Local LLMs</div>
+      </a>
+      <a href="/disco-bus" class="chip rise">
+        <span class="chip-id">PS-05</span>
+        <div class="lens"></div>
+        <div class="chip-name">Disco-Bus</div>
+        <div class="chip-sub">Agent-to-Agent Messaging</div>
+      </a>
+      <a href="/cortex-harness" class="chip gold-key rise">
+        <span class="chip-id">PS-06</span>
+        <div class="lens"></div>
+        <div class="chip-name">Cortex Harness</div>
+        <div class="chip-sub">Forkable Agent Framework</div>
+      </a>
+      <a href="/gallery" class="chip rise">
+        <span class="chip-id">PS-07</span>
+        <div class="lens"></div>
+        <div class="chip-name">Rocky's Gallery</div>
+        <div class="chip-sub">The AI-Run Art Store</div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Origin Story -->
+<section>
+  <div class="container">
+    <div class="section-label">The Origin Story</div>
+    <h2>The $100 Brain That Cured AI Amnesia</h2>
+    <div class="content">
+      <p>For two years, <strong>Guy Hutchins</strong> &mdash; a 73-year-old maker in Half Moon Bay, California &mdash; acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
+      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight cognitive coprocessor that actually worked. That coprocessor grew into <a href="/">Mnemo Cortex</a> &mdash; and the rest of the constellation grew up around it.</p>
+    </div>
+    <div class="quote">
+      <p>"I started with ChatGPT 3.5 and the first thing that mattered was memory. Two years of 'how do I make AI remember.' Now we're shipping the answer."</p>
+      <cite>— Guy Hutchins, creator of Project Sparks</cite>
+    </div>
+  </div>
+</section>
+
+<!-- Who Built This -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label centered">Who Built This</div>
+    <h2>The Team</h2>
+    <div class="content" style="max-width: 620px; margin: 0 auto;">
+      <p>Guy Hutchins (founder) + Opie (architect, Claude) + AL (ChatGPT, implementation) + CC (Claude Code) + Rocky Moltman (Hermes agent, ported from OpenClaw via Mnemo)<br>Half Moon Bay, California</p>
+      <p>Every product here is designed, built, reviewed, and operated by this mixed human-and-AI team &mdash; running on the same memory system we ship.</p>
+      <p style="color: var(--gold-deep); font-style: italic; font-weight: 600;">"Talk to it like a friend, it learns how to care."</p>
+      <p>Open source at <a href="https://github.com/GuyMannDude">github.com/GuyMannDude</a></p>
+    </div>
+
+    <div class="support-row">
+      <a href="https://github.com/sponsors/GuyMannDude" target="_blank" class="btn btn-ghost">GitHub Sponsors</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Thanks+for+a+donation.+This+will+help+me+install+AL%E2%9C%A8+in+his+own+server.+Also+it+helps+me+keep+making+new+AI+tools+and+apps.&currency_code=USD" target="_blank" class="btn btn-ghost">PayPal Donate</a>
+    </div>
+  </div>
+</section>
 
 <footer class="sparks-footer">
   <div class="container">

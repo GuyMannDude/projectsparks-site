@@ -1,8 +1,15 @@
-# Project Sparks
+# Mnemo Cortex — Project Sparks
 
-> Open-source AI agent infrastructure: memory, tools, messaging, monitoring. Local-first, $0-to-run on free models, MIT licensed. Every product ships with a `robot.info` manifest at its repo root so an AI agent can answer a user's questions without scraping prose.
+> Mnemo Cortex is the flagship: a cognitive coprocessor with active memory for AI agents — semantic recall, cross-agent dreaming, auto-compiled wiki, all local-first and $0-to-run. It is the front page of projectsparks.ai. Around it, Project Sparks ships the rest of the agent stack: tools, messaging, monitoring. MIT licensed. Every product ships with a `robot.info` manifest at its repo root so an AI agent can answer a user's questions without scraping prose.
 
 Project Sparks builds the components needed to run AI agents that work — agents with persistent memory, real-world tools, agent-to-agent messaging, and operational alerting. Each piece is its own repo and works standalone; together they form a complete stack. Every public repo exposes three machine-readable files at its root: **`robot.info`** (structured JSON product manifest), **`robot.install`** (non-interactive install manifest), and **`llms.txt`** (LLM-friendly docs index). The conventions cross-link so an agent landing on any product can navigate the whole ecosystem.
+
+## Site structure
+
+- [projectsparks.ai/](https://projectsparks.ai/): Mnemo Cortex product page (the front door)
+- [projectsparks.ai/products](https://projectsparks.ai/products): full product line — Mnemo Cortex, Disco-Bus, FrankenClaw, Cortex Stick (coming soon)
+- [projectsparks.ai/about](https://projectsparks.ai/about): the Project Sparks story, team, and module map
+- [projectsparks.ai/gallery](https://projectsparks.ai/gallery): Rocky's Gallery — the art store run by an AI agent (rockysgallery.com)
 
 ## Products
 
