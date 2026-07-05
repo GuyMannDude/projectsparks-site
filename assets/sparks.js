@@ -145,7 +145,7 @@
     'No sponsors, no VC — one maker and his agents.</p>' +
     '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">♥ Donate with PayPal</a>' +
     '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">GitHub Sponsors</a>' +
-    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Or buy a 1-of-1 at Rocky’s Gallery →</a>';
+    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Or buy artwork at Rocky’s Gallery →</a>';
 
   document.body.appendChild(bubble);
   document.body.appendChild(card);
