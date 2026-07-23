@@ -104,13 +104,15 @@
 
 /* --- Donate float: bottom-left, opposite Rocky/Peter's chat bubble --- */
 (function () {
-  var PAYPAL = 'https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory.+Funded+entirely+by+donations+and+art+sales+at+Rocky%27s+Gallery.&currency_code=USD';
+  var PAYPAL = 'https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&currency_code=USD';
   var style = document.createElement('style');
   style.textContent = [
     '#sparks-donate-bubble{position:fixed;bottom:24px;left:24px;z-index:99999;',
-    'width:64px;height:64px;border-radius:50%;border:none;cursor:pointer;',
-    'background:linear-gradient(135deg,#d4a82a,#9c7514);color:#14100a;font-size:26px;',
-    'display:flex;align-items:center;justify-content:center;',
+    'height:52px;padding:0 20px;border-radius:999px;border:none;cursor:pointer;',
+    'background:linear-gradient(135deg,#d4a82a,#9c7514);color:#14100a;',
+    'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
+    'font-size:15px;font-weight:700;white-space:nowrap;',
+    'display:flex;align-items:center;justify-content:center;gap:8px;',
     'box-shadow:0 4px 20px rgba(212,168,42,.4),0 0 0 3px rgba(212,168,42,.3);',
     'transition:transform .2s,box-shadow .2s;}',
     '#sparks-donate-bubble:hover{transform:scale(1.1);',
@@ -137,18 +139,18 @@
   var bubble = document.createElement('button');
   bubble.id = 'sparks-donate-bubble';
   bubble.setAttribute('aria-label', 'Donate to Mnemo Cortex');
-  bubble.textContent = '♥';
+  bubble.textContent = '♥ Tip jar';
 
   var card = document.createElement('div');
   card.id = 'sparks-donate-card';
   card.innerHTML =
-    '<h3>Keep Mnemo alive</h3>' +
-    '<p>Mnemo Cortex is funded entirely by donations and art sales at ' +
-    '<a href="https://rockysgallery.com" target="_blank" rel="noopener">Rocky’s Gallery</a>. ' +
-    'No sponsors, no VC — one maker and his agents.</p>' +
-    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">♥ Donate with PayPal</a>' +
-    '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">GitHub Sponsors</a>' +
-    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Or buy artwork at Rocky’s Gallery →</a>';
+    '<h3>The tip jar IS the funding round</h3>' +
+    '<p>The big memory systems raised millions. Mnemo Cortex runs on donations to one ' +
+    '73-year-old maker and his agents — no sponsors, no VC, no paywall. Every dollar ' +
+    'goes straight to keeping AI memory free and open source.</p>' +
+    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">☕ Toss a few bucks in — PayPal</a>' +
+    '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">♥ Sponsor monthly on GitHub</a>' +
+    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Free art at Rocky’s Gallery →</a>';
 
   document.body.appendChild(bubble);
   document.body.appendChild(card);
