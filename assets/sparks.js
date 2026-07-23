@@ -148,7 +148,8 @@
     '<p>The big memory systems raised millions. Mnemo Cortex runs on donations to one ' +
     '73-year-old maker and his agents — no sponsors, no VC, no paywall. Every dollar ' +
     'goes straight to keeping AI memory free and open source.</p>' +
-    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">☕ Toss a few bucks in — PayPal</a>' +
+    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">💛 Toss a few bucks in — PayPal</a>' +
+    '<a class="sparks-donate-btn" href="https://ko-fi.com/guysparks" target="_blank" rel="noopener">☕ Buy the maker a coffee — Ko-fi</a>' +
     '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">♥ Sponsor monthly on GitHub</a>' +
     '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Free art at Rocky’s Gallery →</a>';
 
