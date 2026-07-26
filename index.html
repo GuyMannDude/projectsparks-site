@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mnemo Cortex — Cognitive Coprocessor with Active Memory</title>
-<meta name="description" content="Mnemo Cortex v4.5.2 — Cognitive coprocessor with active memory. It's not just memory, it's cognitive coprocessing. Three-layer architecture: Mnemo (source of truth) + WikAI (compiled view) + Brain Files (live state). Disco-Bus for agent-to-agent. Developer's Passport for safe behavioral-claim ingestion. Runs natively on Linux, macOS, and Windows. Open source.">
+<meta name="description" content="Mnemo Cortex — cognitive coprocessor with active memory. It's not just memory, it's cognitive coprocessing. Three-layer architecture: Mnemo (source of truth) + The Librarian (document discovery) + Brain Files (live state). Cortex Stick carries memory between machines on USB. Disco-Bus for agent-to-agent. Runs natively on Linux, macOS, and Windows. Free, open source, and yours to modify.">
 <meta property="og:title" content="Mnemo Cortex — Cognitive Coprocessor with Active Memory">
-<meta property="og:description" content="It's not just memory — it's cognitive coprocessing. Active memory, deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
+<meta property="og:description" content="It's not just memory — it's cognitive coprocessing. Active memory, deep recall, cross-agent dreaming, workspace document search, USB memory courier, agent-to-agent bus. Open source, $0 to run, yours to modify.">
 <meta property="og:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mnemo Cortex — Cognitive Coprocessor with Active Memory">
-<meta name="twitter:description" content="It's not just memory — it's cognitive coprocessing. Active memory, deep recall, cross-agent dreaming, auto-compiled wiki, agent-to-agent bus, Developer's Passport. Open source, $0 to run.">
+<meta name="twitter:description" content="It's not just memory — it's cognitive coprocessing. Active memory, deep recall, cross-agent dreaming, workspace document search, USB memory courier, agent-to-agent bus. Open source, $0 to run, yours to modify.">
 <meta name="twitter:image" content="https://projectsparks.ai/mnemo-cortex/social-preview.jpg">
 <link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
@@ -392,36 +392,31 @@
   </div>
 </section>
 
-<!-- WikAI -->
-<section id="wikai">
+<!-- The Librarian -->
+<section id="librarian">
   <div class="container">
-    <div class="section-label">Compile, Don't Rederive</div>
-    <h2>WikAI &mdash; The Compiled Knowledge Base</h2>
+    <div class="section-label">Find It, Don't Rebuild It</div>
+    <h2>The Librarian &mdash; Document Discovery</h2>
     <div class="content">
-      <p>Mnemo holds the facts. <strong>WikAI is the study guide compiled from those facts</strong> &mdash; 3,000+ markdown pages organized into projects, entities, concepts, and sources. Three MCP tools: <code>wiki_search</code>, <code>wiki_read</code>, <code>wiki_index</code>.</p>
-      <p>The wiki is regenerated every night by <code>mnemo-wiki-compile.py</code>. The compiler clusters recent memories by topic, then asks an LLM to rewrite each affected page integrating the new information &mdash; without bloating it. <strong>Cross-references are validated against the live page set</strong>, so no hallucinated wikilinks. Every page carries a provenance footer listing the Mnemo session IDs that fed it, so any claim is auditable.</p>
+      <p>&ldquo;The file about X&rdquo; is a memory problem too. <strong>The Librarian is a single index over your whole workspace</strong> &mdash; filenames, paths, and the first chunk of every file's content, with text pulled out of PDFs and Word documents &mdash; so an agent turns a fuzzy description into a real path in milliseconds.</p>
+      <p>Our own deployment covers <strong>~107,000 files</strong>. A full rebuild takes about 17 seconds; the nightly refresh takes about 2. <strong>Secrets are excluded from the index entirely</strong> &mdash; keys, <code>.env</code> files and credentials never get indexed, so asking the Librarian a question can't surface them.</p>
     </div>
 
     <div class="callout">
-      <div class="big">The wiki is never edited directly.<br>Mnemo is the source of truth.</div>
-      <div class="sub">If a page is wrong, fix the source data and recompile. WikAI is always regenerable.</div>
+      <div class="big">Indexing everything is cheap.<br>Compiling everything is not.</div>
+      <div class="sub">The Librarian replaced <strong>WikAI</strong>, our earlier auto-compiled wiki layer &mdash; and that swap is the most useful thing we learned all year.</div>
     </div>
 
     <div class="arch">
-      <pre>  <span class="dim">3:30 AM &mdash; 15 min after Dreaming</span>
+      <pre>  <span class="dim">$</span> python3 librarian.py index          <span class="dim"># build it</span>
+  <span class="dim">$</span> librarian.py find <span class="hl">"the spec about X"</span>  <span class="dim"># ask it</span>
 
-  <span class="hl">mnemo-wiki-compile.py</span>
-    <span class="dim">1.</span> Harvest recent memories from Mnemo + AgentB writebacks
-    <span class="dim">2.</span> Cluster by topic in Python (no LLM routing)
-    <span class="dim">3.</span> Per-topic: gemini-2.5-flash rewrites the page
-    <span class="dim">4.</span> Validate cross-refs against the live page set
-    <span class="dim">5.</span> Write with .md.prev rollback, regenerate INDEX.md
-
-  <span class="dim">Per-page failures isolated:</span> ⚠️ to <span class="hl">#alerts</span>, run continues</pre>
+  <span class="dim">Agents ask through the</span> <span class="acc">file_find</span> <span class="dim">tool in FrankenClaw.</span>
+  <span class="dim">One stdlib-only Python file. It ships in the repo.</span></pre>
     </div>
 
     <div class="content" style="margin-top: 28px;">
-      <p>Inspired by <a href="https://gist.github.com/karpathy" target="_blank">Andrej Karpathy's LLM Wiki pattern</a> and <a href="https://youtu.be/dxq7WtWxi44" target="_blank">Nate B Jones's analysis</a> of write-time vs query-time memory. <strong>Mnemo is the librarian. WikAI is the study guide.</strong> Neither Zep nor Letta offer this.</p>
+      <p>We ran a compiled wiki in production for months, inspired by <a href="https://gist.github.com/karpathy" target="_blank">Andrej Karpathy's LLM Wiki pattern</a> and <a href="https://youtu.be/dxq7WtWxi44" target="_blank">Nate B Jones's analysis</a> of write-time vs query-time memory. The lesson was blunt: <strong>compiling knowledge into pages is expensive to keep fresh, while indexing everything and finding it on demand is cheap and never stale.</strong> So we kept the pages &mdash; they're still searchable &mdash; and stopped recompiling them nightly. Shipping the replacement mattered more than defending the original.</p>
     </div>
   </div>
 </section>
@@ -504,8 +499,8 @@
         <div class="desc"><strong>Source of truth.</strong> Raw facts, sessions, key events. Multi-agent, query-time. <em>The librarian's filing cabinet.</em></div>
       </div>
       <div class="card">
-        <div class="name">WikAI</div>
-        <div class="desc"><strong>Compiled view.</strong> Auto-generated from Mnemo. Cross-referenced, browsable. Write-time. <em>The study guide.</em></div>
+        <div class="name">The Librarian</div>
+        <div class="desc"><strong>Discovery layer.</strong> One index across every file you own. Ask for a file in your own words, get a real path. <em>The card catalogue.</em></div>
       </div>
       <div class="card">
         <div class="name">Brain Files</div>
@@ -515,7 +510,7 @@
 
     <div class="callout" style="margin-top: 32px;">
       <div class="big">When they disagree, Mnemo wins.</div>
-      <div class="sub">WikAI is always regenerable from Mnemo. Brain files are ephemeral.</div>
+      <div class="sub">The index is always rebuildable from what's on disk. Brain files are ephemeral.</div>
     </div>
   </div>
 </section>
@@ -532,11 +527,11 @@
     <div class="grid" style="grid-template-columns: 1fr 1fr;">
       <div class="card">
         <div class="name">Andrej Karpathy</div>
-        <div class="desc"><a href="https://gist.github.com/karpathy" target="_blank">LLM Wiki pattern</a> (April 2026, 41,000+ bookmarks). Inspired WikAI's compile-don't-rederive design and the "idea file as publishing format" pattern in <code>SETUP-PROMPT.md</code>.</div>
+        <div class="desc"><a href="https://gist.github.com/karpathy" target="_blank">LLM Wiki pattern</a> (April 2026, 41,000+ bookmarks). Inspired WikAI, the compiled wiki layer we ran in production before The Librarian replaced it &mdash; and the "idea file as publishing format" pattern in <code>SETUP-PROMPT.md</code>.</div>
       </div>
       <div class="card">
         <div class="name">Nate B Jones</div>
-        <div class="desc"><a href="https://github.com/NateBJones-Projects/OB1" target="_blank">OpenBrain</a> + <a href="https://youtu.be/dxq7WtWxi44" target="_blank">"Your AI Does the Hard Work Then Deletes It"</a>. Inspired our three-layer architecture: structured store + compiled wiki + ephemeral brain files. <a href="https://natesnewsletter.substack.com/" target="_blank">Substack</a>.</div>
+        <div class="desc"><a href="https://github.com/NateBJones-Projects/OB1" target="_blank">OpenBrain</a> + <a href="https://youtu.be/dxq7WtWxi44" target="_blank">"Your AI Does the Hard Work Then Deletes It"</a>. Inspired our three-layer architecture: structured store + a discovery layer over everything + ephemeral brain files. <a href="https://natesnewsletter.substack.com/" target="_blank">Substack</a>.</div>
       </div>
       <div class="card">
         <div class="name">Google A2A Protocol</div>
