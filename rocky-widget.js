@@ -15,16 +15,6 @@
     return id;
   }
 
-  // --- Memory toggle (persisted to localStorage across sessions) ---
-  // Default: OFF. Visitor opts INTO memory, not out of it.
-  const MEMORY_KEY = "rocky_widget_memory_on";
-  function loadMemoryOn() {
-    try { return localStorage.getItem(MEMORY_KEY) === "1"; } catch { return false; }
-  }
-  function saveMemoryOn(on) {
-    try { localStorage.setItem(MEMORY_KEY, on ? "1" : "0"); } catch {}
-  }
-
   // --- State (persisted to sessionStorage for page navigation) ---
   // Bump STATE_VERSION whenever the state shape changes so old sessions
   // get a clean slate instead of crashing on stale fields.
@@ -51,7 +41,10 @@
   }
 
   let state = loadState();
-  let memoryOn = loadMemoryOn();
+  // Visitor memory is off by decision (Guy, 2026-07-26: keep Peter simple —
+  // he doesn't need to remember customers). Nothing about a visitor is stored
+  // server-side, so there is no toggle and nothing to wipe.
+  const memoryOn = false;
   const visitorId = getVisitorId();
 
   // --- Styles ---
@@ -153,21 +146,9 @@
     }
     .rw-wipe:hover { color: #e85040; }
 
-    /* Memory toggle — segmented control, live Mnemo demo */
-    .rw-memory-toggle {
-      display: inline-flex; gap: 0; padding: 2px;
-      background: #1a1a2e; border: 1px solid rgba(212,168,42,0.2);
-      border-radius: 10px; font-size: 10px; font-family: inherit;
-    }
-    .rw-memory-toggle button {
-      background: transparent; border: none; color: #9090a0;
-      padding: 4px 10px; border-radius: 8px; cursor: pointer;
-      font-size: 10px; font-family: inherit;
-      transition: background 0.2s, color 0.2s;
-    }
-    .rw-memory-toggle button:hover { color: #e8e8f0; }
-    .rw-memory-toggle button.active {
-      background: #d4a82a; color: #0c0c18; font-weight: 600;
+    /* Privacy note — replaces the old memory toggle (memory off by decision) */
+    .rw-privacy {
+      color: #9090a0; font-size: 10px; font-family: inherit;
     }
 
     @media (max-width: 480px) {
@@ -204,11 +185,8 @@
       <button class="rw-send">Send</button>
     </div>
     <div class="rw-footer">
-      <div class="rw-memory-toggle" role="group" aria-label="Memory mode">
-        <button class="rw-mem-off" data-mode="off" title="Stateless — Peter forgets after you close the chat">Quick answers</button>
-        <button class="rw-mem-on"  data-mode="on"  title="Conversation is saved to Mnemo Cortex so Peter remembers next visit">Mnemo Cortex</button>
-      </div>
-      <button class="rw-wipe" title="Clear my saved data">Clear data</button>
+      <span class="rw-privacy">Nothing is saved — every chat starts fresh</span>
+      <button class="rw-wipe" title="Clear this conversation">Clear chat</button>
     </div>
   `;
 
@@ -389,47 +367,22 @@
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
   });
 
-  // --- Wipe handler ---
+  // --- Clear-chat handler ---
+  // Local only: nothing about the visitor is stored server-side, so there is
+  // no server call to make here.
   const wipeBtn = win.querySelector(".rw-wipe");
-  wipeBtn.addEventListener("click", async () => {
-    if (!confirm("This will delete any data Peter has saved about you on the server and clear this chat. Continue?")) return;
-    try {
-      await fetch(API_BASE + "/api/wipe-visitor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ visitor_id: visitorId }),
-      });
-    } catch {}
+  wipeBtn.addEventListener("click", () => {
+    if (!confirm("Clear this conversation and start fresh?")) return;
     state.messages = [];
     state.phase = "idle";
     state.open = true;
     startingConversation = false;
     saveState(state);
     renderMessages();
-    addMessage("assistant", "Your data has been cleared. Fresh start — ask me anything.");
+    addMessage("assistant", "Cleared. Fresh start — ask me anything.");
   });
 
-  // --- Memory toggle handler ---
-  const memOffBtn = win.querySelector(".rw-mem-off");
-  const memOnBtn = win.querySelector(".rw-mem-on");
-  function renderMemoryToggle() {
-    memOffBtn.classList.toggle("active", !memoryOn);
-    memOnBtn.classList.toggle("active", memoryOn);
-  }
-  function setMemory(on) {
-    if (on === memoryOn) return;
-    memoryOn = on;
-    saveMemoryOn(on);
-    renderMemoryToggle();
-    addMessage("assistant", on
-      ? "Memory is on — I'll save this chat to Mnemo Cortex so I remember you next visit."
-      : "Memory is off — this chat is stateless. Nothing's saved.");
-  }
-  memOffBtn.addEventListener("click", () => setMemory(false));
-  memOnBtn.addEventListener("click", () => setMemory(true));
-
   // --- Init ---
-  renderMemoryToggle();
   if (state.open) {
     win.classList.add("open");
   }
