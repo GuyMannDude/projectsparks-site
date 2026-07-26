@@ -5,14 +5,14 @@
   const API_BASE = window.ROCKY_WIDGET_API || "";
   const ICON_URL = "/rocky-icon.svg";
 
-  // --- Visitor ID (persistent across sessions) ---
+  // --- Visitor ID ---
+  // Memory is off (see below), so nothing is ever sent with an id attached.
+  // We deliberately do NOT persist an id in localStorage: a stored identifier
+  // that is never used is a tracking artifact with no purpose, and the privacy
+  // policy says we don't keep one. Generated per page load, used by nothing
+  // unless memory is switched back on.
   function getVisitorId() {
-    let id = localStorage.getItem("rocky_visitor_id");
-    if (!id) {
-      id = "v_" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-      localStorage.setItem("rocky_visitor_id", id);
-    }
-    return id;
+    return "v_" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
   }
 
   // --- State (persisted to sessionStorage for page navigation) ---
