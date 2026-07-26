@@ -96,7 +96,7 @@
 
     <div class="callout" style="max-width: 780px; margin: 38px auto 0;">
       <div class="big">The big AI-memory systems run on millions in venture capital. Mnemo Cortex goes toe-to-toe with them &mdash; built by one 73-year-old maker on Social Security and a $20-a-month Claude subscription.</div>
-      <p style="max-width: 640px; margin: 0 auto; color: var(--ink-soft); font-size: 17px; line-height: 1.6;">Cross-agent memory, overnight dreaming, portable facts, local-first privacy &mdash; free and open source, no funding round required. The entire business model is the tip jar.</p>
+      <p style="max-width: 640px; margin: 0 auto; color: var(--ink-soft); font-size: 17px; line-height: 1.6;">Cross-agent memory, overnight dreaming, portable facts, local-first privacy &mdash; free and open source, no funding round required. Fork it, rewire it, bend it to how <em>you</em> work &mdash; it's your memory, on your machine, in plain files. The entire business model is the tip jar.</p>
     </div>
 
     <a href="#dreaming" style="display: block; max-width: 620px; margin: 36px auto 0;">
@@ -302,7 +302,7 @@
     <div class="section-label">This Is Rare. Really Rare.</div>
     <h2>Cross-Agent Cognition</h2>
     <div class="content">
-      <p>Rocky executes. Claude Code builds. Opie architects.</p>
+      <p>One agent executes. One builds. One architects.</p>
       <p>All of them: <strong>read each other. Learn from each other. Evolve together.</strong></p>
     </div>
 
@@ -312,11 +312,11 @@
     </div>
 
     <div class="arch">
-      <pre>  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>
+      <pre>  <span class="hl">Execution</span>       <span class="hl">Builder</span>       <span class="hl">Strategy</span>
   <span class="dim">Hermes</span>          <span class="dim">Claude Code</span>   <span class="dim">Claude Desktop</span>
        <span class="dim">|</span>               <span class="dim">|</span>               <span class="dim">|</span>
        <span class="dim">v</span>               <span class="dim">v</span>               <span class="dim">v</span>
-  <span class="acc">memory/rocky/</span>   <span class="acc">memory/cc/</span>    <span class="acc">memory/opie/</span>
+  <span class="acc">memory/exec/</span>    <span class="acc">memory/build/</span> <span class="acc">memory/arch/</span>
        <span class="dim">\</span>              <span class="dim">|</span>              <span class="dim">/</span>
         <span class="dim">\</span>             <span class="dim">|</span>             <span class="dim">/</span>
          <span class="dim">-------&gt;</span> <span class="hl">MNEMO CORTEX</span> <span class="dim">&lt;------</span>
@@ -333,7 +333,7 @@
     <h2>Dreams Across Agents</h2>
     <div class="content">
       <p>Every night at 3 AM, Mnemo reads every agent's memories from the day. An LLM synthesizes them into a single brief: what was built, what was decided, what's blocked, what each agent should know about the others' work.</p>
-      <p>Every agent wakes up caught up. <strong>No manual relay. No "hey, tell Rocky what CC did." It just happens.</strong></p>
+      <p>Every agent wakes up caught up. <strong>No manual relay. No "hey, go tell the other one what you just did." It just happens.</strong></p>
     </div>
 
     <div class="callout">
@@ -342,7 +342,7 @@
     </div>
 
     <div class="arch">
-      <pre>  <span class="dim">3:15 AM &mdash; IGOR-2</span>
+      <pre>  <span class="dim">3:15 AM &mdash; while you sleep</span>
 
   <span class="hl">mnemo-dream.py</span>
     <span class="dim">1.</span> Harvest all agent memories since last dream
@@ -351,7 +351,7 @@
 
   <span class="dim">Next morning, each agent boots:</span>
 
-  <span class="hl">Rocky</span>           <span class="hl">CC</span>            <span class="hl">Opie</span>
+  <span class="hl">Execution</span>       <span class="hl">Builder</span>       <span class="hl">Strategy</span>
   <span class="acc">reads dream</span>     <span class="acc">reads dream</span>   <span class="acc">reads dream</span>
   <span class="dim">knows what</span>      <span class="dim">knows what</span>    <span class="dim">knows what</span>
   <span class="dim">everyone did</span>    <span class="dim">everyone did</span>  <span class="dim">everyone did</span></pre>
@@ -359,6 +359,35 @@
 
     <div class="content" style="margin-top: 28px;">
       <p>Cost: one cheap LLM call per night. The dream brief is searchable like any other memory &mdash; agents can recall dreams from weeks ago. <strong>Cross-agent awareness that compounds over time.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- Cortex Stick -->
+<section id="cortex-stick">
+  <div class="container">
+    <div class="section-label">Memory You Can Carry</div>
+    <h2>Cortex Stick &mdash; sneakernet for AI memory</h2>
+    <div class="content">
+      <p>You work from two desks. Both machines run Mnemo, and they drift &mdash; the decision you saved at one desk doesn't exist at the other. The usual fixes put your AI's working memory on somebody else's wire, or need infrastructure you don't want to run.</p>
+      <p><strong>The Cortex Stick is a USB courier between two full Mnemo installs.</strong> Nothing runs on the stick; it carries the delta. Plug in, sync, pull it out, carry it, plug it in &mdash; the other machine catches up. <strong>No cloud, no VPN, no account.</strong></p>
+    </div>
+
+    <div class="callout">
+      <div class="big">It ships inside Mnemo Cortex.</div>
+      <div class="sub">No separate download &mdash; if you have Mnemo, you have the courier. Optional AES-256, and the key never lives on the stick.</div>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="dim">$</span> mnemo-cortex stick init --encrypt /media/you/USB   <span class="dim"># or plain, your call</span>
+  <span class="dim">$</span> mnemo-cortex stick sync                            <span class="dim"># at each desk</span>
+  <span class="dim">$</span> mnemo-cortex stick watch --notify                  <span class="dim"># or never touch a terminal</span>
+
+  <span class="hl">Safe to remove ✓</span></pre>
+    </div>
+
+    <div style="text-align: center; margin-top: 36px;">
+      <a href="/cortex-stick" class="btn btn-primary">How the courier works</a>
     </div>
   </div>
 </section>
@@ -379,7 +408,7 @@
     </div>
 
     <div class="arch">
-      <pre>  <span class="dim">3:30 AM &mdash; IGOR-2 (15 min after Dreaming)</span>
+      <pre>  <span class="dim">3:30 AM &mdash; 15 min after Dreaming</span>
 
   <span class="hl">mnemo-wiki-compile.py</span>
     <span class="dim">1.</span> Harvest recent memories from Mnemo + AgentB writebacks
@@ -653,16 +682,16 @@
 
     <div class="grid" style="grid-template-columns: 1fr 1fr 1fr;">
       <div class="card" style="text-align: center;">
-        <div class="name">Rocky</div>
-        <div class="desc">Execution brain. Gets better at testing, customer service, creative work.</div>
+        <div class="name">Execution Agent</div>
+        <div class="desc">Gets better at testing, customer service, creative work.</div>
       </div>
       <div class="card" style="text-align: center;">
-        <div class="name">CC</div>
-        <div class="desc">Builder brain. Gets better at wiring, debugging, deploying.</div>
+        <div class="name">Builder Agent</div>
+        <div class="desc">Gets better at wiring, debugging, deploying.</div>
       </div>
       <div class="card" style="text-align: center;">
-        <div class="name">Opie</div>
-        <div class="desc">Strategy brain. Gets better at architecture, planning, positioning.</div>
+        <div class="name">Strategy Agent</div>
+        <div class="desc">Gets better at architecture, planning, positioning.</div>
       </div>
     </div>
 
