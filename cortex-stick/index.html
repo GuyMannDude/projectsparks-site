@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cortex Stick — Coming Soon — Project Sparks</title>
-<meta name="description" content="Cortex Stick — agent memory you can carry. Mnemo Cortex packaged to travel with you. Concept stage, coming soon from Project Sparks.">
-<meta property="og:title" content="Cortex Stick — Coming Soon">
-<meta property="og:description" content="Agent memory you can carry. Mnemo Cortex packaged to travel with you instead of living on one machine. Coming soon.">
+<title>Cortex Stick — Sneakernet for AI Memory</title>
+<meta name="description" content="A USB stick that couriers your AI's memory between two machines. No cloud, no VPN, no account. AES-256 encryption, yank-proof syncs. Shipped and open source — part of Mnemo Cortex.">
+<meta property="og:title" content="Cortex Stick — Sneakernet for AI Memory">
+<meta property="og:description" content="Your AI doesn't know you. This does. And it fits in your pocket. A USB courier that carries agent memory between two desks — no cloud, no VPN, no account.">
 <meta property="og:image" content="https://projectsparks.ai/og-image.png">
 <meta property="og:url" content="https://projectsparks.ai/cortex-stick">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cortex Stick — Coming Soon">
-<meta name="twitter:description" content="Agent memory you can carry. Mnemo Cortex packaged to travel with you instead of living on one machine. Coming soon.">
+<meta name="twitter:title" content="Cortex Stick — Sneakernet for AI Memory">
+<meta name="twitter:description" content="Your AI doesn't know you. This does. And it fits in your pocket. A USB courier that carries agent memory between two desks — no cloud, no VPN, no account.">
 <meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
 <link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
@@ -21,6 +21,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .journey {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; flex-wrap: wrap;
+    margin: 38px 0 8px;
+  }
+  .journey .stop {
+    display: flex; flex-direction: column;
+    align-items: center; text-align: center;
+    flex: 1 1 0;
+    min-width: 140px; max-width: 210px;
+    padding: 22px 14px;
+    background: var(--chrome-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--bevel);
+  }
+  .journey .stop .emoji { font-size: 32px; line-height: 1; margin-bottom: 10px; }
+  .journey .stop .label {
+    font-family: var(--label);
+    font-size: 11.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 4px;
+  }
+  .journey .stop .desc { color: var(--ink-soft); font-size: 14px; line-height: 1.5; }
+  .journey .arrow svg { display: block; }
+
+  @media (max-width: 768px) {
+    .journey .arrow { transform: rotate(90deg); }
+  }
+</style>
 </head>
 <body>
 
@@ -39,18 +71,227 @@
   </div>
 </nav>
 
+<!-- Hero -->
 <section>
   <div class="container" style="text-align: center;">
-    <div class="section-label centered">Coming Soon</div>
+    <div class="section-label centered">Shipped &middot; Part of Mnemo Cortex</div>
     <h1 class="chrome-text">Cortex Stick</h1>
-    <p class="subtitle">Agent memory you can carry.</p>
+    <p class="subtitle">Sneakernet for <span class="gilt">AI memory.</span></p>
 
-    <div class="content" style="max-width: 600px; margin: 36px auto 0;">
-      <p>Your agents' memory shouldn't live and die on one machine. <strong>Cortex Stick</strong> is <a href="/">Mnemo Cortex</a> packaged to travel with you — plug in, and your agents pick up where they left off.</p>
-      <p style="color: var(--ink-faint);">Concept stage. Details as they firm up — watch <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a> for the announcement.</p>
+    <div class="content" style="max-width: 700px; margin: 0 auto;">
+      <p style="font-size: 20px;">Your AI doesn't know you. This does. <strong>And it fits in your pocket.</strong></p>
+      <p>You work from two desks — home and the shop, home and the office. Both machines run <a href="/">Mnemo</a>, and they drift: the decision you saved at one desk doesn't exist at the other. The usual fixes put your AI's working memory on somebody else's wire, or need infrastructure you don't want to run.</p>
+      <p><strong>The Cortex Stick is a USB stick that works as a courier between two full Mnemo installations.</strong> Plug it in, sync, pull it out, carry it, plug it in. The other machine catches up. No cloud, no VPN, no account.</p>
     </div>
 
-    <div style="margin-top: 36px;">
+    <div class="btn-row centered">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/docs/cortex-stick.md" target="_blank" class="btn btn-primary">Read the Docs</a>
+      <a href="#quickstart" class="btn btn-ghost">Quick Start</a>
+    </div>
+  </div>
+</section>
+
+<!-- Doctrine -->
+<section>
+  <div class="container">
+    <div class="section-label">The Doctrine</div>
+    <h2>It is not a server. It's the messenger, not the machine.</h2>
+    <div class="content">
+      <p>There's no database engine on the stick, no embedder, nothing running. Both desks keep their own full Mnemo install — the stick carries only the delta between them. That's the whole design, and it's why it works on a $6 USB stick with no drivers and no admin rights.</p>
+      <p>It also means the stick is not a backup and not a single point of failure. Lose it and both machines still have everything they had. You lose the courier, not the cargo.</p>
+    </div>
+
+    <div class="journey">
+      <div class="stop">
+        <div class="emoji">🔌</div>
+        <div class="label">Plug In</div>
+        <div class="desc">Desk A syncs what changed since last time</div>
+      </div>
+      <div class="arrow" aria-hidden="true">
+        <svg width="40" height="16" viewBox="0 0 40 16">
+          <path d="M2 8 H28" stroke="#b9c6d6" stroke-width="1.6" fill="none"/>
+          <path d="M28 3 L38 8 L28 13 Z" fill="#d4a82a"/>
+        </svg>
+      </div>
+      <div class="stop">
+        <div class="emoji">🚶</div>
+        <div class="label">Carry</div>
+        <div class="desc">In your pocket. No network involved at all</div>
+      </div>
+      <div class="arrow" aria-hidden="true">
+        <svg width="40" height="16" viewBox="0 0 40 16">
+          <path d="M2 8 H28" stroke="#b9c6d6" stroke-width="1.6" fill="none"/>
+          <path d="M28 3 L38 8 L28 13 Z" fill="#d4a82a"/>
+        </svg>
+      </div>
+      <div class="stop">
+        <div class="emoji">🧠</div>
+        <div class="label">Catch Up</div>
+        <div class="desc">Desk B merges it. Your agent knows what you did</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What travels -->
+<section>
+  <div class="container">
+    <div class="section-label">The Cargo</div>
+    <h2>What actually travels</h2>
+    <div class="content">
+      <p>Only <strong>truth files</strong> cross. Vector indexes, caches and sidecars are derived data — each machine rebuilds its own. New memories are recallable the moment they land; embeddings catch up on the next backfill pass.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🗂️</div>
+        <div class="name">Memories</div>
+        <div class="desc">The per-agent memory files — the actual truth store, one plain file per record.</div>
+      </div>
+      <div class="card">
+        <div class="icon">🧭</div>
+        <div class="name">Trajectories</div>
+        <div class="desc">The append-only "how we did it" logs. Union-merged, so an append-only truth never loses a row.</div>
+      </div>
+      <div class="card">
+        <div class="icon">📌</div>
+        <div class="name">Facts</div>
+        <div class="desc">The structured Facts store travels as its own channel, merged row-wise under the same promotion-ladder rules each host enforces locally.</div>
+      </div>
+      <div class="card">
+        <div class="icon">📓</div>
+        <div class="name">Brain</div>
+        <div class="desc">Optionally your notes repo — the stick holds a git repo both machines push and pull through.</div>
+      </div>
+      <div class="card">
+        <div class="icon">📁</div>
+        <div class="name">Pad</div>
+        <div class="desc">A free-form folder. Yours. Drag in-flight work between desks without thinking about it.</div>
+      </div>
+      <div class="card gilded">
+        <div class="icon">🚫</div>
+        <div class="name">Deliberately Not</div>
+        <div class="desc">Raw session logs stay put and each machine digests locally. Fact history stays local by design — each host's audit log describes what happened <em>there</em>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick start -->
+<section id="quickstart">
+  <div class="container">
+    <div class="section-label">Quick Start</div>
+    <h2>It's already installed. It's part of Mnemo.</h2>
+    <div class="content">
+      <p>There's no separate download. If you have <a href="/">Mnemo Cortex</a>, you have the courier — it's the <code>stick</code> command.</p>
+    </div>
+
+    <div class="arch">
+      <pre>  <span class="dim"># once, on either machine, with the stick mounted — your choice of mode:</span>
+  <span class="dim">$</span> mnemo-cortex stick init /media/you/USB             <span class="dim"># plain: readable by eye</span>
+  <span class="dim">$</span> mnemo-cortex stick init --encrypt /media/you/USB   <span class="dim"># encrypted: passphrase</span>
+
+  <span class="dim"># encrypted sticks only — once, on the OTHER machine:</span>
+  <span class="dim">$</span> mnemo-cortex stick unlock
+
+  <span class="dim"># then, at each desk, whenever the stick is in:</span>
+  <span class="dim">$</span> mnemo-cortex stick sync
+
+  <span class="hl">Safe to remove ✓</span></pre>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p><code>stick status</code> shows exactly what <em>would</em> travel in each direction without changing anything, plus when each machine last synced. Encrypted sticks need one extra package per host: <code>pip install 'mnemo-cortex[stick-crypto]'</code>.</p>
+    </div>
+
+    <div class="callout" style="margin-top: 40px;">
+      <div class="big">Or never touch a terminal at all.</div>
+      <div class="sub"><code>mnemo-cortex stick watch --notify</code> run as a background service makes it plug-and-walk-away: insert the stick, a desktop notification tells you what traveled and that it's safe to remove, pull it out. A <em>refusal</em> raises a notification too — unattended mode never hides a stick that needs a human. The docs carry ready-made recipes for systemd and Windows Task Scheduler.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Encryption -->
+<section>
+  <div class="container">
+    <div class="section-label">Encryption</div>
+    <h2>A lost stick should be a lost stick, not a data breach.</h2>
+    <div class="content">
+      <p>A plaintext stick is a notebook full of your AI's working memory — lose it and whoever finds it reads everything. So encryption is built in, optional, and honest about what it does.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="name">AES-256, everything</div>
+        <div class="desc">Every truth file on the stick is ciphertext — memories, trajectories, pad files, conflict backups — and the brain travels as an encrypted bundle. A found stick leaks <em>structure</em> (file names, counts, which agents exist) but never content.</div>
+      </div>
+      <div class="card">
+        <div class="name">The key is never on the stick</div>
+        <div class="desc">It lives on each host, derived from your passphrase. The stick carries only a salt and a fingerprint — so a wrong passphrase fails loudly instead of writing garbage. Enroll each machine once; after that it runs unattended.</div>
+      </div>
+      <div class="card">
+        <div class="name">Tampering is caught twice</div>
+        <div class="desc">The manifest hash check refuses the generation, and the cipher's own authentication tag refuses the decrypt. Altered content can never reach a host as truth.</div>
+      </div>
+      <div class="card">
+        <div class="name">Both modes stay first-class</div>
+        <div class="desc">Plain sticks are human-auditable and zero-dependency. Encrypted sticks survive being lost. A plain stick upgrades in place later with <code>stick encrypt</code>, and it's resumable if interrupted.</div>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p><strong>Two honest caveats, in the docs and here.</strong> Upgrading a plaintext stick can leave old plaintext lingering in the stick's <em>free space</em> — flash wear-levelling defeats targeted scrubbing, so zero-fill afterwards if that era matters. And losing the passphrase loses the courier, not your data: both machines still hold their full installs. Re-init a fresh stick.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Safety -->
+<section>
+  <div class="container">
+    <div class="section-label">How It Stays Safe</div>
+    <h2>USB sticks get yanked. This one is built expecting it.</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div class="name">Nothing moves until every check passes</div>
+        <div class="desc">A sync <em>plans</em> the entire run first — every guard fires before a single byte is copied. So a refusal really does mean nothing changed, on either machine or the stick.</div>
+      </div>
+      <div class="card">
+        <div class="name">Yank-proof commits</div>
+        <div class="desc">Files are hashed into a manifest written <em>last</em>. A stick pulled mid-sync fails verification next time and refuses loudly rather than merging from a torn state. "Safe to remove ✓" prints only after every written file is read back and verified.</div>
+      </div>
+      <div class="card">
+        <div class="name">Torn sticks repair themselves</div>
+        <div class="desc"><code>stick repair</code> rebuilds the manifest from what's actually on the stick and the next sync carries on — no manual surgery, nothing deleted. It works <em>without</em> the passphrase: anyone can make a stick consistent again, only key-holders can read it.</div>
+      </div>
+      <div class="card">
+        <div class="name">Every sync is a 3-way merge</div>
+        <div class="desc">The stick remembers what each machine had at last sync, so it can tell "new on the other side" from "deleted here." No silent overwrites, and deleted memories don't come back from the dead.</div>
+      </div>
+      <div class="card">
+        <div class="name">Conflicts never destroy data</div>
+        <div class="desc">Edit the same memory at both desks and one version wins deterministically — the loser is preserved on the stick, not discarded. If one desk edited what the other deleted, the edit wins.</div>
+      </div>
+      <div class="card">
+        <div class="name">Massacre guard</div>
+        <div class="desc">If a sync would delete more than a quarter of a store — a wiped or replaced machine — it refuses and explains itself. It only proceeds if you insist.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Honest limits -->
+<section>
+  <div class="container">
+    <div class="section-label">What It Doesn't Do Yet</div>
+    <h2>Two desks, one human.</h2>
+    <div class="content">
+      <p>Multi-user shared lanes are <em>designed</em> for — the merge machinery is already order-safe — but they aren't shipped, so don't plan a team around it today. Raw session logs don't travel, and neither does fact history: each machine's audit log is a record of what happened on that machine, and we'd rather it stay true than make it portable.</p>
+      <p>Everything on the stick is a plain file. On a plaintext stick your data is sitting right there, readable. On an encrypted stick the same files are there, dark without the passphrase. No format lock-in either way.</p>
+    </div>
+
+    <div class="btn-row centered" style="margin-top: 36px;">
+      <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/docs/cortex-stick.md" target="_blank" class="btn btn-primary">Full Documentation</a>
       <a href="/products" class="btn btn-ghost">&larr; All products</a>
     </div>
   </div>
