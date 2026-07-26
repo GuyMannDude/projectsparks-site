@@ -195,8 +195,8 @@
     </div>
 
     <div class="callout" style="margin-top: 40px;">
-      <div class="big">Want the same idea, even smaller?</div>
-      <div class="sub"><a href="https://github.com/GuyMannDude/disco-bus" target="_blank">Disco-Bus</a> is the distilled, generic version of this pattern. ~1000 LOC, no Mnemo coupling, push-not-poll listeners, MCP-ready, one-command install (<code>./install.sh</code> or a JSON-manifest-driven <code>./robot-install.sh</code> for LLM agents). Different shape, same family.</div>
+      <div class="big">This is the one we actually run.</div>
+      <div class="sub">Disco-Bus carries the traffic between our own agents every day &mdash; same dispatcher, same listeners, same code you'd install. ~1000 LOC, <strong>no Mnemo coupling</strong> (bring your own agents, memory optional), push-not-poll listeners, MCP-ready, one-command install (<code>./install.sh</code>, or a JSON-manifest-driven <code>./robot-install.sh</code> so an AI agent can install it for you). It replaced <strong>Sparks Bus</strong>, our earlier Mnemo-coupled version &mdash; if you found that one first, this is where it went.</div>
     </div>
   </div>
 </section>
@@ -230,18 +230,19 @@
   </div>
 </section>
 
-<!-- SETUP-PROMPT -->
+<!-- Let an agent install it -->
 <section>
   <div class="container">
     <div class="section-label">Idea File as Publishing Format</div>
-    <h2>Bootstrap a deployment by pasting one prompt into your AI agent</h2>
+    <h2>Don't install it yourself &mdash; hand it to your agent</h2>
     <div class="content">
-      <p>The repo includes <a href="https://github.com/GuyMannDude/disco-bus/blob/main/SETUP-PROMPT.md" target="_blank"><code>SETUP-PROMPT.md</code></a> — a self-contained prompt any AI agent can read to build the entire bus on a fresh machine. Architecture, schema, lifecycle, A2A mapping, and step-by-step build instructions, all in one paste.</p>
-      <p>Karpathy's <em>"idea file as publishing format"</em> pattern. Don't ship a tool — ship a description an AI can build from.</p>
+      <p>Disco-Bus ships a machine-readable install path: <a href="https://github.com/GuyMannDude/disco-bus/blob/master/robot.install" target="_blank"><code>robot.install</code></a> is a JSON manifest of the deployment, and <a href="https://github.com/GuyMannDude/disco-bus/blob/master/robot-install.sh" target="_blank"><code>robot-install.sh</code></a> reads it and does the work, emitting a single JSON object on stdout so an agent or a CI job can confirm every step. There's a plain <code>./install.sh</code> too, if you'd rather drive.</p>
+      <p>Karpathy's <em>"idea file as publishing format"</em> pattern, applied to setup: don't ship a tool and a wall of instructions &mdash; ship a description something else can build from.</p>
     </div>
 
-    <div style="text-align: center; margin-top: 36px;">
-      <a href="https://github.com/GuyMannDude/disco-bus/blob/main/SETUP-PROMPT.md" target="_blank" class="btn btn-primary">Read SETUP-PROMPT.md</a>
+    <div class="btn-row centered">
+      <a href="https://github.com/GuyMannDude/disco-bus/blob/master/robot.install" target="_blank" class="btn btn-primary">Read robot.install</a>
+      <a href="https://github.com/GuyMannDude/disco-bus#readme" target="_blank" class="btn btn-ghost">Full README</a>
     </div>
   </div>
 </section>
