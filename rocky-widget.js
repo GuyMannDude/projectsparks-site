@@ -5,15 +5,15 @@
   const API_BASE = window.ROCKY_WIDGET_API || "";
   const ICON_URL = "/rocky-icon.svg";
 
-  // --- Visitor ID ---
-  // Memory is off (see below), so nothing is ever sent with an id attached.
-  // We deliberately do NOT persist an id in localStorage: a stored identifier
-  // that is never used is a tracking artifact with no purpose, and the privacy
-  // policy says we don't keep one. Generated per page load, used by nothing
-  // unless memory is switched back on.
-  function getVisitorId() {
-    return "v_" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
-  }
+  // --- No visitor identity at all ---
+  // There is no visitor id, in any form or storage. Peter does not know who he
+  // is talking to and has no way to find out. Removed 2026-07-28 along with the
+  // memory backend (Guy: "we no longer need mnemo or switching for Peter").
+  // The id used to be generated per page load and sent with every request while
+  // being read by nothing — an identifier with no purpose is a tracking
+  // artifact, and the privacy policy already promised we don't keep one.
+  // sessionStorage below holds the visible conversation only, so it survives
+  // page navigation and dies with the tab.
 
   // --- State (persisted to sessionStorage for page navigation) ---
   // Bump STATE_VERSION whenever the state shape changes so old sessions
@@ -41,11 +41,6 @@
   }
 
   let state = loadState();
-  // Visitor memory is off by decision (Guy, 2026-07-26: keep Peter simple —
-  // he doesn't need to remember customers). Nothing about a visitor is stored
-  // server-side, so there is no toggle and nothing to wipe.
-  const memoryOn = false;
-  const visitorId = getVisitorId();
 
   // --- Styles ---
   const style = document.createElement("style");
@@ -236,10 +231,8 @@
       content: m.content,
     }));
 
-    // Only pass visitor_id when memory toggle is ON — that's what enables
-    // server-side Mnemo recall and per-visitor save.
+    // The conversation is the entire payload. No identity travels with it.
     const payload = { messages: apiMessages };
-    if (memoryOn) payload.visitor_id = visitorId;
 
     try {
       const res = await fetch(API_BASE + "/api/chat", {
@@ -255,62 +248,15 @@
     }
   }
 
-  async function saveConversation() {
-    if (!memoryOn) return;
-    const recentMsgs = state.messages.slice(-6).map((m) => `${m.role}: ${m.content}`).join("\n");
-    try {
-      await fetch(API_BASE + "/api/save-visitor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ visitor_id: visitorId, conversation_snippet: recentMsgs }),
-      });
-    } catch {}
-  }
-
-  async function checkReturning() {
-    try {
-      const res = await fetch(API_BASE + "/api/recall/" + visitorId);
-      const data = await res.json();
-      return data.memory;
-    } catch { return null; }
-  }
-
-
   // --- Open flow ---
-  // No identity gate. Visitor asks anything, Peter answers anything.
-  // If memory toggle is ON and Mnemo has prior context, warm welcome-back.
+  // No identity gate and no welcome-back: every visitor is a new one, every
+  // time. Peter opens the same way for everybody.
   let startingConversation = false;
   async function startConversation() {
     if (state.messages.length > 0 || startingConversation) return;
     startingConversation = true;
     state.phase = "chat";
     saveState(state);
-
-    if (memoryOn) {
-      const memory = await checkReturning();
-      if (memory) {
-        showTyping();
-        try {
-          const res = await fetch(API_BASE + "/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              messages: [{ role: "user", content: "(Returning visitor opened the chat. Greet them warmly using what you remember. One short sentence.)" }],
-              visitor_id: visitorId,
-            }),
-          });
-          hideTyping();
-          if (res.ok) {
-            const data = await res.json();
-            addMessage("assistant", data.reply);
-            startingConversation = false;
-            return;
-          }
-        } catch {
-          hideTyping();
-        }
-      }
-    }
 
     addMessage("assistant", "Hey! Ask me anything about Project Sparks.");
     startingConversation = false;
@@ -319,7 +265,6 @@
   // --- Send handler ---
   // No phases, no identity parsing. Visitor sends, Peter answers.
   let sending = false;
-  let visitorMsgCount = 0;
   async function handleSend() {
     const text = input.value.trim();
     if (!text || sending) return;
@@ -328,17 +273,11 @@
     input.value = "";
 
     addMessage("visitor", text);
-    visitorMsgCount += 1;
 
     showTyping();
     const reply = await sendChat();
     hideTyping();
     addMessage("assistant", reply);
-
-    // Periodic save — every 3 visitor messages — only if memory toggle is ON.
-    if (visitorMsgCount % 3 === 0) {
-      saveConversation();
-    }
 
     sending = false;
     sendBtn.disabled = false;
