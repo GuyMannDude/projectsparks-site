@@ -229,6 +229,13 @@ install_frankenclaw() {
   echo -e "${BOLD}${GOLD}FrankenClaw${RESET} — MCP Tool Server"
   divider
 
+  # Withdrawn from public distribution 2026-08-17 (security precaution).
+  # The repo is private; a clone attempt would fail with an auth prompt.
+  echo -e "${GOLD}FrankenClaw was withdrawn from public distribution on 2026-08-17"
+  echo -e "as a security precaution. Existing installs keep working; new public"
+  echo -e "installs are not available. Details: https://projectsparks.ai/frankenclaw${RESET}"
+  return 0
+
   local dir="$INSTALL_BASE/frankenclaw"
   clone_or_update "FrankenClaw" "https://github.com/GuyMannDude/frankenclaw.git" "$dir"
 
