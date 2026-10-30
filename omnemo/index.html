@@ -47,6 +47,16 @@
   }
   .table-wrap { overflow-x: auto; }
   .fine-print { font-size: 13.5px; color: var(--ink-faint); margin: 18px 0 0; }
+  .hero-band {
+    max-width: 1160px;
+    display: grid; grid-template-columns: 1fr;
+    gap: 40px; align-items: center;
+  }
+  .hero-band .feature-panel { margin: 0; }
+  .hero-band code { white-space: nowrap; }
+  @media (min-width: 900px) {
+    .hero-band { grid-template-columns: 1fr 1fr; gap: 48px; }
+  }
 </style>
 </head>
 <body>
@@ -66,23 +76,39 @@
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- Hero: Omnemo left, Omnemo OS right -->
 <section>
-  <div class="container" style="text-align: center;">
-    <div class="section-label centered">Free &middot; From Project Sparks</div>
-    <h1 class="chrome-text">Omnemo</h1>
-    <p class="subtitle">Memory for <span class="gilt">Omarchy.</span></p>
+  <div class="container hero-band">
+    <div style="text-align: center;">
+      <div class="section-label centered">Free &middot; From Project Sparks</div>
+      <h1 class="chrome-text">Omnemo</h1>
+      <p class="subtitle">Memory for <span class="gilt">Omarchy.</span></p>
 
-    <div class="content" style="max-width: 700px; margin: 0 auto;">
-      <p style="font-size: 20px;"><strong>One shared memory for every agent harness on the box.</strong> Save in one, recall in any.</p>
-      <p>Omarchy made AI coding agents part of the system. Omnemo gives them the one thing they still wake up without: memory. Claude Code remembers what Codex did yesterday. Your agent knows this app crashed before &mdash; and what fixed it.</p>
-      <p>Built just for Omarchy, from Omarchy's own add-on points. Not a fork, not a patch &mdash; so it survives every <code>omarchy update</code>.</p>
+      <div class="content" style="max-width: 700px; margin: 0 auto;">
+        <p style="font-size: 20px;"><strong>One shared memory for every agent harness on the box.</strong> Save in one, recall in any.</p>
+        <p>Omarchy made AI coding agents part of the system. Omnemo gives them the one thing they still wake up without: memory. Claude Code remembers what Codex did yesterday. Your agent knows this app crashed before &mdash; and what fixed it.</p>
+        <p>Built just for Omarchy, from Omarchy's own add-on points. Not a fork, not a patch &mdash; so it survives every <code>omarchy update</code>.</p>
+      </div>
+
+      <div class="btn-row centered">
+        <a href="https://github.com/GuyMannDude/omnemo" target="_blank" class="btn btn-primary">GitHub</a>
+        <a href="https://github.com/GuyMannDude/omnemo/blob/main/INSTALL.md" target="_blank" class="btn btn-primary">Install guide</a>
+        <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+%E2%80%94+free+memory+for+Omarchy%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+      </div>
     </div>
 
-    <div class="btn-row centered">
-      <a href="https://github.com/GuyMannDude/omnemo" target="_blank" class="btn btn-primary">GitHub</a>
-      <a href="https://github.com/GuyMannDude/omnemo/blob/main/INSTALL.md" target="_blank" class="btn btn-primary">Install guide</a>
-      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+%E2%80%94+free+memory+for+Omarchy%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+    <!-- Omnemo OS -->
+    <div class="feature-panel" id="os">
+      <div class="kicker">Coming soon</div>
+      <div class="headline">Omnemo OS</div>
+      <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 8px;">
+        An easy-to-use desktop with memory built in.
+      </p>
+      <div class="content" style="max-width: 620px; margin: 18px auto 0; text-align: center;">
+        <p>Install it with one command. Remove it with one, and you're back to exact stock. It survives updates.</p>
+        <p>Watch the Omnemo repo on GitHub for the release.</p>
+        <p class="fine-print">Built on Omarchy (MIT).</p>
+      </div>
     </div>
   </div>
 </section>
@@ -249,24 +275,6 @@ codex</span>
     <p style="max-width: 680px; margin: 18px auto 0; font-size: 16px; line-height: 1.65; color: var(--ink-muted);">Omnemo is free and open source &mdash; no price, no premium tier, ever. It's funded by donations from people whose agents finally remembered something. If that's you, the jar keeps development moving. If not, use it, share it, and make something good.</p>
     <div class="btn-row centered" style="margin-top: 22px;">
       <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+%E2%80%94+free+memory+for+Omarchy%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
-    </div>
-  </div>
-</section>
-
-<!-- Omnemo OS -->
-<section id="os">
-  <div class="container">
-    <div class="feature-panel">
-      <div class="kicker">Coming soon</div>
-      <div class="headline">Omnemo OS</div>
-      <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 8px;">
-        An easy-to-use desktop with memory built in.
-      </p>
-      <div class="content" style="max-width: 620px; margin: 18px auto 0; text-align: center;">
-        <p>Install it with one command. Remove it with one, and you're back to exact stock. It survives updates.</p>
-        <p>Watch the Omnemo repo on GitHub for the release.</p>
-        <p class="fine-print">Built on Omarchy (MIT).</p>
-      </div>
     </div>
 
     <div class="btn-row centered" style="margin-top: 36px;">
