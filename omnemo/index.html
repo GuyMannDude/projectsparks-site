@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omnemo — Memory for Omarchy</title>
+<meta name="description" content="One shared memory for every AI agent on your Omarchy box. Save in one, recall in any. Free and open source, funded by donations — part of the Mnemo family.">
+<meta property="og:title" content="Omnemo — Memory for Omarchy">
+<meta property="og:description" content="One shared memory for every agent harness on the box. Claude Code remembers what Codex did yesterday. Save in one, recall in any.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/omnemo">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Omnemo — Memory for Omarchy">
+<meta name="twitter:description" content="One shared memory for every agent harness on the box. Claude Code remembers what Codex did yesterday. Save in one, recall in any.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .host-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 12px;
+    margin: 24px 0 26px;
+  }
+  .host-chip {
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 13px 8px;
+    text-align: center;
+    font-size: 14.5px;
+    font-weight: 600;
+    background: var(--panel);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(19,28,40,0.06);
+  }
+  .host-chip span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px; font-weight: 400;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+  .table-wrap { overflow-x: auto; }
+  .fine-print { font-size: 13.5px; color: var(--ink-faint); margin: 18px 0 0; }
+</style>
+</head>
+<body>
+
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
+      Mnemo Cortex
+    </a>
+    <div class="nav-links">
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label centered">Free &middot; From the Mnemo family</div>
+    <h1 class="chrome-text">Omnemo</h1>
+    <p class="subtitle">Memory for <span class="gilt">Omarchy.</span></p>
+
+    <div class="content" style="max-width: 700px; margin: 0 auto;">
+      <p style="font-size: 20px;"><strong>One shared memory for every agent harness on the box.</strong> Save in one, recall in any.</p>
+      <p>Omarchy made AI coding agents part of the system. Omnemo gives them the one thing they still wake up without: memory. Claude Code remembers what Codex did yesterday. Your agent knows this app crashed before &mdash; and what fixed it.</p>
+      <p>Built just for Omarchy, from Omarchy's own add-on points. Not a fork, not a patch &mdash; so it survives every <code>omarchy update</code>.</p>
+    </div>
+
+    <div class="btn-row centered">
+      <a href="https://github.com/GuyMannDude/omnemo" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="https://github.com/GuyMannDude/omnemo/blob/main/INSTALL.md" target="_blank" class="btn btn-primary">Install guide</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+%E2%80%94+free+memory+for+Omarchy%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+    </div>
+  </div>
+</section>
+
+<!-- What you get -->
+<section>
+  <div class="container">
+    <div class="section-label">What You Get</div>
+    <h2>One memory. Every agent on the box can use it.</h2>
+
+    <div class="grid">
+      <div class="card gilded">
+        <div class="icon">🔁</div>
+        <div class="name">Save in one, recall in any</div>
+        <div class="desc">One memory store that all your agents plug into: Claude Code, Codex, OpenCode, Crush and Gemini. Pi gets the memory skill only for now &mdash; its plug-in isn't supported yet. Something one agent saved, another agent can find.</div>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <div class="name">Remembers like a person</div>
+        <div class="desc">Not a fixed database. When it looks something up, it weighs how close the match is, how recent it is, and how important it is. Different kinds of memories fade at different speeds, the way yours do.</div>
+      </div>
+      <div class="card">
+        <div class="icon">📖</div>
+        <div class="name">The memory skill</div>
+        <div class="desc">A skill that teaches Claude Code, Codex and Pi <em>when</em> to remember and <em>when</em> to look back. They just start doing it.</div>
+      </div>
+      <div class="card">
+        <div class="icon">💥</div>
+        <div class="name">Crashes with a past</div>
+        <div class="desc">Omarchy hands crash reports to your agent. Omnemo lets the agent say &ldquo;this crashed before &mdash; here's what fixed it.&rdquo;</div>
+      </div>
+      <div class="card">
+        <div class="icon">📊</div>
+        <div class="name">Memory in the bar</div>
+        <div class="desc">A small widget in the Omarchy bar showing what your machine remembered today.</div>
+      </div>
+    </div>
+
+    <div class="host-chips" style="max-width: 720px; margin: 36px auto 0;">
+      <div class="host-chip">Claude Code<span>shared memory</span></div>
+      <div class="host-chip">Codex<span>shared memory</span></div>
+      <div class="host-chip">OpenCode<span>shared memory</span></div>
+      <div class="host-chip">Crush<span>shared memory</span></div>
+      <div class="host-chip">Gemini<span>shared memory</span></div>
+      <div class="host-chip">Pi<span>skill only</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Install -->
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Ask your agent to do it.</h2>
+    <div class="content">
+      <p>The fastest way: let the AI you already have install it for you.</p>
+    </div>
+
+    <div class="arch">
+      <pre><span class="dim"># 1. if you haven't, pick an agent:</span>
+<span class="dim">$</span> omarchy default agent claude
+
+<span class="dim"># 2. open it:</span>
+<span class="dim">$</span> omarchy agent
+
+<span class="dim"># 3. say:</span>
+<span class="hl">Install Omnemo — follow INSTALL.md.</span></pre>
+    </div>
+
+    <div class="content">
+      <p>Using Codex? Type <code>codex</code> instead of <code>claude</code>. Your agent will do the rest. Prefer to do it by hand? The <a href="https://github.com/GuyMannDude/omnemo/blob/main/INSTALL.md" target="_blank">install guide</a> walks every step, and every step ends with a check.</p>
+      <p style="font-size: 15px; color: var(--ink-faint);">Is your agent Codex or OpenCode? <a href="https://github.com/GuyMannDude/omnemo/blob/main/INSTALL.md#0-before-you-start-only-if-your-agent-is-codex-or-opencode" target="_blank">INSTALL.md step 0</a> has one thing to do before you start.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Prove it -->
+<section>
+  <div class="container">
+    <div class="section-label">Prove It</div>
+    <h2>Don't take our word for it.</h2>
+    <div class="content">
+      <p><strong>A memory is safe the instant the save comes back.</strong> A crashing agent loses nothing. Run this:</p>
+    </div>
+
+    <div class="arch">
+      <pre><span class="dim">$</span> python3 examples/crash_demo.py</pre>
+    </div>
+
+    <div class="content">
+      <p>It saves a memory, kills the memory server the moment the save is confirmed &mdash; no shutdown, no tidy-up &mdash; then starts fresh and finds the memory again.</p>
+    </div>
+
+    <h3 style="margin-top: 44px;">Save in one agent, recall in another</h3>
+    <div class="content">
+      <p>The whole promise in two commands, on a box with two signed-in agents:</p>
+    </div>
+
+    <div class="arch">
+      <pre><span class="dim"># Ask Claude Code (Anthropic) to remember something</span>
+claude -p 'Use the omnemo save tool to store this memory: the electronics
+repair shop favorite song was "Everything'\''s Broken" by Bob Dylan' \
+  --allowedTools "mcp__omnemo__save"
+
+<span class="dim"># Ask Codex (OpenAI) — a different vendor's harness, fresh process</span>
+codex exec 'Using only the omnemo MCP recall tool: what was the favorite
+song at the electronics repair shop?'</pre>
+    </div>
+
+    <div class="content">
+      <p>Run live on the reference box:</p>
+    </div>
+
+    <div class="arch">
+      <pre><span class="dim">mcp: omnemo/recall started
+mcp: omnemo/recall (completed)
+codex</span>
+<span class="hl">"Everything's Broken" by Bob Dylan.</span></pre>
+    </div>
+
+    <div class="content">
+      <p>One memory, written by one company's agent, found by its competitor. <strong>The memory belongs to the machine, not the agent.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- Low-spec box -->
+<section>
+  <div class="container">
+    <div class="section-label">Honest Numbers</div>
+    <h2>What to expect on a low-spec box</h2>
+    <div class="content">
+      <p>Measured 2026-10-30 on a 2016 laptop: Intel i3-6100U (2 cores / 4 threads), 3.7 GB RAM, Omarchy 4.5.0rc2 (rc channel), Omnemo 0.2.1.dev3, timed over the real MCP stdio path.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table class="compat">
+        <thead>
+          <tr><th>What</th><th>Number</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Cold start (spawn <code>omnemo serve</code> → first recall answered)</td><td>2.6 s</td></tr>
+          <tr><td>Warm recall, 20 calls (4 memories)</td><td>p50 167 ms, p95 202 ms</td></tr>
+          <tr><td>Warm recall, 20 calls (1,000 memories)</td><td>p50 136 ms, p95 148 ms</td></tr>
+          <tr><td>Save</td><td>p50 79 ms, p95 139 ms</td></tr>
+          <tr><td>Server memory (RSS), warm</td><td>~330 MB (337 MB at 1,000 memories)</td></tr>
+          <tr><td>Store on disk</td><td>32 KB at 4 · 236 KB at 100 · 2.1 MB at 1,000 memories</td></tr>
+          <tr><td>One-shot CLI <code>omnemo recall</code> (loads the model each time)</td><td>1.6–1.9 s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p>Most of the memory and the cold start is the local embedding model (<code>BAAI/bge-small-en-v1.5</code>). Each harness runs its own server, so budget ~330 MB per open harness on a 4 GB machine. The cold start was measured with the model already in the OS file cache; the first run after a reboot is slower.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Free + donate -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label centered">Free</div>
+    <h2>No price. No tier. Ever.</h2>
+    <p style="max-width: 680px; margin: 18px auto 0; font-size: 16px; line-height: 1.65; color: var(--ink-muted);">Omnemo is free and open source &mdash; no price, no premium tier, ever. It's funded by donations from people whose agents finally remembered something. If that's you, the jar keeps development moving. If not, use it, share it, and make something good.</p>
+    <div class="btn-row centered" style="margin-top: 22px;">
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+%E2%80%94+free+memory+for+Omarchy%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+    </div>
+  </div>
+</section>
+
+<!-- Omnemo OS -->
+<section id="os">
+  <div class="container">
+    <div class="feature-panel">
+      <div class="kicker">Coming soon</div>
+      <div class="headline">Omnemo OS</div>
+      <p style="text-align: center; font-size: 18px; color: var(--ink-soft); margin-bottom: 8px;">
+        An easy-to-use desktop with memory built in.
+      </p>
+      <div class="content" style="max-width: 620px; margin: 18px auto 0; text-align: center;">
+        <p>Install it with one command. Remove it with one, and you're back to exact stock. It survives updates.</p>
+        <p>Watch the Omnemo repo on GitHub for the release.</p>
+        <p class="fine-print">Built on Omarchy (MIT).</p>
+      </div>
+    </div>
+
+    <div class="btn-row centered" style="margin-top: 36px;">
+      <a href="/products" class="btn btn-ghost">&larr; All products</a>
+    </div>
+  </div>
+</section>
+
+<footer class="sparks-footer">
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins
+  </div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
+<script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
+<script src="/rocky-widget.js"></script>
+</body>
+</html>
