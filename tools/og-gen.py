@@ -2,7 +2,7 @@
 """Generate social-preview cards (Open Graph / GitHub) for projectsparks.ai.
 
 One template, the site's own fonts and palette, so every link we share renders
-the same way. Site cards are 1200x630 at <page>/og.png; GitHub cards are
+the same way. Site cards are 2400x1260 (2x, so Facebook's recompression stays sharp) at <page>/og.png; GitHub cards are
 1280x640 under tools/out/github/<repo>.png (uploaded by hand or by browser:
 repo Settings -> General -> Social preview).
 
@@ -102,6 +102,8 @@ def pentagon(im, cx, cy, r, alpha=28):
 
 def card(spec, size):
     W, H = size
+    k = H / 630.0                      # 1.0 at 1200x630, 2.0 at 2400x1260 (site), ~1.0 at 1280x640 (GitHub)
+    px = lambda n: int(round(n * k))
     im = Image.new("RGBA", size, BG + (255,))
     glow(im, (int(W * 0.12), int(H * 0.1)), int(H * 0.55), AZURE, 34)
     glow(im, (int(W * 0.9), int(H * 0.95)), int(H * 0.5), GOLD, 26)
@@ -110,17 +112,17 @@ def card(spec, size):
 
     pad = int(W * 0.065)
     # ---- header: mark + PROJECT SPARKS, badge on the right
-    mk = mark_png(52)
-    im.alpha_composite(mk, (pad, pad - 6))
-    draw_spaced(d, (pad + 66, pad + 10), "PROJECT SPARKS", label(22), INK_FAINT, 3)
+    mk = mark_png(px(52))
+    im.alpha_composite(mk, (pad, pad - px(6)))
+    draw_spaced(d, (pad + px(66), pad + px(10)), "PROJECT SPARKS", label(px(22)), INK_FAINT, px(3))
     if spec.get("badge"):
-        bf = label(19)
-        bw = text_w(d, spec["badge"], bf, 2) + 36
-        x1, y1 = W - pad - bw, pad - 2
-        d.rounded_rectangle([x1, y1, x1 + bw, y1 + 40], radius=20, outline=GOLD, width=1)
-        draw_spaced(d, (x1 + 18, y1 + 9), spec["badge"], bf, GOLD, 2)
+        bf = label(px(19))
+        bw = text_w(d, spec["badge"], bf, px(2)) + px(36)
+        x1, y1 = W - pad - bw, pad - px(2)
+        d.rounded_rectangle([x1, y1, x1 + bw, y1 + px(40)], radius=px(20), outline=GOLD, width=max(1, px(1)))
+        draw_spaced(d, (x1 + px(18), y1 + px(9)), spec["badge"], bf, GOLD, px(2))
 
-    # ---- body block, vertically centred in the free band
+    # ---- optional inset strip (e.g. the Omnemo OS bar): size it first, it bounds the text band
     inset = spec.get("inset")
     strip = None
     if inset:
@@ -128,46 +130,45 @@ def card(spec, size):
         sw = W - 2 * pad
         sh = int(strip.height * sw / strip.width)
         strip = strip.resize((sw, sh), Image.Resampling.LANCZOS)
-        sy = H - 100 - sh
-    band_top = pad + 86
-    band_bot = (sy - 22) if inset else (H - 120)
+        sy = H - px(100) - sh
+    band_top = pad + px(86)
+    band_bot = (sy - px(22)) if inset else (H - px(120))
 
-    title_f = display(spec.get("title_size", 74))
-    while text_w(d, spec["title"], title_f) > W - 2 * pad and title_f.size > 40:
-        title_f = display(title_f.size - 2)
-    kicker_f = label(26)
-    tag_f = body(30, 450)
+    title_f = display(px(spec.get("title_size", 74)))
+    while text_w(d, spec["title"], title_f) > W - 2 * pad and title_f.size > px(40):
+        title_f = display(title_f.size - px(2))
+    kicker_f = label(px(26))
+    tag_f = body(px(30), 450)
     tag_lines = wrap(d, spec.get("tagline", ""), tag_f, W - 2 * pad)
 
-    block_h = title_f.size + 24 + 30 + (18 + len(tag_lines) * 40 if tag_lines else 0)
+    block_h = title_f.size + px(24) + px(30) + (px(18) + len(tag_lines) * px(40) if tag_lines else 0)
     y = band_top + max(0, (band_bot - band_top - block_h) // 2)
 
-    d.text((pad - 4, y), spec["title"], font=title_f, fill=INK)
-    y += title_f.size + 24
-    draw_spaced(d, (pad, y), spec["kicker"].upper(), kicker_f, GOLD, 3)
-    y += 30 + 18
+    d.text((pad - px(4), y), spec["title"], font=title_f, fill=INK)
+    y += title_f.size + px(24)
+    draw_spaced(d, (pad, y), spec["kicker"].upper(), kicker_f, GOLD, px(3))
+    y += px(30) + px(18)
     for ln in tag_lines:
         d.text((pad, y), ln, font=tag_f, fill=INK_SOFT)
-        y += 40
+        y += px(40)
 
-    # ---- optional inset strip (e.g. the Omnemo OS bar) above the footer
     if strip is not None:
         mask = Image.new("L", strip.size, 0)
-        ImageDraw.Draw(mask).rounded_rectangle([0, 0, sw, sh], radius=12, fill=255)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, sw, sh], radius=px(12), fill=255)
         shadow = Image.new("RGBA", im.size, (0, 0, 0, 0))
-        ImageDraw.Draw(shadow).rounded_rectangle([pad, sy + 6, pad + sw, sy + sh + 6], radius=12, fill=(0, 0, 0, 140))
-        im.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(10)))
+        ImageDraw.Draw(shadow).rounded_rectangle([pad, sy + px(6), pad + sw, sy + sh + px(6)], radius=px(12), fill=(0, 0, 0, 140))
+        im.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(px(10))))
         im.paste(strip, (pad, sy), mask)
-        d.rounded_rectangle([pad, sy, pad + sw, sy + sh], radius=12, outline=LINE, width=1)
+        d.rounded_rectangle([pad, sy, pad + sw, sy + sh], radius=px(12), outline=LINE, width=max(1, px(1)))
 
     # ---- footer: url + chrome rail with gold tick
-    d.text((pad, H - 72), spec["url"], font=mono(22, 500), fill=INK_FAINT)
-    rail_y = H - 28
+    d.text((pad, H - px(72)), spec["url"], font=mono(px(22), 500), fill=INK_FAINT)
+    rail_y = H - px(28)
     for x in range(pad, W - pad):
         t = (x - pad) / (W - 2 * pad)
         c = (int(60 + 120 * (1 - abs(t - 0.5) * 2)),) * 3
-        d.line([(x, rail_y), (x, rail_y + 1)], fill=c)
-    d.line([(pad, rail_y), (pad + 90, rail_y)], fill=GOLD, width=2)
+        d.line([(x, rail_y), (x, rail_y + max(1, px(1)))], fill=c)
+    d.line([(pad, rail_y), (pad + px(90), rail_y)], fill=GOLD, width=max(2, px(2)))
     return im.convert("RGB")
 
 
@@ -229,7 +230,7 @@ def main(only=None):
             continue
         spec = dict(spec, url=f"projectsparks.ai/{name}")
         out = os.path.join(ROOT, name, "og.png")
-        card(spec, (1200, 630)).save(out, optimize=True)
+        card(spec, (2400, 1260)).save(out, optimize=True)
         print("site  ", out)
     for name, spec in GITHUB.items():
         if only and name != only:
