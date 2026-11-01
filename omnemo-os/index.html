@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omnemo OS — Omarchy, made easy, made for memory</title>
+<meta name="description" content="Omnemo OS is our edition of Omarchy: a desktop that works the way people expect, with Omnemo memory built in so the AI helpers on your computer remember you. One command installs it, one command puts everything back. Free, from Project Sparks.">
+<meta property="og:title" content="Omnemo OS — Omarchy, made easy, made for memory">
+<meta property="og:description" content="Our edition of Omarchy: a taskbar, plain-words buttons, a ? guide to every icon, and Omnemo memory built in. One command installs it, one command puts your computer back exactly as it was.">
+<meta property="og:image" content="https://projectsparks.ai/og-image.png">
+<meta property="og:url" content="https://projectsparks.ai/omnemo-os">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Omnemo OS — Omarchy, made easy, made for memory">
+<meta name="twitter:description" content="Our edition of Omarchy: a taskbar, plain-words buttons, a ? guide to every icon, and Omnemo memory built in. One command installs it, one command puts your computer back exactly as it was.">
+<meta name="twitter:image" content="https://projectsparks.ai/og-image.png">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .fine-print { font-size: 13.5px; color: var(--ink-faint); margin: 18px 0 0; }
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .steps li {
+    position: relative; padding-left: 52px; margin: 0 0 22px;
+    font-size: 17px; line-height: 1.6; color: var(--ink-muted);
+  }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 2px;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 15px; font-weight: 500;
+    background: var(--panel); border: 1px solid var(--line-strong);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(19,28,40,0.06);
+  }
+  .steps li strong { color: var(--ink); }
+  .two-offers { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
+  @media (min-width: 800px) { .two-offers { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">
+      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
+      Mnemo Cortex
+    </a>
+    <div class="nav-links">
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label centered">Free &middot; v0.9 Public Preview &middot; From Project Sparks</div>
+    <h1 class="chrome-text">Omnemo OS</h1>
+    <p class="subtitle">Omarchy, made easy, <span class="gilt">made for memory.</span></p>
+
+    <div class="content" style="max-width: 720px; margin: 0 auto;">
+      <p style="font-size: 20px;"><strong>The same Omarchy underneath. A desktop that works the way people expect. Memory built in.</strong></p>
+      <p>A taskbar. Plain-words buttons. A &ldquo;?&rdquo; guide to every icon. And <a href="/omnemo">Omnemo</a> memory already set up, so the AI helpers on your computer remember you &mdash; and remember each other.</p>
+      <p>It doesn't replace Omarchy. One command installs it. One command puts your computer back exactly as it was.</p>
+    </div>
+
+    <div class="btn-row centered">
+      <a href="https://github.com/GuyMannDude/omnemo-os" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="#install" class="btn btn-primary">Install</a>
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+OS+%E2%80%94+free%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+    </div>
+  </div>
+</section>
+
+<!-- Two ways -->
+<section>
+  <div class="container">
+    <div class="section-label">Two Ways To Get It</div>
+    <h2>Just the memory, or the whole thing.</h2>
+
+    <div class="two-offers">
+      <div class="card">
+        <div class="icon">🧠</div>
+        <div class="name">Just the memory</div>
+        <div class="desc">Already on Omarchy and happy with it? Install <a href="/omnemo">Omnemo</a> on its own. Its guide shows you how to use it. Nothing about your desktop changes.</div>
+      </div>
+      <div class="card gilded">
+        <div class="icon">🖥️</div>
+        <div class="name">The whole thing: Omnemo OS</div>
+        <div class="desc">Install Omarchy from its own installer, then run our one command. It sets up the friendlier desktop and Omnemo memory together. If Omnemo is already on your computer, it is left exactly as it is.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Install -->
+<section id="install">
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h2>Three steps. Password only for the snapshot.</h2>
+    <div class="content">
+      <p>This preview needs Omarchy's <strong>4.5 test version</strong> (the release candidate). It never asks for your password, except Omarchy's own snapshot step.</p>
+    </div>
+
+    <ol class="steps" style="max-width: 720px; margin: 28px 0 0;">
+      <li><strong>Take a snapshot so you can undo.</strong> Open a Terminal (Super + Enter) and type <code>omarchy snapshot create</code>. It asks for your password.</li>
+      <li><strong>Switch to the test version.</strong> Omarchy menu &rarr; Update &rarr; Channel &rarr; RC, then Update &rarr; Omarchy.</li>
+      <li><strong>Paste the three lines below into the Terminal.</strong></li>
+    </ol>
+
+    <div class="arch">
+      <pre><span class="dim">$</span> git clone https://github.com/GuyMannDude/omnemo-os
+<span class="dim">$</span> cd omnemo-os
+<span class="dim">$</span> bin/omnemo-os install --allow-rc</pre>
+    </div>
+
+    <div class="content">
+      <p><code>--allow-rc</code> is only needed while 4.5 is a test version. The memory part downloads a few hundred MB, so it needs the internet and a couple of minutes. Offline? The desktop still installs, and <code>bin/omnemo-os repair</code> adds the memory later.</p>
+      <p>When it finishes, start a <strong>new</strong> session of your AI helper (Claude, Codex, &hellip;) and it shares one memory with the others.</p>
+    </div>
+
+    <h3 style="margin-top: 44px;">Afterwards, from the <code>omnemo-os</code> folder</h3>
+    <div class="arch">
+      <pre><span class="dim">$</span> bin/omnemo-os status     <span class="dim"># what's installed (memory included); flags anything an update reset</span>
+<span class="dim">$</span> bin/omnemo-os repair     <span class="dim"># puts it back</span>
+<span class="dim">$</span> bin/omnemo-os uninstall  <span class="dim"># everything back exactly as it was, except your memories</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- Your memories -->
+<section>
+  <div class="container">
+    <div class="section-label">Your Memories Are Yours</div>
+    <h2>Uninstall never touches them.</h2>
+    <div class="content">
+      <p>Uninstall removes the memory program it installed but never your memories. They stay in <code>~/.local/share/omnemo</code>, and uninstall tells you where. Install again later and they are picked up where you left off.</p>
+      <p>To delete them yourself, copy that folder somewhere safe, then delete it. A keep-or-start-fresh question is coming in 0.9.2.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Share your ideas -->
+<section>
+  <div class="container">
+    <div class="section-label">Share Your Ideas</div>
+    <h2>You don't need to be a programmer to help.</h2>
+    <div class="content">
+      <p>Omnemo OS is brand new, and it's being shaped by the people who use it. If something is confusing, annoying, or missing, we want to hear it.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🗣️</div>
+        <div class="name">Plain words are perfect</div>
+        <div class="desc">Tell us what you were trying to do and what got in the way. &ldquo;I couldn't find how to change the wallpaper&rdquo; is a perfect report.</div>
+      </div>
+      <div class="card">
+        <div class="icon">📱</div>
+        <div class="name">A phone photo is fine</div>
+        <div class="desc">No logs needed. A picture of your screen tells us most of what we need.</div>
+      </div>
+      <div class="card">
+        <div class="icon">💡</div>
+        <div class="name">Ideas welcome</div>
+        <div class="desc">A button you wish was on the bar, an app you'd like in Favorites, anything.</div>
+      </div>
+    </div>
+
+    <div class="content" style="margin-top: 28px;">
+      <p><strong>Problems or confusion:</strong> on the <a href="https://github.com/GuyMannDude/omnemo-os/issues/new" target="_blank">GitHub page</a> click Issues &rarr; New issue &rarr; &ldquo;Something went wrong (or confused me)&rdquo;. <strong>Ideas:</strong> click <a href="https://github.com/GuyMannDude/omnemo-os/discussions" target="_blank">Discussions &rarr; Ideas</a>. You'll need a free GitHub account, or ask your AI assistant to write it up for you and paste it there. Every message gets read.</p>
+      <p>If something breaks badly, <code>bin/omnemo-os uninstall</code> puts your desktop back exactly the way Omarchy had it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Status + free -->
+<section>
+  <div class="container" style="text-align: center;">
+    <div class="section-label centered">Free</div>
+    <h2>No price. No tier. Ever.</h2>
+    <p style="max-width: 680px; margin: 18px auto 0; font-size: 16px; line-height: 1.65; color: var(--ink-muted);">Omnemo OS is free and open source. It's funded by donations from people whose computer finally remembered them. If that's you, the jar keeps development moving. If not, use it, share it, and tell us what to fix.</p>
+    <div class="btn-row centered" style="margin-top: 22px;">
+      <a href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Omnemo+OS+%E2%80%94+free%2C+funded+by+donations.&amp;currency_code=USD" target="_blank" class="btn btn-ghost">&#128155; Toss a few bucks in the jar</a>
+    </div>
+
+    <p class="fine-print" style="max-width: 680px; margin: 36px auto 0;">
+      <strong>Status: v0.9 Public Preview.</strong> It works on today's Omarchy 4.5 test version and will be called 1.0 once Omarchy 4.5 stable is out and the edition has survived a reboot and an <code>omarchy-update</code> on a stock machine. Expect rough edges.<br><br>
+      Omnemo OS is built on <a href="https://github.com/omacom/omarchy" target="_blank">Omarchy</a> (MIT license). &ldquo;Omarchy&rdquo; is a pending trademark of its owners. This project is not affiliated with or endorsed by them.
+    </p>
+
+    <div class="btn-row centered" style="margin-top: 36px;">
+      <a href="/omnemo" class="btn btn-ghost">&larr; Omnemo (just the memory)</a>
+      <a href="/products" class="btn btn-ghost">All products</a>
+    </div>
+  </div>
+</section>
+
+<footer class="sparks-footer">
+  <div class="container">
+    &copy; 2026 Project Sparks &middot; Guy Hutchins
+  </div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
+<script>window.ROCKY_WIDGET_API = "https://igor.tailce7587.ts.net";</script>
+<script src="/rocky-widget.js"></script>
+</body>
+</html>
