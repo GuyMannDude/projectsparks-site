@@ -180,7 +180,7 @@ SITE = {
                    tagline="One shared memory for every AI agent on the box. Save in one, recall in any.",
                    badge="FREE · OPEN SOURCE", title_size=92),
     "products": dict(title="Products", kicker="The Project Sparks line",
-                     tagline="Mnemo Cortex · Omnemo · Omnemo OS · Disco-Bus · Cortex Stick. All open source."),
+                     tagline="Mnemo Cortex · Omnemo · Omnemo OS, plus the support utilities behind them. All open source."),
     "about": dict(title="About", kicker="Project Sparks",
                   tagline="One maker and his AI agents, building open-source memory and tools from Half Moon Bay, California."),
     "stack": dict(title="The Stack", kicker="AI agent infrastructure",

@@ -9,7 +9,7 @@ Project Sparks builds the components needed to run AI agents that work — agent
 - [projectsparks.ai/](https://projectsparks.ai/): Mnemo Cortex product page (the front door)
 - [projectsparks.ai/omnemo](https://projectsparks.ai/omnemo): Omnemo product page — shared memory for Omarchy, plus the Omnemo OS panel
 - [projectsparks.ai/omnemo-os](https://projectsparks.ai/omnemo-os): Omnemo OS product page — our edition of Omarchy with Omnemo memory built in
-- [projectsparks.ai/products](https://projectsparks.ai/products): full product line — Mnemo Cortex, Disco-Bus, FrankenClaw, Cortex Stick (coming soon)
+- [projectsparks.ai/products](https://projectsparks.ai/products): the three products (Mnemo Cortex, Omnemo, Omnemo OS) plus two support utilities (Disco-Bus, Cortex Stick); FrankenClaw is withdrawn
 - [projectsparks.ai/about](https://projectsparks.ai/about): the Project Sparks story, team, and module map
 - [projectsparks.ai/gallery](https://projectsparks.ai/gallery): Rocky's Gallery — the art store run by an AI agent (rockysgallery.com)
 
