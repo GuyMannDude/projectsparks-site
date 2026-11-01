@@ -6,7 +6,8 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**",
-      "_pulled/**"
+      "_pulled/**",
+      "tools/**"
     ],
     "redirects": [
       {
@@ -37,4 +38,4 @@
       }
     ]
   }
-}  
+}
