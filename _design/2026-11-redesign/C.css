@@ -1,0 +1,28 @@
+/* C — Flag Bar Brand: white body, navy header, the Omnemo flag bar as the site's own fixed bottom bar */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&display=swap');
+:root{--bg:#FFFFFF;--ink:#101828;--ink2:#4B5565;--navy:#152451;--blue:#435ECE;--red:#B22234;--line:#E3E7EE}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:17px/1.6 'Public Sans',sans-serif;padding-bottom:70px}
+a{color:inherit;text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 56px;background:var(--navy);color:#fff}
+.brand{font:800 20px 'Bricolage Grotesque',sans-serif;display:flex;align-items:center;gap:10px}
+.mark{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--blue) 55%,#0b1a4a)}
+.top nav{display:flex;gap:26px;font-weight:500;color:#D7DEF5}.top nav .jar{color:#fff;background:var(--red);padding:8px 16px;border-radius:999px}
+.hero{padding:92px 56px 56px;max-width:1100px}
+.kicker{color:var(--ink2);font-weight:500;margin-bottom:18px}
+h1{font:800 66px/1.0 'Bricolage Grotesque',sans-serif;letter-spacing:-.025em;max-width:16ch;color:var(--navy)}
+.lede{color:var(--ink2);font-size:20px;max-width:60ch;margin:28px 0 36px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:999px;font-weight:600}
+.btn.primary{background:var(--blue);color:#fff;box-shadow:0 10px 26px rgba(67,94,206,.3)}
+.btn.ghost{border:2px solid var(--navy);color:var(--navy)}
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:24px 56px 56px}
+.door{display:flex;flex-direction:column;gap:12px;padding:26px 22px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 34px rgba(16,24,40,.08);border-top:6px solid var(--blue)}
+.door:nth-child(2n){border-top-color:var(--red)}
+.door .n{font:800 24px 'Bricolage Grotesque',sans-serif;color:var(--navy)}.door .what{color:var(--ink2);font-size:16px}
+.door .go{margin-top:auto;font-weight:600;color:var(--blue)}
+.barpic{width:100%;border-radius:8px;border:1px solid var(--line)}
+.why{padding:56px;max-width:900px}.why h2{font:800 36px 'Bricolage Grotesque',sans-serif;margin-bottom:14px;color:var(--navy)}.why p{color:var(--ink2);font-size:19px;margin-bottom:24px}
+.foot{padding:30px 56px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--ink2);font-size:15px}.foot nav{display:flex;gap:22px}
+.flagbar{position:fixed;left:0;right:0;bottom:0;height:46px;background:repeating-linear-gradient(180deg,var(--red) 0 9.2px,#fff 9.2px 18.4px);box-shadow:0 -6px 18px rgba(0,0,0,.18)}
+.flagbar .pill{position:absolute;top:6px;height:34px;border-radius:17px;background:linear-gradient(180deg,#5A74E0,#435ECE 55%,#3148B0);box-shadow:0 2px 10px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.25);color:#fff;font:600 14px/34px 'Public Sans',sans-serif;padding:0 18px}
+.flagbar .l{left:14px}.flagbar .c{left:50%;transform:translateX(-50%)}.flagbar .r{right:14px}

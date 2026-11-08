@@ -1,0 +1,25 @@
+/* B — Porcelain & Navy: white base, deep navy blocks, red CTA, serif display */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap');
+:root{--bg:#F8F9FB;--ink:#101828;--ink2:#4B5565;--navy:#152451;--navy2:#1E3270;--blue:#2E4FC7;--red:#C8323E;--line:#DCE1EA}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:17px/1.6 'Public Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 56px;background:#fff;border-bottom:1px solid var(--line)}
+.brand{font:700 22px 'Fraunces',serif;display:flex;align-items:center;gap:10px}
+.mark{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--blue) 55%,var(--navy))}
+.top nav{display:flex;gap:28px;font-weight:500;color:var(--ink2)}.top nav .jar{color:#fff;background:var(--red);padding:8px 16px;border-radius:999px}
+.hero{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;padding:96px 56px 80px}
+.hero>*{max-width:1100px}
+.kicker{color:#B8C4E6;font-weight:500;margin-bottom:18px}
+h1{font:700 62px/1.05 'Fraunces',serif;letter-spacing:-.01em;max-width:18ch}
+.lede{color:#D5DCF0;font-size:20px;max-width:60ch;margin:28px 0 36px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:10px;font-weight:600}
+.btn.primary{background:var(--red);color:#fff;box-shadow:0 10px 24px rgba(200,50,62,.3)}
+.btn.ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.doors{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:56px;margin-top:-36px}
+.door{display:flex;flex-direction:column;gap:12px;padding:30px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 40px rgba(16,24,40,.08)}
+.door .n{font:700 30px 'Fraunces',serif;color:var(--navy)}.door .what{color:var(--ink2)}
+.door .go{margin-top:auto;font-weight:600;color:var(--blue)}
+.barpic{width:100%;border-radius:10px;border:1px solid var(--line)}
+.why{padding:64px 56px;max-width:900px}.why h2{font:700 36px 'Fraunces',serif;margin-bottom:14px;color:var(--navy)}.why p{color:var(--ink2);font-size:19px;margin-bottom:24px}
+.foot{padding:36px 56px;background:var(--navy);color:#C9D2EC;display:flex;justify-content:space-between;font-size:15px}.foot nav{display:flex;gap:22px}

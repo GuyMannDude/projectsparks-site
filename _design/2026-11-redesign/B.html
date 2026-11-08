@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project Sparks B</title><style>/* B — Porcelain & Navy: white base, deep navy blocks, red CTA, serif display */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&display=swap');
+:root{--bg:#F8F9FB;--ink:#101828;--ink2:#4B5565;--navy:#152451;--navy2:#1E3270;--blue:#2E4FC7;--red:#C8323E;--line:#DCE1EA}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:17px/1.6 'Public Sans',sans-serif}
+a{color:inherit;text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 56px;background:#fff;border-bottom:1px solid var(--line)}
+.brand{font:700 22px 'Fraunces',serif;display:flex;align-items:center;gap:10px}
+.mark{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,var(--blue) 55%,var(--navy))}
+.top nav{display:flex;gap:28px;font-weight:500;color:var(--ink2)}.top nav .jar{color:#fff;background:var(--red);padding:8px 16px;border-radius:999px}
+.hero{background:linear-gradient(180deg,var(--navy),var(--navy2));color:#fff;padding:96px 56px 80px}
+.hero>*{max-width:1100px}
+.kicker{color:#B8C4E6;font-weight:500;margin-bottom:18px}
+h1{font:700 54px/1.08 'Fraunces',serif;letter-spacing:-.01em;max-width:18ch}
+.lede{color:#D5DCF0;font-size:20px;max-width:60ch;margin:28px 0 36px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border-radius:10px;font-weight:600}
+.btn.primary{background:var(--red);color:#fff;box-shadow:0 10px 24px rgba(200,50,62,.3)}
+.btn.ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+.doors{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;padding:56px;margin-top:-36px}
+.door{display:flex;flex-direction:column;gap:12px;padding:30px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 40px rgba(16,24,40,.08)}
+.door .n{font:700 30px 'Fraunces',serif;color:var(--navy)}.door .what{color:var(--ink2)}
+.door .go{margin-top:auto;font-weight:600;color:var(--blue)}
+.barpic{width:100%;border-radius:10px;border:1px solid var(--line)}
+.why{padding:64px 56px;max-width:900px}.why h2{font:700 36px 'Fraunces',serif;margin-bottom:14px;color:var(--navy)}.why p{color:var(--ink2);font-size:19px;margin-bottom:24px}
+.foot{padding:36px 56px;background:var(--navy);color:#C9D2EC;display:flex;justify-content:space-between;font-size:15px}.foot nav{display:flex;gap:22px}
+.game{margin-top:8px;padding:26px;border-radius:16px;background:#fff;color:var(--ink);box-shadow:0 18px 50px rgba(0,0,0,.25);max-width:640px}.ask{font:700 24px 'Fraunces',serif;margin-bottom:16px;color:var(--navy)}.row{display:flex;gap:10px;flex-wrap:wrap}.row input{flex:1;min-width:220px;padding:14px 16px;border-radius:10px;border:1px solid var(--line);font:16px 'Public Sans',sans-serif}.fine{color:var(--ink2);font-size:14px;margin-top:12px}.hero .btn.ghost{border-color:var(--navy);color:var(--navy)}.btn.link{color:var(--ink2);padding:14px 6px}.yours{padding:48px 56px 8px;max-width:900px}.yours h2{font:700 36px 'Fraunces',serif;margin-bottom:14px;color:var(--navy)}.yours p{color:var(--ink2);font-size:19px}.ex{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.ex span{padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--navy);font-size:15px}.say{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px;padding:18px 20px;border-radius:12px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(16,24,40,.08)}.say .line{font:500 18px/1.5 'Public Sans',sans-serif;color:var(--ink);flex:1;min-width:280px}.say input{font:600 18px 'Public Sans',sans-serif;color:var(--navy);background:transparent;border:0;border-bottom:2px solid var(--red);padding:0 4px;width:10ch}.ex{font-size:15px;color:var(--ink2)}.ex span{cursor:pointer}</style></head><body><header class="top">
+  <a class="brand" href="#"><span class="mark"></span>Project Sparks</a>
+  <nav><a href="#doors">Products</a><a href="#">Gallery</a><a href="#">About</a><a class="jar" href="#">Donate</a></nav>
+</header>
+<section class="hero">
+  <p class="kicker">Half Moon Bay, California</p>
+  <h1>AI that remembers you.<br>Built to outlast everything you're using, and everything they're building.</h1>
+  <p class="lede">Your memory lives in plain files on your own machine. Nothing to subscribe to, nothing that can be switched off. Made in Half Moon Bay by a small team of people and AIs, and given away free because we love people and we love America.</p>
+  <div class="game" id="game">
+  <p class="ask" id="ask">Let's play a memory game. What's your pet's name?</p>
+  <form class="row" id="form"><input id="pet" type="text" placeholder="Rex, Mittens, Sir Barksalot" autocomplete="off"><button class="btn primary" type="submit">Remember it</button></form>
+  <p class="fine">Stays in your browser. Nothing is sent anywhere. That's the point.</p>
+</div>
+</section>
+<section id="doors" class="doors">
+  <a class="door" href="#"><span class="n">Mnemo Cortex</span><span class="what">Memory for your AI. Claude, Hermes, OpenClaw and any local model remember what you told them yesterday.</span><span class="go" data-go="Give your AI a memory">Give your AI a memory</span></a>
+  <a class="door" href="#"><span class="n">Omnemo</span><span class="what">One shared memory for every AI on an Omarchy machine. Save in one, recall in any.</span><span class="go">Install on Omarchy</span></a>
+  <a class="door" href="#"><span class="n">Omnemo OS</span><img src="bar.png" alt="" class="barpic"><span class="what">Omarchy, made easy. A taskbar, plain-words buttons, a ? that explains every icon, and the flag bar.</span><span class="go">Get the desktop</span></a>
+  <a class="door" href="#"><span class="n">Rocky's Gallery</span><span class="what">Free art, kids' seek-and-find worlds, and 3D files you can print at home.</span><span class="go">Visit the gallery</span></a>
+</section>
+<section class="yours">
+  <h2>AI is your joystick. You just don't know it yet.</h2>
+  <p>Don't install anything by hand. Grab the stick. Copy this, fill in the blank, and paste it to Claude, ChatGPT, or whatever you use. It does the rest, and everything here is yours to bend.</p>
+  <div class="say"><p class="line">Install Mnemo Cortex for me. Follow the instructions at projectsparks.ai/install and set it up for <input id="blank" value="my shop" size="14">.</p><button class="btn primary" id="copy" type="button">Copy it</button></div>
+  <p class="ex">Try: <span>my shop</span><span>my art</span><span>my recipes</span><span>my band</span><span>learning to juggle</span></p>
+</section>
+<section class="why">
+  <h2>Why it's free</h2>
+  <p>No investors, no ads, no premium tier. Every dollar in the jar comes from someone whose AI finally remembered them. If that's you, thank you. If not, use it, share it, and make something good.</p>
+  <a class="btn primary" href="#">Toss a few bucks in the jar</a>
+</section>
+<footer class="foot">
+  <p id="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p>
+  <nav><a href="#">GitHub</a><a href="#">About</a><a href="#">Field guide</a></nav>
+</footer>
+<script>
+(function(){
+  var k='sparks.pet', q=new URLSearchParams(location.search), seed=q.get('name');
+  var pet=seed||localStorage.getItem(k);
+  function remembered(name,fresh){
+    document.getElementById('ask').textContent = fresh ? "Got it. I'll remember "+name+". Now scroll, and watch me use it." : "Welcome back. Is "+name+" still keeping you company?";
+    document.getElementById('form').innerHTML='<a class="btn ghost" href="#doors">Pick your door</a><a class="btn link" id="forget" href="#">Forget '+name+'</a>';
+    document.querySelector('.game .fine').textContent = fresh ? "I'll still know "+name+" tomorrow. Your AI should remember you like that too." : "I remembered that from last time. Your AI should too.";
+    var g=document.querySelector('[data-go]'); if(g) g.textContent="So your AI remembers "+name+" too";
+    document.getElementById('footline').textContent="Guy Hutchins and his AI team, Half Moon Bay. Give "+name+" a scratch from us.";
+    document.getElementById('forget').onclick=function(e){e.preventDefault();localStorage.removeItem(k);location.href=location.pathname;};
+  }
+  if(pet){remembered(pet,!!seed);}
+  document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();var v=document.getElementById('pet').value.trim();if(!v)return;localStorage.setItem(k,v);remembered(v,true);});
+})();
+</script><script>
+document.getElementById('copy').onclick=function(){var t='Install Mnemo Cortex for me. Follow the instructions at projectsparks.ai/install and set it up for '+document.getElementById('blank').value+'.';navigator.clipboard&&navigator.clipboard.writeText(t);this.textContent='Copied. Now paste it to your AI.';};
+document.querySelectorAll('.ex span').forEach(function(s){s.onclick=function(){document.getElementById('blank').value=s.textContent;};});
+</script></body></html>
