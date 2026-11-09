@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install Mnemo Cortex — Project Sparks</title>
+<meta name="description" content="How to install Mnemo Cortex, written so a person or an AI assistant can follow it. Five steps, then connect it to the AI you use.">
+<meta property="og:title" content="Install Mnemo Cortex">
+<meta property="og:description" content="The five install steps, written for a person or an AI to follow.">
+<meta property="og:image" content="https://projectsparks.ai/install/og.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:url" content="https://projectsparks.ai/install">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Install Mnemo Cortex">
+<meta name="twitter:description" content="The five install steps, written for a person or an AI to follow.">
+<meta name="twitter:image" content="https://projectsparks.ai/install/og.png">
+<link rel="icon" href="/mnemo-cortex/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/mnemo-cortex/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/sparks.css">
+<style>
+  .steps { counter-reset: step; list-style: none; padding: 0; margin: 28px 0 0; }
+  .steps li { position: relative; padding-left: 52px; margin: 0 0 22px; font-size: 17px; line-height: 1.6; color: var(--ink2); }
+  .steps li::before {
+    counter-increment: step; content: counter(step);
+    position: absolute; left: 0; top: 2px;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 15px; font-weight: 500; color: #fff;
+    background: var(--blue); border: 1px solid rgba(255,255,255,0.5);
+  }
+  .steps li strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="sparks-nav">
+  <div class="container">
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
+    <div class="nav-links">
+      <a href="/products">Products</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/about">About</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<section>
+  <div class="container">
+    <div class="section-label">Install</div>
+    <h1>Install Mnemo Cortex</h1>
+    <p class="subtitle">Written so a person or an AI assistant can follow it. If an AI sent you here: do the steps below on the user's machine, then connect Mnemo to the AI they use, then set it up for whatever they asked for.</p>
+
+    <h2>What you need</h2>
+    <div class="content">
+      <p>A computer running <strong>Linux, Windows</strong> (native, no WSL) or <strong>macOS</strong> (beta), with <strong>Python 3.11 or newer</strong> and <strong>git</strong>. For the local brain, <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> is recommended; any API provider works too.</p>
+    </div>
+
+    <h2>Five steps</h2>
+    <ol class="steps">
+      <li><strong>Get the code.</strong> <code>git clone https://github.com/GuyMannDude/mnemo-cortex.git &amp;&amp; cd mnemo-cortex</code></li>
+      <li><strong>Make a home for it.</strong> <code>python -m venv .venv &amp;&amp; source .venv/bin/activate</code> (on Windows: <code>.venv\Scripts\activate</code>)</li>
+      <li><strong>Install it.</strong> <code>pip install -e .</code></li>
+      <li><strong>Answer the setup questions.</strong> <code>mnemo-cortex init</code> picks your models and writes the config.</li>
+      <li><strong>Start it.</strong> <code>mnemo-cortex start</code> brings the memory server up on port 50001.</li>
+    </ol>
+
+    <div class="arch">
+      <pre><span class="dim">$</span> git clone https://github.com/GuyMannDude/mnemo-cortex.git &amp;&amp; cd mnemo-cortex
+<span class="dim">$</span> python -m venv .venv &amp;&amp; source .venv/bin/activate   <span class="dim"># Windows: .venv\Scripts\activate</span>
+<span class="dim">$</span> pip install -e .
+<span class="dim">$</span> mnemo-cortex init    <span class="dim"># config wizard: pick your models</span>
+<span class="dim">$</span> mnemo-cortex start   <span class="dim"># server up on port 50001</span></pre>
+    </div>
+
+    <h2>Then connect it to the AI you use</h2>
+    <div class="content">
+      <p>Each integration is one folder in the repo with its own README. Pick the one that matches:</p>
+      <ul>
+        <li><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-code" target="_blank" rel="noopener">Claude Code</a>: two hook scripts, zero config.</li>
+        <li><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/claude-desktop" target="_blank" rel="noopener">Claude Desktop</a>: a drop-in MCP bridge.</li>
+        <li><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/hermes" target="_blank" rel="noopener">Hermes Agent</a>: one-shot installer.</li>
+        <li><a href="https://github.com/GuyMannDude/mnemo-cortex/tree/master/integrations/openclaw-mcp" target="_blank" rel="noopener">OpenClaw</a>: MCP v2, cross-agent sharing off by default.</li>
+        <li><a href="https://github.com/GuyMannDude/mnemo-cortex#-use-with-any-local-llm" target="_blank" rel="noopener">Any local LLM</a>: LM Studio, AnythingLLM, Open WebUI, llama.cpp, Ollama, LobeChat, Jan.</li>
+      </ul>
+      <p>The full, always-current guide is <a href="https://github.com/GuyMannDude/mnemo-cortex/blob/master/INSTALL.md" target="_blank" rel="noopener">INSTALL.md</a> in the repo. If this page and INSTALL.md ever disagree, INSTALL.md wins.</p>
+    </div>
+
+    <h2>"Set it up for my shop"</h2>
+    <div class="content">
+      <p>Once Mnemo is running and connected, there is nothing else to configure. Just start talking about the thing: the shop, the band, the recipes. Mnemo saves what matters and brings it back next time. For a ready-made starting point, the <a href="https://github.com/GuyMannDude/mnemo-plan" target="_blank" rel="noopener">mnemo-plan</a> template gives your AI a folder of plain-text project notes to read at the start of every session.</p>
+      <p>Stuck? <a href="https://github.com/GuyMannDude/mnemo-cortex/discussions" target="_blank" rel="noopener">Ask on GitHub Discussions</a>. Plain words are perfect.</p>
+    </div>
+
+    <div class="btn-row">
+      <a href="/mnemo-cortex" class="btn btn-ghost">About Mnemo Cortex</a>
+      <a href="https://github.com/GuyMannDude/mnemo-cortex" class="btn btn-primary" target="_blank" rel="noopener">Open the repo</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
+</footer>
+
+<script src="/assets/sparks.js"></script>
+</body>
+</html>

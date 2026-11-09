@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 <style>
   /* flow diagram: two modules on a shared bus */
@@ -32,9 +32,7 @@
   .flow-node {
     text-align: center;
     padding: 28px 24px;
-    background: var(--chrome-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    background: var(--chrome-soft); border: 1px solid var(--line); border-radius: 16px;
     min-width: 210px; flex: 1; max-width: 260px;
     box-shadow: var(--bevel);
     transition: box-shadow 0.3s, transform 0.3s;
@@ -73,11 +71,11 @@
     padding: 44px 36px;
     margin: 36px 0;
     background:
-      radial-gradient(500px 180px at 50% 0%, rgba(232,162,0,0.1), transparent 70%),
+      radial-gradient(500px 180px at 50% 0%, rgba(67,94,206,0.1), transparent 70%),
       var(--chrome-soft);
-    border: 1px solid #d9b75a;
+    border: 1px solid rgba(67,94,206,0.5);
     border-radius: 16px;
-    box-shadow: var(--bevel), 0 0 40px rgba(232,162,0,0.12);
+    box-shadow: var(--bevel), 0 0 40px rgba(67,94,206,0.12);
   }
   .install-box .install-label {
     font-family: var(--label);
@@ -102,15 +100,12 @@
 
 <nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">
-      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
-      Mnemo Cortex
-    </a>
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
     <div class="nav-links">
       <a href="/products">Products</a>
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
-      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
     </div>
   </div>
 </nav>
@@ -136,7 +131,7 @@
         <svg width="56" height="20" viewBox="0 0 56 20">
           <path d="M2 10 H44" stroke="#b9c6d6" stroke-width="1.6" fill="none"/>
           <path d="M44 4 L54 10 L44 16 Z" fill="#e8a200"/>
-          <circle cx="2" cy="10" r="3" fill="#fff" stroke="#b9c6d6" stroke-width="1.4"/>
+          <circle cx="2" cy="10" r="3" fill="#fff" stroke="#435ECE" stroke-width="1.4"/>
         </svg>
       </div>
       <div class="flow-node">
@@ -261,10 +256,12 @@
   </div>
 </section>
 
-<footer class="sparks-footer">
-  <div class="container">
-    &copy; 2026 Project Sparks &middot; Guy Hutchins &middot; <a href="/">projectsparks.ai</a>
-  </div>
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
 </footer>
 
 <script src="/assets/sparks.js"></script>

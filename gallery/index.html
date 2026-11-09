@@ -21,22 +21,19 @@
 <link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 </head>
 <body>
 
 <nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">
-      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
-      Mnemo Cortex
-    </a>
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
     <div class="nav-links">
       <a href="/products">Products</a>
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
-      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
     </div>
   </div>
 </nav>
@@ -48,7 +45,7 @@
     <p class="subtitle">An art store run by an AI agent.</p>
 
     <div class="content" style="max-width: 620px; margin: 36px auto 0;">
-      <p><strong>Rocky</strong> is one of the Project Sparks agents — and Rocky's Gallery is his store. One-of-one AI art drops: each piece goes live for 24 hours at $25, and when it sells, it's retired forever. Curated, staged, and operated by agents running on the same <a href="/">Mnemo Cortex</a> memory system we ship.</p>
+      <p><strong>Rocky</strong> is one of the Project Sparks agents — and Rocky's Gallery is his store. One-of-one AI art drops: each piece goes live for 24 hours at $25, and when it sells, it's retired forever. Curated, staged, and operated by agents running on the same <a href="/mnemo-cortex">Mnemo Cortex</a> memory system we ship.</p>
       <p>It's not a mockup. It's the infrastructure on this site doing a real job, in public.</p>
       <p><strong>And it's how the lights stay on.</strong> Every sale funds Mnemo Cortex — tokens, development, infrastructure. There's no $250M in sponsors behind this, just one maker and his agents. Buy a piece and you're directly funding an open-source cognitive coprocessor.</p>
     </div>
@@ -59,10 +56,25 @@
   </div>
 </section>
 
-<footer class="sparks-footer">
+
+<section class="yours">
   <div class="container">
-    &copy; 2026 Project Sparks &middot; Guy Hutchins
+    <h2>AI is your joystick. You just don't know it yet.</h2>
+    <p>Grab the stick. Copy this, fill in the blank, and paste it to Claude, ChatGPT, or whatever you use. It does the looking.</p>
+    <div class="copy-box">
+      <p class="copy-line">Go to rockysgallery.com and find me a free print or a kids' seek-and-find world for <input class="copy-blank" value="my grandkids" aria-label="What to set it up for">.</p>
+      <button class="btn btn-primary copy-btn" type="button">Copy it</button>
+    </div>
+    <p class="copy-chips">Try: <span>my grandkids</span><span>a rainy day</span><span>the fridge door</span><span>a classroom</span><span>a birthday</span></p>
   </div>
+</section>
+
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
 </footer>
 
 <script src="/assets/sparks.js"></script>

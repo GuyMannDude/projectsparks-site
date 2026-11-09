@@ -20,7 +20,7 @@
 <link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 <style>
   /* ── hero ── */
@@ -29,7 +29,7 @@
     text-align: center;
     position: relative;
   }
-  .hero-bot { margin-bottom: 26px; filter: drop-shadow(0 10px 24px rgba(19,28,40,0.18)); }
+  .hero-bot { margin-bottom: 26px; filter: drop-shadow(0 10px 24px rgba(0,0,0,0.18)); }
   .hero h1 {
     font-size: clamp(34px, 6.4vw, 64px);
     letter-spacing: clamp(4px, 1.2vw, 12px);
@@ -66,25 +66,25 @@
     text-align: center;
     padding: 30px 26px 26px;
     background:
-      radial-gradient(280px 130px at 50% 0%, rgba(232,162,0,0.14), transparent 70%),
+      radial-gradient(280px 130px at 50% 0%, rgba(67,94,206,0.14), transparent 70%),
       var(--chrome-soft);
-    border: 1px solid #d9b75a;
+    border: 1px solid rgba(67,94,206,0.5);
     border-radius: 18px;
-    box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 52px rgba(232,162,0,0.22);
+    box-shadow: var(--bevel), 0 0 0 5px var(--bg), 0 0 0 6px var(--line), 0 0 52px rgba(67,94,206,0.22);
     position: relative;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: cpu-pulse 3.2s ease-in-out infinite;
   }
   .cpu:hover { transform: translateY(-3px); }
   @keyframes cpu-pulse {
-    0%, 100% { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 40px rgba(232,162,0,0.18); }
-    50%      { box-shadow: var(--bevel), 0 0 0 5px #e7edf4, 0 0 0 6px var(--line-strong), 0 0 64px rgba(232,162,0,0.34); }
+    0%, 100% { box-shadow: var(--bevel), 0 0 0 5px var(--bg), 0 0 0 6px var(--line), 0 0 40px rgba(67,94,206,0.18); }
+    50%      { box-shadow: var(--bevel), 0 0 0 5px var(--bg), 0 0 0 6px var(--line), 0 0 64px rgba(67,94,206,0.34); }
   }
   /* CPU pins: top + bottom */
   .cpu::before, .cpu::after {
     content: '';
     position: absolute; left: 28px; right: 28px; height: 7px;
-    background: repeating-linear-gradient(90deg, #aebccd 0 7px, transparent 7px 17px);
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0 7px, transparent 7px 17px);
     border-radius: 2px;
   }
   .cpu::before { top: -12px; }
@@ -93,9 +93,9 @@
     width: 54px; height: 54px;
     margin: 0 auto 16px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #ffd95e, #f0ae00 55%, #c98c00);
-    border: 1px solid #b07f00;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -2px 4px rgba(120,80,0,0.35), 0 4px 14px rgba(232,162,0,0.4);
+    background: linear-gradient(135deg, #8FA3F5, #435ECE 55%, #1E2F6B);
+    border: 1px solid rgba(255,255,255,0.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -2px 4px rgba(0,0,0,0.35), 0 4px 14px rgba(67,94,206,0.4);
     display: flex; align-items: center; justify-content: center;
   }
   .cpu .die svg { display: block; }
@@ -133,9 +133,7 @@
     display: block;
     text-align: center;
     padding: 30px 20px 26px;
-    background: var(--chrome-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    background: var(--chrome-soft); border: 1px solid var(--line); border-radius: 16px;
     box-shadow: var(--bevel);
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     overflow: visible;
@@ -152,7 +150,7 @@
   .chip::before, .chip::after {
     content: '';
     position: absolute; top: 24px; bottom: 24px; width: 7px;
-    background: repeating-linear-gradient(180deg, #aebccd 0 6px, transparent 6px 15px);
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.25) 0 6px, transparent 6px 15px);
     border-radius: 2px;
   }
   .chip::before { left: -12px; }
@@ -172,7 +170,7 @@
     background: #fff;
   }
   .chip.gold-key .lens {
-    background: radial-gradient(circle at 36% 30%, #ffe9a8, #f0ae00 55%, #c98c00);
+    background: radial-gradient(circle at 36% 30%, #fff, #C8323E 55%, #8a1f28);
     box-shadow: 0 0 12px var(--gold-glow), inset 0 1px 1px rgba(255,255,255,0.8);
   }
   .chip:hover .lens { transform: scale(1.25); transition: transform 0.3s; }
@@ -231,15 +229,12 @@
 
 <nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">
-      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
-      Mnemo Cortex
-    </a>
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
     <div class="nav-links">
       <a href="/products">Products</a>
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
-      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
     </div>
   </div>
 </nav>
@@ -250,7 +245,7 @@
     <h1 class="chrome-text rise" style="animation-delay: 0.05s;">Project Sparks</h1>
     <div class="tagline rise" style="animation-delay: 0.12s;">AI Infrastructure &middot; Open Source</div>
     <div class="location rise" style="animation-delay: 0.18s;">Half Moon Bay, California</div>
-    <p class="intro rise" style="animation-delay: 0.24s;">The constellation behind <a href="/">Mnemo Cortex</a> — memory, tools, and messaging for AI agents. Every part open source, every part running in production. Pick a module.</p>
+    <p class="intro rise" style="animation-delay: 0.24s;">The constellation behind <a href="/mnemo-cortex">Mnemo Cortex</a> — memory, tools, and messaging for AI agents. Every part open source, every part running in production. Pick a module.</p>
   </div>
 </div>
 
@@ -349,8 +344,8 @@
     <div class="section-label">The Origin Story</div>
     <h2>The $100 Brain That Cured AI Amnesia</h2>
     <div class="content">
-      <p>For two years, <strong>Guy Hutchins</strong> &mdash; a 73-year-old maker in Half Moon Bay, California &mdash; acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
-      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight cognitive coprocessor that actually worked. That coprocessor grew into <a href="/">Mnemo Cortex</a> &mdash; and the rest of the constellation grew up around it.</p>
+      <p>For two years, <strong>Guy Hutchins</strong>, a maker in Half Moon Bay, California, acted as the "Human Sync Port" for his AI agents. Every session, he'd manually copy conversation transcripts, paste context summaries back into fresh chats, and watch his agents forget everything the moment the window closed.</p>
+      <p>Then came OpenClaw, Rocky, and a $100 Claude subscription that changed everything. In one session, Guy, Rocky, and Opie (Claude) designed, built, and tested a lightweight cognitive coprocessor that actually worked. That coprocessor grew into <a href="/mnemo-cortex">Mnemo Cortex</a> &mdash; and the rest of the constellation grew up around it.</p>
     </div>
     <div class="quote">
       <p>"I started with ChatGPT 3.5 and the first thing that mattered was memory. Two years of 'how do I make AI remember.' Now we're shipping the answer."</p>
@@ -378,10 +373,12 @@
   </div>
 </section>
 
-<footer class="sparks-footer">
-  <div class="container">
-    &copy; 2026 Project Sparks &middot; Guy Hutchins
-  </div>
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
 </footer>
 
 <script src="/assets/sparks.js"></script>

@@ -1,7 +1,53 @@
-/* Project Sparks — cursor comet.
-   Intent: the cursor is a comet nucleus — gold, azure, and chrome sparks
-   stream out behind its direction of travel, stretch with the motion,
-   then slow and die like embers. */
+/* Project Sparks — shared page script.
+   1. Copy box: the "grab the stick" sentence with a fill-in blank, a Copy button and
+      example chips (markup in assets/sparks.css under "copy box").
+   2. Cursor comet: a small particle trail behind the pointer. Off for touch screens
+      and for anyone who asked the OS for reduced motion. */
+
+/* ---- 1. copy box ---- */
+(function () {
+  var boxes = document.querySelectorAll('.copy-box');
+  if (!boxes.length) return;
+  boxes.forEach(function (box) {
+    var line = box.querySelector('.copy-line');
+    var blank = box.querySelector('.copy-blank');
+    var btn = box.querySelector('.copy-btn');
+    var chips = box.parentNode.querySelectorAll('.copy-chips span');
+    if (!line || !btn) return;
+    var original = btn.textContent;
+    function text() {
+      // the sentence as a person would read it, with the blank filled in
+      var clone = line.cloneNode(true);
+      var input = clone.querySelector('.copy-blank');
+      if (input) input.replaceWith(document.createTextNode(blank.value.trim() || blank.placeholder || ''));
+      return clone.textContent.replace(/\s+/g, ' ').trim();
+    }
+    function done(ok) {
+      btn.textContent = ok ? 'Copied. Now paste it to your AI.' : 'Select the sentence and copy it.';
+      setTimeout(function () { btn.textContent = original; }, 4000);
+    }
+    btn.addEventListener('click', function () {
+      var t = text();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); });
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = t; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta); done(ok);
+      }
+    });
+    chips.forEach(function (chip) {
+      chip.setAttribute('role', 'button'); chip.setAttribute('tabindex', '0');
+      function pick() { if (blank) { blank.value = chip.textContent; blank.focus(); } }
+      chip.addEventListener('click', pick);
+      chip.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
+  });
+})();
+
+/* ---- 2. cursor comet ---- */
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(hover: none)').matches) return; // touch devices
@@ -22,14 +68,14 @@
   resize();
   window.addEventListener('resize', resize);
 
-  // palette tuned for the light porcelain background
+  // Night Flag palette: white, two blues, one red
   var COLORS = [
-    [11, 107, 221],   // azure
-    [11, 107, 221],
-    [0, 144, 178],    // cyan
-    [143, 162, 184],  // chrome gray
-    [201, 140, 0],    // gold
-    [201, 140, 0]
+    [245, 247, 250],  // white ink
+    [143, 163, 245],  // soft blue
+    [67, 94, 206],    // blue
+    [143, 163, 245],
+    [200, 50, 62],    // red, rarely
+    [245, 247, 250]
   ];
 
   var MAX = 130;
@@ -102,68 +148,66 @@
   requestAnimationFrame(frame);
 })();
 
-/* --- Donate float: bottom-left, opposite Rocky/Peter's chat bubble --- */
+/* --- Donate float: bottom-left, opposite the chat bubble. Night Flag colours. --- */
 (function () {
   var PAYPAL = 'https://www.paypal.com/donate/?business=RHYJXYA2B877E&no_recurring=0&item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&currency_code=USD';
   var style = document.createElement('style');
   style.textContent = [
-    '#sparks-donate-bubble{position:fixed;bottom:24px;left:24px;z-index:99999;',
-    'height:52px;padding:0 20px;border-radius:999px;border:none;cursor:pointer;',
-    'background:linear-gradient(135deg,#d4a82a,#9c7514);color:#14100a;',
-    'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;',
-    'font-size:15px;font-weight:700;white-space:nowrap;',
+    '#sparks-donate-bubble{position:fixed;bottom:24px;left:16px;z-index:99999;',
+    'height:48px;padding:0 18px;border-radius:999px;cursor:pointer;',
+    'background:#435ECE;color:#fff;border:1px solid rgba(255,255,255,.65);',
+    'font-family:"Public Sans",-apple-system,BlinkMacSystemFont,sans-serif;',
+    'font-size:15px;font-weight:600;white-space:nowrap;',
     'display:flex;align-items:center;justify-content:center;gap:8px;',
-    'box-shadow:0 4px 20px rgba(212,168,42,.4),0 0 0 3px rgba(212,168,42,.3);',
+    'box-shadow:0 6px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.25);',
     'transition:transform .2s,box-shadow .2s;}',
-    '#sparks-donate-bubble:hover{transform:scale(1.1);',
-    'box-shadow:0 4px 28px rgba(212,168,42,.6),0 0 0 4px rgba(212,168,42,.4);}',
-    '#sparks-donate-card{position:fixed;bottom:100px;left:24px;z-index:99998;',
-    'width:320px;max-width:calc(100vw - 32px);background:#0c0c18;',
-    'border:1px solid rgba(212,168,42,.3);border-radius:16px;padding:18px;display:none;',
-    'box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 0 1px rgba(212,168,42,.15);',
-    'font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;}',
+    '#sparks-donate-bubble:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25);}',
+    '#sparks-donate-card{position:fixed;bottom:84px;left:16px;z-index:99998;',
+    'width:320px;max-width:calc(100vw - 32px);background:linear-gradient(180deg,#151C2C,#0F1420);',
+    'border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;display:none;',
+    'box-shadow:0 18px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);',
+    'font-family:"Public Sans",-apple-system,BlinkMacSystemFont,sans-serif;color:#F5F7FA;}',
     '#sparks-donate-card.open{display:block;}',
-    '#sparks-donate-card h3{margin:0 0 8px;color:#d4a82a;font-size:15px;font-weight:600;}',
-    '#sparks-donate-card p{margin:0 0 14px;color:#c9c9d4;font-size:13px;line-height:1.55;}',
-    '#sparks-donate-card p a{color:#d4a82a;text-decoration:none;font-weight:600;}',
+    '#sparks-donate-card h3{margin:0 0 8px;color:#F5F7FA;font-family:"Bricolage Grotesque","Public Sans",sans-serif;font-size:18px;font-weight:700;}',
+    '#sparks-donate-card p{margin:0 0 14px;color:#B9C6D6;font-size:14px;line-height:1.55;}',
     '.sparks-donate-btn{display:block;text-align:center;margin-top:8px;padding:10px 12px;',
-    'border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;',
-    'border:1px solid rgba(212,168,42,.45);color:#d4a82a;}',
-    '.sparks-donate-btn:hover{background:rgba(212,168,42,.12);}',
-    '.sparks-donate-btn--primary{background:linear-gradient(135deg,#d4a82a,#9c7514);',
-    'color:#14100a;border:none;}',
-    '.sparks-donate-btn--primary:hover{filter:brightness(1.08);background:linear-gradient(135deg,#d4a82a,#9c7514);}'
+    'border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;',
+    'border:1px solid rgba(255,255,255,.18);color:#F5F7FA;}',
+    '.sparks-donate-btn:hover{background:rgba(255,255,255,.07);color:#fff;}',
+    '.sparks-donate-btn--primary{background:#C8323E;color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(200,50,62,.28);}',
+    '.sparks-donate-btn--primary:hover{background:#D63A47;}'
   ].join('');
   document.head.appendChild(style);
 
   var bubble = document.createElement('button');
   bubble.id = 'sparks-donate-bubble';
-  bubble.setAttribute('aria-label', 'Donate to Mnemo Cortex');
-  bubble.textContent = '♥ Tip jar';
+  bubble.setAttribute('aria-label', 'Open the tip jar');
+  bubble.setAttribute('aria-expanded', 'false');
+  bubble.textContent = '\u2665 Tip jar';
 
   var card = document.createElement('div');
   card.id = 'sparks-donate-card';
   card.innerHTML =
-    '<h3>The tip jar IS the funding round</h3>' +
-    '<p>The big memory systems raised millions. Mnemo Cortex runs on donations to one ' +
-    '73-year-old maker and his agents — no sponsors, no VC, no paywall. Every dollar ' +
-    'goes straight to keeping AI memory free and open source.</p>' +
-    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">💛 Toss a few bucks in — PayPal</a>' +
-    '<a class="sparks-donate-btn" href="https://ko-fi.com/guysparks" target="_blank" rel="noopener">☕ Buy the maker a coffee — Ko-fi</a>' +
-    '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">♥ Sponsor monthly on GitHub</a>' +
-    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Free art at Rocky’s Gallery →</a>';
+    '<h3>The tip jar is the funding round</h3>' +
+    '<p>No investors, no ads, no premium tier. Every dollar in the jar comes from someone whose AI finally remembered them. ' +
+    'It all goes to keeping AI memory free and open source.</p>' +
+    '<a class="sparks-donate-btn sparks-donate-btn--primary" href="' + PAYPAL + '" target="_blank" rel="noopener">Toss a few bucks in the jar (PayPal)</a>' +
+    '<a class="sparks-donate-btn" href="https://ko-fi.com/guysparks" target="_blank" rel="noopener">Buy the maker a coffee (Ko-fi)</a>' +
+    '<a class="sparks-donate-btn" href="https://github.com/sponsors/GuyMannDude" target="_blank" rel="noopener">Sponsor monthly on GitHub</a>' +
+    '<a class="sparks-donate-btn" href="https://rockysgallery.com" target="_blank" rel="noopener">Free art at Rocky\u2019s Gallery</a>';
 
   document.body.appendChild(bubble);
   document.body.appendChild(card);
 
   bubble.addEventListener('click', function (e) {
     e.stopPropagation();
-    card.classList.toggle('open');
+    var open = card.classList.toggle('open');
+    bubble.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   document.addEventListener('click', function (e) {
-    if (card.classList.contains('open') && !card.contains(e.target)) card.classList.remove('open');
+    if (card.classList.contains('open') && !card.contains(e.target)) { card.classList.remove('open'); bubble.setAttribute('aria-expanded', 'false'); }
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') card.classList.remove('open');
+    if (e.key === 'Escape') { card.classList.remove('open'); bubble.setAttribute('aria-expanded', 'false'); }
   });
 })();

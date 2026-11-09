@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 <style>
   .fine-print { font-size: 13.5px; color: var(--ink-faint); margin: 18px 0 0; }
@@ -37,7 +37,7 @@
     display: flex; align-items: center; justify-content: center;
     font-family: var(--mono); font-size: 15px; font-weight: 500;
     background: var(--panel); border: 1px solid var(--line-strong);
-    box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(19,28,40,0.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 1px 3px rgba(0,0,0,0.06);
   }
   .steps li strong { color: var(--ink); }
   .two-offers { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 28px; }
@@ -48,15 +48,12 @@
 
 <nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">
-      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
-      Mnemo Cortex
-    </a>
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
     <div class="nav-links">
       <a href="/products">Products</a>
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
-      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
     </div>
   </div>
 </nav>
@@ -64,7 +61,7 @@
 <!-- Hero -->
 <section>
   <div class="container" style="text-align: center;">
-    <div class="section-label centered">Free &middot; v0.9 Public Preview &middot; From Project Sparks</div>
+    <div class="section-label centered">Free &middot; v0.9.2 Public Preview &middot; From Project Sparks</div>
     <h1 class="chrome-text">Omnemo OS</h1>
     <p class="subtitle">Omarchy, made easy, <span class="gilt">made for memory.</span></p>
 
@@ -81,7 +78,7 @@
     </div>
 
     <figure style="max-width: 1100px; margin: 36px auto 0;">
-      <img src="/omnemo-os/images/bar.png" alt="The Omnemo OS flag bar on a real install: blue fields behind the app icons on the left, the Tools and Favorites menus and ? guide in the middle, and the system tray on the right, with red and white stripes between them" style="width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line-strong); box-shadow: 0 10px 30px rgba(19,28,40,0.18);">
+      <img src="/omnemo-os/images/bar.png" alt="The Omnemo OS flag bar on a real install: blue fields behind the app icons on the left, the Tools and Favorites menus and ? guide in the middle, and the system tray on the right, with red and white stripes between them" style="width: 100%; height: auto; display: block; border-radius: 12px; border: 1px solid var(--line-strong); box-shadow: 0 10px 30px rgba(0,0,0,0.18);">
       <figcaption class="fine-print" style="text-align: center; margin-top: 10px;">The Omnemo OS flag bar on a real install: a taskbar, Tools and Favorites menus, a &ldquo;?&rdquo; guide to every icon, and the stripes in between.</figcaption>
     </figure>
   </div>
@@ -112,26 +109,26 @@
 <section id="install">
   <div class="container">
     <div class="section-label">Install</div>
-    <h2>Three steps. Password only for the snapshot.</h2>
+    <h2>Two steps. Password only for the snapshot.</h2>
     <div class="content">
-      <p>This preview needs Omarchy's <strong>4.5 test version</strong> (the release candidate). It never asks for your password, except Omarchy's own snapshot step.</p>
+      <p>This preview runs on <strong>Omarchy 4.5</strong> (stable since 2026-11-05). It never asks for your password, except Omarchy's own snapshot step.</p>
     </div>
 
     <ol class="steps" style="max-width: 720px; margin: 28px 0 0;">
       <li><strong>Take a snapshot so you can undo.</strong> Open a Terminal (Super + Enter) and type <code>omarchy snapshot create</code>. It asks for your password.</li>
-      <li><strong>Switch to the test version.</strong> Omarchy menu &rarr; Update &rarr; Channel &rarr; RC, then Update &rarr; Omarchy.</li>
       <li><strong>Paste the three lines below into the Terminal.</strong></li>
     </ol>
 
     <div class="arch">
       <pre><span class="dim">$</span> git clone https://github.com/GuyMannDude/omnemo-os
 <span class="dim">$</span> cd omnemo-os
-<span class="dim">$</span> bin/omnemo-os install --allow-rc</pre>
+<span class="dim">$</span> bin/omnemo-os install</pre>
     </div>
 
     <div class="content">
-      <p><code>--allow-rc</code> is only needed while 4.5 is a test version. The memory part downloads a few hundred MB, so it needs the internet and a couple of minutes. Offline? The desktop still installs, and <code>bin/omnemo-os repair</code> adds the memory later.</p>
+      <p>On an older 4.5 test version add <code>--allow-rc</code>; otherwise it is not needed. The memory part downloads a few hundred MB, so it needs the internet and a couple of minutes. Offline? The desktop still installs, and <code>bin/omnemo-os repair</code> adds the memory later.</p>
       <p>When it finishes, start a <strong>new</strong> session of your AI helper (Claude, Codex, &hellip;) and it shares one memory with the others.</p>
+      <p>Tested end to end on a fresh Omarchy 4.5.0-3 install, November 7.</p>
     </div>
 
     <h3 style="margin-top: 44px;">Afterwards, from the <code>omnemo-os</code> folder</h3>
@@ -150,7 +147,7 @@
     <h2>Uninstall never touches them.</h2>
     <div class="content">
       <p>Uninstall removes the memory program it installed but never your memories. They stay in <code>~/.local/share/omnemo</code>, and uninstall tells you where. Install again later and they are picked up where you left off.</p>
-      <p>To delete them yourself, copy that folder somewhere safe, then delete it. A keep-or-start-fresh question is coming in 0.9.2.</p>
+      <p>To delete them yourself, copy that folder somewhere safe, then delete it. Since 0.9.2 the installer asks whether to keep them when memories exist.</p>
     </div>
   </div>
 </section>
@@ -202,7 +199,7 @@
     </div>
 
     <p class="fine-print" style="max-width: 680px; margin: 36px auto 0;">
-      <strong>Status: v0.9 Public Preview.</strong> It works on today's Omarchy 4.5 test version and will be called 1.0 once Omarchy 4.5 stable is out and the edition has survived a reboot and an <code>omarchy-update</code> on a stock machine. Expect rough edges.<br><br>
+      <strong>Status: v0.9.2 Public Preview.</strong> It runs on Omarchy 4.5 stable and will be called 1.0 once the edition has survived a reboot and an <code>omarchy-update</code> on a stock machine. Expect rough edges.<br><br>
       Omnemo OS is built on <a href="https://github.com/omacom/omarchy" target="_blank">Omarchy</a> (MIT license). &ldquo;Omarchy&rdquo; is a pending trademark of its owners. This project is not affiliated with or endorsed by them.
     </p>
 
@@ -213,10 +210,25 @@
   </div>
 </section>
 
-<footer class="sparks-footer">
+
+<section class="yours">
   <div class="container">
-    &copy; 2026 Project Sparks &middot; Guy Hutchins
+    <h2>AI is your joystick. You just don't know it yet.</h2>
+    <p>Don't install anything by hand. Grab the stick. Copy this, fill in the blank, and paste it to Claude, ChatGPT, or whatever you use. It does the rest, and everything here is yours to bend.</p>
+    <div class="copy-box">
+      <p class="copy-line">Install Omnemo OS for me. Follow the README at github.com/GuyMannDude/omnemo-os and set it up for <input class="copy-blank" value="my shop" aria-label="What to set it up for">.</p>
+      <button class="btn btn-primary copy-btn" type="button">Copy it</button>
+    </div>
+    <p class="copy-chips">Try: <span>my shop</span><span>my art</span><span>my recipes</span><span>my band</span><span>learning to juggle</span></p>
   </div>
+</section>
+
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
 </footer>
 
 <script src="/assets/sparks.js"></script>

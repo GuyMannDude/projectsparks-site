@@ -16,14 +16,19 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FONTS = os.path.join(ROOT, "tools", "fonts")
 OUT_GH = os.path.join(ROOT, "tools", "out", "github")
 
-# Palette from assets/sparks.css, flipped to the dark card used by og-image.png
-BG = (11, 14, 20)
-INK = (255, 255, 255)
-INK_SOFT = (185, 198, 214)      # --line-strong
-INK_FAINT = (113, 129, 154)     # --ink-faint
-GOLD = (232, 162, 0)            # --gold
-AZURE = (11, 107, 221)          # --azure
+# Palette from assets/sparks.css ("Night Flag", 2026-11)
+BG = (11, 14, 20)               # --bg
+INK = (245, 247, 250)           # --ink
+INK_SOFT = (185, 198, 214)      # --ink2
+INK_FAINT = (138, 152, 172)     # --ink-faint
+BLUE = (67, 94, 206)            # --blue
+BLUE_SOFT = (143, 163, 245)     # --blue-soft
+NAVY = (30, 47, 107)            # --navy
+RED = (200, 50, 62)             # --red
+WHITE = (255, 255, 255)
 LINE = (36, 44, 58)
+GOLD = BLUE_SOFT                # legacy name used below for the accent colour
+AZURE = BLUE
 
 
 def font(name, size, weight=None):
@@ -36,9 +41,16 @@ def font(name, size, weight=None):
     return f
 
 
-def display(size): return font("Michroma-Regular.ttf", size)
-def label(size): return font("ChakraPetch-SemiBold.ttf", size)
-def body(size, w=500): return font("HankenGrotesk.ttf", size, w)
+def display(size):
+    # Bricolage Grotesque variable font, axes: optical size, weight, width
+    f = ImageFont.truetype(os.path.join(FONTS, "BricolageGrotesque.ttf"), size)
+    try:
+        f.set_variation_by_axes([96, 800, 100])
+    except Exception:
+        pass
+    return f
+def label(size): return font("PublicSans.ttf", size, 600)
+def body(size, w=500): return font("PublicSans.ttf", size, w)
 def mono(size, w=500): return font("JetBrainsMono.ttf", size, w)
 
 
@@ -105,9 +117,8 @@ def card(spec, size):
     k = H / 630.0                      # 1.0 at 1200x630, 2.0 at 2400x1260 (site), ~1.0 at 1280x640 (GitHub)
     px = lambda n: int(round(n * k))
     im = Image.new("RGBA", size, BG + (255,))
-    glow(im, (int(W * 0.12), int(H * 0.1)), int(H * 0.55), AZURE, 34)
-    glow(im, (int(W * 0.9), int(H * 0.95)), int(H * 0.5), GOLD, 26)
-    pentagon(im, int(W * 0.5), int(H * 0.52), int(H * 0.62))
+    glow(im, (int(W * 0.12), int(H * 0.1)), int(H * 0.6), NAVY, 120)
+    glow(im, (int(W * 0.9), int(H * 0.95)), int(H * 0.5), BLUE, 40)
     d = ImageDraw.Draw(im)
 
     pad = int(W * 0.065)
@@ -161,19 +172,26 @@ def card(spec, size):
         im.paste(strip, (pad, sy), mask)
         d.rounded_rectangle([pad, sy, pad + sw, sy + sh], radius=px(12), outline=LINE, width=max(1, px(1)))
 
-    # ---- footer: url + chrome rail with gold tick
-    d.text((pad, H - px(72)), spec["url"], font=mono(px(22), 500), fill=INK_FAINT)
-    rail_y = H - px(28)
-    for x in range(pad, W - pad):
-        t = (x - pad) / (W - 2 * pad)
-        c = (int(60 + 120 * (1 - abs(t - 0.5) * 2)),) * 3
-        d.line([(x, rail_y), (x, rail_y + max(1, px(1)))], fill=c)
-    d.line([(pad, rail_y), (pad + px(90), rail_y)], fill=GOLD, width=max(2, px(2)))
+    # ---- footer: url + the red/white stripe seam from the site
+    d.text((pad, H - px(76)), spec["url"], font=mono(px(22), 500), fill=INK_FAINT)
+    seam_y = H - px(30)
+    stripe = max(1, px(4))
+    for i, col in enumerate((RED, WHITE, RED)):
+        y0 = seam_y + i * stripe
+        d.rectangle([pad, y0, W - pad, y0 + stripe - 1], fill=col)
     return im.convert("RGB")
 
 
 # ---------------------------------------------------------------------------
 SITE = {
+    "home": dict(title="AI that remembers you.", kicker="Project Sparks · Half Moon Bay, California",
+                 tagline="Built to outlast everything you're using, and everything they're building. Your memory lives in plain files on your own machine. Free.",
+                 badge="FREE · OPEN SOURCE", title_size=84),
+    "mnemo-cortex": dict(title="Mnemo Cortex", kicker="Memory for your AI",
+                         tagline="Claude, Hermes, OpenClaw and any local model remember what you told them yesterday. Local-first, plain files, free.",
+                         badge="FREE · OPEN SOURCE", title_size=92),
+    "install": dict(title="Install Mnemo Cortex", kicker="Paste this page to your AI",
+                    tagline="The five install steps, written for a person or an AI to follow.", title_size=78),
     "omnemo-os": dict(title="Omnemo OS", kicker="Omarchy, made easy, made for memory",
                       tagline="A friendlier Omarchy desktop with Omnemo memory built in.",
                       badge="v0.9 PUBLIC PREVIEW · FREE", inset="omnemo-os/images/bar.png", title_size=78),
@@ -228,8 +246,13 @@ def main(only=None):
     for name, spec in SITE.items():
         if only and name != only:
             continue
-        spec = dict(spec, url=f"projectsparks.ai/{name}")
-        out = os.path.join(ROOT, name, "og.png")
+        if name == "home":
+            spec = dict(spec, url="projectsparks.ai")
+            out = os.path.join(ROOT, "og.png")
+        else:
+            spec = dict(spec, url=f"projectsparks.ai/{name}")
+            out = os.path.join(ROOT, name, "og.png")
+            os.makedirs(os.path.dirname(out), exist_ok=True)
         card(spec, (2400, 1260)).save(out, optimize=True)
         print("site  ", out)
     for name, spec in GITHUB.items():

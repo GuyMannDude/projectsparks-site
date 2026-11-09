@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/mnemo-cortex/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/sparks.css">
 <style>
   .hero-logo {
@@ -43,9 +43,7 @@
     flex: 1 1 0;
     min-width: 150px; max-width: 230px;
     padding: 24px 14px;
-    background: var(--chrome-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
+    background: var(--chrome-soft); border: 1px solid var(--line); border-radius: 16px;
     box-shadow: var(--bevel);
   }
   .lifecycle .step .emoji { font-size: 36px; line-height: 1; margin-bottom: 12px; }
@@ -68,15 +66,12 @@
 
 <nav class="sparks-nav">
   <div class="container">
-    <a href="/" class="nav-logo">
-      <img src="/mnemo-cortex/favicon/favicon-32x32.png" width="28" height="28" alt="">
-      Mnemo Cortex
-    </a>
+    <a href="/" class="nav-logo"><span class="mark"></span>Project Sparks</a>
     <div class="nav-links">
       <a href="/products">Products</a>
       <a href="/gallery">Gallery</a>
       <a href="/about">About</a>
-      <a href="https://github.com/GuyMannDude" target="_blank">GitHub</a>
+      <a class="jar" href="https://www.paypal.com/donate/?business=RHYJXYA2B877E&amp;no_recurring=0&amp;item_name=Support+Mnemo+Cortex+%E2%80%94+open-source+AI+memory%2C+funded+entirely+by+donations.&amp;currency_code=USD" target="_blank" rel="noopener">Donate</a>
     </div>
   </div>
 </nav>
@@ -179,7 +174,7 @@
     <div class="section-label">Install</div>
     <h2>One install path. No external dependencies.</h2>
     <div class="content">
-      <p>Local SQLite for state, HTTP for delivery, optional Discord mirroring for human visibility. Memory is its own concern — if you want semantic recall over message payloads, that's <a href="/">Mnemo Cortex</a>'s job. The bus doesn't route through it.</p>
+      <p>Local SQLite for state, HTTP for delivery, optional Discord mirroring for human visibility. Memory is its own concern — if you want semantic recall over message payloads, that's <a href="/mnemo-cortex">Mnemo Cortex</a>'s job. The bus doesn't route through it.</p>
     </div>
 
     <div class="arch" style="margin-top: 40px;">
@@ -277,10 +272,25 @@
   </div>
 </section>
 
-<footer class="sparks-footer">
+
+<section class="yours">
   <div class="container">
-    © 2026 Project Sparks · Guy Hutchins · MIT
+    <h2>AI is your joystick. You just don't know it yet.</h2>
+    <p>Don't install anything by hand. Grab the stick. Copy this, fill in the blank, and paste it to Claude, ChatGPT, or whatever you use. It does the rest, and everything here is yours to bend.</p>
+    <div class="copy-box">
+      <p class="copy-line">Install Disco-Bus for me. Follow the README at github.com/GuyMannDude/disco-bus and set it up for <input class="copy-blank" value="my shop" aria-label="What to set it up for">.</p>
+      <button class="btn btn-primary copy-btn" type="button">Copy it</button>
+    </div>
+    <p class="copy-chips">Try: <span>my shop</span><span>my art</span><span>my recipes</span><span>my band</span><span>learning to juggle</span></p>
   </div>
+</section>
+
+<footer class="flag-foot">
+  <div class="container"><p class="footline">Guy Hutchins and his AI team, Half Moon Bay. Open source, every part of it.</p></div>
+  <div class="bar"><div class="container">
+    <nav class="pill" aria-label="Footer"><a href="https://github.com/GuyMannDude" target="_blank" rel="noopener">GitHub</a><a href="/about">About</a><a href="/field-guide">Field guide</a></nav>
+    <nav class="pill plain" aria-label="Legal"><a href="/privacy">Privacy</a><a href="/tos">Terms</a><span>&copy; 2026 Project Sparks</span></nav>
+  </div></div>
 </footer>
 
 <script src="/assets/sparks.js"></script>
